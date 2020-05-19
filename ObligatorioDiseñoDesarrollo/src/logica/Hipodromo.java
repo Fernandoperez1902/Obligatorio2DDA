@@ -5,13 +5,14 @@
  */
 package logica;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author Fernando
+ * @author Mauro
  */
-public class Usuario {
-    private String nombreUsuario;
-    private String nombreCompleto;
-    private String password;
-            
+public class Hipodromo {
+    private String nombre;
+    private String direccion;
+    private ArrayList<Jornada> jornadas = new ArrayList<Jornada>();
 }

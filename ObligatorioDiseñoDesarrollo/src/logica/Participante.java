@@ -7,11 +7,11 @@ package logica;
 
 /**
  *
- * @author Fernando
+ * @author Mauro
  */
-public class Usuario {
-    private String nombreUsuario;
-    private String nombreCompleto;
-    private String password;
-            
+public class Participante {
+    private Caballo caballo;
+    private Double dividendo;
+    private int numero;
+    private boolean ganador;
 }
