@@ -11,4 +11,21 @@ package logica;
  */
 public class Usuario {
     
+    private String nombreUsuario;
+    private String nombreCompleto;
+    private String password;
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
+    
 }
