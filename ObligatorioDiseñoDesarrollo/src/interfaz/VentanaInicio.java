@@ -31,8 +31,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         btnJugador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SISTEMA DE APUESTAS HÍPICAS");
+        setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         getContentPane().setLayout(null);
 
+        btnAdministrador.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btnAdministrador.setText("SOY ADMINISTRADOR!");
         btnAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -40,8 +43,9 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdministrador);
-        btnAdministrador.setBounds(40, 90, 150, 30);
+        btnAdministrador.setBounds(40, 80, 180, 30);
 
+        btnJugador.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btnJugador.setText("QUIERO JUGAR!");
         btnJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,9 +53,10 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnJugador);
-        btnJugador.setBounds(220, 90, 150, 30);
+        btnJugador.setBounds(250, 80, 180, 30);
 
-        pack();
+        setSize(new java.awt.Dimension(490, 210));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugadorActionPerformed
@@ -59,7 +64,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJugadorActionPerformed
 
     private void btnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorActionPerformed
-        // TODO add your handling code here:
+         LoginAdministrador ventana = new LoginAdministrador(this, false);
+         ventana.setVisible(true);
     }//GEN-LAST:event_btnAdministradorActionPerformed
 
     /**
