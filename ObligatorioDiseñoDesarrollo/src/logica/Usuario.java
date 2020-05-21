@@ -33,5 +33,8 @@ public class Usuario {
         return password;
     }
     
+    boolean verificarDatos(String n, String p) {
+        return nombreUsuario.equals(n) && password.equals(p);
+    }
     
 }
