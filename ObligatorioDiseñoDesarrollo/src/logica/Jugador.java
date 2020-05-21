@@ -13,5 +13,10 @@ public class Jugador extends Usuario {
 
     private float saldo;
     
+    public Jugador(String u, String p, String n, int s){
+        super(u, p, n);
+        saldo = s;
+    }
+    
     
 }
