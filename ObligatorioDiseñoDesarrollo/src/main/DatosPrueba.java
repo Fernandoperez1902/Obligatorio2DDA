@@ -38,6 +38,7 @@ public class DatosPrueba {
         Hipodromo h2 = new Hipodromo("Hipódromo2","Dirección2");
         Hipodromo h3 = new Hipodromo("Hipódromo3","Dirección3");
         Hipodromo h4 = new Hipodromo("Hipódromo4","Dirección4");
+        Hipodromo h5 = new Hipodromo("Hipódromo1","Dirección2");
         
         //ADMINISTRADORES
         
@@ -54,5 +55,17 @@ public class DatosPrueba {
         Jugador j3 = new Jugador("J3", "J3", "Jugador3", 100);
         Jugador j4 = new Jugador("J4", "J4", "Jugador4", 100);
         Jugador j5 = new Jugador("J5", "J5", "Jugador5", 100);
+        
+        logica.agregarJugador(j1);
+        logica.agregarJugador(j2);
+        logica.agregarJugador(j3);
+        logica.agregarJugador(j4);
+        logica.agregarJugador(j5);
+        
+        
+        logica.agregarHipodromo(h1);
+        logica.agregarHipodromo(h2);
+        logica.agregarHipodromo(h3);
+        logica.agregarHipodromo(h4);
     }
 }

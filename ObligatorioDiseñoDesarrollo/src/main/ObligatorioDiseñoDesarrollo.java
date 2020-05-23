@@ -16,11 +16,10 @@ public class ObligatorioDiseñoDesarrollo {
 
     public static void main(String[] args) {
         
-        DatosPrueba.cargar();
-        
         VentanaInicio inicio = new VentanaInicio();
         inicio.setVisible(true);
-
+        DatosPrueba.cargar();
+        
     }
     
 }

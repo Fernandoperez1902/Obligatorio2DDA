@@ -46,4 +46,14 @@ public class Hipodromo {
         this.jornadas = jornadas;
     }
     // </editor-fold>
+
+    @Override
+    public String toString() {
+        return nombre.toUpperCase() + " - " + direccion;
+    }
+    
+    public boolean validarHipodromo(String nombre){
+        return this.nombre==nombre;
+    }
+    
 }
