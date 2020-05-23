@@ -1,6 +1,11 @@
 package interfaz;
 
+import java.awt.event.ActionListener;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import logica.Administrador;
 import logica.Fachada;
 
@@ -100,8 +105,12 @@ public class LoginAdministrador extends javax.swing.JFrame {
 
         if (adm != null) {
 
+            BienvenidaAdministrador mensajeBienvda = new BienvenidaAdministrador(this, true, adm);
+            mensajeBienvda.setVisible(true);
+            
             this.dispose();
-            MenuAdministrador menu = new MenuAdministrador();
+            
+            MenuAdministrador menu = new MenuAdministrador(adm);
             menu.setVisible(true);
 
         } else {
