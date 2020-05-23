@@ -13,9 +13,14 @@ import java.util.ArrayList;
  */
 public class SistemaHipodromos {
     private ArrayList<Hipodromo> hipodromos = new ArrayList<Hipodromo>();
-
+    
     public ArrayList<Hipodromo> getHipodromos() {
         return hipodromos;
     }
+    
+    public void agregarHipodromo(Hipodromo h){
+        hipodromos.add(h);
+    }
+    
     
 }

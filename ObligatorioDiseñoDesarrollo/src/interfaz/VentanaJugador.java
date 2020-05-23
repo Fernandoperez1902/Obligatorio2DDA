@@ -5,7 +5,9 @@
  */
 package interfaz;
 
+import java.util.ArrayList;
 import logica.Fachada;
+import logica.Hipodromo;
 
 /**
  *
@@ -33,7 +35,7 @@ public class VentanaJugador extends javax.swing.JDialog {
 
         jTextField3 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstHipodromo = new javax.swing.JList<>();
+        lstHipodromo = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstCarrera = new javax.swing.JList<>();
@@ -63,7 +65,7 @@ public class VentanaJugador extends javax.swing.JDialog {
         jScrollPane1.setViewportView(lstHipodromo);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 90, 150, 160);
+        jScrollPane1.setBounds(30, 90, 180, 160);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel1.setText("HIPÓDROMO");
@@ -74,29 +76,29 @@ public class VentanaJugador extends javax.swing.JDialog {
         jScrollPane2.setViewportView(lstCarrera);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(210, 90, 150, 160);
+        jScrollPane2.setBounds(240, 90, 180, 160);
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel2.setText("CARRERA");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(210, 60, 150, 30);
+        jLabel2.setBounds(240, 60, 150, 30);
 
         lstCaballo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jScrollPane3.setViewportView(lstCaballo);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(390, 90, 150, 160);
+        jScrollPane3.setBounds(450, 90, 180, 160);
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel3.setText("CABALLO");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(390, 60, 150, 30);
+        jLabel3.setBounds(450, 60, 150, 30);
 
         jLabel4.setFont(new java.awt.Font("Calibri", 3, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("¡Bienvenido! Lo invitamos a efectuar su apuesta...");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 20, 510, 14);
+        jLabel4.setBounds(30, 20, 600, 20);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +106,7 @@ public class VentanaJugador extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(260, 310, 100, 30);
+        jTextField1.setBounds(340, 310, 100, 30);
 
         jTextField2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         getContentPane().add(jTextField2);
@@ -122,12 +124,12 @@ public class VentanaJugador extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Monto de la apuesta:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(110, 310, 140, 30);
+        jLabel5.setBounds(190, 310, 140, 30);
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel6.setText("$");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(250, 310, 20, 30);
+        jLabel6.setBounds(330, 310, 20, 30);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel7.setText("Usuario");
@@ -139,7 +141,7 @@ public class VentanaJugador extends javax.swing.JDialog {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(80, 440, 70, 30);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(50, 370, 470, 10);
+        jSeparator1.setBounds(50, 370, 560, 10);
 
         jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton1.setText("Confirmar Apuesta");
@@ -159,9 +161,9 @@ public class VentanaJugador extends javax.swing.JDialog {
 
         jButton2.setText("Cancelar");
         getContentPane().add(jButton2);
-        jButton2.setBounds(450, 440, 80, 30);
+        jButton2.setBounds(440, 440, 90, 30);
 
-        setBounds(0, 0, 593, 542);
+        setBounds(0, 0, 685, 542);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -240,12 +242,12 @@ public class VentanaJugador extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JList<String> lstCaballo;
     private javax.swing.JList<String> lstCarrera;
-    private javax.swing.JList<String> lstHipodromo;
+    private javax.swing.JList lstHipodromo;
     // End of variables declaration//GEN-END:variables
 
     private void cargarHipodromos() {
-       // ArrayList<Hipodromo> hipodromos = Fachada.getInstancia().getHipodromos();
-        
+        ArrayList<Hipodromo> hipodromos = Fachada.getInstancia().getHipodromos();
+        lstHipodromo.setListData(hipodromos.toArray());
         
     }
 }

@@ -18,7 +18,8 @@ public class ObligatorioDiseñoDesarrollo {
         
         VentanaInicio inicio = new VentanaInicio();
         inicio.setVisible(true);
-
+        DatosPrueba.cargar();
+        
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package logica;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Mauro
@@ -14,6 +16,7 @@ public class Fachada {
     
     private static Fachada instancia;
     private SistemaUsuarios su = new SistemaUsuarios();
+    private SistemaHipodromos sh = new SistemaHipodromos();
     
     public static Fachada getInstancia(){
         if (instancia ==null){
@@ -28,4 +31,11 @@ public class Fachada {
         su.agregarJugador(j);
     }
     
+    public void agregarHipodromo(Hipodromo h){
+        sh.agregarHipodromo(h);
+    }
+    
+     public ArrayList<Hipodromo> getHipodromos(){
+         return sh.getHipodromos();
+     }
 }
