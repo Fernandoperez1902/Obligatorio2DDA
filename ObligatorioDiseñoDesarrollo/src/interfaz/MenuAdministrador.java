@@ -5,7 +5,10 @@
  */
 package interfaz;
 
+import java.util.ArrayList;
 import logica.Administrador;
+import logica.Fachada;
+import logica.Hipodromo;
 
 /**
  *
@@ -19,12 +22,14 @@ public class MenuAdministrador extends javax.swing.JFrame {
     public MenuAdministrador(Administrador adm) {
         initComponents();
         txtAdminName.setText(adm.getNombreCompleto());
+        cargarHipodromos();
         
     }
     
-    private void cargarHipódromos(){
+    private void cargarHipodromos(){
         
-        
+        ArrayList<Hipodromo> hipodromos = Fachada.getInstancia().getHipodromos();
+        lstHipodromo.setListData(hipodromos.toArray());
         
     }
 
@@ -75,7 +80,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         txtAdminName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        lstHipodromo = new javax.swing.JList();
         lblHipodromos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,7 +89,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         txtAdminName.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(lstHipodromo);
 
         lblHipodromos.setText("Hipódromos");
 
@@ -122,9 +127,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHipodromos;
+    private javax.swing.JList lstHipodromo;
     private javax.swing.JLabel txtAdminName;
     // End of variables declaration//GEN-END:variables
 }
