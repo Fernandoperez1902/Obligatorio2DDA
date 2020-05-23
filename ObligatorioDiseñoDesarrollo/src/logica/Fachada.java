@@ -12,6 +12,7 @@ package logica;
 public class Fachada {
     
     private static Fachada instancia;
+    private SistemaUsuarios su = new SistemaUsuarios();
     
     private SistemaUsuario sU = new SistemaUsuario();
     
@@ -36,5 +37,9 @@ public class Fachada {
     
     
     
+    
+    public void agregarJugador(Jugador j){
+        su.agregarJugador(j);
+    }
     
 }

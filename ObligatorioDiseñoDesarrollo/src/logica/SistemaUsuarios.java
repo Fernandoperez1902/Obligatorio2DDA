@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Mauro
  */
-public class SistemaUsuario {
+public class SistemaUsuarios {
  
     private ArrayList<Usuario>jugadores = new ArrayList<Usuario>();
     private ArrayList<Usuario>administradores = new ArrayList<Usuario>();
@@ -46,5 +46,9 @@ public class SistemaUsuario {
             ret = (Jugador)u;
         }
         return ret;
+    }
+    
+    public void agregarJugador(Jugador j){
+        jugadores.add(j);
     }
 }
