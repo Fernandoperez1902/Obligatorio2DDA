@@ -60,7 +60,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugadorActionPerformed
-        // TODO add your handling code here:
+        VentanaJugador ventana = new VentanaJugador(this, false);
+        ventana.setVisible(true);
     }//GEN-LAST:event_btnJugadorActionPerformed
 
     private void btnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorActionPerformed
