@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaz;
+
+import javax.swing.JOptionPane;
+import logica.Administrador;
+import logica.Fachada;
 
 /**
  *
  * @author Mauro
  */
-public class LoginAdministrador extends javax.swing.JDialog {
+public class LoginAdministrador extends javax.swing.JFrame {
+
+    Fachada logica = Fachada.getInstancia();
 
     /**
      * Creates new form LoginAdministrador
      */
-    public LoginAdministrador(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public LoginAdministrador() {
         initComponents();
     }
 
@@ -92,7 +92,24 @@ public class LoginAdministrador extends javax.swing.JDialog {
     }//GEN-LAST:event_txtAdminPassActionPerformed
 
     private void btnAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminLoginActionPerformed
-        // TODO add your handling code here:
+
+        String nombreUsuario = txtAdminNom.getText();
+        String passUsuario = txtAdminPass.getText();
+
+        Administrador adm = logica.loginAdministrador(nombreUsuario, passUsuario);
+
+        if (adm != null) {
+
+            this.dispose();
+            MenuAdministrador menu = new MenuAdministrador();
+            menu.setVisible(true);
+
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Login Incorrecto");
+
+        }
+
     }//GEN-LAST:event_btnAdminLoginActionPerformed
 
     /**
@@ -125,16 +142,10 @@ public class LoginAdministrador extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                LoginAdministrador dialog = new LoginAdministrador(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new LoginAdministrador().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

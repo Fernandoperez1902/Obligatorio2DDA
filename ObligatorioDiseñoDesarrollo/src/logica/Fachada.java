@@ -13,19 +13,32 @@ import java.util.ArrayList;
  */
 public class Fachada {
     
-    
     private static Fachada instancia;
+    
     private SistemaUsuarios su = new SistemaUsuarios();
     private SistemaHipodromos sh = new SistemaHipodromos();
     
     public static Fachada getInstancia(){
-        if (instancia ==null){
+        if (instancia == null){
             instancia = new Fachada();
         }
         return instancia;
     }
     
     private Fachada(){}
+
+    
+    public Administrador loginAdministrador(String nombre, String password) {
+        return su.loginAdministrador(nombre, password);
+    }
+
+    public Jugador loginJugador(String nombre, String password) {
+        return su.loginJugador(nombre, password);
+    }
+
+    public void agregarAdministrador(Administrador adm) {
+        su.agregarAdministrador(adm);
+    }  
     
     public void agregarJugador(Jugador j){
         su.agregarJugador(j);

@@ -40,12 +40,16 @@ public class SistemaUsuarios {
     }
     
     public Jugador loginJugador(String nombre, String password){
-        Jugador ret=null;
+        Jugador ret = null;
         Usuario u = login(jugadores,nombre,password);
          if (u!=null){
             ret = (Jugador)u;
         }
         return ret;
+    }
+    
+    public void agregarAdministrador(Administrador adm){
+        administradores.add(adm);
     }
     
     public void agregarJugador(Jugador j){
