@@ -56,9 +56,12 @@ public class DatosPrueba {
         
         
         
+        
         instancia.agregarHipodromo(h1);
         instancia.agregarHipodromo(h2);
         instancia.agregarHipodromo(h3);
         instancia.agregarHipodromo(h4);
+        
+        
     }
 }

@@ -44,17 +44,17 @@ public class VentanaJugador extends javax.swing.JDialog {
         lstCaballo = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtMonto = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         jTextField3.setText("jTextField3");
 
@@ -100,26 +100,28 @@ public class VentanaJugador extends javax.swing.JDialog {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(30, 20, 600, 20);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtMonto.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txtMonto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtMontoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(340, 310, 100, 30);
+        getContentPane().add(txtMonto);
+        txtMonto.setBounds(340, 310, 100, 30);
 
-        jTextField2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(160, 400, 150, 30);
+        txtUsuario.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        getContentPane().add(txtUsuario);
+        txtUsuario.setBounds(160, 400, 150, 30);
 
-        jPasswordField1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(160, 440, 150, 30);
+        getContentPane().add(txtPassword);
+        txtPassword.setBounds(160, 440, 150, 30);
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Monto de la apuesta:");
@@ -127,9 +129,10 @@ public class VentanaJugador extends javax.swing.JDialog {
         jLabel5.setBounds(190, 310, 140, 30);
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("$");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(330, 310, 20, 30);
+        jLabel6.setBounds(320, 310, 20, 30);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel7.setText("Usuario");
@@ -143,40 +146,51 @@ public class VentanaJugador extends javax.swing.JDialog {
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(50, 370, 560, 10);
 
-        jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jButton1.setText("Confirmar Apuesta");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirmar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        btnConfirmar.setText("Confirmar Apuesta");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(380, 400, 150, 30);
+        getContentPane().add(btnConfirmar);
+        btnConfirmar.setBounds(380, 400, 150, 30);
 
         jLabel9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Aquí podría ponerse la data del caballo seleccionado");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 264, 510, 30);
+        jLabel9.setBounds(30, 264, 600, 30);
 
-        jButton2.setText("Cancelar");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(440, 440, 90, 30);
+        btnCancelar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCancelar);
+        btnCancelar.setBounds(440, 440, 90, 30);
 
-        setBounds(0, 0, 685, 542);
+        setBounds(0, 0, 680, 542);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtMontoActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,8 +235,8 @@ public class VentanaJugador extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -232,17 +246,17 @@ public class VentanaJugador extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JList<String> lstCaballo;
     private javax.swing.JList<String> lstCarrera;
     private javax.swing.JList lstHipodromo;
+    private javax.swing.JTextField txtMonto;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
     private void cargarHipodromos() {
