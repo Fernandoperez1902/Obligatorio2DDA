@@ -5,11 +5,13 @@
  */
 package main;
 
+import java.util.ArrayList;
 import logica.Administrador;
 import logica.Caballo;
 import logica.Hipodromo;
 import logica.Jugador;
-import logica.Fachada;
+import logica.SistemaCaballos;
+import logica.SistemaHipodromos;
 
 /**
  *
@@ -17,9 +19,8 @@ import logica.Fachada;
  */
 public class DatosPrueba {
     
-    
     public static void cargar(){
-        Fachada logica = Fachada.getInstancia();
+        
         //CABALLOS
         Caballo c1 = new Caballo("Caballo1","Responsable1");
         Caballo c2 = new Caballo("Caballo2","Responsable2");
@@ -27,21 +28,19 @@ public class DatosPrueba {
         Caballo c4 = new Caballo("Caballo4","Responsable4");
         Caballo c5 = new Caballo("Caballo5","Responsable5");
         Caballo c6 = new Caballo("Caballo6","Responsable6");
-
+        
         //HIPODROMOS
         
         Hipodromo h1 = new Hipodromo("Hipódromo1","Dirección1");
         Hipodromo h2 = new Hipodromo("Hipódromo2","Dirección2");
         Hipodromo h3 = new Hipodromo("Hipódromo3","Dirección3");
         Hipodromo h4 = new Hipodromo("Hipódromo4","Dirección4");
-
+        
         //ADMINISTRADORES
         
         Administrador a1 = new Administrador("A1","A1", "Administrador1");
         Administrador a2 = new Administrador("A2","A2", "Administrador2");
         Administrador a3 = new Administrador("A3","A3", "Administrador3");
-        
-        logica.agregarAdministrador(a1);
 
         //JUGADORES
         
