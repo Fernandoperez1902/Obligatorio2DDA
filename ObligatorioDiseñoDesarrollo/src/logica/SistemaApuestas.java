@@ -17,5 +17,9 @@ public class SistemaApuestas {
     public ArrayList<Apuesta> getApuestas() {
         return apuestas;
     }
+
+    public boolean agregarApuesta(Apuesta a) {
+        return true;
+    }
     
 }
