@@ -1,16 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package interfaz;
+
+import logica.Administrador;
+import logica.Fachada;
 
 /**
  *
  * @author Mauro
  */
 public class LoginAdministrador extends javax.swing.JDialog {
-
+    
+    Fachada logica = Fachada.getInstancia();
+    
     /**
      * Creates new form LoginAdministrador
      */
@@ -92,7 +93,23 @@ public class LoginAdministrador extends javax.swing.JDialog {
     }//GEN-LAST:event_txtAdminPassActionPerformed
 
     private void btnAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminLoginActionPerformed
-        // TODO add your handling code here:
+        
+        String nombreUsuario = txtAdminNom.getText();
+        String passUsuario = txtAdminPass.getText();
+        
+        Administrador adm = logica.loginAdministrador(nombreUsuario, passUsuario);
+        
+        if (adm != null){
+            
+            
+        } else {
+            
+            
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_btnAdminLoginActionPerformed
 
     /**
