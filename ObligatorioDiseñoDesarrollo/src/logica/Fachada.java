@@ -12,9 +12,8 @@ package logica;
 public class Fachada {
     
     private static Fachada instancia;
-    private SistemaUsuarios su = new SistemaUsuarios();
     
-    private SistemaUsuarios sU = new SistemaUsuarios();
+    private SistemaUsuarios su = new SistemaUsuarios();
     
     public static Fachada getInstancia(){
         if (instancia == null){
@@ -27,20 +26,16 @@ public class Fachada {
 
     
     public Administrador loginAdministrador(String nombre, String password) {
-        return sU.loginAdministrador(nombre, password);
+        return su.loginAdministrador(nombre, password);
     }
 
     public Jugador loginJugador(String nombre, String password) {
-        return sU.loginJugador(nombre, password);
+        return su.loginJugador(nombre, password);
     }
 
     public void agregarAdministrador(Administrador adm) {
-        sU.agregarAdministrador(adm);
-    }
-     
-    
-    
-    
+        su.agregarAdministrador(adm);
+    }  
     
     public void agregarJugador(Jugador j){
         su.agregarJugador(j);

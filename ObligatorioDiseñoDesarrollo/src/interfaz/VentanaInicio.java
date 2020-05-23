@@ -65,7 +65,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJugadorActionPerformed
 
     private void btnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorActionPerformed
-         LoginAdministrador ventana = new LoginAdministrador(this, false);
+         LoginAdministrador ventana = new LoginAdministrador();
          ventana.setVisible(true);
     }//GEN-LAST:event_btnAdministradorActionPerformed
 

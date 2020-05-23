@@ -48,6 +48,10 @@ public class SistemaUsuarios {
         return ret;
     }
     
+    public void agregarAdministrador(Administrador adm){
+        administradores.add(adm);
+    }
+    
     public void agregarJugador(Jugador j){
         jugadores.add(j);
     }
