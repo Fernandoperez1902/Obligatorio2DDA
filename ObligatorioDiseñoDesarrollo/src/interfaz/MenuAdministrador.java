@@ -16,6 +16,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
      */
     public MenuAdministrador() {
         initComponents();
+        
     }
 
     /**

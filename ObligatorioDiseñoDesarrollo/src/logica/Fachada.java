@@ -13,10 +13,10 @@ public class Fachada {
     
     private static Fachada instancia;
     
-    private SistemaUsuario sU = new SistemaUsuario();
+    private SistemaUsuarios sU = new SistemaUsuarios();
     
     public static Fachada getInstancia(){
-        if (instancia ==null){
+        if (instancia == null){
             instancia = new Fachada();
         }
         return instancia;
@@ -32,7 +32,11 @@ public class Fachada {
     public Jugador loginJugador(String nombre, String password) {
         return sU.loginJugador(nombre, password);
     }
-    
+
+    public void agregarAdministrador(Administrador adm) {
+        sU.agregarAdministrador(adm);
+    }
+     
     
     
     

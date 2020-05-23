@@ -9,6 +9,7 @@ import logica.Administrador;
 import logica.Caballo;
 import logica.Hipodromo;
 import logica.Jugador;
+import logica.Fachada;
 
 /**
  *
@@ -16,8 +17,9 @@ import logica.Jugador;
  */
 public class DatosPrueba {
     
+    
     public static void cargar(){
-        
+        Fachada logica = Fachada.getInstancia();
         //CABALLOS
         Caballo c1 = new Caballo("Caballo1","Responsable1");
         Caballo c2 = new Caballo("Caballo2","Responsable2");
@@ -38,6 +40,8 @@ public class DatosPrueba {
         Administrador a1 = new Administrador("A1","A1", "Administrador1");
         Administrador a2 = new Administrador("A2","A2", "Administrador2");
         Administrador a3 = new Administrador("A3","A3", "Administrador3");
+        
+        logica.agregarAdministrador(a1);
 
         //JUGADORES
         
