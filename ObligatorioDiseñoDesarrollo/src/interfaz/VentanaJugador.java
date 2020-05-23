@@ -6,8 +6,11 @@
 package interfaz;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import logica.Administrador;
 import logica.Fachada;
 import logica.Hipodromo;
+import logica.Jugador;
 
 /**
  *
@@ -15,6 +18,7 @@ import logica.Hipodromo;
  */
 public class VentanaJugador extends javax.swing.JDialog {
 
+    Fachada logica = Fachada.getInstancia();
     /**
      * Creates new form VentanaJugador
      */
@@ -62,6 +66,11 @@ public class VentanaJugador extends javax.swing.JDialog {
         getContentPane().setLayout(null);
 
         lstHipodromo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        lstHipodromo.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstHipodromoValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstHipodromo);
 
         getContentPane().add(jScrollPane1);
@@ -185,12 +194,34 @@ public class VentanaJugador extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        String nombreUsuario = txtUsuario.getText();
+        String passUsuario = new String(txtPassword.getPassword());
+
+        Jugador jugador = logica.loginJugador(nombreUsuario, passUsuario);
+
+        if (jugador != null) {
+            
+            JOptionPane.showMessageDialog(this, "Apuesta realizada");
+            lstHipodromo.removeAll();
+            lstCarrera.removeAll();
+            lstCaballo.removeAll();
+            cargarHipodromos();
+            
+        } else {
+
+            JOptionPane.showMessageDialog(this, "No se ha podido realizar su apuesta");
+
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void lstHipodromoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstHipodromoValueChanged
+        JOptionPane.showMessageDialog(this, "Dispara la accion");
+        
+    }//GEN-LAST:event_lstHipodromoValueChanged
 
     /**
      * @param args the command line arguments
@@ -262,6 +293,9 @@ public class VentanaJugador extends javax.swing.JDialog {
     private void cargarHipodromos() {
         ArrayList<Hipodromo> hipodromos = Fachada.getInstancia().getHipodromos();
         lstHipodromo.setListData(hipodromos.toArray());
-        
+    }
+    
+    private void cargarCarreras(){
+
     }
 }

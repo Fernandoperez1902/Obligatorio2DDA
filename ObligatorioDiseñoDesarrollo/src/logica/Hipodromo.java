@@ -52,5 +52,8 @@ public class Hipodromo {
         return nombre.toUpperCase() + " - " + direccion;
     }
     
+    public boolean validarHipodromo(String nombre){
+        return this.nombre==nombre;
+    }
     
 }
