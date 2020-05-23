@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import logica.Fachada;
+
 /**
  *
  * @author Mauro
@@ -17,6 +19,7 @@ public class VentanaJugador extends javax.swing.JDialog {
     public VentanaJugador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        cargarHipodromos();
     }
 
     /**
@@ -49,6 +52,7 @@ public class VentanaJugador extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jTextField3.setText("jTextField3");
 
@@ -145,13 +149,17 @@ public class VentanaJugador extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(370, 420, 150, 30);
+        jButton1.setBounds(380, 400, 150, 30);
 
         jLabel9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 51));
         jLabel9.setText("Aquí podría ponerse la data del caballo seleccionado");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(30, 264, 510, 30);
+
+        jButton2.setText("Cancelar");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(450, 440, 80, 30);
 
         setBounds(0, 0, 593, 542);
     }// </editor-fold>//GEN-END:initComponents
@@ -212,6 +220,7 @@ public class VentanaJugador extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -233,4 +242,10 @@ public class VentanaJugador extends javax.swing.JDialog {
     private javax.swing.JList<String> lstCarrera;
     private javax.swing.JList<String> lstHipodromo;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarHipodromos() {
+       // ArrayList<Hipodromo> hipodromos = Fachada.getInstancia().getHipodromos();
+        
+        
+    }
 }

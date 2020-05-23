@@ -13,6 +13,7 @@ public class Fachada {
     
     
     private static Fachada instancia;
+    private SistemaUsuarios su = new SistemaUsuarios();
     
     public static Fachada getInstancia(){
         if (instancia ==null){
@@ -22,5 +23,9 @@ public class Fachada {
     }
     
     private Fachada(){}
+    
+    public void agregarJugador(Jugador j){
+        su.agregarJugador(j);
+    }
     
 }
