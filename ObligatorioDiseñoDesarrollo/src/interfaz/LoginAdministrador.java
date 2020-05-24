@@ -108,10 +108,10 @@ public class LoginAdministrador extends javax.swing.JFrame {
             BienvenidaAdministrador mensajeBienvda = new BienvenidaAdministrador(this, true, adm);
             mensajeBienvda.setVisible(true);
             
-            this.dispose();
-            
             MenuAdministrador menu = new MenuAdministrador(adm);
             menu.setVisible(true);
+            this.dispose();
+            
 
         } else {
 
