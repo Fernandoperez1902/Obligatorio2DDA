@@ -19,17 +19,17 @@ public class SistemaHipodromos {
         return hipodromos;
     }
 
-    public void agregarHipodromo(Hipodromo h) {
-        if(validarHipodromo(h.getNombre()))
-        hipodromos.add(h);
+    public void agregarHipodromo(Hipodromo h)throws ApuestasException{
+        if(validarHipodromo(h.getNombre())){
+            hipodromos.add(h);
+            
+        }
     }
     
     
-
-    
     
     //Valida la condición de unicidad en el nombre
-    public boolean validarHipodromo(String nombre) {
+    public boolean validarHipodromo(String nombre) throws ApuestasException {
         boolean ret = true;
         for (Hipodromo h : hipodromos) {
             if(h.validarHipodromo(nombre)){

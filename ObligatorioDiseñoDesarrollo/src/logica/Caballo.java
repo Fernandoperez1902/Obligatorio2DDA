@@ -36,5 +36,9 @@ public class Caballo {
     }
     // </editor-fold>
 
-
+    @Override
+    public String toString() {
+        return nombre + " - Responsable: " + nombreResponsable;
+    }
+    
 }

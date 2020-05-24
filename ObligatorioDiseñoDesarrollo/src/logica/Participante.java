@@ -10,19 +10,18 @@ package logica;
  * @author Mauro
  */
 public class Participante {
-
     private Caballo caballo;
     private Double dividendo;
     private int numero;
     private boolean ganador;
 
-    public Participante(Caballo c, double d, int n) {
-        caballo = c;
+    public Participante (Caballo c, double d, int n){
+        caballo=c;
         dividendo = d;
         numero = n;
         ganador = false;
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
     public Caballo getCaballo() {
         return caballo;
@@ -59,11 +58,9 @@ public class Participante {
 
     @Override
     public String toString() {
-        String ganador = "";
-        if (this.ganador) {
-            ganador = " - GANADOR";
-        }
-        return numero + " - " + caballo + " - " + dividendo + ganador;
+        String ganador= "";
+        if(this.ganador) ganador =" - GANADOR";
+        return numero + " - "+caballo.getNombre() + " - " + dividendo + ganador;
     }
-
+    
 }
