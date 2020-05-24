@@ -221,8 +221,8 @@ public class VentanaJugador extends javax.swing.JDialog {
     }//GEN-LAST:event_lstHipodromoValueChanged
 
     private void lstCarreraValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCarreraValueChanged
-        
-        cargarParticipantes();
+        JOptionPane.showMessageDialog(this, lstCarrera.getSelectedIndex());
+        cargarParticipantes(lstCarrera.getSelectedIndex());
     }//GEN-LAST:event_lstCarreraValueChanged
 
     /**
@@ -297,11 +297,11 @@ public class VentanaJugador extends javax.swing.JDialog {
         lstHipodromo.setListData(hipodromos.toArray());
     }
     
-    private void cargarCarreras(int indexCarrera){
+    private void cargarCarreras(int indexHipodromo){
         
     }
     
-    private void cargarParticipantes(){
+    private void cargarParticipantes(int indexCarrera){
         
     }
     
