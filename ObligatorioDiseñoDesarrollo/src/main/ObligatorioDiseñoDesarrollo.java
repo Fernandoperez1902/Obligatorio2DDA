@@ -5,17 +5,21 @@
  */
 package main;
 
+import interfaz.VentanaInicio;
+
 /**
  *
  * @author Fernando
  */
 public class ObligatorioDiseñoDesarrollo {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        VentanaInicio inicio = new VentanaInicio();
+        inicio.setVisible(true);
+        DatosPrueba.cargar();
+        
     }
     
 }
