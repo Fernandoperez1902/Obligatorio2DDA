@@ -35,5 +35,6 @@ public class Caballo {
         this.nombreResponsable = nombreResponsable;
     }
     // </editor-fold>
-    
+
+
 }

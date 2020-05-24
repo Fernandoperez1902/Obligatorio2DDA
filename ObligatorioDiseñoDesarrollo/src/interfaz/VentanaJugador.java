@@ -8,6 +8,7 @@ package interfaz;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import logica.Administrador;
+import logica.Carrera;
 import logica.Fachada;
 import logica.Hipodromo;
 import logica.Jugador;
@@ -296,8 +297,12 @@ public class VentanaJugador extends javax.swing.JDialog {
         lstHipodromo.setListData(hipodromos.toArray());
     }
     
-    private void cargarCarreras(int indexCarrera){
+    private void cargarCarreras(int indexHipodromo){
 
+    }
+    
+    private void cargarCaballos(int indexCarrera){
+        
     }
     
 }
