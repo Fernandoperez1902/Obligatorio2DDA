@@ -52,8 +52,14 @@ public class Hipodromo {
         return nombre.toUpperCase() + " - " + direccion;
     }
     
-    public boolean validarHipodromo(String nombre){
-        return this.nombre==nombre;
+    public boolean validarHipodromo(String nombre) throws ApuestasException{
+        boolean ret = true;
+        if (this.nombre==nombre){
+            throw new ApuestasException("El nombre del Hipódromo ya existe");
+        }else{
+            ret = false;
+        }
+        return ret;
     }
     
 }

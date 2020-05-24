@@ -35,5 +35,10 @@ public class Caballo {
         this.nombreResponsable = nombreResponsable;
     }
     // </editor-fold>
+
+    @Override
+    public String toString() {
+        return nombre + " - Responsable: " + nombreResponsable;
+    }
     
 }

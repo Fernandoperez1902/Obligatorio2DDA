@@ -19,12 +19,17 @@ public class Carrera {
     private Date fecha;
     private ArrayList<Participante> participantes = new ArrayList<Participante>();
     private ArrayList<Apuesta> apuestas = new ArrayList<Apuesta>();
-
+    private Estado estado;
+    
+    //SE DEFINE CLASE ESTADO COMO UN ENUM
+    public enum Estado {definida,abierta,cerrada, finalizada};
+    
     public Carrera(String n, Date f, ArrayList<Participante> p) {
         nombre = n;
         fecha = f;
         participantes = p;
         apuestas = null;
+        estado = Estado.definida;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
@@ -80,7 +85,7 @@ public class Carrera {
         return ret;
     }
 
-    //Valida que se trate de una fecha posterior a la actua
+    //Valida que se trate de una fecha posterior a la actual
     public boolean validarFecha(Date f) {
         boolean ret = false;
         if (f.compareTo(new Date()) >= 0) {
@@ -88,6 +93,10 @@ public class Carrera {
         }
         return ret;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return numeroCarrera + " - " + nombre +  " - " + estado.toString();
+    }
+       
 }
