@@ -22,7 +22,6 @@ public class Participante {
         ganador = false;
     }
     
-    
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
     public Caballo getCaballo() {
         return caballo;
@@ -56,5 +55,12 @@ public class Participante {
         this.ganador = ganador;
     }
     // </editor-fold>
+
+    @Override
+    public String toString() {
+        String ganador= "";
+        if(this.ganador) ganador =" - GANADOR";
+        return numero + " - "+caballo.getNombre() + " - " + dividendo + ganador;
+    }
     
 }

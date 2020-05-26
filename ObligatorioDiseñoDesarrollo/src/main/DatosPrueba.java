@@ -6,10 +6,12 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Date;
 import logica.Administrador;
 import logica.Caballo;
 import logica.Fachada;
 import logica.Hipodromo;
+import logica.Jornada;
 import logica.Jugador;
 import logica.SistemaCaballos;
 import logica.SistemaHipodromos;
@@ -55,6 +57,16 @@ public class DatosPrueba {
         Jugador j3 = new Jugador("J3", "J3", "Jugador3", 100);
         Jugador j4 = new Jugador("J4", "J4", "Jugador4", 100);
         Jugador j5 = new Jugador("J5", "J5", "Jugador5", 100);
+        
+        
+        //JORNADAS 
+        
+        Jornada jor1 = new Jornada(new Date());
+        Jornada jor2 = new Jornada(new Date());
+        Jornada jor3 = new Jornada(new Date());
+        Jornada jor4 = new Jornada(new Date());
+        
+        
         
         logica.agregarJugador(j1);
         logica.agregarJugador(j2);
