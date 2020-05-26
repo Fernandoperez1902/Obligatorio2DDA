@@ -82,6 +82,11 @@ public class VentanaJugador extends javax.swing.JDialog {
         jLabel1.setBounds(30, 60, 150, 30);
 
         lstCarrera.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        lstCarrera.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstCarreraValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(lstCarrera);
 
         getContentPane().add(jScrollPane2);
@@ -196,21 +201,12 @@ public class VentanaJugador extends javax.swing.JDialog {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String nombreUsuario = txtUsuario.getText();
         String passUsuario = new String(txtPassword.getPassword());
-
         Jugador jugador = logica.loginJugador(nombreUsuario, passUsuario);
-
         if (jugador != null) {
-            
             JOptionPane.showMessageDialog(this, "Apuesta realizada");
-            lstHipodromo.removeAll();
-            lstCarrera.removeAll();
-            lstCaballo.removeAll();
-            cargarHipodromos();
-            
+            limpiarFormulario();            
         } else {
-
             JOptionPane.showMessageDialog(this, "No se ha podido realizar su apuesta");
-
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
@@ -219,9 +215,15 @@ public class VentanaJugador extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void lstHipodromoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstHipodromoValueChanged
-        JOptionPane.showMessageDialog(this, "Dispara la accion");
+        JOptionPane.showMessageDialog(this, lstHipodromo.getSelectedIndex());
+        cargarCarreras(lstHipodromo.getSelectedIndex());
         
     }//GEN-LAST:event_lstHipodromoValueChanged
+
+    private void lstCarreraValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCarreraValueChanged
+        JOptionPane.showMessageDialog(this, lstCarrera.getSelectedIndex());
+        cargarParticipantes(lstCarrera.getSelectedIndex());
+    }//GEN-LAST:event_lstCarreraValueChanged
 
     /**
      * @param args the command line arguments
@@ -295,7 +297,21 @@ public class VentanaJugador extends javax.swing.JDialog {
         lstHipodromo.setListData(hipodromos.toArray());
     }
     
-    private void cargarCarreras(){
-
+    private void cargarCarreras(int indexHipodromo){
+        
+    }
+    
+    private void cargarParticipantes(int indexCarrera){
+        
+    }
+    
+    private void limpiarFormulario(){
+            lstHipodromo.removeAll();
+            cargarHipodromos();
+            lstCarrera.removeAll();
+            lstCaballo.removeAll();
+            txtMonto.setText("");
+            txtUsuario.setText("");
+            txtPassword.setText("");
     }
 }

@@ -57,9 +57,6 @@ public class Jornada {
     public void setCarreras(ArrayList<Carrera> carreras) {
         this.carreras = carreras;
     }
-    // </editor-fold>
-    
-    
-        
+    // </editor-fold>       
     
 }

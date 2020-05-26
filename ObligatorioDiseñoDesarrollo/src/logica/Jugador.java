@@ -17,6 +17,22 @@ public class Jugador extends Usuario {
         super(u, p, n);
         saldo = s;
     }
+
+    // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
+    }
+    // </editor-fold>
+    
+    //Verifica la suficiencia de saldo.
+    public boolean saldoSuficiente(float montoApuesta){
+        return saldo>=montoApuesta;
+    }
+    
     
     
 }

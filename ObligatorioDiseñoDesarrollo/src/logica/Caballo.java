@@ -35,5 +35,16 @@ public class Caballo {
         this.nombreResponsable = nombreResponsable;
     }
     // </editor-fold>
+
     
+    @Override
+    public String toString() {
+        return nombre + " - Responsable: " + nombreResponsable;
+    }
+    
+    //Valida la condición de unicidad en el nombre
+    public boolean validarCaballo(String nombre){
+        //habría que incorporar Exceptions
+        return this.nombre==nombre;
+    }
 }
