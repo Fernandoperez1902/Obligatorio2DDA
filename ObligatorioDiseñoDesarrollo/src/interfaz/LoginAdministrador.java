@@ -112,7 +112,6 @@ public class LoginAdministrador extends javax.swing.JFrame {
             menu.setVisible(true);
             this.dispose();
             
-
         } else {
 
             JOptionPane.showMessageDialog(this, "Login Incorrecto");
