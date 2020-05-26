@@ -32,6 +32,10 @@ public class DatosPrueba {
         Caballo c5 = new Caballo("Caballo5","Responsable5");
         Caballo c6 = new Caballo("Caballo6","Responsable6");
         
+        logica.AgregarCaballo(c1);
+        logica.AgregarCaballo(c2);
+        logica.AgregarCaballo(c3);
+        
         //HIPODROMOS
         
         Hipodromo h1 = new Hipodromo("Hipódromo1","Dirección1");

@@ -10,14 +10,15 @@ package logica;
  * @author Mauro
  */
 public class Caballo {
+
     private String nombre;
     private String nombreResponsable;
 
-    public Caballo(String n, String r){
-        this.nombre= n;
+    public Caballo(String n, String r) {
+        this.nombre = n;
         this.nombreResponsable = r;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters"> 
     public String getNombre() {
         return nombre;
@@ -35,5 +36,12 @@ public class Caballo {
         this.nombreResponsable = nombreResponsable;
     }
     // </editor-fold>
-    
+
+    @Override
+    public String toString() {
+
+        return nombre;
+
+    }
+
 }

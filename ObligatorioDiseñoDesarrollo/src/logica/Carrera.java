@@ -17,9 +17,18 @@ public class Carrera {
     private int numeroCarrera;
     private String nombre;
     private Date fecha;
+    private Jornada jornada;
+    private int numero;
     private ArrayList<Participante> participantes = new ArrayList<Participante>();
     private ArrayList<Apuesta> apuestas = new ArrayList<Apuesta>();
 
+    
+    public Carrera(String nom, Date fec, int num){
+        nombre = nom;
+        fecha = fec;
+        numero = num;
+    }
+    
     public Carrera(String n, Date f, ArrayList<Participante> p) {
         nombre = n;
         fecha = f;
@@ -87,6 +96,21 @@ public class Carrera {
             ret = true;
         }
         return ret;
+    }
+    
+    public boolean participaCaballo(Caballo cab){
+        
+        boolean participa = false;
+        int i = 0;
+        while (i < participantes.size() && !participa){
+            if (participantes.get(i).caballoParticipa(cab)){
+                participa = true;
+            }
+            i++;
+        }
+        
+        return participa;
+        
     }
     
     

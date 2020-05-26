@@ -6,6 +6,7 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -20,23 +21,41 @@ public class SistemaHipodromos {
     }
 
     public void agregarHipodromo(Hipodromo h) {
-        if(validarHipodromo(h.getNombre()))
-        hipodromos.add(h);
+        if (validarHipodromo(h.getNombre())) {
+            hipodromos.add(h);
+        }
     }
-    
-    
 
-    
-    
+    public Jornada buscarJornada(Hipodromo h, Date f) {
+
+        Jornada jornada = null;
+        jornada = h.buscarJornada(f);
+        return jornada;
+    }
+
     //Valida la condición de unicidad en el nombre
     public boolean validarHipodromo(String nombre) {
         boolean ret = true;
         for (Hipodromo h : hipodromos) {
-            if(h.validarHipodromo(nombre)){
+            if (h.validarHipodromo(nombre)) {
                 ret = false;
             }
         }
         return ret;
+    }
+
+    public ArrayList<Caballo> caballosDisponiblesEnFecha(Date fecha) {
+
+        ArrayList<Caballo> caballos = Fachada.getInstancia().getCaballos();
+        for (Caballo c : caballos) {
+            for (Hipodromo h : hipodromos) {
+                if (h.participaCaballo(fecha, c)) {
+                    caballos.remove(c);
+                }
+            }
+        }
+
+        return caballos;
     }
 
 }

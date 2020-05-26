@@ -57,4 +57,20 @@ public class Participante {
     }
     // </editor-fold>
     
+    public boolean caballoParticipa(Caballo cab){
+        
+        boolean participa = false;
+        if (caballo.equals(cab)){
+            participa = true;
+        }
+        return participa;
+    }
+    
+    @Override
+    public String toString(){
+        
+        return numero + " - " + caballo.toString();
+    }
+    
+    
 }
