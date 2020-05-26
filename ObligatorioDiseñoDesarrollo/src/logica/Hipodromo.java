@@ -52,10 +52,12 @@ public class Hipodromo {
         return nombre.toUpperCase() + " - " + direccion;
     }
     
-    public boolean validarHipodromo(String nombre) throws ApuestasException{
+    
+    //Valida la condición de unicidad en el nombre
+    public boolean validarHipodromo(String nombre) /*throws ApuestasException*/{
         boolean ret = true;
         if (this.nombre==nombre){
-            throw new ApuestasException("El nombre del Hipódromo ya existe");
+            //throw new ApuestasException("El nombre del Hipódromo ya existe");
         }else{
             ret = false;
         }

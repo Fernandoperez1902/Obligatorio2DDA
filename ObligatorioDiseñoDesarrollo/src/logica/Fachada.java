@@ -46,7 +46,7 @@ public class Fachada {
     }
 
     // throws ApuestasException? VER!
-    public void agregarHipodromo(Hipodromo h) throws ApuestasException {
+    public void agregarHipodromo(Hipodromo h){
         sh.agregarHipodromo(h);
     }
 
