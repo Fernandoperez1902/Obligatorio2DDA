@@ -18,6 +18,7 @@ public class SistemaHipodromos {
     public ArrayList<Hipodromo> getHipodromos() {
         return hipodromos;
     }
+    
 
     public void agregarHipodromo(Hipodromo h){
         if(validarHipodromo(h.getNombre())){
