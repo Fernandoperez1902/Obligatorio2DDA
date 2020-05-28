@@ -28,7 +28,7 @@ public class VentanaJugador extends javax.swing.JDialog {
     public VentanaJugador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        cargarHipodromos();
+        limpiarFormulario();
     }
 
     /**
@@ -61,9 +61,11 @@ public class VentanaJugador extends javax.swing.JDialog {
         btnConsultarSaldo = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
         lblPrimero = new javax.swing.JLabel();
+        lblNombreU = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
         lblSegundo = new javax.swing.JLabel();
-        lblNombreUsu1 = new javax.swing.JLabel();
+        lblTercero = new javax.swing.JLabel();
+        lblUltimaApuesta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -190,10 +192,15 @@ public class VentanaJugador extends javax.swing.JDialog {
         getContentPane().add(lblPrimero);
         lblPrimero.setBounds(90, 460, 62, 30);
 
+        lblNombreU.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        lblNombreU.setForeground(new java.awt.Color(204, 0, 51));
+        lblNombreU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        getContentPane().add(lblNombreU);
+        lblNombreU.setBounds(160, 460, 62, 30);
+
         lblSaldo.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
         lblSaldo.setForeground(new java.awt.Color(204, 0, 51));
         lblSaldo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblSaldo.setText("$ 1532");
         getContentPane().add(lblSaldo);
         lblSaldo.setBounds(280, 480, 62, 30);
 
@@ -203,12 +210,17 @@ public class VentanaJugador extends javax.swing.JDialog {
         getContentPane().add(lblSegundo);
         lblSegundo.setBounds(90, 480, 200, 30);
 
-        lblNombreUsu1.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
-        lblNombreUsu1.setForeground(new java.awt.Color(204, 0, 51));
-        lblNombreUsu1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNombreUsu1.setText("Jugador 1");
-        getContentPane().add(lblNombreUsu1);
-        lblNombreUsu1.setBounds(160, 460, 62, 30);
+        lblTercero.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        lblTercero.setForeground(new java.awt.Color(204, 0, 51));
+        lblTercero.setText("Última apuesta:");
+        getContentPane().add(lblTercero);
+        lblTercero.setBounds(90, 500, 100, 30);
+
+        lblUltimaApuesta.setFont(new java.awt.Font("Calibri", 1, 15)); // NOI18N
+        lblUltimaApuesta.setForeground(new java.awt.Color(204, 0, 51));
+        lblUltimaApuesta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        getContentPane().add(lblUltimaApuesta);
+        lblUltimaApuesta.setBounds(190, 500, 62, 30);
 
         setBounds(0, 0, 678, 579);
     }// </editor-fold>//GEN-END:initComponents
@@ -234,9 +246,12 @@ public class VentanaJugador extends javax.swing.JDialog {
     private void btnConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSaldoActionPerformed
         Jugador j = login();
         if(j!=null){
-            lblSaldo.setText("Bienvenido "+ j.getNombreCompleto() + ":");
-            lblSegundo.setText("Su saldo disponible al " + new Date(DateFormat.MEDIUM) +" es :"+ j.getSaldo());
-            lblDestacado.setText("$ "+ j.getSaldo());
+            lblNombreU.setText(j.getNombreCompleto() + ":");
+            lblSaldo.setText(j.getSaldo()+"");
+            lblUltimaApuesta.setText("$ "+ j.getUltimaApuesta());
+            lblPrimero.setVisible(true);
+            lblSegundo.setVisible(true);
+            lblTercero.setVisible(true);
             
         }
     }//GEN-LAST:event_btnConsultarSaldoActionPerformed
@@ -308,10 +323,12 @@ public class VentanaJugador extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblNombreUsu1;
+    private javax.swing.JLabel lblNombreU;
     private javax.swing.JLabel lblPrimero;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblSegundo;
+    private javax.swing.JLabel lblTercero;
+    private javax.swing.JLabel lblUltimaApuesta;
     private javax.swing.JList<String> lstCaballo;
     private javax.swing.JList<String> lstCarrera;
     private javax.swing.JList lstHipodromo;
@@ -341,6 +358,9 @@ public class VentanaJugador extends javax.swing.JDialog {
             txtMonto.setText("");
             txtUsuario.setText("");
             txtPassword.setText("");
+            lblPrimero.setVisible(false);
+            lblSegundo.setVisible(false);
+            lblTercero.setVisible(false);
     }
     
     private Jugador login(){

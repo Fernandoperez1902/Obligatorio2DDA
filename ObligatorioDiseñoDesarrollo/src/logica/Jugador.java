@@ -12,6 +12,7 @@ package logica;
 public class Jugador extends Usuario {
 
     private float saldo;
+    private Apuesta ultimaApuesta;
     
     public Jugador(String u, String p, String n, int s){
         super(u, p, n);
@@ -26,6 +27,15 @@ public class Jugador extends Usuario {
     public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
+
+    public Apuesta getUltimaApuesta() {
+        return ultimaApuesta;
+    }
+
+    public void setUltimaApuesta(Apuesta ultimaApuesta) {
+        this.ultimaApuesta = ultimaApuesta;
+    }
+    
     // </editor-fold>
     
     //Verifica la suficiencia de saldo.

@@ -11,4 +11,8 @@ package logica;
  */
 public class Apuesta {
     
+    private float monto;
+    
+    
+    
 }
