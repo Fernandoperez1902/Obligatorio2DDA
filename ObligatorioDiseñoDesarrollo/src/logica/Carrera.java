@@ -73,6 +73,14 @@ public class Carrera {
         this.apuestas = apuestas;
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
     // </editor-fold>
     
     
@@ -97,6 +105,10 @@ public class Carrera {
     @Override
     public String toString() {
         return numeroCarrera + " - " + nombre +  " - " + estado.toString();
+    }
+    
+    public boolean isAbierta(){
+        return this.estado.equals(Estado.abierta);
     }
        
 }

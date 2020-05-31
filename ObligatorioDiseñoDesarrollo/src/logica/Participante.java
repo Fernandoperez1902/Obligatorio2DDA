@@ -15,10 +15,10 @@ public class Participante {
     private int numero;
     private boolean ganador;
 
-    public Participante (Caballo c, double d, int n){
+    public Participante (Caballo c, int n, double d ){
         caballo=c;
-        dividendo = d;
         numero = n;
+        dividendo = d;
         ganador = false;
     }
     

@@ -14,9 +14,11 @@ public class Jugador extends Usuario {
     private float saldo;
     private Apuesta ultimaApuesta;
     
+    
     public Jugador(String u, String p, String n, int s){
         super(u, p, n);
         saldo = s;
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
@@ -43,6 +45,9 @@ public class Jugador extends Usuario {
         return saldo>=montoApuesta;
     }
     
-    
-    
+    //Actualiza el saldo en función de lo perdido o ganado en una apuesta.
+    //(recibe tanto valores positivos como negativos)
+    public float actualizarSaldo(float monto){
+        return saldo = saldo+monto;
+    }
 }

@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import java.util.Date;
 import logica.Jugador;
 
 /**
@@ -19,6 +20,7 @@ public class VerSaldo extends javax.swing.JDialog {
     public VerSaldo(java.awt.Frame parent, boolean modal, Jugador j) {
         super(parent, modal);
         initComponents();
+        this.setTitle("Consulta de saldo - " + j.getNombreCompleto());
         mostrarDatos(j);
     }
 
@@ -53,32 +55,32 @@ public class VerSaldo extends javax.swing.JDialog {
         lblSaldoFijo.setForeground(new java.awt.Color(204, 0, 0));
         lblSaldoFijo.setText("Su saldo disponible al momento es: ");
         getContentPane().add(lblSaldoFijo);
-        lblSaldoFijo.setBounds(30, 90, 240, 30);
+        lblSaldoFijo.setBounds(30, 80, 240, 30);
 
         lblUltimaApuestaFijo.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         lblUltimaApuestaFijo.setForeground(new java.awt.Color(204, 0, 0));
         lblUltimaApuestaFijo.setText("Última apuesta realizada:");
         getContentPane().add(lblUltimaApuestaFijo);
-        lblUltimaApuestaFijo.setBounds(30, 130, 180, 30);
+        lblUltimaApuestaFijo.setBounds(30, 110, 180, 30);
 
-        lblNombreDinamico.setFont(new java.awt.Font("Calibri", 2, 16)); // NOI18N
+        lblNombreDinamico.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         lblNombreDinamico.setForeground(new java.awt.Color(204, 0, 0));
         getContentPane().add(lblNombreDinamico);
-        lblNombreDinamico.setBounds(70, 50, 190, 30);
+        lblNombreDinamico.setBounds(70, 50, 320, 30);
 
         lblSaldoDinamico.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
         lblSaldoDinamico.setForeground(new java.awt.Color(204, 0, 0));
         getContentPane().add(lblSaldoDinamico);
-        lblSaldoDinamico.setBounds(270, 90, 80, 30);
+        lblSaldoDinamico.setBounds(270, 80, 120, 30);
 
         lblUltApuestaDinamico.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
         lblUltApuestaDinamico.setForeground(new java.awt.Color(204, 0, 0));
         getContentPane().add(lblUltApuestaDinamico);
-        lblUltApuestaDinamico.setBounds(50, 160, 290, 20);
+        lblUltApuestaDinamico.setBounds(40, 140, 340, 30);
 
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         getContentPane().add(lblFecha);
-        lblFecha.setBounds(204, 20, 170, 0);
+        lblFecha.setBounds(210, 20, 170, 20);
 
         jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton1.setText("Cerrar");
@@ -88,56 +90,15 @@ public class VerSaldo extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(160, 230, 100, 30);
+        jButton1.setBounds(150, 200, 100, 30);
 
-        setBounds(0, 0, 416, 327);
+        setBounds(0, 0, 416, 287);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerSaldo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerSaldo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerSaldo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerSaldo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                VerSaldo dialog = new VerSaldo(new javax.swing.JFrame(), true, null);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -154,5 +115,6 @@ public class VerSaldo extends javax.swing.JDialog {
         lblNombreDinamico.setText(j.getNombreCompleto());
         lblSaldoDinamico.setText("$ " +j.getSaldo());
         lblUltApuestaDinamico.setText("bla bla bla");
+        lblFecha.setText(new Date() + "");
     }
 }
