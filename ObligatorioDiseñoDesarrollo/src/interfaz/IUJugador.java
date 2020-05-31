@@ -8,6 +8,7 @@ package interfaz;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import logica.ApuestasException;
 import logica.Carrera;
 import logica.Fachada;
 import logica.Hipodromo;
@@ -21,7 +22,6 @@ import logica.Participante;
  */
 public class IUJugador extends javax.swing.JFrame {
 
-    
     Fachada logica = Fachada.getInstancia();
 
     public IUJugador() {
@@ -29,7 +29,6 @@ public class IUJugador extends javax.swing.JFrame {
         limpiarFormulario();
         btnConfirmar.setEnabled(false);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -183,9 +182,13 @@ public class IUJugador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstCarreraValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCarreraValueChanged
-        Carrera c = (Carrera)lstCarrera.getSelectedValue();
+        Carrera c = (Carrera) lstCarrera.getSelectedValue();
         cargarParticipantes(c);
-        if(c.isAbierta())btnConfirmar.setEnabled(true);
+        if (c.isAbierta()) {
+            btnConfirmar.setEnabled(true);
+        }else{
+            btnConfirmar.setEnabled(false);
+        }
     }//GEN-LAST:event_lstCarreraValueChanged
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
@@ -201,32 +204,36 @@ public class IUJugador extends javax.swing.JFrame {
         // VER SI CORRESPONDE CAPTURAR ACÁ LOS DATOS INGRESADOS POR EL USUARIO
         Jugador j = login();
 
-        if(j!=null){
+        if (j != null) {
             limpiarFormulario();
-            VerSaldo ventanaSaldo = new VerSaldo(this,true,j);
+            VerSaldo ventanaSaldo = new VerSaldo(this, true, j);
             ventanaSaldo.setVisible(true);
         }
     }//GEN-LAST:event_btnConsultarSaldoActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Jugador j = login();
-        if (j!=null){
-            Hipodromo h = (Hipodromo)lstHipodromo.getSelectedValue();
-
+        if (j != null) {
+            try {
+                j.saldoSuficiente(txtMonto.getText()); 
+                Hipodromo h = (Hipodromo) lstHipodromo.getSelectedValue();
+                                
+            }catch (ApuestasException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
         }
 
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void lstCaballoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCaballoValueChanged
-        Participante p = (Participante)lstCaballo.getSelectedValue();
+        Participante p = (Participante) lstCaballo.getSelectedValue();
     }//GEN-LAST:event_lstCaballoValueChanged
 
     private void lstHipodromoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstHipodromoValueChanged
-        Hipodromo h = (Hipodromo)lstHipodromo.getSelectedValue();
+        Hipodromo h = (Hipodromo) lstHipodromo.getSelectedValue();
         cargarCarreras(h);
     }//GEN-LAST:event_lstHipodromoValueChanged
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
@@ -251,40 +258,47 @@ public class IUJugador extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
- private void cargarHipodromos() {
+    private void cargarHipodromos() {
         ArrayList<Hipodromo> hipodromos = Fachada.getInstancia().getHipodromos();
-        //MODIFICAR EL STRING QUE SE MUESTRA EN EL LISTADO...
-        lstHipodromo.setListData(hipodromos.toArray());
+        if (hipodromos != null) {
+            //MODIFICAR EL STRING QUE SE MUESTRA EN EL LISTADO...
+            lstHipodromo.setListData(hipodromos.toArray());
+        } else {
+            String msj = "No existen hipódromos";
+        }
     }
-    
-    private void cargarCarreras(Hipodromo h){
+
+    private void cargarCarreras(Hipodromo h) {
         ArrayList<Jornada> j1 = h.getJornadas();
         Jornada j = j1.get(1);
         ArrayList<Carrera> carreras = j.getCarreras();
         lstCarrera.setListData(carreras.toArray());
     }
-    
-    private void cargarParticipantes(Carrera c){
+
+    private void cargarParticipantes(Carrera c) {
         lstCaballo.setListData(c.getParticipantes().toArray());
     }
-    
-    private void limpiarFormulario(){
-            lstHipodromo.removeAll();
-            cargarHipodromos();
-            lstCarrera.removeAll();
-            lstCaballo.removeAll();
-            txtMonto.setText("");
-            txtUsuario.setText("");
-            txtPassword.setText("");
-    }
-    
-    private Jugador login(){
-       String usuario = txtUsuario.getText();
-       String password = new String(txtPassword.getPassword());
-       return logica.loginJugador(usuario, password);
+
+    private void limpiarFormulario() {
+        lstHipodromo.removeAll();
+        cargarHipodromos();
+        lstCarrera.removeAll();
+        lstCaballo.removeAll();
+        txtMonto.setText("");
+        txtUsuario.setText("");
+        txtPassword.setText("");
     }
 
-
-
+    private Jugador login() {
+        String usuario = txtUsuario.getText();
+        String password = new String(txtPassword.getPassword());
+        Jugador j =null;
+        try{    
+            j = logica.loginJugador(usuario, password);
+        }catch(ApuestasException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        return j;
+    }
 
 }

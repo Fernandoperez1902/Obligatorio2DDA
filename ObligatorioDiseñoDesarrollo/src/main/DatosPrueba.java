@@ -52,6 +52,7 @@ public class DatosPrueba {
         participantes.add(p6);
         participantes2.add(p2);
         participantes2.add(p4);
+        p5.setGanador(true);
         participantes2.add(p5);
         
         //HIPODROMOS
@@ -103,8 +104,6 @@ public class DatosPrueba {
         jornadas.add(jor1);
         jornadas.add(jor2);
         h1.setJornadas(jornadas);
-        
-        
         
         
         logica.agregarHipodromo(h1);

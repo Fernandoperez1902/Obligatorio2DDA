@@ -5,6 +5,8 @@
  */
 package logica;
 
+import java.io.IOException;
+
 /**
  *
  * @author Mauro
@@ -13,9 +15,8 @@ public class Jugador extends Usuario {
 
     private float saldo;
     private Apuesta ultimaApuesta;
-    
-    
-    public Jugador(String u, String p, String n, int s){
+
+    public Jugador(String u, String p, String n, int s) {
         super(u, p, n);
         saldo = s;
 
@@ -37,17 +38,31 @@ public class Jugador extends Usuario {
     public void setUltimaApuesta(Apuesta ultimaApuesta) {
         this.ultimaApuesta = ultimaApuesta;
     }
-    
+
     // </editor-fold>
-    
     //Verifica la suficiencia de saldo.
-    public boolean saldoSuficiente(float montoApuesta){
-        return saldo>=montoApuesta;
+    public boolean saldoSuficiente(String montoApuesta) throws ApuestasException {
+        boolean ret = true;
+        if (montoApuesta.isEmpty()) {
+            throw new ApuestasException("Debe ingresar el monto de su apuesta");
+        }
+        float monto;
+        try {
+            monto = Float.valueOf(montoApuesta);
+        } catch (Exception ex) {
+            throw new ApuestasException("El monto ingresado no es válido");
+        }
+        if (saldo < monto) {
+            ret = false;
+            throw new ApuestasException("Saldo insuficiente");
+        }
+
+        return ret;
     }
-    
+
     //Actualiza el saldo en función de lo perdido o ganado en una apuesta.
     //(recibe tanto valores positivos como negativos)
-    public float actualizarSaldo(float monto){
-        return saldo = saldo+monto;
+    public float actualizarSaldo(float monto) {
+        return saldo = saldo + monto;
     }
 }

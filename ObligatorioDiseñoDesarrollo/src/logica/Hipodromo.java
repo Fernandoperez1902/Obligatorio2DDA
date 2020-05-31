@@ -55,14 +55,8 @@ public class Hipodromo {
     }
 
     //Valida la condición de unicidad en el nombre
-    public boolean validarHipodromo(String nombre) /*throws ApuestasException*/ {
-        boolean ret = true;
-        if (this.nombre == nombre) {
-            //throw new ApuestasException("El nombre del Hipódromo ya existe");
-        } else {
-            ret = false;
-        }
-        return ret;
+    public boolean validarHipodromo(String nombre) {
+        return this.nombre == nombre;
     }
 
     //Devuelve la jornada de la fecha

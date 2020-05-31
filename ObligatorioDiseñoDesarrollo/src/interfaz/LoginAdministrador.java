@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import logica.Administrador;
+import logica.ApuestasException;
 import logica.Fachada;
 
 /**
@@ -100,22 +101,18 @@ public class LoginAdministrador extends javax.swing.JFrame {
 
         String nombreUsuario = txtAdminNom.getText();
         String passUsuario = txtAdminPass.getText();
-
-        Administrador adm = logica.loginAdministrador(nombreUsuario, passUsuario);
-
+                Administrador adm =null;
+        try{    
+            adm = logica.loginAdministrador(nombreUsuario, passUsuario);
+        }catch(ApuestasException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
         if (adm != null) {
-
             BienvenidaAdministrador mensajeBienvda = new BienvenidaAdministrador(this, true, adm);
             mensajeBienvda.setVisible(true);
-            
             MenuAdministrador menu = new MenuAdministrador(adm);
             menu.setVisible(true);
-            this.dispose();
-            
-        } else {
-
-            JOptionPane.showMessageDialog(this, "Login Incorrecto");
-
+            this.dispose();   
         }
 
     }//GEN-LAST:event_btnAdminLoginActionPerformed

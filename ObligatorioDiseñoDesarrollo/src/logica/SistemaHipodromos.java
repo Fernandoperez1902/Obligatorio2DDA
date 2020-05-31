@@ -20,15 +20,14 @@ public class SistemaHipodromos {
     }
     
 
-    public void agregarHipodromo(Hipodromo h){
+    public void agregarHipodromo(Hipodromo h){              
         if(validarHipodromo(h.getNombre())){
             hipodromos.add(h);
-            
         }
     }
     
     //Valida la condición de unicidad en el nombre
-    public boolean validarHipodromo(String nombre) {
+    public boolean validarHipodromo(String nombre){
         boolean ret = true;
         for (Hipodromo h : hipodromos) {
             if(h.validarHipodromo(nombre)){
