@@ -15,4 +15,6 @@ public class ApuestasException extends Exception{
         super(mensaje);
     }
     
+    
+    
 }

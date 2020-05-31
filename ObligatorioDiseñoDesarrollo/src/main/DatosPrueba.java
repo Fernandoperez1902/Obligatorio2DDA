@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import logica.Administrador;
 import logica.Caballo;
+import logica.Carrera;
 import logica.Fachada;
 import logica.Hipodromo;
 import logica.Jornada;
 import logica.Jugador;
+import logica.Participante;
 import logica.SistemaCaballos;
 import logica.SistemaHipodromos;
 
@@ -34,6 +36,25 @@ public class DatosPrueba {
         Caballo c5 = new Caballo("Caballo5","Responsable5");
         Caballo c6 = new Caballo("Caballo6","Responsable6");
         
+        //PARTICIPANTE
+        Participante p1 = new Participante(c1,2,2.5);
+        Participante p2 = new Participante(c2,4,1.5);
+        Participante p3 = new Participante(c3,76,1.3);
+        Participante p4 = new Participante(c4,67,1.85);
+        Participante p5 = new Participante(c5,18,2.0);
+        Participante p6 = new Participante(c6,5,2.0);
+        
+        ArrayList<Participante> participantes = new ArrayList<Participante>();
+        ArrayList<Participante> participantes2 = new ArrayList<Participante>();
+        participantes.add(p1);
+        participantes.add(p2);
+        participantes.add(p3);
+        participantes.add(p6);
+        participantes2.add(p2);
+        participantes2.add(p4);
+        p5.setGanador(true);
+        participantes2.add(p5);
+        
         //HIPODROMOS
         
         Hipodromo h1 = new Hipodromo("Hipódromo1","Dirección1");
@@ -52,20 +73,11 @@ public class DatosPrueba {
         
         //JUGADORES
         
-        Jugador j1 = new Jugador("J1", "J1", "Jugador1", 100);
-        Jugador j2 = new Jugador("J2", "J2", "Jugador2", 100);
-        Jugador j3 = new Jugador("J3", "J3", "Jugador3", 100);
-        Jugador j4 = new Jugador("J4", "J4", "Jugador4", 100);
-        Jugador j5 = new Jugador("J5", "J5", "Jugador5", 100);
-        
-        
-        //JORNADAS 
-        
-        Jornada jor1 = new Jornada(new Date());
-        Jornada jor2 = new Jornada(new Date());
-        Jornada jor3 = new Jornada(new Date());
-        Jornada jor4 = new Jornada(new Date());
-        
+        Jugador j1 = new Jugador("j1", "j1", "Jugador1", 100);
+        Jugador j2 = new Jugador("j2", "j2", "Jugador2", 500);
+        Jugador j3 = new Jugador("j3", "j3", "Jugador3", 1000);
+        Jugador j4 = new Jugador("j4", "j4", "Jugador4", 250);
+        Jugador j5 = new Jugador("j5", "j5", "Jugador5", 750);
         
         
         logica.agregarJugador(j1);
@@ -73,6 +85,25 @@ public class DatosPrueba {
         logica.agregarJugador(j3);
         logica.agregarJugador(j4);
         logica.agregarJugador(j5);
+        
+        
+        //CARRERAS
+        ArrayList<Carrera> carreras = new ArrayList<Carrera>();
+        Carrera ca1 = new Carrera("Nombre1",new Date(), participantes);
+        Carrera ca2 = new Carrera("Nombre1",new Date(), participantes2);
+        ca1.setEstado(Carrera.Estado.abierta);
+        carreras.add(ca1);
+        carreras.add(ca2);
+        
+        //JORNADAS 
+        Jornada jor1 = new Jornada(new Date());
+        Jornada jor2 = new Jornada(new Date());
+        jor1.setCarreras(carreras);
+        jor2.setCarreras(carreras);
+        ArrayList<Jornada> jornadas = new ArrayList<Jornada>();
+        jornadas.add(jor1);
+        jornadas.add(jor2);
+        h1.setJornadas(jornadas);
         
         
         logica.agregarHipodromo(h1);

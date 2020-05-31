@@ -12,47 +12,52 @@ import java.util.ArrayList;
  * @author Mauro
  */
 public class SistemaUsuarios {
- 
-    private ArrayList<Usuario>jugadores = new ArrayList<Usuario>();
-    private ArrayList<Usuario>administradores = new ArrayList<Usuario>();
-    
-    
-    private Usuario login(ArrayList<Usuario> usuarios, String nombre, String password) {
+
+    private ArrayList<Usuario> jugadores = new ArrayList<Usuario>();
+    private ArrayList<Usuario> administradores = new ArrayList<Usuario>();
+
+    private Usuario login(ArrayList<Usuario> usuarios, String nombre, String password) throws ApuestasException {
         Usuario ret = null;
         boolean encontrado = false;
-        for(int i = 0; i<usuarios.size()&&!encontrado;i++){
+        if (nombre.isEmpty() || password.isEmpty()) {
+            throw new ApuestasException("Debe ingresar Usuario y Contraseña");
+        }
+        for (int i = 0; i < usuarios.size() && !encontrado; i++) {
             Usuario u = usuarios.get(i);
-            if(u.verificarDatos(nombre,password)){
+            if (u.verificarDatos(nombre, password)) {
                 ret = u;
                 encontrado = true;
             }
         }
+        if (!encontrado) {
+            throw new ApuestasException("Acceso denegado, verifique los datos ingresados");
+        }
         return ret;
     }
-    
-    public Administrador loginAdministrador(String nombre, String password){
+
+    public Administrador loginAdministrador(String nombre, String password) throws ApuestasException {
         Administrador ret = null;
-        Usuario u = login(administradores,nombre,password);
-        if (u!=null){
-            ret = (Administrador)u;
+        Usuario u = login(administradores, nombre, password);
+        if (u != null) {
+            ret = (Administrador) u;
         }
         return ret;
     }
-    
-    public Jugador loginJugador(String nombre, String password){
+
+    public Jugador loginJugador(String nombre, String password) throws ApuestasException {
         Jugador ret = null;
-        Usuario u = login(jugadores,nombre,password);
-         if (u!=null){
-            ret = (Jugador)u;
+        Usuario u = login(jugadores, nombre, password);
+        if (u != null) {
+            ret = (Jugador) u;
         }
         return ret;
     }
-    
-    public void agregarAdministrador(Administrador adm){
+
+    public void agregarAdministrador(Administrador adm) {
         administradores.add(adm);
     }
-    
-    public void agregarJugador(Jugador j){
+
+    public void agregarJugador(Jugador j) {
         jugadores.add(j);
     }
 }
