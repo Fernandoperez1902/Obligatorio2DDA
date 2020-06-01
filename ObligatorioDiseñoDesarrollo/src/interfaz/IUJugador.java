@@ -27,7 +27,7 @@ public class IUJugador extends javax.swing.JFrame {
     public IUJugador() {
         initComponents();
         limpiarFormulario();
-        btnConfirmar.setEnabled(false);
+        btnConfirmar.setEnabled(false);        
     }
 
     @SuppressWarnings("unchecked")
@@ -192,11 +192,11 @@ public class IUJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_lstCarreraValueChanged
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
-        // TODO add your handling code here:
+        btnConfirmarActionPerformed(evt);
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
+        btnConfirmarActionPerformed(evt);
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSaldoActionPerformed
@@ -209,6 +209,7 @@ public class IUJugador extends javax.swing.JFrame {
             VerSaldo ventanaSaldo = new VerSaldo(this, true, j);
             ventanaSaldo.setVisible(true);
         }
+        limpiarFormulario();
     }//GEN-LAST:event_btnConsultarSaldoActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
@@ -281,12 +282,12 @@ public class IUJugador extends javax.swing.JFrame {
 
     private void limpiarFormulario() {
         lstHipodromo.removeAll();
-        cargarHipodromos();
         lstCarrera.removeAll();
         lstCaballo.removeAll();
         txtMonto.setText("");
         txtUsuario.setText("");
         txtPassword.setText("");
+        cargarHipodromos();
     }
 
     private Jugador login() {
