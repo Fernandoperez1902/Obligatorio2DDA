@@ -18,5 +18,10 @@ public class SistemaCaballos {
         return caballos;
     }
     
+    public void AgregarCaballo(Caballo c){
+
+        caballos.add(c);
+    }
+    
     
 }

@@ -6,21 +6,23 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author Mauro
  */
 public class Hipodromo {
+
     private String nombre;
     private String direccion;
     private ArrayList<Jornada> jornadas = new ArrayList<Jornada>();
 
-    public Hipodromo(String n, String d){
+    public Hipodromo(String n, String d) {
         nombre = n;
         direccion = d;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
     public String getNombre() {
         return nombre;
@@ -51,17 +53,60 @@ public class Hipodromo {
     public String toString() {
         return nombre.toUpperCase() + " - " + direccion;
     }
-    
-    
+
     //Valida la condición de unicidad en el nombre
-    public boolean validarHipodromo(String nombre) /*throws ApuestasException*/{
-        boolean ret = true;
-        if (this.nombre==nombre){
-            //throw new ApuestasException("El nombre del Hipódromo ya existe");
-        }else{
-            ret = false;
+    public boolean validarHipodromo(String nombre) {
+        return this.nombre == nombre;
+    }
+
+    //Devuelve la jornada de la fecha
+    public Jornada getJornadaDelDia(Date fecha) {
+        Jornada jornada = null;
+        for (Jornada j : jornadas) {
+            if (j.esJornadaDelDia(fecha)) {
+                jornada = j;
+            }
         }
-        return ret;
+        return jornada;
     }
     
+    public Jornada buscarJornada(Date fecha) {
+
+        Jornada jornada = null;
+        int i = 0;
+        while (i < jornadas.size() && jornada != null) {
+            if (jornadas.get(i).getFecha() == fecha) {
+                jornada = jornadas.get(i);
+            }
+            i++;
+        }
+        return jornada;
+    }
+
+    public boolean existeJornada(Date fecha) {
+
+        boolean existe = false;
+        if (buscarJornada(fecha) != null) {
+            existe = true;
+        }
+        return existe;
+
+    }
+    
+    public boolean participaCaballo(Date fecha, Caballo cab) {
+
+        boolean participa = false;
+        int i = 0;
+        while (i < jornadas.size() && !participa) {
+            if (jornadas.get(i).getFecha().equals(fecha)) {
+                if (jornadas.get(i).participaEnCarrera(cab)) {
+                    participa = true;
+                }
+            }
+            i++;
+        }
+
+        return participa;
+
+    }
 }

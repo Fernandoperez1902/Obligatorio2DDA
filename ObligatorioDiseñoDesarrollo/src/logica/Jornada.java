@@ -13,18 +13,18 @@ import java.util.Date;
  * @author Mauro
  */
 public class Jornada {
+
     private Date fecha;
     private int ultimoIdCarrera;
     private int ultimaCerrada;
-    private ArrayList<Carrera>carreras = new ArrayList<Carrera>();
+    private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
 
-    
-    public Jornada(Date f){
-        this.fecha= f;
+    public Jornada(Date f) {
+        this.fecha = f;
         this.ultimaCerrada = 0;
         this.ultimaCerrada = 0;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
     public Date getFecha() {
         return fecha;
@@ -58,5 +58,21 @@ public class Jornada {
         this.carreras = carreras;
     }
     // </editor-fold>       
+
+    public boolean esJornadaDelDia(Date fecha) {
+        return this.fecha.equals(fecha);
+    }
     
+    public boolean participaEnCarrera(Caballo cab) {
+        boolean participa = false;
+        int i = 0;
+        while (i < carreras.size() && !participa) {
+            if (carreras.get(i).participaCaballo(cab)) {
+                participa = true;
+            }
+            i++;
+        }
+        return participa;
+    }
+
 }

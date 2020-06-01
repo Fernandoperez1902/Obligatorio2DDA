@@ -1,0 +1,7 @@
+1 - Cumpliendo con División Lógica hay que formatear el modo en que se visualizan 
+los datos dentro de cada Interfaz... sin utilizar siempre el método ToString().. 
+esto puede implicar perder la referencia a los objetos, para esto habría que manejar dos listas, 
+la de los objetos y otra con los Strings que se visualizarían..
+
+2 - Agregar datos dinámicos como pueden ser un contador de cantidad de caballos agregados al momento 
+de estar creando una carrera... la intención es únicamente dar un poco de color al asunto.

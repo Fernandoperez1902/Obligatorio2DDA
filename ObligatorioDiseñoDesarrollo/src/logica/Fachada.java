@@ -6,6 +6,8 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 
 /**
  *
@@ -18,6 +20,7 @@ public class Fachada {
     private SistemaUsuarios su = new SistemaUsuarios();
     private SistemaHipodromos sh = new SistemaHipodromos();
     private SistemaApuestas sa = new SistemaApuestas();
+    private SistemaCaballos sc = new SistemaCaballos();
 
     public static Fachada getInstancia() {
         if (instancia == null) {
@@ -28,12 +31,14 @@ public class Fachada {
 
     private Fachada() {
     }
-
-    public Administrador loginAdministrador(String nombre, String password) {
+    
+    
+    
+    public Administrador loginAdministrador(String nombre, String password) throws ApuestasException{
         return su.loginAdministrador(nombre, password);
     }
 
-    public Jugador loginJugador(String nombre, String password) {
+    public Jugador loginJugador(String nombre, String password) throws ApuestasException{
         return su.loginJugador(nombre, password);
     }
 
@@ -45,24 +50,39 @@ public class Fachada {
         su.agregarJugador(j);
     }
 
-    // throws ApuestasException? VER!
     public void agregarHipodromo(Hipodromo h){
-        sh.agregarHipodromo(h);
+           sh.agregarHipodromo(h);
     }
 
+    public void AgregarCaballo(Caballo c) {
+        sc.AgregarCaballo(c);
+    }
+    
     public ArrayList<Hipodromo> getHipodromos() {
         return sh.getHipodromos();
     }
-
-    public boolean agregarApuesta(String nombre, String pass, float monto, Hipodromo hipodromo, Carrera carrera, Caballo caballo) {
+    public ArrayList<Caballo> getCaballos(){
+        return sc.getCaballos();
+    }
+    
+    
+    public boolean agregarApuesta(String nombre, String pass, float monto, Hipodromo hipodromo, Carrera carrera, Caballo caballo) throws ApuestasException{
         boolean ret = false;
         Jugador j = loginJugador(nombre, pass);
         if (j != null) {
             Apuesta a = new Apuesta();
-            if( sa.agregarApuesta(a)){
-                ret= true;   
+            if (sa.agregarApuesta(a)) {
+                ret = true;
             }
         }
         return ret;
+    }
+    
+    public ArrayList<Caballo> caballosDisponiblesEnFecha(Date fecha) {
+        return sh.caballosDisponiblesEnFecha(fecha);
+    }
+    
+    public Jornada buscarJornada(Hipodromo h, Date f) {
+        return sh.buscarJornada(h, f);
     }
 }

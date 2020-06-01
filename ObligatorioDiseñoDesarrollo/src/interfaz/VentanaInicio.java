@@ -29,6 +29,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btnAdministrador = new javax.swing.JButton();
         btnJugador = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA DE APUESTAS HÍPICAS");
@@ -43,7 +44,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAdministrador);
-        btnAdministrador.setBounds(40, 80, 180, 30);
+        btnAdministrador.setBounds(40, 120, 180, 40);
 
         btnJugador.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btnJugador.setText("QUIERO JUGAR!");
@@ -53,14 +54,18 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnJugador);
-        btnJugador.setBounds(250, 80, 180, 30);
+        btnJugador.setBounds(250, 120, 180, 40);
 
-        setSize(new java.awt.Dimension(490, 210));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(130, 10, 200, 90);
+
+        setSize(new java.awt.Dimension(490, 226));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugadorActionPerformed
-        VentanaJugador ventana = new VentanaJugador(this, false);
+        IUJugador ventana = new IUJugador();
         ventana.setVisible(true);
     }//GEN-LAST:event_btnJugadorActionPerformed
 
@@ -107,5 +112,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdministrador;
     private javax.swing.JButton btnJugador;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
