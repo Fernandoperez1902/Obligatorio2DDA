@@ -24,6 +24,12 @@ public class Carrera {
     //SE DEFINE CLASE ESTADO COMO UN ENUM
     public enum Estado {definida,abierta,cerrada, finalizada};
     
+    public Carrera(String nom, Date fec, int num){
+        nombre = nom;
+        fecha = fec;
+        numeroCarrera = num;
+    }
+    
     public Carrera(String n, Date f, ArrayList<Participante> p) {
         nombre = n;
         fecha = f;
@@ -109,6 +115,20 @@ public class Carrera {
     
     public boolean isAbierta(){
         return this.estado.equals(Estado.abierta);
+    }
+    public boolean participaCaballo(Caballo cab){
+
+        boolean participa = false;
+        int i = 0;
+        while (i < participantes.size() && !participa){
+            if (participantes.get(i).caballoParticipa(cab)){
+                participa = true;
+            }
+            i++;
+        }
+
+        return participa;
+
     }
        
 }

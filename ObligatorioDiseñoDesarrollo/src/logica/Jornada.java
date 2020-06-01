@@ -62,5 +62,17 @@ public class Jornada {
     public boolean esJornadaDelDia(Date fecha) {
         return this.fecha.equals(fecha);
     }
+    
+    public boolean participaEnCarrera(Caballo cab) {
+        boolean participa = false;
+        int i = 0;
+        while (i < carreras.size() && !participa) {
+            if (carreras.get(i).participaCaballo(cab)) {
+                participa = true;
+            }
+            i++;
+        }
+        return participa;
+    }
 
 }

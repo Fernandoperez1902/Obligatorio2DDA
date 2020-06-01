@@ -63,4 +63,7 @@ public class Participante {
         return numero + " - "+caballo.getNombre() + " - " + dividendo + ganador;
     }
     
+    public boolean caballoParticipa(Caballo cab){
+        return caballo.equals(cab);
+    }
 }
