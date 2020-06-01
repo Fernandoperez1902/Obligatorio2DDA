@@ -125,6 +125,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JList" name="lstHipodromo">
+          <Events>
+            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="lstHipodromoValueChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -137,6 +140,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Crear"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearCarreraActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAbrir">
       <Properties>
