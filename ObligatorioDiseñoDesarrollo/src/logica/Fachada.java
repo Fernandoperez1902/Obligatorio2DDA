@@ -6,6 +6,7 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -19,6 +20,7 @@ public class Fachada {
     private SistemaUsuarios su = new SistemaUsuarios();
     private SistemaHipodromos sh = new SistemaHipodromos();
     private SistemaApuestas sa = new SistemaApuestas();
+    private SistemaCaballos sc = new SistemaCaballos();
 
     public static Fachada getInstancia() {
         if (instancia == null) {
@@ -29,7 +31,9 @@ public class Fachada {
 
     private Fachada() {
     }
-
+    
+    
+    
     public Administrador loginAdministrador(String nombre, String password) throws ApuestasException{
         return su.loginAdministrador(nombre, password);
     }
@@ -50,10 +54,18 @@ public class Fachada {
            sh.agregarHipodromo(h);
     }
 
+    public void AgregarCaballo(Caballo c) {
+        sc.AgregarCaballo(c);
+    }
+    
     public ArrayList<Hipodromo> getHipodromos() {
         return sh.getHipodromos();
     }
-
+    public ArrayList<Caballo> getCaballos(){
+        return sc.getCaballos();
+    }
+    
+    
     public boolean agregarApuesta(String nombre, String pass, float monto, Hipodromo hipodromo, Carrera carrera, Caballo caballo) throws ApuestasException{
         boolean ret = false;
         Jugador j = loginJugador(nombre, pass);
@@ -64,5 +76,13 @@ public class Fachada {
             }
         }
         return ret;
+    }
+    
+    public ArrayList<Caballo> caballosDisponiblesEnFecha(Date fecha) {
+        return sh.caballosDisponiblesEnFecha(fecha);
+    }
+    
+    public Jornada buscarJornada(Hipodromo h, Date f) {
+        return sh.buscarJornada(h, f);
     }
 }

@@ -69,4 +69,44 @@ public class Hipodromo {
         }
         return jornada;
     }
+    
+    public Jornada buscarJornada(Date fecha) {
+
+        Jornada jornada = null;
+        int i = 0;
+        while (i < jornadas.size() && jornada != null) {
+            if (jornadas.get(i).getFecha() == fecha) {
+                jornada = jornadas.get(i);
+            }
+            i++;
+        }
+        return jornada;
+    }
+
+    public boolean existeJornada(Date fecha) {
+
+        boolean existe = false;
+        if (buscarJornada(fecha) != null) {
+            existe = true;
+        }
+        return existe;
+
+    }
+    
+    public boolean participaCaballo(Date fecha, Caballo cab) {
+
+        boolean participa = false;
+        int i = 0;
+        while (i < jornadas.size() && !participa) {
+            if (jornadas.get(i).getFecha().equals(fecha)) {
+                if (jornadas.get(i).participaEnCarrera(cab)) {
+                    participa = true;
+                }
+            }
+            i++;
+        }
+
+        return participa;
+
+    }
 }
