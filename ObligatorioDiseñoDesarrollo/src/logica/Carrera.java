@@ -21,15 +21,23 @@ public class Carrera {
     private ArrayList<Apuesta> apuestas = new ArrayList<Apuesta>();
     private Estado estado;
     
-    //SE DEFINE CLASE ESTADO COMO UN ENUM
-    public enum Estado {definida,abierta,cerrada, finalizada};
     
-    public Carrera(String nom, Date fec, int num){
+    public enum ErrorValidacion {
+        participantesInsuficientes, carreraOk
+    };
+
+    //SE DEFINE CLASE ESTADO COMO UN ENUM
+    public enum Estado {
+
+        definida, abierta, cerrada, finalizada
+    };
+
+    public Carrera(String nom, Date fec, int num) {
         nombre = nom;
         fecha = fec;
         numeroCarrera = num;
     }
-    
+
     public Carrera(String n, Date f, ArrayList<Participante> p) {
         nombre = n;
         fecha = f;
@@ -88,8 +96,6 @@ public class Carrera {
     }
 
     // </editor-fold>
-    
-    
     //Checkea si la carrera tiene apuestas efectuadas.
     public boolean tieneApuestas() {
         boolean ret = false;
@@ -110,18 +116,19 @@ public class Carrera {
 
     @Override
     public String toString() {
-        return numeroCarrera + " - " + nombre +  " - " + estado.toString();
+        return numeroCarrera + " - " + nombre + " - " + estado.toString();
     }
-    
-    public boolean isAbierta(){
+
+    public boolean isAbierta() {
         return this.estado.equals(Estado.abierta);
     }
-    public boolean participaCaballo(Caballo cab){
+
+    public boolean participaCaballo(Caballo cab) {
 
         boolean participa = false;
         int i = 0;
-        while (i < participantes.size() && !participa){
-            if (participantes.get(i).caballoParticipa(cab)){
+        while (i < participantes.size() && !participa) {
+            if (participantes.get(i).caballoParticipa(cab)) {
                 participa = true;
             }
             i++;
@@ -130,5 +137,18 @@ public class Carrera {
         return participa;
 
     }
-       
+    
+    public Enum validarCarrera(){
+        
+        if (participantes.size() < 2){
+            return ErrorValidacion.participantesInsuficientes;
+        } else {
+            return ErrorValidacion.carreraOk;
+        }
+    }
+
+    public void abrir(){
+        estado = Estado.abierta;
+    }
+    
 }

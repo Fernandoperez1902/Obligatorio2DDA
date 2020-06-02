@@ -109,4 +109,8 @@ public class Hipodromo {
         return participa;
 
     }
+    
+    public void agregarJornada(Jornada jornada){
+        jornadas.add(jornada);
+    }
 }
