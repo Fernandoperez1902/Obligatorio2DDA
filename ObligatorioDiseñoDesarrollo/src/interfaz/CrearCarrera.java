@@ -129,6 +129,8 @@ public class CrearCarrera extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
 
+        boolean esNuevaJornada = false;
+        
         if (!txtFecha.getText().isEmpty()) {
             setFecha((Date) txtFecha.getValue());
         }
@@ -145,11 +147,12 @@ public class CrearCarrera extends javax.swing.JFrame {
 
             jornada = new Jornada(fecha);
             carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1);
-
+            esNuevaJornada = true;
+            
         }
 
         AgregarCaballosCarrera agregarCaballos = new AgregarCaballosCarrera(this,
-                true, jornada, seleccionado, carrera);
+                true, jornada, seleccionado, carrera, esNuevaJornada);
         agregarCaballos.setVisible(true);
 
 

@@ -76,6 +76,11 @@ public class MenuAdministrador extends javax.swing.JFrame {
         });
 
         btnAbrir.setText("Abrir");
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
 
         btnCerrarApuestas.setText("Cerrar Apuestas");
 
@@ -165,6 +170,11 @@ public class MenuAdministrador extends javax.swing.JFrame {
         Hipodromo sel = (Hipodromo)lstHipodromo.getSelectedValue();
         setSeleccionado(sel);
     }//GEN-LAST:event_lstHipodromoValueChanged
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        IUAbrirCarrera abrirCarrera = new IUAbrirCarrera(seleccionado);
+        abrirCarrera.setVisible(true);
+    }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void setSeleccionado(Hipodromo sel){
         seleccionado = sel; 

@@ -74,5 +74,16 @@ public class Jornada {
         }
         return participa;
     }
+    
+    public void agregarCarrera(Carrera carrera){
+        
+        carreras.add(carrera);
+        ultimoIdCarrera++;
+    }
+    
+    public Carrera traerProximaCarrera(){
+        
+        return carreras.get(ultimaCerrada++);
+    }
 
 }
