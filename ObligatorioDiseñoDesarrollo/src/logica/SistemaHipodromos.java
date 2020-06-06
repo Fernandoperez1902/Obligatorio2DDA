@@ -16,41 +16,46 @@ public class SistemaHipodromos {
 
     private ArrayList<Hipodromo> hipodromos = new ArrayList<Hipodromo>();
 
-    
     public ArrayList<Hipodromo> getHipodromos() {
         return hipodromos;
     }
 
-    public void agregarHipodromo(Hipodromo h){              
-        if(validarHipodromo(h.getNombre())){
+    public void agregarHipodromo(Hipodromo h) {
+        if (validarHipodromo(h.getNombre())) {
             hipodromos.add(h);
         }
     }
-    
+
     //Valida la condición de unicidad en el nombre
-    public boolean validarHipodromo(String nombre){
+    public boolean validarHipodromo(String nombre) {
         boolean ret = true;
         for (Hipodromo h : hipodromos) {
-            if(h.validarHipodromo(nombre)){
+            if (h.validarHipodromo(nombre)) {
                 ret = false;
             }
         }
         return ret;
     }
-    
-    
+
     public ArrayList<Caballo> caballosDisponiblesEnFecha(Date fecha) {
         ArrayList<Caballo> caballos = Fachada.getInstancia().getCaballos();
+        ArrayList<Caballo> disponibles = new ArrayList();
         for (Caballo c : caballos) {
-            for (Hipodromo h : hipodromos) {
-                if (h.participaCaballo(fecha, c)) {
-                    caballos.remove(c);
+            boolean participa = false;
+            int j = 0;
+            while (j < hipodromos.size() && !participa) {
+                if (hipodromos.get(j).participaCaballo(fecha, c)) {
+                    participa = true;
                 }
+                j++;
+            }
+            if (!participa) {
+                disponibles.add(c);
             }
         }
-        return caballos;
+        return disponibles;
     }
-    
+
     public Jornada buscarJornada(Hipodromo h, Date f) {
         Jornada jornada = null;
         jornada = h.buscarJornada(f);

@@ -15,19 +15,23 @@ import logica.Hipodromo;
 import logica.Jornada;
 import logica.Jugador;
 import logica.Participante;
+import observer.Observable;
+import observer.Observador;
 
 /**
  *
  * @author Mauro
  */
-public class IUJugador extends javax.swing.JFrame {
+public class IUJugador extends javax.swing.JFrame implements Observador {
 
     Fachada logica = Fachada.getInstancia();
+    private Hipodromo seleccionado = null;
+    //private ArrayList<Carrera> deSeleccionadoHoy = new ArrayList();
 
     public IUJugador() {
         initComponents();
         limpiarFormulario();
-        btnConfirmar.setEnabled(false);        
+        btnConfirmar.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -186,7 +190,7 @@ public class IUJugador extends javax.swing.JFrame {
         cargarParticipantes(c);
         if (c.isAbierta()) {
             btnConfirmar.setEnabled(true);
-        }else{
+        } else {
             btnConfirmar.setEnabled(false);
         }
     }//GEN-LAST:event_lstCarreraValueChanged
@@ -216,10 +220,10 @@ public class IUJugador extends javax.swing.JFrame {
         Jugador j = login();
         if (j != null) {
             try {
-                j.saldoSuficiente(txtMonto.getText()); 
+                j.saldoSuficiente(txtMonto.getText());
                 Hipodromo h = (Hipodromo) lstHipodromo.getSelectedValue();
-                                
-            }catch (ApuestasException e) {
+
+            } catch (ApuestasException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
         }
@@ -231,8 +235,8 @@ public class IUJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_lstCaballoValueChanged
 
     private void lstHipodromoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstHipodromoValueChanged
-        Hipodromo h = (Hipodromo) lstHipodromo.getSelectedValue();
-        cargarCarreras(h);
+        seleccionado = (Hipodromo) lstHipodromo.getSelectedValue();
+        cargarCarreras();
     }//GEN-LAST:event_lstHipodromoValueChanged
 
 
@@ -269,10 +273,13 @@ public class IUJugador extends javax.swing.JFrame {
         }
     }
 
-    private void cargarCarreras(Hipodromo h) {
-        ArrayList<Jornada> j1 = h.getJornadas();
-        Jornada j = j1.get(1);
-        ArrayList<Carrera> carreras = j.getCarreras();
+    private void cargarCarreras() {
+        Jornada deHoy = seleccionado.buscarJornada(new Date());
+        deHoy.agregar(this);
+        ArrayList<Carrera> carreras = deHoy.getCarreras();
+        for (Carrera c : carreras) {
+            c.agregar(this);
+        }
         lstCarrera.setListData(carreras.toArray());
     }
 
@@ -293,13 +300,20 @@ public class IUJugador extends javax.swing.JFrame {
     private Jugador login() {
         String usuario = txtUsuario.getText();
         String password = new String(txtPassword.getPassword());
-        Jugador j =null;
-        try{    
+        Jugador j = null;
+        try {
             j = logica.loginJugador(usuario, password);
-        }catch(ApuestasException e){
+        } catch (ApuestasException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         return j;
+    }
+
+    @Override
+    public void actualizar(Observable origen, Object evento) {
+        if (evento.equals(Carrera.Eventos.abrir) || evento.equals(Jornada.Eventos.nuevaCarrera)) {
+            cargarCarreras();
+        }
     }
 
 }

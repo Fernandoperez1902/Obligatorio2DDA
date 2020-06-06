@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logica;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import observer.Observable;
 
-/**
- *
- * @author Mauro
- */
-public class Jornada {
+
+public class Jornada extends Observable{
 
     private Date fecha;
     private int ultimoIdCarrera;
@@ -21,7 +16,7 @@ public class Jornada {
 
     public Jornada(Date f) {
         this.fecha = f;
-        this.ultimaCerrada = 0;
+        this.ultimoIdCarrera = 0;
         this.ultimaCerrada = 0;
     }
 
@@ -59,10 +54,16 @@ public class Jornada {
     }
     // </editor-fold>       
 
+    public enum Eventos{
+        nuevaCarrera
+    };
+    
     public boolean esJornadaDelDia(Date fecha) {
-        return this.fecha.equals(fecha);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(this.fecha).equals(sdf.format(fecha));
     }
     
+
     public boolean participaEnCarrera(Caballo cab) {
         boolean participa = false;
         int i = 0;
@@ -74,15 +75,16 @@ public class Jornada {
         }
         return participa;
     }
-    
-    public void agregarCarrera(Carrera carrera){
-        
+
+    public void agregarCarrera(Carrera carrera) {
+
         carreras.add(carrera);
+        avisar(Eventos.nuevaCarrera);
         ultimoIdCarrera++;
     }
-    
-    public Carrera traerProximaCarrera(){
-        
+
+    public Carrera traerProximaCarrera() {
+
         return carreras.get(ultimaCerrada++);
     }
 

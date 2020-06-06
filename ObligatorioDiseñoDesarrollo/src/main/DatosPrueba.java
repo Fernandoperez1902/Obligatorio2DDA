@@ -35,6 +35,8 @@ public class DatosPrueba {
         Caballo c4 = new Caballo("Caballo4","Responsable4");
         Caballo c5 = new Caballo("Caballo5","Responsable5");
         Caballo c6 = new Caballo("Caballo6","Responsable6");
+        Caballo c7 = new Caballo("Caballo7","Responsable7");
+        Caballo c8 = new Caballo("Caballo8","Responsable8");
         
         logica.AgregarCaballo(c1);
         logica.AgregarCaballo(c2);
@@ -49,19 +51,14 @@ public class DatosPrueba {
         Participante p2 = new Participante(c2,4,1.5);
         Participante p3 = new Participante(c3,76,1.3);
         Participante p4 = new Participante(c4,67,1.85);
-        Participante p5 = new Participante(c5,18,2.0);
-        Participante p6 = new Participante(c6,5,2.0);
         
         ArrayList<Participante> participantes = new ArrayList<Participante>();
         ArrayList<Participante> participantes2 = new ArrayList<Participante>();
         participantes.add(p1);
         participantes.add(p2);
-        participantes.add(p3);
-        participantes.add(p6);
-        participantes2.add(p2);
+        participantes2.add(p3);
         participantes2.add(p4);
-        p5.setGanador(true);
-        participantes2.add(p5);
+        //p5.setGanador(true);
         
         //HIPODROMOS
         
@@ -96,21 +93,16 @@ public class DatosPrueba {
         
         
         //CARRERAS
-        ArrayList<Carrera> carreras = new ArrayList<Carrera>();
-        Carrera ca1 = new Carrera("Nombre1",new Date(), participantes);
-        Carrera ca2 = new Carrera("Nombre1",new Date(), participantes2);
-        ca1.setEstado(Carrera.Estado.abierta);
-        carreras.add(ca1);
-        carreras.add(ca2);
+        Carrera ca1 = new Carrera("Nombre1",new Date(), 1, participantes);
+        Carrera ca2 = new Carrera("Nombre2",new Date(), 2, participantes2);
+        
         
         //JORNADAS 
         Jornada jor1 = new Jornada(new Date());
-        Jornada jor2 = new Jornada(new Date());
-        jor1.setCarreras(carreras);
-        jor2.setCarreras(carreras);
+        jor1.agregarCarrera(ca1);
+        jor1.agregarCarrera(ca2);
         ArrayList<Jornada> jornadas = new ArrayList<Jornada>();
         jornadas.add(jor1);
-        jornadas.add(jor2);
         h1.setJornadas(jornadas);
         
         
