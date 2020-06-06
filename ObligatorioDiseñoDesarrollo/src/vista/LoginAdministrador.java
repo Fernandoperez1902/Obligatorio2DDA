@@ -1,5 +1,9 @@
-package interfaz;
+package vista;
 
+import controlador.ControladorLoginAdmin;
+import controlador.IVistaLoginAdmin;
+import interfaz.BienvenidaAdministrador;
+import interfaz.MenuAdministrador;
 import java.awt.event.ActionListener;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -8,21 +12,21 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import logica.Administrador;
 import logica.ApuestasException;
-import logica.Fachada;
 
 /**
  *
  * @author Mauro
  */
-public class LoginAdministrador extends javax.swing.JFrame {
+public class LoginAdministrador extends javax.swing.JFrame implements IVistaLoginAdmin {
 
-    Fachada logica = Fachada.getInstancia();
+    private ControladorLoginAdmin controlador;
 
     /**
      * Creates new form LoginAdministrador
      */
     public LoginAdministrador() {
         initComponents();
+        controlador = new ControladorLoginAdmin(this);
     }
 
     /**
@@ -101,57 +105,22 @@ public class LoginAdministrador extends javax.swing.JFrame {
 
         String nombreUsuario = txtAdminNom.getText();
         String passUsuario = txtAdminPass.getText();
-                Administrador adm =null;
-        try{    
-            adm = logica.loginAdministrador(nombreUsuario, passUsuario);
-        }catch(ApuestasException e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-        if (adm != null) {
-            BienvenidaAdministrador mensajeBienvda = new BienvenidaAdministrador(this, true, adm);
-            mensajeBienvda.setVisible(true);
-            MenuAdministrador menu = new MenuAdministrador(adm);
-            menu.setVisible(true);
-            this.dispose();   
+        Administrador admin = controlador.login(nombreUsuario, passUsuario);
+        if (admin != null) {
+            cargarProximaVista(admin);
         }
 
     }//GEN-LAST:event_btnAdminLoginActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginAdministrador().setVisible(true);
-            }
-        });
-
+    @Override
+    public void cargarProximaVista(Administrador admin) {
+        BienvenidaAdministrador mensajeBienvda = new BienvenidaAdministrador(this, true, admin);
+        mensajeBienvda.setVisible(true);
+        MenuAdministrador menu = new MenuAdministrador(admin);
+        menu.setVisible(true);
+        this.dispose();
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminLogin;
@@ -160,4 +129,5 @@ public class LoginAdministrador extends javax.swing.JFrame {
     private javax.swing.JTextField txtAdminNom;
     private javax.swing.JTextField txtAdminPass;
     // End of variables declaration//GEN-END:variables
+
 }
