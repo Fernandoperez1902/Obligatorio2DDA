@@ -192,6 +192,7 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog {
 
         Participante participante = new Participante(caballo, numero, dividendo);
         participantes.add(participante);
+        carrera.agregarParticipante(participante);
         cargarParticipantes();
         cargarCaballosDisponibles();
 
