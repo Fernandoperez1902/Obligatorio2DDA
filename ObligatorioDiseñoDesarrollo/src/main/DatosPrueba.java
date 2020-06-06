@@ -36,6 +36,14 @@ public class DatosPrueba {
         Caballo c5 = new Caballo("Caballo5","Responsable5");
         Caballo c6 = new Caballo("Caballo6","Responsable6");
         
+        logica.AgregarCaballo(c1);
+        logica.AgregarCaballo(c2);
+        logica.AgregarCaballo(c3);
+        logica.AgregarCaballo(c4);
+        logica.AgregarCaballo(c5);
+        logica.AgregarCaballo(c6);
+        
+        
         //PARTICIPANTE
         Participante p1 = new Participante(c1,2,2.5);
         Participante p2 = new Participante(c2,4,1.5);

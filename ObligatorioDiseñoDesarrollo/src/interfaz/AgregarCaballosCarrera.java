@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import java.util.ArrayList;
 import logica.Caballo;
 import logica.Hipodromo;
@@ -20,17 +21,22 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog {
 
     Fachada logica = Fachada.getInstancia();
     Jornada jornada;
+    Carrera carrera;
+    Hipodromo seleccionado;
+    boolean esNuevaJornada;
     ArrayList<Participante> participantes = new ArrayList();
-    
-    
+
     /**
      * Creates new form AgregarCaballosCarrera
      */
     public AgregarCaballosCarrera(java.awt.Frame parent, boolean modal,
-            Jornada jornada, Hipodromo seleccionado, Carrera carrera) {
+            Jornada jornada, Hipodromo seleccionado, Carrera carrera, boolean esNuevaJornada) {
         super(parent, modal);
         initComponents();
         this.jornada = jornada;
+        this.carrera = carrera;
+        this.seleccionado = seleccionado;
+        this.esNuevaJornada = esNuevaJornada;
         cargarCaballosDisponibles();
     }
 
@@ -82,6 +88,11 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog {
         jLabel6.setText("Número");
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         lblDividendo.setText("Dividendo");
 
@@ -110,8 +121,7 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog {
                                         .addGap(34, 34, 34))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(16, 16, 16)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(jLabel4)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -175,28 +185,41 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarCabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCabActionPerformed
-        
-        Caballo caballo = (Caballo)lstCaballosDisponibles.getSelectedValue();
+
+        Caballo caballo = (Caballo) lstCaballosDisponibles.getSelectedValue();
         int numero = Integer.parseInt(txtNumeroCab.getText());
         double dividendo = Double.parseDouble(txtDividendo.getText());
-        
-        //Participante participante = new Participante(caballo, dividendo, numero);
-        //participantes.add(participante);
+
+        Participante participante = new Participante(caballo, numero, dividendo);
+        participantes.add(participante);
         cargarParticipantes();
         cargarCaballosDisponibles();
-        
-        
+
+
     }//GEN-LAST:event_btnAgregarCabActionPerformed
 
-    public void cargarCaballosDisponibles(){
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        
+        if (carrera.validarCarrera() == Carrera.ErrorValidacion.carreraOk){
+            jornada.agregarCarrera(carrera);
+        } 
+        
+        if (esNuevaJornada){
+            //TODO que se haga una validación del lado de la lógica para saber
+            //si la jornada existe o no
+            seleccionado.agregarJornada(jornada);
+        }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    public void cargarCaballosDisponibles() {
         ArrayList<Caballo> caballos = Fachada.getInstancia().caballosDisponiblesEnFecha(jornada.getFecha());
         lstCaballosDisponibles.setListData(caballos.toArray());
     }
-    
-    public void cargarParticipantes(){
+
+    public void cargarParticipantes() {
         lstReservados.setListData(participantes.toArray());
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCab;

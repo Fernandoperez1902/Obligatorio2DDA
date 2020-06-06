@@ -66,4 +66,8 @@ public class Participante {
     public boolean caballoParticipa(Caballo cab){
         return caballo.equals(cab);
     }
+    
+    public String getNombreCaballo(){
+        return caballo.getNombre();
+    }
 }

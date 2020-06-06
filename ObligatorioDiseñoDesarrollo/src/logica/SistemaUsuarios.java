@@ -16,11 +16,11 @@ public class SistemaUsuarios {
     private ArrayList<Usuario> jugadores = new ArrayList<Usuario>();
     private ArrayList<Usuario> administradores = new ArrayList<Usuario>();
 
-    private Usuario login(ArrayList<Usuario> usuarios, String nombre, String password) throws ApuestasException {
+    private Usuario login(ArrayList<Usuario> usuarios, String nombre, String password) {
         Usuario ret = null;
         boolean encontrado = false;
         if (nombre.isEmpty() || password.isEmpty()) {
-            throw new ApuestasException("Debe ingresar Usuario y Contraseña");
+            //throw new ApuestasException("Debe ingresar Usuario y Contraseña");
         }
         for (int i = 0; i < usuarios.size() && !encontrado; i++) {
             Usuario u = usuarios.get(i);
@@ -30,12 +30,12 @@ public class SistemaUsuarios {
             }
         }
         if (!encontrado) {
-            throw new ApuestasException("Acceso denegado, verifique los datos ingresados");
+            //throw new ApuestasException("Acceso denegado, verifique los datos ingresados");
         }
         return ret;
     }
 
-    public Administrador loginAdministrador(String nombre, String password) throws ApuestasException {
+    public Administrador loginAdministrador(String nombre, String password) {
         Administrador ret = null;
         Usuario u = login(administradores, nombre, password);
         if (u != null) {

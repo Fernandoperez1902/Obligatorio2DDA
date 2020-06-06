@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import vista.LoginAdministrador;
+
 /**
  *
  * @author Mauro

@@ -34,7 +34,7 @@ public class Fachada {
     
     
     
-    public Administrador loginAdministrador(String nombre, String password) throws ApuestasException{
+    public Administrador loginAdministrador(String nombre, String password){
         return su.loginAdministrador(nombre, password);
     }
 
