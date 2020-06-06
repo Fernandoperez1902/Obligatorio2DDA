@@ -74,8 +74,8 @@ public class Hipodromo {
 
         Jornada jornada = null;
         int i = 0;
-        while (i < jornadas.size() && jornada != null) {
-            if (jornadas.get(i).getFecha() == fecha) {
+        while (i < jornadas.size() && jornada == null) {
+            if (jornadas.get(i).esJornadaDelDia(fecha)) {
                 jornada = jornadas.get(i);
             }
             i++;
@@ -98,7 +98,7 @@ public class Hipodromo {
         boolean participa = false;
         int i = 0;
         while (i < jornadas.size() && !participa) {
-            if (jornadas.get(i).getFecha().equals(fecha)) {
+            if (jornadas.get(i).esJornadaDelDia(fecha)) {
                 if (jornadas.get(i).participaEnCarrera(cab)) {
                     participa = true;
                 }

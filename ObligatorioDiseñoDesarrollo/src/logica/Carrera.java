@@ -7,12 +7,13 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.Date;
+import observer.Observable;
 
 /**
  *
  * @author Mauro
  */
-public class Carrera {
+public class Carrera extends Observable {
 
     private int numeroCarrera;
     private String nombre;
@@ -20,9 +21,9 @@ public class Carrera {
     private ArrayList<Participante> participantes = new ArrayList<Participante>();
     private ArrayList<Apuesta> apuestas = new ArrayList<Apuesta>();
     private Estado estado;
-    
-    
+
     public enum ErrorValidacion {
+
         participantesInsuficientes, carreraOk
     };
 
@@ -32,16 +33,24 @@ public class Carrera {
         definida, abierta, cerrada, finalizada
     };
 
+    public enum Eventos {
+
+        abrir, cerrar, finalizar
+    };
+
     public Carrera(String nom, Date fec, int num) {
         nombre = nom;
         fecha = fec;
         numeroCarrera = num;
+        estado = Estado.definida;
     }
 
-    public Carrera(String n, Date f, ArrayList<Participante> p) {
+    
+    public Carrera(String n, Date f, int numero, ArrayList<Participante> p) {
         nombre = n;
         fecha = f;
         participantes = p;
+        numeroCarrera = numero;
         apuestas = null;
         estado = Estado.definida;
     }
@@ -137,18 +146,23 @@ public class Carrera {
         return participa;
 
     }
-    
-    public Enum validarCarrera(){
-        
-        if (participantes.size() < 2){
+
+    public Enum validarCarrera() {
+
+        if (participantes.size() < 2) {
             return ErrorValidacion.participantesInsuficientes;
         } else {
             return ErrorValidacion.carreraOk;
         }
     }
 
-    public void abrir(){
+    public void abrir() {
         estado = Estado.abierta;
+        this.avisar(Eventos.abrir);   
     }
     
+    public void agregarParticipante(Participante p){
+        participantes.add(p);
+    }
+
 }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package interfaz;
 
 import java.text.DateFormat;
@@ -15,10 +11,7 @@ import logica.Hipodromo;
 import logica.Jornada;
 import logica.Participante;
 
-/**
- *
- * @author Fernando
- */
+
 public class IUAbrirCarrera extends javax.swing.JFrame {
     
     Hipodromo seleccionado;
@@ -31,6 +24,7 @@ public class IUAbrirCarrera extends javax.swing.JFrame {
         initComponents();
         this.seleccionado = seleccionado;
         cargarCarrera();
+        mostrarProximaCarrera();
         cargarParticipantes(carrera.getParticipantes());
     }
 
@@ -71,22 +65,22 @@ public class IUAbrirCarrera extends javax.swing.JFrame {
                         .addComponent(btnAbrirBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNumero)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblNombre))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(lblNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNumero)
-                    .addComponent(lblNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+                    .addComponent(lblNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAbrirBoton)
@@ -98,16 +92,16 @@ public class IUAbrirCarrera extends javax.swing.JFrame {
 
     private void btnAbrirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirBotonActionPerformed
         carrera.abrir();
+        this.dispose();
     }//GEN-LAST:event_btnAbrirBotonActionPerformed
 
     public void cargarCarrera(){
-        Jornada jornada = seleccionado.buscarJornada(new Date(DateFormat.MEDIUM));
+        Jornada jornada = seleccionado.buscarJornada(new Date());
         carrera = jornada.traerProximaCarrera();
     }
     
     public void mostrarProximaCarrera(){
-        
-        
+           
         lblNumero.setText(Integer.toString(carrera.getNumeroCarrera()));
         lblNombre.setText(carrera.getNombre());
     }

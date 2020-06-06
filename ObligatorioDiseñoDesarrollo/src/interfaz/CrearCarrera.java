@@ -19,7 +19,7 @@ import logica.Fachada;
 public class CrearCarrera extends javax.swing.JFrame {
 
     Fachada logica = Fachada.getInstancia();
-    private Date fecha = new Date(DateFormat.MEDIUM);
+    private Date fecha = new Date();
     private String nombre = null;
     private Hipodromo seleccionado;
 
