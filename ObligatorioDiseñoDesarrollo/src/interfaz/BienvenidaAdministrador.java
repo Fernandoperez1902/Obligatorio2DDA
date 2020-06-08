@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import controlador.IVistaBienvenidaAdmin;
 import logica.Fachada;
 import logica.Administrador;
 
@@ -12,7 +13,7 @@ import logica.Administrador;
  *
  * @author Fernando
  */
-public class BienvenidaAdministrador extends javax.swing.JDialog {
+public class BienvenidaAdministrador extends javax.swing.JDialog implements IVistaBienvenidaAdmin {
 
     Fachada logica = Fachada.getInstancia();
     /**
@@ -21,7 +22,7 @@ public class BienvenidaAdministrador extends javax.swing.JDialog {
     public BienvenidaAdministrador(java.awt.Frame parent, boolean modal, Administrador adm) {
         super(parent, modal);
         initComponents();
-        msjBienvenida.setText("Bienvenido " + adm.getNombreCompleto());
+        
     }
 
     /**
@@ -74,6 +75,7 @@ public class BienvenidaAdministrador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarMsjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarMsjActionPerformed
+
         this.dispose();
     }//GEN-LAST:event_aceptarMsjActionPerformed
 
@@ -86,4 +88,14 @@ public class BienvenidaAdministrador extends javax.swing.JDialog {
     private javax.swing.JButton aceptarMsj;
     private javax.swing.JLabel msjBienvenida;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mostrarProximaVista(Administrador admin) {
+        new MenuAdministrador(admin).setVisible(true);
+    }
+
+    @Override
+    public void mostrarDatos() {
+        msjBienvenida.setText("Bienvenido " + admin.getNombreCompleto());
+    }
 }

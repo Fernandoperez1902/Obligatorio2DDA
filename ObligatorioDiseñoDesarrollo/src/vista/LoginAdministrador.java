@@ -105,22 +105,14 @@ public class LoginAdministrador extends javax.swing.JFrame implements IVistaLogi
 
         String nombreUsuario = txtAdminNom.getText();
         String passUsuario = txtAdminPass.getText();
-        Administrador admin = controlador.login(nombreUsuario, passUsuario);
-        if (admin != null) {
-            cargarProximaVista(admin);
-        }
-
+        controlador.login(nombreUsuario, passUsuario);
     }//GEN-LAST:event_btnAdminLoginActionPerformed
 
     @Override
-    public void cargarProximaVista(Administrador admin) {
-        BienvenidaAdministrador mensajeBienvda = new BienvenidaAdministrador(this, true, admin);
-        mensajeBienvda.setVisible(true);
-        MenuAdministrador menu = new MenuAdministrador(admin);
-        menu.setVisible(true);
+    public void mostrarProximaVista(Administrador admin) {
+        new BienvenidaAdministrador(this, true, admin).setVisible(true);
         this.dispose();
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminLogin;
@@ -129,5 +121,16 @@ public class LoginAdministrador extends javax.swing.JFrame implements IVistaLogi
     private javax.swing.JTextField txtAdminNom;
     private javax.swing.JTextField txtAdminPass;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mostrarError(String msg) {
+        JOptionPane.showMessageDialog(this, msg);
+    }
+
+    @Override
+    public void cerrar() {
+        this.dispose();
+
+    }
 
 }
