@@ -3,12 +3,11 @@ package controlador;
 
 import logica.Administrador;
 
-public interface IVistaLoginAdmin {
+public interface IVistaBienvenidaAdmin {
     
-    public void mostrarError(String login_incorrecto);
     
     public void mostrarProximaVista(Administrador admin);
-
-    public void cerrar();
-
+    
+    public void mostrarDatos();
+    
 }

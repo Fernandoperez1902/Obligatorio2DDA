@@ -17,10 +17,17 @@ public class ControladorLoginAdmin {
 
     }
 
-    public Administrador login(String nombre, String pass) {
-        
-        return unModeloFachada.loginAdministrador(nombre, pass);
-        
+    public void login(String nombre, String pass) {
+
+        Administrador adm = unModeloFachada.loginAdministrador(nombre, pass);
+
+        if (adm == null) {
+            vista.mostrarError("Login incorrecto");
+        } else {
+            vista.mostrarProximaVista(adm);
+            vista.cerrar();
+        }
+
     }
 
 }
