@@ -1,38 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package interfaz;
+package vista;
 
+import controlador.ControladorMenuAdministrador;
+import controlador.IVistaMenuAdministrador;
+import interfaz.CrearCarrera;
+import interfaz.IUAbrirCarrera;
 import java.util.ArrayList;
 import modelo.Administrador;
-import modelo.Fachada;
 import modelo.Hipodromo;
 
-/**
- *
- * @author Fernando
- */
-public class MenuAdministrador extends javax.swing.JFrame {
+public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuAdministrador {
 
-    private Hipodromo seleccionado = null; 
-    
-    /**
-     * Creates new form MenuAdministrador
-     */
+    private ControladorMenuAdministrador controlador;
+
     public MenuAdministrador(Administrador adm) {
         initComponents();
-        txtAdminName.setText(adm.getNombreCompleto());
-        cargarHipodromos();
-
-    }
-
-    private void cargarHipodromos() {
-
-        ArrayList<Hipodromo> hipodromos = Fachada.getInstancia().getHipodromos();
-        lstHipodromo.setListData(hipodromos.toArray());
-
+        controlador = new ControladorMenuAdministrador(adm, this);
     }
 
     @SuppressWarnings("unchecked")
@@ -161,27 +143,41 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCarreraActionPerformed
-        CrearCarrera crearC = new CrearCarrera(seleccionado);
-        crearC.setVisible(true);
-
+        controlador.crearCarrera();
     }//GEN-LAST:event_btnCrearCarreraActionPerformed
 
     private void lstHipodromoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstHipodromoValueChanged
-        Hipodromo sel = (Hipodromo)lstHipodromo.getSelectedValue();
-        setSeleccionado(sel);
+        int index = lstHipodromo.getSelectedIndex();
+        controlador.seleccionarHipodromo(index);
     }//GEN-LAST:event_lstHipodromoValueChanged
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        IUAbrirCarrera abrirCarrera = new IUAbrirCarrera(seleccionado);
-        abrirCarrera.setVisible(true);
+        controlador.abrirCarrera();
     }//GEN-LAST:event_btnAbrirActionPerformed
 
-    private void setSeleccionado(Hipodromo sel){
-        seleccionado = sel; 
+    @Override
+    public void llamarCrearCarrera(Hipodromo hip) {
+        new CrearCarrera(hip).setVisible(true);
     }
-    
-    
-    
+
+    @Override
+    public void llamarAbrirCarrera(Hipodromo hip) {
+        new IUAbrirCarrera(hip).setVisible(true);
+    }
+
+    @Override
+    public String formatear(Hipodromo hip) {
+        return hip.getNombre();
+    }
+
+    @Override
+    public void mostrarHipodromos(ArrayList<Hipodromo> hipodromos) {
+        ArrayList<String> stringHip = new ArrayList();
+        for (Hipodromo h : hipodromos) {
+            stringHip.add(formatear(h));
+        }
+        lstHipodromo.setListData(stringHip.toArray());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
@@ -198,4 +194,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu optSalir;
     private javax.swing.JLabel txtAdminName;
     // End of variables declaration//GEN-END:variables
+
+    
+
 }

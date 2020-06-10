@@ -67,11 +67,11 @@ public class Fachada {
     }
     
     
-    public boolean agregarApuesta(String nombre, String pass, Participante participante, float monto) throws ApuestasException{
+    public boolean agregarApuesta(String nombre, String pass, float monto, Hipodromo hipodromo, Carrera carrera, Caballo caballo) throws ApuestasException{
         boolean ret = false;
-        Jugador jugador = loginJugador(nombre, pass);
-        if (jugador != null) {
-            Apuesta a = new Apuesta(jugador, participante, monto);
+        Jugador j = loginJugador(nombre, pass);
+        if (j != null) {
+            Apuesta a = new Apuesta();
             if (sa.agregarApuesta(a)) {
                 ret = true;
             }

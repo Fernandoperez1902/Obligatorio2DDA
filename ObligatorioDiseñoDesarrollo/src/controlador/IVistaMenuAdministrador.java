@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controlador;
 
-/**
- *
- * @author ferna
- */
+import java.util.ArrayList;
+import modelo.Hipodromo;
+
 public interface IVistaMenuAdministrador {
+
+    public String formatear(Hipodromo hip);
+    
+    public void mostrarHipodromos(ArrayList<Hipodromo> hipodromos);
+    
+    public void llamarCrearCarrera(Hipodromo hip);
+    
+    public void llamarAbrirCarrera(Hipodromo hip);
     
 }

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:ObligatorioDiseñoDesarrollo/src/modelo/ModalidadApuesta.java
+>>>>>>> Submaster
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,10 +9,16 @@
  */
 package modelo;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+
+>>>>>>> Submaster
 /**
  *
  * @author Mauro
  */
+<<<<<<< HEAD
 public class Apuesta {
     
     private float monto;
@@ -24,3 +34,30 @@ public class Apuesta {
     
     
 }
+=======
+public abstract interface ModalidadApuesta {
+    public void calcular();
+}
+=======
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package modelo;
+
+/**
+ *
+ * @author Mauro
+ */
+public class Apuesta {
+    
+    private float monto;
+    private Jugador jugador;
+    
+    
+    
+    
+}
+>>>>>>> Submaster:ObligatorioDiseñoDesarrollo/src/modelo/Apuesta.java
+>>>>>>> Submaster

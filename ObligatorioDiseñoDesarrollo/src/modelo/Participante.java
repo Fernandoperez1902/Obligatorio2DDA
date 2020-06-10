@@ -14,14 +14,12 @@ public class Participante {
     private Double dividendo;
     private int numero;
     private boolean ganador;
-    private ModalidadApuesta modalidadApuesta;
 
     public Participante (Caballo c, int n, double d ){
         caballo=c;
         numero = n;
         dividendo = d;
         ganador = false;
-        modalidadApuesta = new Simple();
     }
     
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
@@ -60,7 +58,7 @@ public class Participante {
 
     @Override
     public String toString() {
-        String ganador = "";
+        String ganador= "";
         if(this.ganador) ganador =" - GANADOR";
         return numero + " - "+caballo.getNombre() + " - " + dividendo + ganador;
     }
