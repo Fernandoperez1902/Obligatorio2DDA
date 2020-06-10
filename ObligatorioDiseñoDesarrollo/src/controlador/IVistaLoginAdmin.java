@@ -1,7 +1,7 @@
 
 package controlador;
 
-import logica.Administrador;
+import modelo.Administrador;
 
 public interface IVistaLoginAdmin {
     

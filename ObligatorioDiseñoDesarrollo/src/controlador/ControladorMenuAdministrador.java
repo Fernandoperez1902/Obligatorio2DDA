@@ -1,16 +1,38 @@
-
 package controlador;
 
-import logica.Administrador;
+import java.util.ArrayList;
+import modelo.Administrador;
+import modelo.Fachada;
+import modelo.Hipodromo;
 
 public class ControladorMenuAdministrador {
-  
-    private Administrador modelo;
+
+    private Administrador modeloAdministrador;
+    private Fachada modeloFachada;
     private IVistaMenuAdministrador vista;
-    
-    public ControladorMenuAdministrador(Administrador modelo, IVistaMenuAdministrador vista){
-        this.modelo = modelo;
+    private ArrayList<Hipodromo> hipodromos;
+    private Hipodromo seleccionado;
+
+    public ControladorMenuAdministrador(Administrador modeloAdministrador,
+            IVistaMenuAdministrador vista) {
+        this.modeloAdministrador = modeloAdministrador;
+        this.modeloFachada = Fachada.getInstancia();
+        this.hipodromos = modeloFachada.getHipodromos();
         this.vista = vista;
+        this.vista.mostrarHipodromos(hipodromos);
+
     }
-    
+
+    public void seleccionarHipodromo(int index) {
+        seleccionado = hipodromos.get(index);
+    }
+
+    public void crearCarrera() {
+        vista.llamarCrearCarrera(seleccionado);
+    }
+
+    public void abrirCarrera() {
+        vista.llamarAbrirCarrera(seleccionado);
+    }
+
 }

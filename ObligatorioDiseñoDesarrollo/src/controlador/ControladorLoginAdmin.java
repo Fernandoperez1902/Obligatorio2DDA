@@ -1,14 +1,15 @@
 package controlador;
 
-import logica.Administrador;
-import logica.Fachada;
+import modelo.Administrador;
+import modelo.Fachada;
 
 public class ControladorLoginAdmin {
 
-    Fachada unModeloFachada = Fachada.getInstancia();
+    Fachada unModeloFachada;
     IVistaLoginAdmin vista;
 
     public ControladorLoginAdmin(IVistaLoginAdmin vista) {
+        this.unModeloFachada = Fachada.getInstancia();
         this.vista = vista;
 
     }

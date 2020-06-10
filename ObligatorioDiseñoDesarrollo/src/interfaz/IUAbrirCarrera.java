@@ -4,12 +4,12 @@ package interfaz;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import logica.Caballo;
-import logica.Carrera;
-import logica.Fachada;
-import logica.Hipodromo;
-import logica.Jornada;
-import logica.Participante;
+import modelo.Caballo;
+import modelo.Carrera;
+import modelo.Fachada;
+import modelo.Hipodromo;
+import modelo.Jornada;
+import modelo.Participante;
 
 
 public class IUAbrirCarrera extends javax.swing.JFrame {
