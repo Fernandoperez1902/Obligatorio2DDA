@@ -26,7 +26,7 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
 
     Fachada logica = Fachada.getInstancia();
     private Hipodromo seleccionado = null;
-    //private ArrayList<Carrera> deSeleccionadoHoy = new ArrayList();
+    
 
     public IUJugador() {
         initComponents();

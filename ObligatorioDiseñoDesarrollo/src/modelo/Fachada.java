@@ -71,10 +71,10 @@ public class Fachada {
         boolean ret = false;
         Jugador j = loginJugador(nombre, pass);
         if (j != null) {
-            Apuesta a = new Apuesta();
-            if (sa.agregarApuesta(a)) {
-                ret = true;
-            }
+            //Apuesta a = new Apuesta();
+//            if (sa.agregarApuesta(a)) {
+//                ret = true;
+//            }
         }
         return ret;
     }

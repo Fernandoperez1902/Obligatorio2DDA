@@ -9,12 +9,11 @@ package modelo;
  *
  * @author Mauro
  */
-public class ApuestasException extends Exception{
+public class Simple implements ModalidadApuesta{
 
-    public ApuestasException(String mensaje) {
-        super(mensaje);
+    @Override
+    public void calcular() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
     
 }
