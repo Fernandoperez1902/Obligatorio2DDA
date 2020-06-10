@@ -5,6 +5,9 @@
  */
 package interfaz;
 
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 import logica.Fachada;
 import logica.Administrador;
 
@@ -22,6 +25,15 @@ public class BienvenidaAdministrador extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         msjBienvenida.setText("Bienvenido " + adm.getNombreCompleto());
+        Timer timer = new Timer();
+        TimerTask tarea = new TimerTask() {
+        @Override
+        public void run() {
+            //new MenuAdministrador(adm).setVisible(true);
+            dispose();
+        }
+        };
+        timer.schedule(tarea, 5000);
     }
 
     /**
