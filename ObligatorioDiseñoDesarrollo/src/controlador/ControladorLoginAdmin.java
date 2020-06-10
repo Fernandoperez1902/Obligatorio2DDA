@@ -1,10 +1,6 @@
 package controlador;
 
-import interfaz.BienvenidaAdministrador;
-import interfaz.MenuAdministrador;
-import javax.swing.JOptionPane;
 import logica.Administrador;
-import logica.ApuestasException;
 import logica.Fachada;
 
 public class ControladorLoginAdmin {
@@ -26,6 +22,7 @@ public class ControladorLoginAdmin {
         } else {
             vista.mostrarProximaVista(adm);
             vista.cerrar();
+            vista.mostrarBienvenida(adm);
         }
 
     }
