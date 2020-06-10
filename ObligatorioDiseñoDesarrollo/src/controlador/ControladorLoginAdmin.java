@@ -1,18 +1,15 @@
 package controlador;
 
-import interfaz.BienvenidaAdministrador;
-import interfaz.MenuAdministrador;
-import javax.swing.JOptionPane;
-import logica.Administrador;
-import logica.ApuestasException;
-import logica.Fachada;
+import modelo.Administrador;
+import modelo.Fachada;
 
 public class ControladorLoginAdmin {
 
-    Fachada unModeloFachada = Fachada.getInstancia();
+    Fachada unModeloFachada;
     IVistaLoginAdmin vista;
 
     public ControladorLoginAdmin(IVistaLoginAdmin vista) {
+        this.unModeloFachada = Fachada.getInstancia();
         this.vista = vista;
 
     }
@@ -26,6 +23,7 @@ public class ControladorLoginAdmin {
         } else {
             vista.mostrarProximaVista(adm);
             vista.cerrar();
+            vista.mostrarBienvenida(adm);
         }
 
     }

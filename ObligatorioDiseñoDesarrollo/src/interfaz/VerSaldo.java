@@ -6,7 +6,7 @@
 package interfaz;
 
 import java.util.Date;
-import logica.Jugador;
+import modelo.Jugador;
 
 /**
  *
