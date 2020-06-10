@@ -96,6 +96,6 @@ public class BienvenidaAdministrador extends javax.swing.JDialog implements IVis
 
     @Override
     public void mostrarDatos() {
-        msjBienvenida.setText("Bienvenido " + admin.getNombreCompleto());
+        //msjBienvenida.setText("Bienvenido " + admin.getNombreCompleto());
     }
 }
