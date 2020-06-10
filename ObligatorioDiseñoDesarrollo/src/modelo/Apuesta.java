@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica;
+package modelo;
 
 /**
  *
@@ -13,7 +13,13 @@ public class Apuesta {
     
     private float monto;
     private Jugador jugador;
+    private Participante participante;
     
+    public Apuesta(Jugador jugador, Participante participante, float monto){
+        this.jugador= jugador;
+        this.participante = participante;
+        this.monto = monto;
+    }
     
     
     

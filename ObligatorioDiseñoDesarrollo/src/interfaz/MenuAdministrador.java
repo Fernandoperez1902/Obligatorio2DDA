@@ -6,9 +6,9 @@
 package interfaz;
 
 import java.util.ArrayList;
-import logica.Administrador;
-import logica.Fachada;
-import logica.Hipodromo;
+import modelo.Administrador;
+import modelo.Fachada;
+import modelo.Hipodromo;
 
 /**
  *

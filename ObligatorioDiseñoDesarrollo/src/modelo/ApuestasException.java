@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica;
+package modelo;
 
 /**
  *
  * @author Mauro
  */
-public class Administrador extends Usuario{
-    
-    public Administrador(String u, String p, String n){
-        super(u, p, n);
+public class ApuestasException extends Exception{
+
+    public ApuestasException(String mensaje) {
+        super(mensaje);
     }
+    
+    
     
 }

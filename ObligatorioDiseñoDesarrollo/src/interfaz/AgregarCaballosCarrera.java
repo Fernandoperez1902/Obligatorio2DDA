@@ -6,12 +6,12 @@
 package interfaz;
 
 import java.util.ArrayList;
-import logica.Caballo;
-import logica.Hipodromo;
-import logica.Jornada;
-import logica.Carrera;
-import logica.Fachada;
-import logica.Participante;
+import modelo.Caballo;
+import modelo.Hipodromo;
+import modelo.Jornada;
+import modelo.Carrera;
+import modelo.Fachada;
+import modelo.Participante;
 
 /**
  *

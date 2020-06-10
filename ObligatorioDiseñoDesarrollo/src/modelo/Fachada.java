@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -67,11 +67,11 @@ public class Fachada {
     }
     
     
-    public boolean agregarApuesta(String nombre, String pass, float monto, Hipodromo hipodromo, Carrera carrera, Caballo caballo) throws ApuestasException{
+    public boolean agregarApuesta(String nombre, String pass, Participante participante, float monto) throws ApuestasException{
         boolean ret = false;
-        Jugador j = loginJugador(nombre, pass);
-        if (j != null) {
-            Apuesta a = new Apuesta();
+        Jugador jugador = loginJugador(nombre, pass);
+        if (jugador != null) {
+            Apuesta a = new Apuesta(jugador, participante, monto);
             if (sa.agregarApuesta(a)) {
                 ret = true;
             }

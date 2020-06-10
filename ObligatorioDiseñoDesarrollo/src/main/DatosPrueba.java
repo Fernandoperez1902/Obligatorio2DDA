@@ -7,16 +7,16 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Date;
-import logica.Administrador;
-import logica.Caballo;
-import logica.Carrera;
-import logica.Fachada;
-import logica.Hipodromo;
-import logica.Jornada;
-import logica.Jugador;
-import logica.Participante;
-import logica.SistemaCaballos;
-import logica.SistemaHipodromos;
+import modelo.Administrador;
+import modelo.Caballo;
+import modelo.Carrera;
+import modelo.Fachada;
+import modelo.Hipodromo;
+import modelo.Jornada;
+import modelo.Jugador;
+import modelo.Participante;
+import modelo.SistemaCaballos;
+import modelo.SistemaHipodromos;
 
 /**
  *

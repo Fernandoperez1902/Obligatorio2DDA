@@ -8,13 +8,13 @@ package interfaz;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import logica.ApuestasException;
-import logica.Carrera;
-import logica.Fachada;
-import logica.Hipodromo;
-import logica.Jornada;
-import logica.Jugador;
-import logica.Participante;
+import modelo.ApuestasException;
+import modelo.Carrera;
+import modelo.Fachada;
+import modelo.Hipodromo;
+import modelo.Jornada;
+import modelo.Jugador;
+import modelo.Participante;
 import observer.Observable;
 import observer.Observador;
 
@@ -205,7 +205,7 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
 
     private void btnConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSaldoActionPerformed
 
-        // VER SI CORRESPONDE CAPTURAR ACÁ LOS DATOS INGRESADOS POR EL USUARIO
+        
         Jugador j = login();
 
         if (j != null) {
@@ -217,12 +217,15 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
     }//GEN-LAST:event_btnConsultarSaldoActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        Jugador j = login();
-        if (j != null) {
-            try {
-                j.saldoSuficiente(txtMonto.getText());
-                Hipodromo h = (Hipodromo) lstHipodromo.getSelectedValue();
 
+        Jugador jugador = login();
+        if (jugador != null) {
+            try {
+                jugador.saldoSuficiente(txtMonto.getText());
+                Hipodromo h = (Hipodromo) lstHipodromo.getSelectedValue();
+                Carrera c = (Carrera) lstCarrera.getSelectedValue();
+                Participante participante = (Participante) lstCaballo.getSelectedValue();
+                logica.agregarApuesta(txtUsuario.getText(), txtUsuario.getText(), participante, Float.parseFloat(txtMonto.getText()));
             } catch (ApuestasException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
@@ -296,8 +299,7 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
         txtPassword.setText("");
         cargarHipodromos();
     }
-
-    private Jugador login() {
+   private Jugador login() {
         String usuario = txtUsuario.getText();
         String password = new String(txtPassword.getPassword());
         Jugador j = null;

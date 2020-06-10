@@ -4,7 +4,7 @@ import controlador.ControladorLoginAdmin;
 import controlador.IVistaLoginAdmin;
 import interfaz.MenuAdministrador;
 import javax.swing.JOptionPane;
-import logica.Administrador;
+import modelo.Administrador;
 
 /**
  *

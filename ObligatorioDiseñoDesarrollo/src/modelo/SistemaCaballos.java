@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica;
+package modelo;
 
 import java.util.ArrayList;
 
@@ -11,15 +11,17 @@ import java.util.ArrayList;
  *
  * @author Mauro
  */
-public class SistemaApuestas {
-    private ArrayList<Apuesta>apuestas = new ArrayList<Apuesta>();
+public class SistemaCaballos {
+    private ArrayList<Caballo>caballos = new ArrayList<Caballo>();
 
-    public ArrayList<Apuesta> getApuestas() {
-        return apuestas;
+    public ArrayList<Caballo> getCaballos() {
+        return caballos;
     }
+    
+    public void AgregarCaballo(Caballo c){
 
-    public boolean agregarApuesta(Apuesta a) {
-        return true;
+        caballos.add(c);
     }
+    
     
 }

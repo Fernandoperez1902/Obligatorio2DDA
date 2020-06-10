@@ -1,7 +1,7 @@
 package controlador;
 
-import logica.Administrador;
-import logica.Fachada;
+import modelo.Administrador;
+import modelo.Fachada;
 
 public class ControladorLoginAdmin {
 

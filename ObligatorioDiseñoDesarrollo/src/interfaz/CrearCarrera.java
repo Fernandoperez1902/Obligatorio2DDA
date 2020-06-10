@@ -7,10 +7,10 @@ package interfaz;
 
 import java.text.DateFormat;
 import java.util.Date;
-import logica.Hipodromo;
-import logica.Carrera;
-import logica.Jornada;
-import logica.Fachada;
+import modelo.Hipodromo;
+import modelo.Carrera;
+import modelo.Jornada;
+import modelo.Fachada;
 
 /**
  *
