@@ -40,6 +40,8 @@ public class Jugador extends Usuario {
     }
 
     // </editor-fold>
+    
+    
     //Verifica la suficiencia de saldo.
     public boolean saldoSuficiente(String montoApuesta) throws ApuestasException {
         boolean ret = true;

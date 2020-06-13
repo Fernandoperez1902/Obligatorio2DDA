@@ -14,12 +14,17 @@ public class Participante {
     private Double dividendo;
     private int numero;
     private boolean ganador;
+    private ModalidadApuesta tipoApuesta;
 
+    public enum Eventos {cambiaModalidadApuesta};
+    
+    
     public Participante (Caballo c, int n, double d ){
         caballo=c;
         numero = n;
         dividendo = d;
         ganador = false;
+        tipoApuesta = new Simple();
     }
     
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
@@ -54,6 +59,16 @@ public class Participante {
     public void setGanador(boolean ganador) {
         this.ganador = ganador;
     }
+
+    public ModalidadApuesta getTipoApuesta() {
+        return tipoApuesta;
+    }
+
+    public void setTipoApuesta(ModalidadApuesta tipoApuesta) {
+        this.tipoApuesta = tipoApuesta;
+        //aquí debería avisar el cambio de modalidad de apuesta asignado al participante.
+    }
+    
     // </editor-fold>
 
     @Override
@@ -70,4 +85,6 @@ public class Participante {
     public String getNombreCaballo(){
         return caballo.getNombre();
     }
+    
+    
 }

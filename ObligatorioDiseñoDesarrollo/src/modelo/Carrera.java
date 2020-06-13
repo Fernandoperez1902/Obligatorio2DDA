@@ -34,7 +34,6 @@ public class Carrera extends Observable {
     };
 
     public enum Eventos {
-
         abrir, cerrar, finalizar
     };
 
@@ -106,6 +105,8 @@ public class Carrera extends Observable {
 
     // </editor-fold>
     //Checkea si la carrera tiene apuestas efectuadas.
+    
+    
     public boolean tieneApuestas() {
         boolean ret = false;
         if (apuestas != null) {
@@ -142,13 +143,10 @@ public class Carrera extends Observable {
             }
             i++;
         }
-
         return participa;
-
     }
 
     public Enum validarCarrera() {
-
         if (participantes.size() < 2) {
             return ErrorValidacion.participantesInsuficientes;
         } else {
@@ -159,6 +157,11 @@ public class Carrera extends Observable {
     public void abrir() {
         estado = Estado.abierta;
         this.avisar(Eventos.abrir);   
+    }
+    
+    public void cerrar(){
+        estado = Estado.cerrada;
+        this.avisar(Eventos.cerrar);
     }
     
     public void agregarParticipante(Participante p){

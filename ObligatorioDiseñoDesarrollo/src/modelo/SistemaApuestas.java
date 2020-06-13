@@ -19,7 +19,8 @@ public class SistemaApuestas {
     }
 
     public boolean agregarApuesta(Apuesta a) {
-        return true;
+        return apuestas.add(a);
     }
+
     
 }

@@ -9,11 +9,17 @@ package modelo;
  *
  * @author Mauro
  */
-public class Simple implements ModalidadApuesta{
+public class Simple extends ModalidadApuesta{
 
-    @Override
-    public void calcular() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Simple(){
+        super.multiplicador=1;
     }
+
+    
+    @Override
+    public float calcularGanancia(float loApostado, double dividendo) {
+        return loApostado*(float)dividendo;
+    }
+
     
 }

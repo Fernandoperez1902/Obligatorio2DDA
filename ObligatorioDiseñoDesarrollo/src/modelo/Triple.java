@@ -9,11 +9,17 @@ package modelo;
  *
  * @author Mauro
  */
-public class Triple implements ModalidadApuesta{
-
+public class Triple extends ModalidadApuesta{
+    
+    public Triple (){
+        super.multiplicador=1.5f;
+    }
+        
     @Override
-    public void calcular() {
+    public float calcularGanancia(float loApostado, double dividendo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
     
 }
