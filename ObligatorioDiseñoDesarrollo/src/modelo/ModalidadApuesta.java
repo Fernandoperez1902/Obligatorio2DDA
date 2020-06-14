@@ -14,7 +14,7 @@ public abstract class ModalidadApuesta {
     public abstract float calcularGanancia(float montoApostado, double dividendo);
     
     public float calcularPerdida(float montoApostado){
-        return montoApostado*multiplicador; 
+        return montoApostado*multiplicador*-1; 
     }
     
 }

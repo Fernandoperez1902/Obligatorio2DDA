@@ -64,6 +64,7 @@ public class Fachada {
         return sc.getCaballos();
     }
 
+    //Hablar con Fernando..
     public boolean agregarApuesta(String nombre, String pass, String monto, Participante p, Carrera c) {
         boolean ret = false;
         //controlar conversión...
@@ -71,7 +72,7 @@ public class Fachada {
         Jugador j = loginJugador(nombre, pass);
         if (j != null) {
             Apuesta a = new Apuesta(j, p, montoF, c);
-            float montoDescuento = p.calcularDescuento(montoF)*-1;
+            float montoDescuento = p.calcularDescuento(montoF);
             if (sa.agregarApuesta(a)) {
                 j.actualizarSaldo(montoDescuento);
                 ret = true;
