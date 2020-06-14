@@ -142,6 +142,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JList" name="lstCaballosDisponibles">
+          <Events>
+            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="lstCaballosDisponiblesValueChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
