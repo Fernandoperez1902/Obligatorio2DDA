@@ -44,7 +44,7 @@ public class SistemaUsuarios {
         return ret;
     }
 
-    public Jugador loginJugador(String nombre, String password) throws ApuestasException {
+    public Jugador loginJugador(String nombre, String password) {
         Jugador ret = null;
         Usuario u = login(jugadores, nombre, password);
         if (u != null) {

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import observer.Observable;
 
-
 /**
  *
  * @author Mauro
@@ -32,14 +31,12 @@ public class Fachada {
 
     private Fachada() {
     }
-    
-    
-    
-    public Administrador loginAdministrador(String nombre, String password){
+
+    public Administrador loginAdministrador(String nombre, String password) {
         return su.loginAdministrador(nombre, password);
     }
 
-    public Jugador loginJugador(String nombre, String password) throws ApuestasException{
+    public Jugador loginJugador(String nombre, String password) {
         return su.loginJugador(nombre, password);
     }
 
@@ -51,38 +48,42 @@ public class Fachada {
         su.agregarJugador(j);
     }
 
-    public void agregarHipodromo(Hipodromo h){
-           sh.agregarHipodromo(h);
+    public void agregarHipodromo(Hipodromo h) {
+        sh.agregarHipodromo(h);
     }
 
     public void AgregarCaballo(Caballo c) {
         sc.AgregarCaballo(c);
     }
-    
+
     public ArrayList<Hipodromo> getHipodromos() {
         return sh.getHipodromos();
     }
-    public ArrayList<Caballo> getCaballos(){
+
+    public ArrayList<Caballo> getCaballos() {
         return sc.getCaballos();
     }
-    
-    
-    public boolean agregarApuesta(String nombre, String pass, float monto, Hipodromo hipodromo, Carrera carrera, Caballo caballo) throws ApuestasException{
+
+    public boolean agregarApuesta(String nombre, String pass, String monto, Participante p, Carrera c) {
         boolean ret = false;
+        //controlar conversión...
+        float montoF = Float.parseFloat(monto);
         Jugador j = loginJugador(nombre, pass);
         if (j != null) {
-            //Apuesta a = new Apuesta();
-//            if (sa.agregarApuesta(a)) {
-//                ret = true;
-//            }
+            Apuesta a = new Apuesta(j, p, montoF, c);
+            float montoDescuento = p.calcularDescuento(montoF)*-1;
+            if (sa.agregarApuesta(a)) {
+                j.actualizarSaldo(montoDescuento);
+                ret = true;
+            }
         }
         return ret;
     }
-    
+
     public ArrayList<Caballo> caballosDisponiblesEnFecha(Date fecha) {
         return sh.caballosDisponiblesEnFecha(fecha);
     }
-    
+
     public Jornada buscarJornada(Hipodromo h, Date f) {
         return sh.buscarJornada(h, f);
     }

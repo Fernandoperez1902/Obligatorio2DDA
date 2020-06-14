@@ -16,6 +16,7 @@ public class Participante {
     private boolean ganador;
     private ModalidadApuesta tipoApuesta;
 
+
     public enum Eventos {cambiaModalidadApuesta};
     
     
@@ -86,5 +87,8 @@ public class Participante {
         return caballo.getNombre();
     }
     
+    public float calcularDescuento(float montoF) {
+        return this.tipoApuesta.calcularPerdida(montoF);
+    }
     
 }

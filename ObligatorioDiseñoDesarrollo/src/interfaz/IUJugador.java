@@ -26,7 +26,6 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
 
     Fachada logica = Fachada.getInstancia();
     private Hipodromo seleccionado = null;
-    
 
     public IUJugador() {
         initComponents();
@@ -209,25 +208,19 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
         Jugador j = login();
 
         if (j != null) {
-            limpiarFormulario();
+            //limpiarFormulario();
             VerSaldo ventanaSaldo = new VerSaldo(this, true, j);
             ventanaSaldo.setVisible(true);
         }
-        limpiarFormulario();
+        //limpiarFormulario();
     }//GEN-LAST:event_btnConsultarSaldoActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        Jugador j = login();
-        if (j != null) {
-            try {
-                j.saldoSuficiente(txtMonto.getText());
-                Hipodromo h = (Hipodromo) lstHipodromo.getSelectedValue();
-
-            } catch (ApuestasException e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
-        }
-
+        String nombre = txtUsuario.getText();
+        String pass = new String(txtPassword.getPassword());
+        Participante p = (Participante) lstCaballo.getSelectedValue();
+        Carrera c = (Carrera) lstCarrera.getSelectedValue();
+        logica.agregarApuesta(nombre, pass, txtMonto.getText(), p, c);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void lstCaballoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCaballoValueChanged
@@ -303,7 +296,7 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
         Jugador j = null;
         try {
             j = logica.loginJugador(usuario, password);
-        } catch (ApuestasException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         return j;
