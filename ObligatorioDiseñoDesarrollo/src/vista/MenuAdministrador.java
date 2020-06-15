@@ -2,7 +2,6 @@ package vista;
 
 import controlador.ControladorMenuAdministrador;
 import controlador.IVistaMenuAdministrador;
-import interfaz.CrearCarrera;
 import interfaz.IUAbrirCarrera;
 import java.util.ArrayList;
 import modelo.Administrador;
