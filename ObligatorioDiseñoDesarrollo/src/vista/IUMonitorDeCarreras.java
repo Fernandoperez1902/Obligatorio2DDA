@@ -5,11 +5,17 @@
  */
 package vista;
 
+import controlador.IVistaMonitorDeCarrera;
+import java.util.ArrayList;
+import modelo.Apuesta;
+import modelo.Carrera;
+import modelo.Participante;
+
 /**
  *
  * @author Mauro
  */
-public class IUMonitorDeCarreras extends javax.swing.JFrame {
+public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMonitorDeCarrera{
 
     /**
      * Creates new form IUMonitorDeCarreras
@@ -29,12 +35,12 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame {
 
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstParticipantes = new javax.swing.JList();
+        lstApuestas = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lstCarreras1 = new javax.swing.JList();
+        lstCarreras = new javax.swing.JList();
         btnCargar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        lstParticipantes1 = new javax.swing.JList();
+        lstParticipantes = new javax.swing.JList();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,12 +48,12 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame {
         getContentPane().add(jDateChooser1);
         jDateChooser1.setBounds(30, 20, 150, 30);
 
-        jScrollPane1.setViewportView(lstParticipantes);
+        jScrollPane1.setViewportView(lstApuestas);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(210, 220, 210, 130);
 
-        jScrollPane2.setViewportView(lstCarreras1);
+        jScrollPane2.setViewportView(lstCarreras);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(30, 70, 150, 130);
@@ -61,7 +67,7 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame {
         getContentPane().add(btnCargar);
         btnCargar.setBounds(210, 20, 65, 30);
 
-        jScrollPane3.setViewportView(lstParticipantes1);
+        jScrollPane3.setViewportView(lstParticipantes);
 
         getContentPane().add(jScrollPane3);
         jScrollPane3.setBounds(210, 70, 210, 130);
@@ -89,8 +95,33 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCargarActionPerformed
 
+    
+    @Override
+    public void cargarCarreras(ArrayList<Carrera> carreras) {
+        ArrayList<String> lista = new ArrayList();
+        for (Carrera c : carreras){
+            lista.add(formatearCarrera(c));
+        }
+        lstCarreras.setListData(lista.toArray());
+    }
 
+    @Override
+    public void cargarParticipantes(ArrayList<Participante> participantes) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @Override
+    public void cargarApostadores(ArrayList<Apuesta> apuestas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+      //Formatos para las listas propias de esta vista.
+    private String formatearCarrera(Carrera carrera) {
+        return carrera.getNumeroCarrera() + " - " + carrera.getEstado() + " - " + carrera.getNombre();
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -98,8 +129,8 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList lstCarreras1;
+    private javax.swing.JList lstApuestas;
+    private javax.swing.JList lstCarreras;
     private javax.swing.JList lstParticipantes;
-    private javax.swing.JList lstParticipantes1;
     // End of variables declaration//GEN-END:variables
 }
