@@ -94,6 +94,7 @@ public class DatosPrueba {
         
         //CARRERAS
         Carrera ca1 = new Carrera("Nombre1",new Date(), 1, participantes);
+        ca1.abrir();
         Carrera ca2 = new Carrera("Nombre2",new Date(), 2, participantes2);
         
         

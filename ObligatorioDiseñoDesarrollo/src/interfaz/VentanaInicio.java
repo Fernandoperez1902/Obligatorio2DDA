@@ -5,6 +5,9 @@
  */
 package interfaz;
 
+import vista.IUJugador;
+import vista.IUJugador;
+import vista.LoginAdministrador;
 import vista.LoginAdministrador;
 
 /**

@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaz;
+package vista;
 
+import controlador.ControladorConsultarSaldo;
+import controlador.ControladorRealizarApuestas;
+import controlador.IVistaConsultarSaldo;
+import controlador.IVistaRealizarApuestas;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -22,15 +26,17 @@ import observer.Observador;
  *
  * @author Mauro
  */
-public class IUJugador extends javax.swing.JFrame implements Observador {
+public class IUJugador extends javax.swing.JFrame implements IVistaRealizarApuestas, IVistaConsultarSaldo {
 
-    Fachada logica = Fachada.getInstancia();
-    private Hipodromo seleccionado = null;
+    private ControladorRealizarApuestas controlador;
+    private ControladorConsultarSaldo cont;
+    private Hipodromo hipSeleccionado = null;
+
 
     public IUJugador() {
         initComponents();
-        limpiarFormulario();
-        btnConfirmar.setEnabled(false);
+        controlador = new ControladorRealizarApuestas(this);
+        cont = new ControladorConsultarSaldo(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -185,13 +191,8 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lstCarreraValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCarreraValueChanged
-        Carrera c = (Carrera) lstCarrera.getSelectedValue();
-        cargarParticipantes(c);
-        if (c.isAbierta()) {
-            btnConfirmar.setEnabled(true);
-        } else {
-            btnConfirmar.setEnabled(false);
-        }
+        int index = lstCarrera.getSelectedIndex();
+        controlador.seleccionarCarrera(index);
     }//GEN-LAST:event_lstCarreraValueChanged
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
@@ -203,33 +204,26 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSaldoActionPerformed
-
-        // VER SI CORRESPONDE CAPTURAR ACÁ LOS DATOS INGRESADOS POR EL USUARIO
-        Jugador j = login();
-
-        if (j != null) {
-            //limpiarFormulario();
-            VerSaldo ventanaSaldo = new VerSaldo(this, true, j);
-            ventanaSaldo.setVisible(true);
-        }
-        //limpiarFormulario();
+        String usuario = txtUsuario.getText();
+        String password = new String(txtPassword.getPassword());
+        consultarSaldo(usuario, password);
+        limpiarFormulario();
     }//GEN-LAST:event_btnConsultarSaldoActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String nombre = txtUsuario.getText();
         String pass = new String(txtPassword.getPassword());
-        Participante p = (Participante) lstCaballo.getSelectedValue();
-        Carrera c = (Carrera) lstCarrera.getSelectedValue();
-        logica.agregarApuesta(nombre, pass, txtMonto.getText(), p, c);
+        controlador.agregarApuesta(nombre, pass, txtMonto.getText());
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void lstCaballoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCaballoValueChanged
-        Participante p = (Participante) lstCaballo.getSelectedValue();
+        int index = lstHipodromo.getSelectedIndex();
+        controlador.seleccionarCaballo(index);
     }//GEN-LAST:event_lstCaballoValueChanged
 
     private void lstHipodromoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstHipodromoValueChanged
-        seleccionado = (Hipodromo) lstHipodromo.getSelectedValue();
-        cargarCarreras();
+        int index = lstHipodromo.getSelectedIndex();
+        controlador.seleccionarHipodromo(index);
     }//GEN-LAST:event_lstHipodromoValueChanged
 
 
@@ -256,30 +250,6 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarHipodromos() {
-        ArrayList<Hipodromo> hipodromos = Fachada.getInstancia().getHipodromos();
-        if (hipodromos != null) {
-            //MODIFICAR EL STRING QUE SE MUESTRA EN EL LISTADO...
-            lstHipodromo.setListData(hipodromos.toArray());
-        } else {
-            String msj = "No existen hipódromos";
-        }
-    }
-
-    private void cargarCarreras() {
-        Jornada deHoy = seleccionado.buscarJornada(new Date());
-        deHoy.agregar(this);
-        ArrayList<Carrera> carreras = deHoy.getCarreras();
-        for (Carrera c : carreras) {
-            c.agregar(this);
-        }
-        lstCarrera.setListData(carreras.toArray());
-    }
-
-    private void cargarParticipantes(Carrera c) {
-        lstCaballo.setListData(c.getParticipantes().toArray());
-    }
-
     private void limpiarFormulario() {
         lstHipodromo.removeAll();
         lstCarrera.removeAll();
@@ -287,26 +257,78 @@ public class IUJugador extends javax.swing.JFrame implements Observador {
         txtMonto.setText("");
         txtUsuario.setText("");
         txtPassword.setText("");
-        cargarHipodromos();
-    }
-
-    private Jugador login() {
-        String usuario = txtUsuario.getText();
-        String password = new String(txtPassword.getPassword());
-        Jugador j = null;
-        try {
-            j = logica.loginJugador(usuario, password);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-        return j;
+        controlador.cargarHipodromos();
     }
 
     @Override
-    public void actualizar(Observable origen, Object evento) {
-        if (evento.equals(Carrera.Eventos.abrir) || evento.equals(Jornada.Eventos.nuevaCarrera)) {
-            cargarCarreras();
+    public void cargarHipodromos(ArrayList<Hipodromo> hipodromos) {
+        ArrayList<String> lista = new ArrayList();
+        if (hipodromos != null) {
+            for (Hipodromo h : hipodromos) {
+                lista.add(formatearHipodromos(h));
+            }
+        } else {
+            lista.add("No existen hipódromos");
         }
+        lstHipodromo.setListData(lista.toArray());
     }
 
+    @Override
+    public void cargarCarreras(ArrayList<Carrera> carreras) {
+        ArrayList<String> lista = new ArrayList();
+        if (carreras != null) {
+            for (Carrera c : carreras) {
+                lista.add(formatearCarreras(c));
+            }
+        } else {
+            lista.add("No existen carreras hoy");
+        }
+        lstCarrera.setListData(lista.toArray());
+    }
+
+    @Override
+    public void cargarParticipantes(ArrayList<Participante> participantes) {
+        ArrayList<String> lista = new ArrayList();
+        if (participantes != null) {
+            for (Participante p : participantes) {
+                lista.add(formatearParticipantes(p));
+            }
+        } else {
+            lista.add("No existen participantes");
+        }
+        lstCaballo.setListData(lista.toArray());
+    }
+
+    
+    @Override
+    public void habilitarBotonApuesta(boolean habilitar) {
+        btnConfirmar.setEnabled(habilitar);
+    }
+
+    
+    
+    //Formatos para las listas propias de esta vista.
+    private String formatearHipodromos(Hipodromo hipodromo) {
+        return hipodromo.getNombre() + " - " + hipodromo.getDireccion();
+    }
+
+    private String formatearCarreras(Carrera carrera) {
+        return carrera.getNombre() + " - " + carrera.getEstado();
+    }
+
+    private String formatearParticipantes(Participante participante) {
+        return participante.getNumero() + " - " + participante.getCaballo().getNombre() + " - " + participante.getDividendo();
+    }
+
+    @Override
+    public void consultarSaldo(String usuario, String password) {
+        cont.consultarSaldo(usuario, password);
+    }
+
+    @Override
+    public void mostrarVistaSaldo(Jugador jugador) {
+        new VerSaldo(this, true, jugador).setVisible(true);
+    }
+    
+    
 }
