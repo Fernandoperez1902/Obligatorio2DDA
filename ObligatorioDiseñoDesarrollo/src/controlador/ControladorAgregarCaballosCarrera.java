@@ -40,8 +40,8 @@ public class ControladorAgregarCaballosCarrera {
         Participante participante = new Participante(caballoSeleccionado, numero, dividendo);
         participantes.add(participante);
         vista.mostrarParticipantes(participantes);
-        disponibles.remove(caballoSeleccionado);
-        vista.mostrarCaballosDisponibles(disponibles);
+        //disponibles.remove(caballoSeleccionado);
+        //vista.mostrarCaballosDisponibles(disponibles);
     }
     
     public void seleccionarCaballo(int index){
@@ -49,15 +49,17 @@ public class ControladorAgregarCaballosCarrera {
     }
     
     public void altaCarrera(){
-         if (modeloCarrera.validarCarrera() == Carrera.ErrorValidacion.carreraOk) {
-            modeloJornada.agregarCarrera(modeloCarrera);
-        }
-
+        modeloCarrera.setParticipantes(participantes);
         if (esNuevaJornada) {
             //TODO que se haga una validación del lado de la lógica para saber
             //si la jornada existe o no
             seleccionado.agregarJornada(modeloJornada);
         }
+        if (modeloCarrera.validarCarrera() == Carrera.ErrorValidacion.carreraOk) {
+            modeloJornada.agregarCarrera(modeloCarrera);
+            vista.cerrar();
+        }
+        
     }
     
 }

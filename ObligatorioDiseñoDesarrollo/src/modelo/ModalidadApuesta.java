@@ -3,10 +3,6 @@ package modelo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Mauro
- */
 public abstract class ModalidadApuesta {
     
     protected float multiplicador; 

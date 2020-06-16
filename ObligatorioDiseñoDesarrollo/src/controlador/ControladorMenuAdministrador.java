@@ -33,7 +33,10 @@ public class ControladorMenuAdministrador {
     public void abrirCarrera() {
         vista.llamarAbrirCarrera(seleccionado);
     }
-    
+
+    public void cerrarApuestas(){
+        vista.llamarCerrarApuestas(seleccionado);
+
     public void monitorDeCarrera(){
         vista.llamarMonitorearCarrera(seleccionado);
     }

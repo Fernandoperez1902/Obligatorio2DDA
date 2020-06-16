@@ -84,8 +84,14 @@ public class Jornada extends Observable{
     }
 
     public Carrera traerProximaCarrera() {
-
         return carreras.get(ultimaCerrada++);
     }
 
+    public Carrera buscarCarreraAbierta(){
+        Carrera carrera = null;
+        if (carreras.get(ultimaCerrada++).isAbierta()){
+            carrera = carreras.get(ultimaCerrada++);
+        }
+        return carrera;
+    }
 }
