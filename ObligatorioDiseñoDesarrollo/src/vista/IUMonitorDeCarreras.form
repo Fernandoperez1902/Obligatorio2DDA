@@ -77,6 +77,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="lstCarrerasValueChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
           </AuxValues>
@@ -137,15 +140,49 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="138" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblUno" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lblDos" alignment="1" pref="118" max="32767" attributes="0"/>
+                      <Component id="lblTres" alignment="0" pref="118" max="32767" attributes="0"/>
+                      <Component id="lblCuatro" alignment="0" pref="118" max="32767" attributes="0"/>
+                      <Component id="lblCinco" alignment="0" pref="118" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="107" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <Component id="lblUno" min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblDos" min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblTres" min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblCuatro" min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblCinco" min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblUno">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblDos">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTres">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCuatro">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCinco">
+        </Component>
+      </SubComponents>
     </Container>
   </SubComponents>
 </Form>

@@ -28,15 +28,15 @@ import observer.Observador;
  */
 public class IUJugador extends javax.swing.JFrame implements IVistaRealizarApuestas, IVistaConsultarSaldo {
 
-    private ControladorRealizarApuestas controlador;
-    private ControladorConsultarSaldo cont;
+    private ControladorRealizarApuestas controladorRealizarApuesta;
+    private ControladorConsultarSaldo controladorConsultarSaldo;
     private Hipodromo hipSeleccionado = null;
 
 
     public IUJugador() {
         initComponents();
-        controlador = new ControladorRealizarApuestas(this);
-        cont = new ControladorConsultarSaldo(this);
+        controladorRealizarApuesta = new ControladorRealizarApuestas(this);
+        controladorConsultarSaldo = new ControladorConsultarSaldo(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -192,7 +192,7 @@ public class IUJugador extends javax.swing.JFrame implements IVistaRealizarApues
 
     private void lstCarreraValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCarreraValueChanged
         int index = lstCarrera.getSelectedIndex();
-        controlador.seleccionarCarrera(index);
+        controladorRealizarApuesta.seleccionarCarrera(index);
     }//GEN-LAST:event_lstCarreraValueChanged
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
@@ -213,17 +213,17 @@ public class IUJugador extends javax.swing.JFrame implements IVistaRealizarApues
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String nombre = txtUsuario.getText();
         String pass = new String(txtPassword.getPassword());
-        controlador.agregarApuesta(nombre, pass, txtMonto.getText());
+        controladorRealizarApuesta.agregarApuesta(nombre, pass, txtMonto.getText());
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void lstCaballoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCaballoValueChanged
         int index = lstHipodromo.getSelectedIndex();
-        controlador.seleccionarCaballo(index);
+        controladorRealizarApuesta.seleccionarCaballo(index);
     }//GEN-LAST:event_lstCaballoValueChanged
 
     private void lstHipodromoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstHipodromoValueChanged
         int index = lstHipodromo.getSelectedIndex();
-        controlador.seleccionarHipodromo(index);
+        controladorRealizarApuesta.seleccionarHipodromo(index);
     }//GEN-LAST:event_lstHipodromoValueChanged
 
 
@@ -257,7 +257,7 @@ public class IUJugador extends javax.swing.JFrame implements IVistaRealizarApues
         txtMonto.setText("");
         txtUsuario.setText("");
         txtPassword.setText("");
-        controlador.cargarHipodromos();
+        controladorRealizarApuesta.cargarHipodromos();
     }
 
     @Override
@@ -322,7 +322,7 @@ public class IUJugador extends javax.swing.JFrame implements IVistaRealizarApues
 
     @Override
     public void consultarSaldo(String usuario, String password) {
-        cont.consultarSaldo(usuario, password);
+        controladorConsultarSaldo.consultarSaldo(usuario, password);
     }
 
     @Override

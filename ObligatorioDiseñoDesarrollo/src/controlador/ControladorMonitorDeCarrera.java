@@ -13,8 +13,9 @@ public class ControladorMonitorDeCarrera {
     
     private IVistaMonitorDeCarrera vista;
     private Hipodromo modelo;
+    private Carrera carreraSeleccionada;
     
-    ControladorMonitorDeCarrera(IVistaMonitorDeCarrera unaVista, Hipodromo hipodromo, Administrador unAdmin){
+    public ControladorMonitorDeCarrera(IVistaMonitorDeCarrera unaVista, Hipodromo hipodromo, Administrador unAdmin){
         this.vista = unaVista;
         this.modelo = hipodromo;
         
@@ -22,6 +23,15 @@ public class ControladorMonitorDeCarrera {
     public void cargarCarreras(Hipodromo hipodromo, Date fecha){
         ArrayList<Carrera>carreras = hipodromo.buscarJornada(fecha).getCarreras();
         vista.cargarCarreras(carreras);
+    }
+
+    public void seleccionarCarrera(int index) {
+        carreraSeleccionada = modelo.buscarJornada(new Date()).getCarreras().get(index);
+        vista.mostrarDetalle(carreraSeleccionada);
+        vista.mostrarParticipantes(carreraSeleccionada.getParticipantes());
+        if (!carreraSeleccionada.isFinalizada()) {
+            vista.mostrarDetalleApuestasGanadoras(carreraSeleccionada.getApuestas());
+        }
     }
     
   
