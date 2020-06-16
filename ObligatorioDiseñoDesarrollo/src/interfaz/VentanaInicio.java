@@ -6,8 +6,6 @@
 package interfaz;
 
 import vista.VentanaJugador;
-import vista.VentanaJugador;
-import vista.LoginAdministrador;
 import vista.LoginAdministrador;
 
 /**
