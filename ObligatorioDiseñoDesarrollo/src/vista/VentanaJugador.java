@@ -26,14 +26,14 @@ import observer.Observador;
  *
  * @author Mauro
  */
-public class IUJugador extends javax.swing.JFrame implements IVistaRealizarApuestas, IVistaConsultarSaldo {
+public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizarApuestas, IVistaConsultarSaldo {
 
     private ControladorRealizarApuestas controladorRealizarApuesta;
     private ControladorConsultarSaldo controladorConsultarSaldo;
     private Hipodromo hipSeleccionado = null;
 
 
-    public IUJugador() {
+    public VentanaJugador() {
         initComponents();
         controladorRealizarApuesta = new ControladorRealizarApuestas(this);
         controladorConsultarSaldo = new ControladorConsultarSaldo(this);

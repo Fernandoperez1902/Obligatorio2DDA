@@ -217,7 +217,7 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
 
     @Override
     public void llamarMonitorearCarrera(Hipodromo hip) {
-         new IUMonitorDeCarreras(hip).setVisible(true);
+         new MonitorDeCarreras(hip).setVisible(true);
     }
 
 

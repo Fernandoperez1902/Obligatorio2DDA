@@ -10,11 +10,11 @@ import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Participante;
 
-public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMonitorDeCarrera {
+public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonitorDeCarrera {
 
     private ControladorMonitorDeCarrera controlador;
 
-    public IUMonitorDeCarreras(Hipodromo unHipodromo) {
+    public MonitorDeCarreras(Hipodromo unHipodromo) {
         initComponents();
         controlador = new ControladorMonitorDeCarrera(this, unHipodromo);
     }
