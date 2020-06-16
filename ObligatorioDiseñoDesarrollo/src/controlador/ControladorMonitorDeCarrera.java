@@ -7,6 +7,7 @@ import java.util.Date;
 import modelo.Administrador;
 import modelo.Carrera;
 import modelo.Hipodromo;
+import modelo.Jornada;
 
 
 public class ControladorMonitorDeCarrera {
@@ -15,13 +16,22 @@ public class ControladorMonitorDeCarrera {
     private Hipodromo modelo;
     private Carrera carreraSeleccionada;
     
-    public ControladorMonitorDeCarrera(IVistaMonitorDeCarrera unaVista, Hipodromo hipodromo, Administrador unAdmin){
+    public ControladorMonitorDeCarrera(IVistaMonitorDeCarrera unaVista, Hipodromo hipodromo){
         this.vista = unaVista;
         this.modelo = hipodromo;
         
     }
-    public void cargarCarreras(Hipodromo hipodromo, Date fecha){
-        ArrayList<Carrera>carreras = hipodromo.buscarJornada(fecha).getCarreras();
+    
+    
+    public void cargarCarreras(Date fecha){
+        ArrayList<Carrera>carreras = null;
+        if (fecha == null){
+            fecha = new Date();
+        }
+        Jornada jornada = modelo.buscarJornada(fecha);
+        if(jornada !=null){
+            carreras = jornada.getCarreras();
+        }
         vista.cargarCarreras(carreras);
     }
 

@@ -3,6 +3,7 @@ package vista;
 import controlador.ControladorMonitorDeCarrera;
 import controlador.IVistaMonitorDeCarrera;
 import java.util.ArrayList;
+import java.util.Date;
 import modelo.Administrador;
 import modelo.Apuesta;
 import modelo.Carrera;
@@ -13,16 +14,16 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
 
     private ControladorMonitorDeCarrera controlador;
 
-    public IUMonitorDeCarreras(Administrador unAdmin, Hipodromo unHipodromo) {
+    public IUMonitorDeCarreras(Hipodromo unHipodromo) {
         initComponents();
-        controlador = new ControladorMonitorDeCarrera(this, unHipodromo, unAdmin);
+        controlador = new ControladorMonitorDeCarrera(this, unHipodromo);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dateChooser = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstApuestas = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -39,14 +40,16 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().add(jDateChooser1);
-        jDateChooser1.setBounds(30, 20, 150, 30);
+        getContentPane().add(dateChooser);
+        dateChooser.setBounds(30, 20, 170, 30);
 
+        lstApuestas.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(lstApuestas);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(210, 220, 210, 130);
+        jScrollPane1.setBounds(220, 220, 200, 130);
 
+        lstCarreras.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         lstCarreras.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstCarrerasValueChanged(evt);
@@ -55,23 +58,36 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
         jScrollPane2.setViewportView(lstCarreras);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(30, 70, 150, 130);
+        jScrollPane2.setBounds(30, 70, 170, 130);
 
-        btnCargar.setText("Cargar");
+        btnCargar.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        btnCargar.setText("Cargar Carreras");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarActionPerformed(evt);
             }
         });
         getContentPane().add(btnCargar);
-        btnCargar.setBounds(210, 20, 65, 30);
+        btnCargar.setBounds(220, 20, 140, 30);
 
+        lstParticipantes.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jScrollPane3.setViewportView(lstParticipantes);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(210, 70, 210, 130);
+        jScrollPane3.setBounds(220, 70, 200, 130);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("INFO DE CARRERA"));
+        jPanel1.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+
+        lblUno.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+
+        lblDos.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+
+        lblTres.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+
+        lblCuatro.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+
+        lblCinco.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,10 +97,10 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblDos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(lblTres, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(lblCuatro, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                    .addComponent(lblCinco, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                    .addComponent(lblDos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(lblTres, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(lblCuatro, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(lblCinco, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,13 +120,14 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(30, 220, 150, 130);
+        jPanel1.setBounds(30, 220, 170, 130);
 
         setBounds(0, 0, 471, 419);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        // TODO add your handling code here:
+        Date fecha = dateChooser.getDate();   
+        controlador.cargarCarreras(fecha);
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void lstCarrerasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCarrerasValueChanged
@@ -122,8 +139,12 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
     @Override
     public void cargarCarreras(ArrayList<Carrera> carreras) {
         ArrayList<String> lista = new ArrayList();
-        for (Carrera c : carreras) {
-            lista.add(formatearCarrera(c));
+        if (carreras != null) {
+            for (Carrera c : carreras) {
+                lista.add(formatearCarrera(c));
+            }
+        }else{
+            lista.add("No hay carreras ingresadas");
         }
         lstCarreras.setListData(lista.toArray());
     }
@@ -150,7 +171,7 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -173,9 +194,9 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
     public void mostrarDetalle(Carrera carreraSeleccionada) {
         lblUno.setText("N° " + carreraSeleccionada.getNumeroCarrera() + " - " + carreraSeleccionada.getNombre());
         lblDos.setText("Estado: " + carreraSeleccionada.getEstado());
-        lblTres.setText("Cantidad Participantes: " + carreraSeleccionada.cantidadParticipantes());
+        lblTres.setText("Participantes: " + carreraSeleccionada.cantidadParticipantes());
         lblCuatro.setText("Monto Apostado: $ " + carreraSeleccionada.montoApostado());
-        lblCinco.setText("MontoPagado: $ " + carreraSeleccionada.montoPagado());
+        lblCinco.setText("Monto Pagado: $ " + carreraSeleccionada.montoPagado());
     }
 
     @Override
@@ -188,12 +209,12 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
         } else {
             lista.add("No existen participantes");
         }
-        lstParticipantes.setListData(lista.toArray());    
+        lstParticipantes.setListData(lista.toArray());
     }
-    
+
     private String formatearParticipantes(Participante participante) {
         String ganador = "";
-        if(participante.isGanador()){
+        if (participante.isGanador()) {
             ganador = " * GANADOR";
         }
         return participante.getNumero() + " - " + participante.getCaballo().getNombre() + " - " + participante.getDividendo() + ganador;
