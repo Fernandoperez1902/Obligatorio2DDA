@@ -1,19 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelo;
 
-/**
- *
- * @author Mauro
- */
+import java.util.ArrayList;
+
 public class Participante {
     private Caballo caballo;
     private Double dividendo;
     private int numero;
     private boolean ganador;
+    private ArrayList<Apuesta> apuestas;
     private ModalidadApuesta tipoApuesta;
 
 
@@ -26,6 +21,7 @@ public class Participante {
         dividendo = d;
         ganador = false;
         tipoApuesta = new Simple();
+        apuestas = new ArrayList();
     }
     
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
@@ -89,6 +85,14 @@ public class Participante {
     
     public float calcularDescuento(float montoF) {
         return this.tipoApuesta.calcularPerdida(montoF);
+    }
+    
+    public float montoTotalApostado(){
+        float monto = 0;
+        for (Apuesta a : apuestas){
+            monto += a.getMontoApostado();
+        }
+        return monto;
     }
     
 }

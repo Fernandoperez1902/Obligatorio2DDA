@@ -27,7 +27,6 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstParticipantes = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -39,8 +38,6 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().add(jDateChooser1);
-        jDateChooser1.setBounds(30, 20, 150, 30);
 
         jScrollPane1.setViewportView(lstParticipantes);
 
@@ -86,14 +83,13 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCargarActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

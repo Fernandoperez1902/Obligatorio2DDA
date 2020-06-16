@@ -5,8 +5,8 @@
  */
 package interfaz;
 
-import vista.IUJugador;
-import vista.IUJugador;
+import vista.VentanaJugador;
+import vista.VentanaJugador;
 import vista.LoginAdministrador;
 import vista.LoginAdministrador;
 
@@ -70,7 +70,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugadorActionPerformed
-        IUJugador ventana = new IUJugador();
+        VentanaJugador ventana = new VentanaJugador();
         ventana.setVisible(true);
     }//GEN-LAST:event_btnJugadorActionPerformed
 

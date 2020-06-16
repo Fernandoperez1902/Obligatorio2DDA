@@ -15,4 +15,6 @@ public interface IVistaAgregarCaballosCarrera {
     
     public void mostrarParticipantes(ArrayList<Participante> participantes);
     
+    public void cerrar();
+    
 }

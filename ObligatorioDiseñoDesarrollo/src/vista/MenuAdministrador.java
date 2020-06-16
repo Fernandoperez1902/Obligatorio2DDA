@@ -2,7 +2,6 @@ package vista;
 
 import controlador.ControladorMenuAdministrador;
 import controlador.IVistaMenuAdministrador;
-import interfaz.IUAbrirCarrera;
 import java.util.ArrayList;
 import modelo.Administrador;
 import modelo.Hipodromo;
@@ -64,6 +63,11 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         });
 
         btnCerrarApuestas.setText("Cerrar Apuestas");
+        btnCerrarApuestas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarApuestasActionPerformed(evt);
+            }
+        });
 
         btnFinalizar.setText("Finalizar");
 
@@ -154,6 +158,10 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         controlador.abrirCarrera();
     }//GEN-LAST:event_btnAbrirActionPerformed
 
+    private void btnCerrarApuestasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarApuestasActionPerformed
+        controlador.cerrarApuestas();
+    }//GEN-LAST:event_btnCerrarApuestasActionPerformed
+
     @Override
     public void llamarCrearCarrera(Hipodromo hip) {
         new CrearCarrera(hip).setVisible(true);
@@ -161,9 +169,14 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
 
     @Override
     public void llamarAbrirCarrera(Hipodromo hip) {
-        new IUAbrirCarrera(hip).setVisible(true);
+        new AbrirCarrera(hip).setVisible(true);
     }
 
+    @Override
+    public void llamarCerrarApuestas(Hipodromo hip) {
+        new CerrarApuestas(hip).setVisible(true);
+    }
+    
     @Override
     public String formatear(Hipodromo hip) {
         return hip.getNombre();
@@ -194,6 +207,5 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
     private javax.swing.JLabel txtAdminName;
     // End of variables declaration//GEN-END:variables
 
-    
 
 }

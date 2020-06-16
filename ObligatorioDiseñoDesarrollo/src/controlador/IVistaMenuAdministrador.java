@@ -14,4 +14,6 @@ public interface IVistaMenuAdministrador {
     
     public void llamarAbrirCarrera(Hipodromo hip);
     
+    public void llamarCerrarApuestas(Hipodromo hip);
+    
 }

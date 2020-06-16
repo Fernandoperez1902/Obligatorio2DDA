@@ -3,14 +3,14 @@ package controlador;
 
 import modelo.Fachada;
 import modelo.Jugador;
-import vista.IUJugador;
+import vista.VentanaJugador;
 
 public class ControladorConsultarSaldo {
 
     private Fachada modelo;
     private IVistaConsultarSaldo vista;
 
-    public ControladorConsultarSaldo(IUJugador vista) {
+    public ControladorConsultarSaldo(IVistaConsultarSaldo vista) {
         this.vista = vista;
         modelo = Fachada.getInstancia();
     }

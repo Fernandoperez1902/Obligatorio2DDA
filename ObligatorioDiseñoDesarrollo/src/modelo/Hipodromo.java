@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author Mauro
- */
 public class Hipodromo {
 
     private String nombre;
@@ -69,7 +61,7 @@ public class Hipodromo {
         }
         return jornada;
     }
-    
+
     public Jornada buscarJornada(Date fecha) {
 
         Jornada jornada = null;
@@ -92,7 +84,7 @@ public class Hipodromo {
         return existe;
 
     }
-    
+
     public boolean participaCaballo(Date fecha, Caballo cab) {
 
         boolean participa = false;
@@ -109,8 +101,18 @@ public class Hipodromo {
         return participa;
 
     }
+
+    public Carrera buscarProximaCarreraDelDia(){
+        Jornada jornada = buscarJornada(new Date());
+        return jornada.traerProximaCarrera();
+    }
     
-    public void agregarJornada(Jornada jornada){
+    public Carrera buscarCarreraAbierta(){
+        Jornada jornada = buscarJornada(new Date());
+        return jornada.buscarCarreraAbierta();
+    }
+    
+    public void agregarJornada(Jornada jornada) {
         jornadas.add(jornada);
     }
 }
