@@ -74,6 +74,7 @@ public class Fachada {
             Apuesta a = new Apuesta(j, p, montoF, c);
             float montoDescuento = p.calcularDescuento(montoF);
             if (sa.agregarApuesta(a)) {
+                c.agregarApuesta(a);
                 j.actualizarSaldo(montoDescuento);
                 ret = true;
             }

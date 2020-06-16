@@ -133,7 +133,6 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
     private void lstCarrerasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCarrerasValueChanged
         int index = lstCarreras.getSelectedIndex();
         controlador.seleccionarCarrera(index);
-
     }//GEN-LAST:event_lstCarrerasValueChanged
 
     @Override
@@ -149,25 +148,14 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
         lstCarreras.setListData(lista.toArray());
     }
 
-    @Override
-    public void cargarParticipantes(ArrayList<Participante> participantes) {
-        ArrayList<String> lista = new ArrayList();
-        for (Participante p : participantes) {
-            lista.add(formatearParticipante(p));
-        }
-        lstParticipantes.setListData(lista.toArray());
-    }
-
-    @Override
-    public void cargarApostadores(ArrayList<Apuesta> apuestas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     //Formatos para las listas propias de esta vista.
     private String formatearCarrera(Carrera carrera) {
         return carrera.getNumeroCarrera() + " - " + carrera.getEstado() + " - " + carrera.getNombre();
     }
 
+    private String formatearApuesta(Apuesta apuesta) {
+        return apuesta.getJugador().getNombreCompleto();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
@@ -186,9 +174,6 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
     private javax.swing.JList lstParticipantes;
     // End of variables declaration//GEN-END:variables
 
-    private String formatearParticipante(Participante p) {
-        return p.getNumero() + " - " + p.getNombreCaballo();
-    }
 
     @Override
     public void mostrarDetalle(Carrera carreraSeleccionada) {
@@ -204,7 +189,7 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
         ArrayList<String> lista = new ArrayList();
         if (participantes != null) {
             for (Participante p : participantes) {
-                lista.add(formatearParticipantes(p));
+                lista.add(formatearParticipante(p));
             }
         } else {
             lista.add("No existen participantes");
@@ -212,7 +197,7 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
         lstParticipantes.setListData(lista.toArray());
     }
 
-    private String formatearParticipantes(Participante participante) {
+    private String formatearParticipante(Participante participante) {
         String ganador = "";
         if (participante.isGanador()) {
             ganador = " * GANADOR";
@@ -222,6 +207,18 @@ public class IUMonitorDeCarreras extends javax.swing.JFrame implements IVistaMon
 
     @Override
     public void mostrarDetalleApuestasGanadoras(ArrayList<Apuesta> apuestas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> lista = new ArrayList();
+        if (apuestas != null) {
+            for (Apuesta a : apuestas) {
+                lista.add(formatearApuesta(a));
+            }
+            if(apuestas.size() == 0){
+                lista.add("Ganador sin apuestas");
+            }
+        } else {
+            lista.add("Carrera no finalizada");
+        }
+        lstApuestas.setListData(lista.toArray());
+
     }
 }

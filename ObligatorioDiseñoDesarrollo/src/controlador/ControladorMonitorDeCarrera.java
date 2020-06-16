@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import modelo.Administrador;
+import modelo.Apuesta;
 import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Jornada;
@@ -22,7 +23,6 @@ public class ControladorMonitorDeCarrera {
         
     }
     
-    
     public void cargarCarreras(Date fecha){
         ArrayList<Carrera>carreras = null;
         if (fecha == null){
@@ -39,9 +39,11 @@ public class ControladorMonitorDeCarrera {
         carreraSeleccionada = modelo.buscarJornada(new Date()).getCarreras().get(index);
         vista.mostrarDetalle(carreraSeleccionada);
         vista.mostrarParticipantes(carreraSeleccionada.getParticipantes());
-        if (!carreraSeleccionada.isFinalizada()) {
-            vista.mostrarDetalleApuestasGanadoras(carreraSeleccionada.getApuestas());
+        ArrayList<Apuesta>apuestas = null;
+        if (carreraSeleccionada.isFinalizada()) {
+            apuestas = carreraSeleccionada.getApuestas();
         }
+        vista.mostrarDetalleApuestasGanadoras(apuestas);
     }
     
   

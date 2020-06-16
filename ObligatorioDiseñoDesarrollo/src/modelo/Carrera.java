@@ -42,6 +42,7 @@ public class Carrera extends Observable {
         fecha = fec;
         numeroCarrera = num;
         estado = Estado.definida;
+        apuestas = new ArrayList<Apuesta>();
     }
 
     public Carrera(String n, Date f, int numero, ArrayList<Participante> p) {
@@ -49,7 +50,7 @@ public class Carrera extends Observable {
         fecha = f;
         participantes = p;
         numeroCarrera = numero;
-        apuestas = null;
+        apuestas = new ArrayList<Apuesta>();
         estado = Estado.definida;
     }
 
@@ -191,6 +192,10 @@ public class Carrera extends Observable {
             }
         }
         return ret;
+    }
+    
+    public void agregarApuesta(Apuesta a){
+        apuestas.add(a);
     }
 
 }
