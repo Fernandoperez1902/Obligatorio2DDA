@@ -81,4 +81,8 @@ public class Fachada {
     public Jornada buscarJornada(Hipodromo h, Date f) {
         return sh.buscarJornada(h, f);
     }
+
+    public void cargarUsuarios() {
+        su.cargarUsuarios();
+    }
 }

@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import persistencia.BaseDatos;
 import vista.VentanaJugador;
 import vista.LoginAdministrador;
 
@@ -37,6 +38,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA DE APUESTAS HÍPICAS");
         setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         btnAdministrador.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -76,6 +82,10 @@ public class VentanaInicio extends javax.swing.JFrame {
          LoginAdministrador ventana = new LoginAdministrador();
          ventana.setVisible(true);
     }//GEN-LAST:event_btnAdministradorActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        //BaseDatos.getInstancia().desconectar();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

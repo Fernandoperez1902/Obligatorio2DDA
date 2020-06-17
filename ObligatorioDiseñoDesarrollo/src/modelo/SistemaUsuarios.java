@@ -2,6 +2,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import mapeadores.MapeadorAdministrador;
+import mapeadores.MapeadorJugador;
+import persistencia.Persistencia;
 
 public class SistemaUsuarios {
 
@@ -51,5 +54,25 @@ public class SistemaUsuarios {
 
     public void agregarJugador(Jugador j) {
         jugadores.add(j);
+    }
+
+    public void cargarUsuarios() {
+        this.cargarJugadores();
+        this.cargarAdministradores();
+    }
+    
+    private void cargarJugadores(){
+        MapeadorJugador map = new MapeadorJugador();
+        ArrayList<Jugador> lista = Persistencia.getInstancia().obtenerTodos(map);
+        for (Jugador j : lista){
+            this.agregarJugador(j);
+        }     
+    }
+    private void cargarAdministradores(){
+        MapeadorAdministrador map = new MapeadorAdministrador();
+        ArrayList<Administrador> lista = Persistencia.getInstancia().obtenerTodos(map);
+        for (Administrador a : lista){
+            this.agregarAdministrador(a);
+        } 
     }
 }

@@ -17,6 +17,8 @@ import modelo.Jugador;
 import modelo.Participante;
 import modelo.SistemaCaballos;
 import modelo.SistemaHipodromos;
+import persistencia.BaseDatos;
+import persistencia.Persistencia;
 
 /**
  *
@@ -27,6 +29,9 @@ public class DatosPrueba {
     public static void cargar(){
         
         Fachada logica = Fachada.getInstancia();
+        
+        //logica.cargarUsuarios();
+
         
         //CABALLOS
         Caballo c1 = new Caballo("Caballo1","Responsable1");
@@ -111,5 +116,8 @@ public class DatosPrueba {
         logica.agregarHipodromo(h2);
         logica.agregarHipodromo(h3);
         logica.agregarHipodromo(h4);
+
+        //bd.desconectar();
+
     }
 }
