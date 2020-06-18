@@ -120,7 +120,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
         getContentPane().add(jPanel1);
         jPanel1.setBounds(30, 220, 170, 130);
         getContentPane().add(dateChooser);
-        dateChooser.setBounds(30, 30, 110, 20);
+        dateChooser.setBounds(30, 20, 170, 30);
 
         setBounds(0, 0, 471, 419);
     }// </editor-fold>//GEN-END:initComponents
