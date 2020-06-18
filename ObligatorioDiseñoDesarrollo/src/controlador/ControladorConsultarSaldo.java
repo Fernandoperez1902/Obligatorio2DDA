@@ -3,7 +3,7 @@ package controlador;
 
 import modelo.Fachada;
 import modelo.Jugador;
-import vista.VentanaJugador;
+
 
 public class ControladorConsultarSaldo {
 

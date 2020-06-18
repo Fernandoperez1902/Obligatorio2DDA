@@ -64,8 +64,9 @@ public class Fachada {
         Jugador j = loginJugador(nombre, pass);
         if (j != null) {
             Apuesta a = new Apuesta(j, p, montoF, c);
-            float montoDescuento = p.calcularDescuento(montoF);
+            float montoDescuento = p.montoApostadoSegunModalidad(montoF);
             if (sa.agregarApuesta(a)) {
+                c.agregarApuesta(a);
                 j.actualizarSaldo(montoDescuento);
                 ret = true;
             }
@@ -79,5 +80,9 @@ public class Fachada {
 
     public Jornada buscarJornada(Hipodromo h, Date f) {
         return sh.buscarJornada(h, f);
+    }
+
+    public void cargarUsuarios() {
+        su.cargarUsuarios();
     }
 }

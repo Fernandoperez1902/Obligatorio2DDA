@@ -13,8 +13,7 @@ public class ControladorMenuAdministrador {
     private ArrayList<Hipodromo> hipodromos;
     private Hipodromo seleccionado;
 
-    public ControladorMenuAdministrador(Administrador modeloAdministrador,
-            IVistaMenuAdministrador vista) {
+    public ControladorMenuAdministrador(Administrador modeloAdministrador, IVistaMenuAdministrador vista) {
         this.modeloAdministrador = modeloAdministrador;
         this.modeloFachada = Fachada.getInstancia();
         this.hipodromos = modeloFachada.getHipodromos();
@@ -37,5 +36,8 @@ public class ControladorMenuAdministrador {
 
     public void cerrarApuestas(){
         vista.llamarCerrarApuestas(seleccionado);
+    }
+    public void monitorDeCarrera(){
+        vista.llamarMonitorearCarrera(seleccionado);
     }
 }

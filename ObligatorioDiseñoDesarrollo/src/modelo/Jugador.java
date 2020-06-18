@@ -11,6 +11,10 @@ public class Jugador extends Usuario {
     public Jugador(String u, String p, String n, int s) {
         super(u, p, n);
         saldo = s;
+        ultimaApuesta = null;
+    }
+
+    public Jugador() {
 
     }
 

@@ -14,7 +14,7 @@ public class Apuesta {
     public Apuesta(Jugador jugador, Participante participante, float montoApostado, Carrera carrera) {
         this.jugador = jugador;
         this.participante = participante;
-        this.montoApostado = montoApostado;
+        this.montoApostado = participante.montoApostadoSegunModalidad(montoApostado);
         this.carrera = carrera;
         this.montoGanado = 0;
         this.montoPerdido = 0;
