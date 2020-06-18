@@ -55,6 +55,9 @@ public class Participante {
 
     public void setGanador(boolean ganador) {
         this.ganador = ganador;
+        if (ganador){
+            pagarApuestas();
+        }
     }
 
     public ModalidadApuesta getTipoApuesta() {
@@ -75,7 +78,6 @@ public class Participante {
     }
 
     // </editor-fold>
-
 
     @Override
     public String toString() {
@@ -133,5 +135,11 @@ public class Participante {
 
     public void agregarApuesta(Apuesta a) {
         apuestas.add(a);
+    }
+    
+    public void pagarApuestas(){      
+        for (Apuesta a : apuestas){
+            a.pagarApuestaJugador(montoGanadoSegunModalidad(a.getMontoApostado()));
+        }
     }
 }

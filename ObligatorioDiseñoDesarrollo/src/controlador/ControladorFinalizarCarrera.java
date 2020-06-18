@@ -29,6 +29,7 @@ public class ControladorFinalizarCarrera {
     
     public void FinalizarCarrera(){
         ganadorSeleccionado.setGanador(true);
+        ultimaCerrada.finalizar();
         vista.cerrar();
     }
 }

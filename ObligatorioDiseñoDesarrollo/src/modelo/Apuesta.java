@@ -72,4 +72,8 @@ public class Apuesta {
     
     // </editor-fold> 
 
+    public void pagarApuestaJugador(float montoGanado) {
+       jugador.actualizarSaldo(montoGanado);  
+    }
+
 }
