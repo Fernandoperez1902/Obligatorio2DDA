@@ -86,7 +86,7 @@ public class Carrera extends Observable {
 
     // </editor-fold>
     //Checkea si la carrera tiene apuestas efectuadas.
-    
+
     public boolean tieneApuestas() {
         boolean ret = false;
         for(Participante p : participantes){
@@ -150,6 +150,11 @@ public class Carrera extends Observable {
         this.avisar(Eventos.cerrar);
     }
 
+    public void finalizar(){
+        estado = Estado.finalizada;
+        this.avisar(Eventos.finalizar);
+    }
+
     public void agregarParticipante(Participante p) {
         participantes.add(p);
     }
@@ -175,7 +180,7 @@ public class Carrera extends Observable {
         }
         return monto;
     }
-    
+
     public ArrayList<Apuesta> getApuestasGanadoras(){
         ArrayList<Apuesta>apuestas = null;
         for (Participante p : participantes){

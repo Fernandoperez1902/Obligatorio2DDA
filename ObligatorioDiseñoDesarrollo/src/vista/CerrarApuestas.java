@@ -56,6 +56,11 @@ public class CerrarApuestas extends javax.swing.JFrame implements IVistaCerrarAp
         btnCerrarApuestas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lblNumero.setText("Número");
 
@@ -72,6 +77,11 @@ public class CerrarApuestas extends javax.swing.JFrame implements IVistaCerrarAp
         jScrollPane1.setViewportView(lstParticipantes);
 
         btnCerrarApuestas.setText("Cerrar Apuestas");
+        btnCerrarApuestas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarApuestasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,12 +124,24 @@ public class CerrarApuestas extends javax.swing.JFrame implements IVistaCerrarAp
                     .addComponent(txtMontoTotalApostado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnCerrarApuestas)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCerrarApuestasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarApuestasActionPerformed
+        controlador.cerrarApuesta();
+    }//GEN-LAST:event_btnCerrarApuestasActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cerrar();
+    }//GEN-LAST:event_formWindowClosing
+
+    @Override
+    public void cerrar() {
+        this.dispose();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarApuestas;
@@ -132,6 +154,7 @@ public class CerrarApuestas extends javax.swing.JFrame implements IVistaCerrarAp
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumeroCarrera;
     // End of variables declaration//GEN-END:variables
+
 
    
 }

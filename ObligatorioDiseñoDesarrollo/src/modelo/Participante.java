@@ -72,11 +72,11 @@ public class Participante {
 
     public void setApuestas(ArrayList<Apuesta> apuestas) {
         this.apuestas = apuestas;
-    } 
-  
+    }
+
     // </editor-fold>
-  
-    
+
+
     @Override
     public String toString() {
         String ganador = "";

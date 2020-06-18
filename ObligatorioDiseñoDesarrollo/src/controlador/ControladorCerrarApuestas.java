@@ -3,6 +3,7 @@ package controlador;
 
 import modelo.Carrera;
 import modelo.Hipodromo;
+import modelo.Jornada;
 
 public class ControladorCerrarApuestas {
     
@@ -16,8 +17,14 @@ public class ControladorCerrarApuestas {
         this.carreraAbierta = seleccionado.buscarCarreraAbierta();
         this.vista = vista; 
         this.vista.mostrarCarrera(carreraAbierta);
-        
-        
+             
     }
-   
+    
+    public void cerrarApuesta(){
+        carreraAbierta.cerrar();
+        Jornada jornada = seleccionado.buscarJornada(carreraAbierta.getFecha());
+        jornada.actualizarUltimaCerrada();
+        vista.cerrar();
+    }
+    
 }
