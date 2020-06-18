@@ -28,5 +28,4 @@ public class ObligatorioDiseñoDesarrollo {
         BaseDatos bd = BaseDatos.getInstancia();
         bd.conectar("com.mysql.jdbc.Driver",url, "root", "root");
     }
-    
 }

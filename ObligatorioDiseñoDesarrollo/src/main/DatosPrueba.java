@@ -63,7 +63,7 @@ public class DatosPrueba {
         participantes.add(p2);
         participantes2.add(p3);
         participantes2.add(p4);
-        //p5.setGanador(true);
+        p4.setGanador(true);
         
         //HIPODROMOS
         
@@ -116,8 +116,6 @@ public class DatosPrueba {
         logica.agregarHipodromo(h2);
         logica.agregarHipodromo(h3);
         logica.agregarHipodromo(h4);
-
-        //bd.desconectar();
 
     }
 }
