@@ -208,7 +208,9 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void lstCaballosDisponiblesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCaballosDisponiblesValueChanged
-        controlador.seleccionarCaballo(lstCaballosDisponibles.getSelectedIndex());
+        if (lstCaballosDisponibles.getSelectedIndex() != -1) {
+            controlador.seleccionarCaballo(lstCaballosDisponibles.getSelectedIndex());
+        }
     }//GEN-LAST:event_lstCaballosDisponiblesValueChanged
 
     @Override
@@ -234,7 +236,5 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
     private javax.swing.JTextField txtDividendo;
     private javax.swing.JTextField txtNumeroCab;
     // End of variables declaration//GEN-END:variables
-
-    
 
 }

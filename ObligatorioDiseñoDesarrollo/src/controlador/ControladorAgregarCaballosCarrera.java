@@ -40,8 +40,8 @@ public class ControladorAgregarCaballosCarrera {
         Participante participante = new Participante(caballoSeleccionado, numero, dividendo);
         participantes.add(participante);
         vista.mostrarParticipantes(participantes);
-        //disponibles.remove(caballoSeleccionado);
-        //vista.mostrarCaballosDisponibles(disponibles);
+        disponibles.remove(caballoSeleccionado);
+        vista.mostrarCaballosDisponibles(disponibles);
     }
     
     public void seleccionarCaballo(int index){
