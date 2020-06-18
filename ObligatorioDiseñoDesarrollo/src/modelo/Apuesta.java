@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 public class Apuesta {
 
-    private float montoApostado;
     private Jugador jugador;
     private Participante participante;
     private Carrera carrera;
-    private float montoPerdido;
+    private float montoApostado;
+    private float montoPagado;
     private float montoGanado;
 
     public Apuesta(Jugador jugador, Participante participante, float montoApostado, Carrera carrera) {
         this.jugador = jugador;
         this.participante = participante;
-        this.montoApostado = participante.montoApostadoSegunModalidad(montoApostado);
         this.carrera = carrera;
+        this.montoApostado = montoApostado;
+        this.montoPagado = participante.montoPagadoSegunModalidad(montoApostado);
         this.montoGanado = 0;
-        this.montoPerdido = 0;
     }
     
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
@@ -53,12 +53,12 @@ public class Apuesta {
         this.carrera = carrera;
     }
 
-    public float getMontoPerdido() {
-        return montoPerdido;
+    public float getMontoPagado() {
+        return montoPagado;
     }
 
-    public void setMontoPerdido(float montoPerdido) {
-        this.montoPerdido = montoPerdido;
+    public void setMontoPagado(float montoPagado) {
+        this.montoPagado = montoPagado;
     }
 
     public float getMontoGanado() {
@@ -70,9 +70,6 @@ public class Apuesta {
     }
     
     
-    // </editor-fold>
-
-    
-  
+    // </editor-fold> 
 
 }

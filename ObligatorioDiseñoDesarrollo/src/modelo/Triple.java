@@ -8,10 +8,7 @@ public class Triple extends ModalidadApuesta{
     }
         
     @Override
-    public float calcularGanancia(float loApostado, double dividendo) {
+    public float calcularMontoGananciaSegunModalidad(float loApostado, double dividendo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
-    
 }

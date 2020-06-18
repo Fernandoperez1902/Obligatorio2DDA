@@ -59,15 +59,13 @@ public class Fachada {
     //Hablar con Fernando..
     public boolean agregarApuesta(String nombre, String pass, String monto, Participante p, Carrera c) {
         boolean ret = false;
-        //controlar conversión...
         float montoF = Float.parseFloat(monto);
         Jugador j = loginJugador(nombre, pass);
         if (j != null) {
             Apuesta a = new Apuesta(j, p, montoF, c);
-            float montoDescuento = p.montoApostadoSegunModalidad(montoF);
             if (sa.agregarApuesta(a)) {
-                c.agregarApuesta(a);
-                j.actualizarSaldo(montoDescuento);
+                p.agregarApuesta(a);
+                j.actualizarSaldo(a.getMontoPagado());
                 ret = true;
             }
         }

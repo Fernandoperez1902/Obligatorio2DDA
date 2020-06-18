@@ -41,12 +41,8 @@ public class ControladorMonitorDeCarrera {
         vista.mostrarParticipantes(carreraSeleccionada.getParticipantes());
         ArrayList<Apuesta>apuestas = null;
         if (carreraSeleccionada.isFinalizada()) {
-            apuestas = carreraSeleccionada.getApuestas();
+            apuestas = carreraSeleccionada.getApuestasGanadoras();
         }
         vista.mostrarDetalleApuestasGanadoras(apuestas);
-    }
-    
-  
-    
-    
+    }   
 }

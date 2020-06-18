@@ -11,7 +11,6 @@ public class Carrera extends Observable {
     private String nombre;
     private Date fecha;
     private ArrayList<Participante> participantes = new ArrayList<Participante>();
-    private ArrayList<Apuesta> apuestas = new ArrayList<Apuesta>();
     private Estado estado;
 
     public enum ErrorValidacion {
@@ -34,7 +33,6 @@ public class Carrera extends Observable {
         fecha = fec;
         numeroCarrera = num;
         estado = Estado.definida;
-        apuestas = new ArrayList<Apuesta>();
     }
 
     public Carrera(String n, Date f, int numero, ArrayList<Participante> p) {
@@ -42,7 +40,6 @@ public class Carrera extends Observable {
         fecha = f;
         participantes = p;
         numeroCarrera = numero;
-        apuestas = new ArrayList<Apuesta>();
         estado = Estado.definida;
     }
 
@@ -79,14 +76,6 @@ public class Carrera extends Observable {
         this.participantes = participantes;
     }
 
-    public ArrayList<Apuesta> getApuestas() {
-        return apuestas;
-    }
-
-    public void setApuestas(ArrayList<Apuesta> apuestas) {
-        this.apuestas = apuestas;
-    }
-
     public Estado getEstado() {
         return estado;
     }
@@ -97,10 +86,13 @@ public class Carrera extends Observable {
 
     // </editor-fold>
     //Checkea si la carrera tiene apuestas efectuadas.
+    
     public boolean tieneApuestas() {
         boolean ret = false;
-        if (apuestas != null) {
-            ret = true;
+        for(Participante p : participantes){
+            if (p.tieneApuestas()){
+                ret = true;
+            }
         }
         return ret;
     }
@@ -168,14 +160,12 @@ public class Carrera extends Observable {
 
     public float montoTotalPagado() {
         float ret = 0;
-        for (Participante p : participantes){
-            ret += p.montoTotalPagado();
+        if(this.estado.equals(Estado.finalizada)){
+            for (Participante p : participantes) {
+                ret += p.montoTotalPagado();
+            }
         }
         return ret;
-    }
-
-    public void agregarApuesta(Apuesta a){
-        apuestas.add(a);
     }
 
     public float montoTotalApostado(){
@@ -184,5 +174,15 @@ public class Carrera extends Observable {
             monto += p.montoTotalApostado();
         }
         return monto;
+    }
+    
+    public ArrayList<Apuesta> getApuestasGanadoras(){
+        ArrayList<Apuesta>apuestas = null;
+        for (Participante p : participantes){
+            if(p.isGanador()){
+                apuestas = p.getApuestas();
+            }
+        }
+        return apuestas;
     }
 }
