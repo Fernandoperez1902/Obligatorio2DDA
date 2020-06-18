@@ -20,7 +20,7 @@ public class ControladorMonitorDeCarrera {
     public ControladorMonitorDeCarrera(IVistaMonitorDeCarrera unaVista, Hipodromo hipodromo){
         this.vista = unaVista;
         this.modelo = hipodromo;
-        
+        vista.cargarCarreras(modelo.buscarJornada(new Date()).getCarreras());
     }
     
     public void cargarCarreras(Date fecha){

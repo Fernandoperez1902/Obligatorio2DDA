@@ -150,7 +150,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
 
     //Formatos para las listas propias de esta vista.
     private String formatearCarrera(Carrera carrera) {
-        return carrera.getNumeroCarrera() + " - " + carrera.getEstado() + " - " + carrera.getNombre();
+        return "n° " + carrera.getNumeroCarrera() + " - " + carrera.getNombre() + " - " + carrera.getEstado();
     }
 
     private String formatearApuesta(Apuesta apuesta) {
@@ -174,14 +174,13 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
     private javax.swing.JList lstParticipantes;
     // End of variables declaration//GEN-END:variables
 
-
     @Override
     public void mostrarDetalle(Carrera carreraSeleccionada) {
         lblUno.setText("N° " + carreraSeleccionada.getNumeroCarrera() + " - " + carreraSeleccionada.getNombre());
         lblDos.setText("Estado: " + carreraSeleccionada.getEstado());
         lblTres.setText("Participantes: " + carreraSeleccionada.cantidadParticipantes());
-        lblCuatro.setText("Monto Apostado: $ " + carreraSeleccionada.montoApostado());
-        lblCinco.setText("Monto Pagado: $ " + carreraSeleccionada.montoPagado());
+        lblCuatro.setText("Monto Apostado: $ " + carreraSeleccionada.montoTotalApostado());
+        lblCinco.setText("Monto Pagado: $ " + carreraSeleccionada.montoTotalPagado());
     }
 
     @Override
@@ -219,6 +218,5 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
             lista.add("Carrera no finalizada");
         }
         lstApuestas.setListData(lista.toArray());
-
     }
 }

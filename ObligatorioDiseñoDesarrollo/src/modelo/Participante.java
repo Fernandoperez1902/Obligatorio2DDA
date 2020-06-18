@@ -83,8 +83,20 @@ public class Participante {
         return caballo.getNombre();
     }
     
-    public float calcularDescuento(float montoF) {
-        return this.tipoApuesta.calcularPerdida(montoF);
+    public float montoApostadoSegunModalidad(float montoF) {
+        return this.tipoApuesta.calcularMontoApostadoSegunModalidad(montoF);
+    }
+
+    public float montoGanadoSegunModalidad(float montoF) {
+        return this.tipoApuesta.calcularGanancia(montoF, dividendo);
+    }
+    
+    public float montoTotalPagado(){
+        float monto = 0;
+        for (Apuesta a : apuestas){
+            monto += a.getMontoApostado();
+        }
+        return monto;
     }
     
     public float montoTotalApostado(){

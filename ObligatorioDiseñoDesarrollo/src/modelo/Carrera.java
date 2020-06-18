@@ -166,22 +166,10 @@ public class Carrera extends Observable {
         return getParticipantes().size();
     }
 
-    public float montoApostado() {
+    public float montoTotalPagado() {
         float ret = 0;
-        if(apuestas != null){
-            for (Apuesta a : apuestas) {
-                ret = ret + a.getMontoApostado();
-            }
-        }
-        return ret;
-    }
-
-    public float montoPagado() {
-        float ret = 0;
-        if (apuestas != null){
-            for (Apuesta a : apuestas) {
-                ret = ret + a.getMontoGanado();
-            }
+        for (Participante p : participantes){
+            ret += p.montoTotalPagado();
         }
         return ret;
     }
