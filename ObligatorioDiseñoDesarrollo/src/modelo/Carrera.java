@@ -158,6 +158,11 @@ public class Carrera extends Observable {
         this.avisar(Eventos.cerrar);
     }
 
+    public void finalizar(){
+        estado = Estado.finalizada;
+        this.avisar(Eventos.finalizar);
+    }
+    
     public void agregarParticipante(Participante p) {
         participantes.add(p);
     }
@@ -185,4 +190,5 @@ public class Carrera extends Observable {
         }
         return monto;
     }
+    
 }

@@ -70,6 +70,11 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         });
 
         btnFinalizar.setText("Finalizar");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
 
         btnMonitorear.setText("Monitorear");
         btnMonitorear.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +175,10 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         controlador.cerrarApuestas();
     }//GEN-LAST:event_btnCerrarApuestasActionPerformed
 
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        controlador.finalizarCarrera();
+    }//GEN-LAST:event_btnFinalizarActionPerformed
+
     @Override
     public void llamarCrearCarrera(Hipodromo hip) {
         new CrearCarrera(hip).setVisible(true);
@@ -183,6 +192,16 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
     @Override
     public void llamarCerrarApuestas(Hipodromo hip) {
         new CerrarApuestas(hip).setVisible(true);
+    }
+
+    @Override
+    public void llamarFinalizarCarrera(Hipodromo hip) {
+        new FinalizarCarrera(hip).setVisible(true);
+    }
+
+    @Override
+    public void llamarMonitorearCarrera(Hipodromo hip) {
+        new MonitorDeCarreras(hip).setVisible(true);
     }
 
     @Override
@@ -214,12 +233,5 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
     private javax.swing.JMenu optSalir;
     private javax.swing.JLabel txtAdminName;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void llamarMonitorearCarrera(Hipodromo hip) {
-         new MonitorDeCarreras(hip).setVisible(true);
-    }
-
-
 
 }

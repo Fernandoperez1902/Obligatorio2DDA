@@ -23,7 +23,6 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dateChooser = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstApuestas = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -37,11 +36,10 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
         lblTres = new javax.swing.JLabel();
         lblCuatro = new javax.swing.JLabel();
         lblCinco = new javax.swing.JLabel();
+        dateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().add(dateChooser);
-        dateChooser.setBounds(30, 20, 170, 30);
 
         lstApuestas.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(lstApuestas);
@@ -121,6 +119,8 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(30, 220, 170, 130);
+        getContentPane().add(dateChooser);
+        dateChooser.setBounds(30, 30, 110, 20);
 
         setBounds(0, 0, 471, 419);
     }// </editor-fold>//GEN-END:initComponents

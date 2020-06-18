@@ -112,6 +112,11 @@ public class Hipodromo {
         return jornada.buscarCarreraAbierta();
     }
     
+    public Carrera buscarUltimaCarreraCerrada(){
+        Jornada jornada = buscarJornada(new Date());
+        return jornada.buscarUltimaCarreraCerrada();
+    }
+    
     public void agregarJornada(Jornada jornada) {
         jornadas.add(jornada);
     }

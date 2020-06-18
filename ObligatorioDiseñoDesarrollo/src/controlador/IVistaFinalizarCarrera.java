@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import modelo.Carrera;
 import modelo.Participante;
 
-public interface IVistaCerrarApuestas {
+public interface IVistaFinalizarCarrera {
     
     public void mostrarCarrera(Carrera carrera);
     
@@ -13,5 +13,7 @@ public interface IVistaCerrarApuestas {
     
     public String formatearParticipante(Participante participante);
 
+    public void mostrarGanador(Participante participante);
+    
     public void cerrar();
 }
