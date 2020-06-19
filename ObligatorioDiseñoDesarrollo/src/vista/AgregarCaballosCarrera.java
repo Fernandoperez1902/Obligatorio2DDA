@@ -16,7 +16,7 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
     ControladorAgregarCaballosCarrera controlador;
 
     public AgregarCaballosCarrera(java.awt.Frame parent, boolean modal,
-            Jornada jornada, Hipodromo seleccionado, Carrera carrera, boolean esNuevaJornada) {
+        Jornada jornada, Hipodromo seleccionado, Carrera carrera, boolean esNuevaJornada) {
         super(parent, modal);
         initComponents();
         controlador = new ControladorAgregarCaballosCarrera(jornada, carrera, seleccionado,

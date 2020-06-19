@@ -39,12 +39,12 @@ public class ControladorAgregarCaballosCarrera {
     }
 
     public void agregarParticipante(int numero, double dividendo) {
-
         try {
             Participante participante = new Participante(caballoSeleccionado, numero, dividendo);
             modeloCarrera.validarParticipante(participante);
             participantes.add(participante);
             disponibles.remove(caballoSeleccionado);
+            caballoSeleccionado = null;
             vista.mostrarParticipantes(participantes);
             vista.mostrarCaballosDisponibles(disponibles);
         } catch (ApuestasException e) {

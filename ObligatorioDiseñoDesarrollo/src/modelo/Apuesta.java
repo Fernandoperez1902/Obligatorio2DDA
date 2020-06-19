@@ -73,7 +73,8 @@ public class Apuesta {
     // </editor-fold> 
 
     public void pagarApuestaJugador(float montoGanado) {
-       jugador.actualizarSaldo(montoGanado);  
+        setMontoGanado(montoGanado);
+       jugador.actualizarSaldo(montoGanado+montoPagado); //Se acredita lo ganado y recupera lo apostado  
     }
 
 }

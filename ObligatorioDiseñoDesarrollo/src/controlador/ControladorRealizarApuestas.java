@@ -61,8 +61,8 @@ public class ControladorRealizarApuestas implements Observador {
             Jugador j = modelo.loginJugador(nombre, pass);
             if (j != null) {
                 float montoFloat = convertirMonto(monto);
-                if(j.saldoSuficiente(montoFloat)){
                 Apuesta apuesta = new Apuesta(j, participanteSeleccionado, montoFloat, carreraSeleccionada);
+                if (j.saldoSuficiente(apuesta.getMontoPagado())) {
                     modelo.agregarApuesta(apuesta);
                     j.setUltimaApuesta(apuesta);
                     participanteSeleccionado.agregarApuesta(apuesta);
@@ -94,17 +94,17 @@ public class ControladorRealizarApuestas implements Observador {
     }
 
     private float convertirMonto(String monto) throws ApuestasException {
-        float ret;
-        if(monto.isEmpty()){
+        float montoF;
+        if (!monto.isEmpty()) {
+            try {
+                montoF = Float.parseFloat(monto);
+            } catch (NumberFormatException ae) {
+                throw new ApuestasException("Monto inválido");
+            }
+        } else {
             throw new ApuestasException("Debe ingresar un monto");
-        }else{
-           try {
-               ret = Float.parseFloat(monto);
-           }catch(Exception ae){
-               throw new ApuestasException("Monto inválido");
-           }
         }
-        return ret;
+        return montoF;
     }
 
 }

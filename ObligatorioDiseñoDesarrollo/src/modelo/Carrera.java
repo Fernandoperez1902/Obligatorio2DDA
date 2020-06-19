@@ -179,6 +179,16 @@ public class Carrera extends Observable {
         return monto;
     }
 
+    public float montoTotalGanado(){
+        float monto = 0;
+        for (Participante p : participantes){
+            monto += p.montoTotalGanado();
+        }
+        return monto;
+    }
+
+    
+    
     public ArrayList<Apuesta> getApuestasGanadoras(){
         ArrayList<Apuesta>apuestas = null;
         for (Participante p : participantes){

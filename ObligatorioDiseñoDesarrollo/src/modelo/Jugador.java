@@ -33,6 +33,7 @@ public class Jugador extends Usuario {
 
     public void setUltimaApuesta(Apuesta ultimaApuesta) {
         this.ultimaApuesta = ultimaApuesta;
+        restarSaldo(ultimaApuesta.getMontoPagado());
     }
 
     // </editor-fold>
@@ -56,7 +57,15 @@ public class Jugador extends Usuario {
 
     //Actualiza el saldo en función de lo perdido o ganado en una apuesta.
     //(recibe tanto valores positivos como negativos)
-    public float actualizarSaldo(float monto) {
-        return saldo = saldo + monto;
+    public void actualizarSaldo(float monto) {
+        setSaldo(saldo + monto);
+    }
+
+    private void restarSaldo(float monto) {
+        actualizarSaldo(monto*-1);
+    }
+    
+    private void sumarSaldo(float monto) {
+        actualizarSaldo(monto);
     }
 }

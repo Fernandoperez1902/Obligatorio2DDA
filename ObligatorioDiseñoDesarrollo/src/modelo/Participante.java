@@ -20,7 +20,7 @@ public class Participante {
         numero = n;
         dividendo = d;
         ganador = false;
-        tipoApuesta = new Triple();
+        tipoApuesta = new Simple();
         apuestas = new ArrayList();
     }
 
@@ -147,7 +147,8 @@ public class Participante {
 
     public void pagarApuestas(){
         for (Apuesta a : apuestas){
-            a.pagarApuestaJugador(montoGanadoSegunModalidad(a.getMontoApostado()));
+            float loGanado =  montoGanadoSegunModalidad(a.getMontoApostado());
+            a.pagarApuestaJugador(loGanado);
         }
     }
 
