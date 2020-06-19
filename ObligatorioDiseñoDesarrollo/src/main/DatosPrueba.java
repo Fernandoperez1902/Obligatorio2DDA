@@ -104,12 +104,7 @@ public class DatosPrueba {
         
         
         //JORNADAS 
-        Jornada jor1 = new Jornada(new Date());
-        jor1.agregarCarrera(ca1);
-        jor1.agregarCarrera(ca2);
-        ArrayList<Jornada> jornadas = new ArrayList<Jornada>();
-        jornadas.add(jor1);
-        h1.setJornadas(jornadas);
+//        Problem: The project uses the file/folder called "jcalendar-1.4.jar", but this file/folder was not found.rnadas(jornadas);
         
         
         logica.agregarHipodromo(h1);

@@ -2,10 +2,13 @@ package controlador;
 
 import java.util.ArrayList;
 import java.util.Date;
+import modelo.Apuesta;
+import modelo.ApuestasException;
 import modelo.Carrera;
 import modelo.Fachada;
 import modelo.Hipodromo;
 import modelo.Jornada;
+import modelo.Jugador;
 import modelo.Participante;
 import observer.Observable;
 import observer.Observador;
@@ -54,7 +57,20 @@ public class ControladorRealizarApuestas implements Observador {
     }
 
     public void agregarApuesta(String nombre, String pass, String monto) {
-        modelo.agregarApuesta(nombre, pass, monto, participanteSeleccionado, carreraSeleccionada);
+        try {
+            Jugador j = modelo.loginJugador(nombre, pass);
+            if (j != null) {
+                float montoFloat = convertirMonto(monto);
+                if(j.saldoSuficiente(montoFloat)){
+                Apuesta apuesta = new Apuesta(j, participanteSeleccionado, montoFloat, carreraSeleccionada);
+                    modelo.agregarApuesta(apuesta);
+                    j.setUltimaApuesta(apuesta);
+                    participanteSeleccionado.agregarApuesta(apuesta);
+                }
+            }
+        } catch (ApuestasException ex) {
+            vista.mostrarError(ex.getMessage());
+        }
     }
 
     public void seleccionarHipodromo(int index) {
@@ -75,6 +91,20 @@ public class ControladorRealizarApuestas implements Observador {
         if (participanteSeleccionado != null && carreraSeleccionada.isAbierta()) {
             vista.habilitarBotonApuesta(true);
         }
+    }
+
+    private float convertirMonto(String monto) throws ApuestasException {
+        float ret;
+        if(monto.isEmpty()){
+            throw new ApuestasException("Debe ingresar un monto");
+        }else{
+           try {
+               ret = Float.parseFloat(monto);
+           }catch(Exception ae){
+               throw new ApuestasException("Monto inválido");
+           }
+        }
+        return ret;
     }
 
 }

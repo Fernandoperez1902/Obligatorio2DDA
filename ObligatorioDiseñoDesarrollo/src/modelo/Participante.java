@@ -20,7 +20,7 @@ public class Participante {
         numero = n;
         dividendo = d;
         ganador = false;
-        tipoApuesta = new Simple();
+        tipoApuesta = new Triple();
         apuestas = new ArrayList();
     }
 

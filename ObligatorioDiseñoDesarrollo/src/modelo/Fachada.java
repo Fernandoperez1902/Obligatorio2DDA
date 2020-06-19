@@ -28,7 +28,7 @@ public class Fachada {
         return su.loginAdministrador(nombre, password);
     }
 
-    public Jugador loginJugador(String nombre, String password) {
+    public Jugador loginJugador(String nombre, String password) throws ApuestasException{
         return su.loginJugador(nombre, password);
     }
 
@@ -56,24 +56,10 @@ public class Fachada {
         return sc.getCaballos();
     }
 
-    //Hablar con Fernando..
-    public boolean agregarApuesta(String nombre, String pass, String monto, Participante p, Carrera c) throws ApuestasException {
-        boolean ret = false;
-        if (monto.isEmpty()) {
-            throw new ApuestasException("Debe ingresar el monto de su apuesta");
-        }
-        float montoF = Float.parseFloat(monto);
-        Jugador j = loginJugador(nombre, pass);
-        if (j != null && j.saldoSuficiente(p.montoPagadoSegunModalidad(montoF))) {
-            Apuesta a = new Apuesta(j, p, montoF, c);
-            if (sa.agregarApuesta(a)) {
-                p.agregarApuesta(a);
-                j.actualizarSaldo(a.getMontoPagado());
-                ret = true;
-            }
-        }
-        return ret;
+    public boolean agregarApuesta(Apuesta a) throws ApuestasException {
+        return sa.agregarApuesta(a);
     }
+    
 
     public ArrayList<Caballo> caballosDisponiblesEnFecha(Date fecha) {
         return sh.caballosDisponiblesEnFecha(fecha);

@@ -1,6 +1,7 @@
 
 package controlador;
 
+import modelo.ApuestasException;
 import modelo.Fachada;
 import modelo.Jugador;
 
@@ -15,7 +16,7 @@ public class ControladorConsultarSaldo {
         modelo = Fachada.getInstancia();
     }
     
-    public void consultarSaldo(String usuario, String password){
+    public void consultarSaldo(String usuario, String password) throws ApuestasException{
         Jugador j = modelo.loginJugador(usuario, password);
         vista.mostrarVistaSaldo(j);
     }

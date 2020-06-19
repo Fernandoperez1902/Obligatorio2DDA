@@ -1,4 +1,3 @@
-
 package modelo;
 
 import java.util.ArrayList;
@@ -14,18 +13,12 @@ public class SistemaUsuarios {
     private Usuario login(ArrayList<Usuario> usuarios, String nombre, String password) {
         Usuario ret = null;
         boolean encontrado = false;
-        if (nombre.isEmpty() || password.isEmpty()) {
-            //throw new ApuestasException("Debe ingresar Usuario y Contraseña");
-        }
         for (int i = 0; i < usuarios.size() && !encontrado; i++) {
             Usuario u = usuarios.get(i);
             if (u.verificarDatos(nombre, password)) {
                 ret = u;
                 encontrado = true;
             }
-        }
-        if (!encontrado) {
-            //throw new ApuestasException("Acceso denegado, verifique los datos ingresados");
         }
         return ret;
     }
@@ -39,11 +32,16 @@ public class SistemaUsuarios {
         return ret;
     }
 
-    public Jugador loginJugador(String nombre, String password) {
+    public Jugador loginJugador(String nombre, String password) throws ApuestasException {
         Jugador ret = null;
+        if (nombre.isEmpty() || password.isEmpty()) {
+            throw new ApuestasException("Debe ingresar Usuario y Contraseña");
+        }
         Usuario u = login(jugadores, nombre, password);
         if (u != null) {
             ret = (Jugador) u;
+        } else {
+            throw new ApuestasException("Acceso denegado, verifique los datos ingresados");
         }
         return ret;
     }
@@ -60,19 +58,20 @@ public class SistemaUsuarios {
         this.cargarJugadores();
         this.cargarAdministradores();
     }
-    
-    private void cargarJugadores(){
+
+    private void cargarJugadores() {
         MapeadorJugador map = new MapeadorJugador();
         ArrayList<Jugador> lista = Persistencia.getInstancia().obtenerTodos(map);
-        for (Jugador j : lista){
+        for (Jugador j : lista) {
             this.agregarJugador(j);
-        }     
+        }
     }
-    private void cargarAdministradores(){
+
+    private void cargarAdministradores() {
         MapeadorAdministrador map = new MapeadorAdministrador();
         ArrayList<Administrador> lista = Persistencia.getInstancia().obtenerTodos(map);
-        for (Administrador a : lista){
+        for (Administrador a : lista) {
             this.agregarAdministrador(a);
-        } 
+        }
     }
 }

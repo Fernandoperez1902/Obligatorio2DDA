@@ -329,6 +329,11 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     public void mostrarVistaSaldo(Jugador jugador) {
         new VerSaldo(this, true, jugador).setVisible(true);
     }
+
+    @Override
+    public void mostrarError(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
     
     
 }
