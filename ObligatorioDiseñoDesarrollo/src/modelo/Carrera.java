@@ -4,6 +4,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Date;
 import observer.Observable;
+import utilidades.ManejoDeFechas;
 
 public class Carrera extends Observable {
 
@@ -12,11 +13,6 @@ public class Carrera extends Observable {
     private Date fecha;
     private ArrayList<Participante> participantes = new ArrayList<Participante>();
     private Estado estado;
-
-    public enum ErrorValidacion {
-
-        participantesInsuficientes, carreraOk
-    };
 
     //SE DEFINE CLASE ESTADO COMO UN ENUM
     public enum Estado {
@@ -131,12 +127,14 @@ public class Carrera extends Observable {
         }
         return participa;
     }
+    
+    public boolean fechaValida() {
+       return !fecha.before(ManejoDeFechas.tomarFechaSistemaSinHora());
+    }
 
-    public Enum validarCarrera() {
+    public void validarParticipantes() throws ApuestasException{
         if (participantes.size() < 2) {
-            return ErrorValidacion.participantesInsuficientes;
-        } else {
-            return ErrorValidacion.carreraOk;
+            throw new ApuestasException("Debe seleccionar al menos 2 caballos participantes");
         }
     }
 
@@ -189,5 +187,24 @@ public class Carrera extends Observable {
             }
         }
         return apuestas;
+    }
+    
+    public boolean existeMismoNumeroDeParticipante(int numero){
+        boolean existe = false;
+        int i = 0;
+        while(i < participantes.size() && !existe){
+            existe = participantes.get(i).getNumero() == numero;
+            i++;
+        }
+        return existe;
+    }
+    
+    public void validarParticipante(Participante participante) throws ApuestasException{
+        if (!participante.numeroValido() || existeMismoNumeroDeParticipante(participante.getNumero())){
+            throw new ApuestasException("Numero de caballo inválido");
+        }
+        if (!participante.dividendoValido()){
+            throw new ApuestasException("El dividendo debe ser mayor que 1");
+        }
     }
 }

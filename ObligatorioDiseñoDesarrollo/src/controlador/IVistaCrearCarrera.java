@@ -9,4 +9,6 @@ public interface IVistaCrearCarrera {
     public void mostrarProximaVista(Jornada jornada, Hipodromo hipodromo,
             Carrera carrera, boolean esNuevaJornada);
     
+    public void mostrarError(String mensaje);
+    
 }
