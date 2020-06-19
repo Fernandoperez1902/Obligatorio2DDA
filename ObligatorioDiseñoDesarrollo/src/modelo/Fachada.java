@@ -57,11 +57,14 @@ public class Fachada {
     }
 
     //Hablar con Fernando..
-    public boolean agregarApuesta(String nombre, String pass, String monto, Participante p, Carrera c) {
+    public boolean agregarApuesta(String nombre, String pass, String monto, Participante p, Carrera c) throws ApuestasException {
         boolean ret = false;
+        if (monto.isEmpty()) {
+            throw new ApuestasException("Debe ingresar el monto de su apuesta");
+        }
         float montoF = Float.parseFloat(monto);
         Jugador j = loginJugador(nombre, pass);
-        if (j != null) {
+        if (j != null && j.saldoSuficiente(p.montoPagadoSegunModalidad(montoF))) {
             Apuesta a = new Apuesta(j, p, montoF, c);
             if (sa.agregarApuesta(a)) {
                 p.agregarApuesta(a);

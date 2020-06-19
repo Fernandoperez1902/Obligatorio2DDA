@@ -39,18 +39,14 @@ public class Jugador extends Usuario {
     
     
     //Verifica la suficiencia de saldo.
-    public boolean saldoSuficiente(String montoApuesta) throws ApuestasException {
+    public boolean saldoSuficiente(float montoApuesta) throws ApuestasException {
         boolean ret = true;
-        if (montoApuesta.isEmpty()) {
-            throw new ApuestasException("Debe ingresar el monto de su apuesta");
-        }
-        float monto;
         try {
-            monto = Float.valueOf(montoApuesta);
+            montoApuesta = Float.valueOf(montoApuesta);
         } catch (Exception ex) {
             throw new ApuestasException("El monto ingresado no es válido");
         }
-        if (saldo < monto) {
+        if (saldo < montoApuesta) {
             ret = false;
             throw new ApuestasException("Saldo insuficiente");
         }

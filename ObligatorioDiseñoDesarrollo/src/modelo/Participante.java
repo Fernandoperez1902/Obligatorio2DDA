@@ -102,7 +102,7 @@ public class Participante {
 
     //Calcula la recompensa de una apuesta ganadora.
     public float montoGanadoSegunModalidad(float montoF) {
-        return this.tipoApuesta.calcularMontoGananciaSegunModalidad(montoF, dividendo);
+        return this.tipoApuesta.calcularMontoGananciaSegunModalidad(montoF, dividendo, montoTotalPagado());
     }
 
     public float montoTotalPagado() {
@@ -142,4 +142,5 @@ public class Participante {
             a.pagarApuestaJugador(montoGanadoSegunModalidad(a.getMontoApostado()));
         }
     }
+    
 }

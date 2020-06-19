@@ -7,7 +7,7 @@ public class Cuadruple extends ModalidadApuesta {
     }
 
     @Override
-    public float calcularMontoGananciaSegunModalidad(float loApostado, double dividendo) {
+    public float calcularMontoGananciaSegunModalidad(float loApostado, double dividendo, float montoTotalApostado) {
         float ret;
         if (dividendo >= 2) {
             ret =  (float)(loApostado * dividendo * 2);   

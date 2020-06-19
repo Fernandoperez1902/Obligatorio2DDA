@@ -7,7 +7,7 @@ public class Simple extends ModalidadApuesta {
     }
 
     @Override
-    public float calcularMontoGananciaSegunModalidad(float loApostado, double dividendo) {
+    public float calcularMontoGananciaSegunModalidad(float loApostado, double dividendo, float montoTotalApostado) {
         return loApostado * (float) dividendo;
     }
 }
