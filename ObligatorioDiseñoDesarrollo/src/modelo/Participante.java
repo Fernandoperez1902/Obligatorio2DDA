@@ -92,6 +92,14 @@ public class Participante {
         return caballo.equals(cab);
     }
 
+    public boolean numeroValido(){
+        return (numero <= 99999 && numero >= 1);
+    }
+    
+    public boolean dividendoValido(){
+        return (dividendo > (double)1);
+    }
+    
     public String getNombreCaballo() {
         return caballo.getNombre();
     }
@@ -142,4 +150,6 @@ public class Participante {
             a.pagarApuestaJugador(montoGanadoSegunModalidad(a.getMontoApostado()));
         }
     }
+   
+    
 }
