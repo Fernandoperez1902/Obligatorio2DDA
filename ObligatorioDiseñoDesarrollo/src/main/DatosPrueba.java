@@ -8,6 +8,7 @@ package main;
 import java.util.ArrayList;
 import java.util.Date;
 import modelo.Administrador;
+import modelo.ApuestasException;
 import modelo.Caballo;
 import modelo.Carrera;
 import modelo.Fachada;
@@ -26,7 +27,7 @@ import persistencia.Persistencia;
  */
 public class DatosPrueba {
 
-    public static void cargar() {
+    public static void cargar() throws ApuestasException {
         cargarAca();
         //cargarBaseDatos();
     }
@@ -39,7 +40,7 @@ public class DatosPrueba {
 
     }
 
-    private static void cargarAca() {
+    private static void cargarAca() throws ApuestasException {
         Fachada logica = Fachada.getInstancia();
         //CABALLOS
         Caballo c1 = new Caballo("Caballo1", "Responsable1");
@@ -105,6 +106,11 @@ public class DatosPrueba {
         Carrera ca2 = new Carrera("Nombre2", new Date(), 2, participantes2);
 
         //JORNADAS
+        
+        Jornada jor1 = new Jornada(new Date());
+        jor1.agregarCarrera(ca1);
+        h1.agregarJornada(jor1);
+        
         
         logica.agregarHipodromo(h1);
         logica.agregarHipodromo(h2);
