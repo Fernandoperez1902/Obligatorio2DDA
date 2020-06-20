@@ -33,24 +33,21 @@ public class Jugador extends Usuario {
 
     public void setUltimaApuesta(Apuesta ultimaApuesta) {
         this.ultimaApuesta = ultimaApuesta;
+        restarSaldo(ultimaApuesta.getMontoPagado());
     }
 
     // </editor-fold>
     
     
     //Verifica la suficiencia de saldo.
-    public boolean saldoSuficiente(String montoApuesta) throws ApuestasException {
+    public boolean saldoSuficiente(float montoApuesta) throws ApuestasException {
         boolean ret = true;
-        if (montoApuesta.isEmpty()) {
-            throw new ApuestasException("Debe ingresar el monto de su apuesta");
-        }
-        float monto;
         try {
-            monto = Float.valueOf(montoApuesta);
+            montoApuesta = Float.valueOf(montoApuesta);
         } catch (Exception ex) {
             throw new ApuestasException("El monto ingresado no es válido");
         }
-        if (saldo < monto) {
+        if (saldo < montoApuesta) {
             ret = false;
             throw new ApuestasException("Saldo insuficiente");
         }
@@ -60,7 +57,15 @@ public class Jugador extends Usuario {
 
     //Actualiza el saldo en función de lo perdido o ganado en una apuesta.
     //(recibe tanto valores positivos como negativos)
-    public float actualizarSaldo(float monto) {
-        return saldo = saldo + monto;
+    public void actualizarSaldo(float monto) {
+        setSaldo(saldo + monto);
+    }
+
+    private void restarSaldo(float monto) {
+        actualizarSaldo(monto*-1);
+    }
+    
+    private void sumarSaldo(float monto) {
+        actualizarSaldo(monto);
     }
 }

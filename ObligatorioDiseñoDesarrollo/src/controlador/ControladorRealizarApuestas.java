@@ -2,10 +2,13 @@ package controlador;
 
 import java.util.ArrayList;
 import java.util.Date;
+import modelo.Apuesta;
+import modelo.ApuestasException;
 import modelo.Carrera;
 import modelo.Fachada;
 import modelo.Hipodromo;
 import modelo.Jornada;
+import modelo.Jugador;
 import modelo.Participante;
 import observer.Observable;
 import observer.Observador;
@@ -22,14 +25,13 @@ public class ControladorRealizarApuestas implements Observador {
     public ControladorRealizarApuestas(IVistaRealizarApuestas vista) {
         this.modelo = Fachada.getInstancia();
         this.vista = vista;
-        //modelo.agregar(this);
+        modelo.agregar(this);
         cargarHipodromos();
         this.vista.habilitarBotonApuesta(false);
     }
 
     @Override
     public void actualizar(Observable origen, Object evento) {
-        cargarHipodromos();
         cargarCarreras(hipodromoSeleccionado);
         cargarParticipantes(carreraSeleccionada);
     }
@@ -44,7 +46,6 @@ public class ControladorRealizarApuestas implements Observador {
         this.hipodromoSeleccionado = h;
         Jornada deHoy = h.buscarJornada(new Date());
         if (deHoy != null) {
-
             vista.cargarCarreras(deHoy.getCarreras());
         }
     }
@@ -54,7 +55,21 @@ public class ControladorRealizarApuestas implements Observador {
     }
 
     public void agregarApuesta(String nombre, String pass, String monto) {
-        modelo.agregarApuesta(nombre, pass, monto, participanteSeleccionado, carreraSeleccionada);
+        try {
+            Jugador j = modelo.loginJugador(nombre, pass);
+            if (j != null) {
+                float montoFloat = convertirMonto(monto);
+                Apuesta apuesta = new Apuesta(j, participanteSeleccionado, montoFloat, carreraSeleccionada);
+                if (j.saldoSuficiente(apuesta.getMontoPagado())) {
+                    modelo.agregarApuesta(apuesta);
+                    j.setUltimaApuesta(apuesta);
+                    participanteSeleccionado.agregarApuesta(apuesta);
+                }
+            }
+        } catch (ApuestasException ex) {
+            vista.mostrarError(ex.getMessage());
+        }
+        vista.limpiarFormulario();
     }
 
     public void seleccionarHipodromo(int index) {
@@ -75,6 +90,20 @@ public class ControladorRealizarApuestas implements Observador {
         if (participanteSeleccionado != null && carreraSeleccionada.isAbierta()) {
             vista.habilitarBotonApuesta(true);
         }
+    }
+
+    private float convertirMonto(String monto) throws ApuestasException {
+        float montoF;
+        if (!monto.isEmpty()) {
+            try {
+                montoF = Float.parseFloat(monto);
+            } catch (NumberFormatException ae) {
+                throw new ApuestasException("Monto inválido");
+            }
+        } else {
+            throw new ApuestasException("Debe ingresar un monto");
+        }
+        return montoF;
     }
 
 }

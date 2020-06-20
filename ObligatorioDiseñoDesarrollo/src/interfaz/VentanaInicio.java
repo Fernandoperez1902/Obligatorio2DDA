@@ -33,7 +33,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btnAdministrador = new javax.swing.JButton();
         btnJugador = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA DE APUESTAS HÍPICAS");
@@ -65,9 +65,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         getContentPane().add(btnJugador);
         btnJugador.setBounds(250, 120, 180, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(130, 10, 200, 90);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(150, 20, 180, 80);
 
         setSize(new java.awt.Dimension(490, 226));
         setLocationRelativeTo(null);
@@ -84,7 +84,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministradorActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        //BaseDatos.getInstancia().desconectar();
+        dispose();
     }//GEN-LAST:event_formWindowClosing
 
     /**
@@ -125,6 +125,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdministrador;
     private javax.swing.JButton btnJugador;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

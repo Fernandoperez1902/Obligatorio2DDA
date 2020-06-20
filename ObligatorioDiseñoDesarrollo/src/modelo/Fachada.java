@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import observer.Observable;
 
-public class Fachada {
+public class Fachada extends Observable{
 
     private static Fachada instancia;
-
+    
     private SistemaUsuarios su = new SistemaUsuarios();
     private SistemaHipodromos sh = new SistemaHipodromos();
     private SistemaApuestas sa = new SistemaApuestas();
@@ -28,7 +28,7 @@ public class Fachada {
         return su.loginAdministrador(nombre, password);
     }
 
-    public Jugador loginJugador(String nombre, String password) {
+    public Jugador loginJugador(String nombre, String password) throws ApuestasException{
         return su.loginJugador(nombre, password);
     }
 
@@ -41,7 +41,7 @@ public class Fachada {
     }
 
     public void agregarHipodromo(Hipodromo h) {
-        sh.agregarHipodromo(h);
+        sh.agregar(h);
     }
 
     public void AgregarCaballo(Caballo c) {
@@ -56,20 +56,8 @@ public class Fachada {
         return sc.getCaballos();
     }
 
-    //Hablar con Fernando..
-    public boolean agregarApuesta(String nombre, String pass, String monto, Participante p, Carrera c) {
-        boolean ret = false;
-        float montoF = Float.parseFloat(monto);
-        Jugador j = loginJugador(nombre, pass);
-        if (j != null) {
-            Apuesta a = new Apuesta(j, p, montoF, c);
-            if (sa.agregarApuesta(a)) {
-                p.agregarApuesta(a);
-                j.actualizarSaldo(a.getMontoPagado());
-                ret = true;
-            }
-        }
-        return ret;
+    public boolean agregarApuesta(Apuesta a) throws ApuestasException {
+        return sa.agregarApuesta(a);
     }
 
     public ArrayList<Caballo> caballosDisponiblesEnFecha(Date fecha) {
@@ -80,7 +68,15 @@ public class Fachada {
         return sh.buscarJornada(h, f);
     }
 
+    
+    //MÉTODOS PARA LA CARGA DE INFORMACIÓN DESDE LA BASE DE DATOS
     public void cargarUsuarios() {
         su.cargarUsuarios();
+    }
+    public void cargarCaballos() {
+        sc.cargarCaballos();
+    }
+    public void cargarHipodromos() {
+        sh.cargarHipodromos();
     }
 }

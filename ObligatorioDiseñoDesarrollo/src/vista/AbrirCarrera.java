@@ -27,7 +27,7 @@ public class AbrirCarrera extends javax.swing.JFrame implements IVistaAbrirCarre
         lblNumero = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jScrollPane1.setViewportView(lstParticipantes);
 

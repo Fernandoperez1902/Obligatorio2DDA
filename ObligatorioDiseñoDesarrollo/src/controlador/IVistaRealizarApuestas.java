@@ -23,4 +23,8 @@ public interface IVistaRealizarApuestas {
     public void cargarParticipantes(ArrayList<Participante> participantes);
 
     public void habilitarBotonApuesta(boolean habilitar);
+
+    public void mostrarError(String message);
+
+    public void limpiarFormulario();
 }

@@ -16,7 +16,6 @@ public class Caballo {
         
     }
     
-    
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters"> 
 
     public int getOid() {

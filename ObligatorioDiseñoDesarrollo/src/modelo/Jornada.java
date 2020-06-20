@@ -10,7 +10,7 @@ public class Jornada extends Observable {
     private Date fecha;
     private int ultimoIdCarrera;
     private int ultimaCerrada;
-    private ArrayList<Carrera> carreras = new ArrayList<Carrera>();
+    private ArrayList<Carrera> carreras = new ArrayList();
 
     public Jornada(Date f) {
         this.fecha = f;

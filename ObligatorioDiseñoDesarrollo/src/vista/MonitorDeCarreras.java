@@ -38,7 +38,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
         lblCinco = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         lstApuestas.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
@@ -179,8 +179,8 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
         lblUno.setText("N° " + carreraSeleccionada.getNumeroCarrera() + " - " + carreraSeleccionada.getNombre());
         lblDos.setText("Estado: " + carreraSeleccionada.getEstado());
         lblTres.setText("Participantes: " + carreraSeleccionada.cantidadParticipantes());
-        lblCuatro.setText("Monto Apostado: $ " + carreraSeleccionada.montoTotalApostado());
-        lblCinco.setText("Monto Pagado: $ " + carreraSeleccionada.montoTotalPagado());
+        lblCuatro.setText("Monto Apostado: $ " + carreraSeleccionada.montoTotalPagado());
+        lblCinco.setText("Monto Pagado: $ " + carreraSeleccionada.montoTotalGanado());
     }
 
     @Override

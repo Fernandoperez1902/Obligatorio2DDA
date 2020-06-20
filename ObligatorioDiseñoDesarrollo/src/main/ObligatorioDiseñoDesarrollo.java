@@ -18,7 +18,7 @@ public class ObligatorioDiseñoDesarrollo {
 
 
     public static void main(String[] args) {
-        //conectar();
+        conectar();
         DatosPrueba.cargar();
         new VentanaInicio().setVisible(true);
     }

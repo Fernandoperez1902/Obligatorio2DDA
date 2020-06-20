@@ -1,4 +1,3 @@
-
 package modelo;
 
 import java.util.ArrayList;
@@ -14,9 +13,8 @@ public class Carrera extends Observable {
     private ArrayList<Participante> participantes = new ArrayList<Participante>();
     private Estado estado;
 
-    //SE DEFINE CLASE ESTADO COMO UN ENUM
+    //SE DEFINE ESTADO COMO UN ENUM
     public enum Estado {
-
         definida, abierta, cerrada, finalizada
     };
 
@@ -31,6 +29,7 @@ public class Carrera extends Observable {
         estado = Estado.definida;
     }
 
+    //METODO UTILIZADO ÚNICAMENTE POR LA CARGA DE DATOS
     public Carrera(String n, Date f, int numero, ArrayList<Participante> p) {
         nombre = n;
         fecha = f;
@@ -81,19 +80,18 @@ public class Carrera extends Observable {
     }
 
     // </editor-fold>
-    //Checkea si la carrera tiene apuestas efectuadas.
-
+    //VERIFICA SI LA CARRERA TIENE APUESTAS EFECTUADAS
     public boolean tieneApuestas() {
         boolean ret = false;
-        for(Participante p : participantes){
-            if (p.tieneApuestas()){
+        for (Participante p : participantes) {
+            if (p.tieneApuestas()) {
                 ret = true;
             }
         }
         return ret;
     }
 
-    //Valida que se trate de una fecha posterior a la actual
+    //VALIDA QUE SE TRATE DE UNA FECHA POSTERIOR A LA ACTUAL
     public boolean validarFecha(Date f) {
         boolean ret = false;
         if (f.compareTo(new Date()) >= 0) {
@@ -102,19 +100,17 @@ public class Carrera extends Observable {
         return ret;
     }
 
-    @Override
-    public String toString() {
-        return numeroCarrera + " - " + nombre + " - " + estado.toString();
-    }
-
+    //VERIFICA SI SE TRATA DE UNA CARRERA ABIERTA
     public boolean isAbierta() {
         return this.estado.equals(Estado.abierta);
     }
 
+    //VERIFICA SI SE TRATA DE UNA CARRERA FINALIZADA
     public boolean isFinalizada() {
         return this.estado.equals(Estado.finalizada);
     }
 
+    //VERIFICA LA PARTICIPACIÓN DE UN CABALLO EN LA ACTUAL CARRERA
     public boolean participaCaballo(Caballo cab) {
 
         boolean participa = false;
@@ -127,43 +123,56 @@ public class Carrera extends Observable {
         }
         return participa;
     }
-    
+
     public boolean fechaValida() {
-       return !fecha.before(ManejoDeFechas.tomarFechaSistemaSinHora());
+        return !fecha.before(ManejoDeFechas.tomarFechaSistemaSinHora());
     }
 
-    public void validarParticipantes() throws ApuestasException{
-        if (participantes.size() < 2) {
-            throw new ApuestasException("Debe seleccionar al menos 2 caballos participantes");
-        }
-    }
-
+    //MÉTODO PARA ABRIR UNA CARRERA
     public void abrir() {
         estado = Estado.abierta;
         this.avisar(Eventos.abrir);
+        Fachada.getInstancia().avisar(Eventos.abrir);
     }
 
+    //MÉTODO PARA CERRAR UNA CARRERA
     public void cerrar() {
         estado = Estado.cerrada;
         this.avisar(Eventos.cerrar);
+        Fachada.getInstancia().avisar(Eventos.cerrar);
     }
 
-    public void finalizar(){
+    //MÉTODO PARA FINALIZAR UNA CARRERA
+    public void finalizar() {
         estado = Estado.finalizada;
         this.avisar(Eventos.finalizar);
+        Fachada.getInstancia().avisar(Eventos.finalizar);
+
     }
 
+    //MÉTODO PARA AGREGAR UN NUEVO CABALLO PARTICIPANTE A LA CARRERA
     public void agregarParticipante(Participante p) {
         participantes.add(p);
     }
 
+    //DEVUELVE LA CANTIDAD DE PARTICIPANTES DE LA CARRERA
     public int cantidadParticipantes() {
         return getParticipantes().size();
     }
 
+    //CALCULA MONTO TOTAL APOSTADO INGRESADO POR LOS JUGADORES POR LA APUESTAS REALIZADAS
+    public float montoTotalApostado() {
+        float monto = 0;
+        for (Participante p : participantes) {
+            monto += p.montoTotalApostado();
+        }
+        return monto;
+    }
+
+    //CALCULA MONTO TOTAL EFECTIVAMENTE DESCONTADO A LOS JUGADORES POR LA APUESTAS REALIZADAS
     public float montoTotalPagado() {
         float ret = 0;
-        if(this.estado.equals(Estado.finalizada)){
+        if (this.estado.equals(Estado.finalizada)) {
             for (Participante p : participantes) {
                 ret += p.montoTotalPagado();
             }
@@ -171,40 +180,52 @@ public class Carrera extends Observable {
         return ret;
     }
 
-    public float montoTotalApostado(){
+    //CALCULA MONTO TOTAL GANADO POR LOS JUGADORES EN SUS APUESTAS EN LA PRESENTE CARRERA
+    public float montoTotalGanado() {
         float monto = 0;
-        for (Participante p : participantes){
-            monto += p.montoTotalApostado();
+        for (Participante p : participantes) {
+            monto += p.montoTotalGanado();
         }
         return monto;
     }
 
-    public ArrayList<Apuesta> getApuestasGanadoras(){
-        ArrayList<Apuesta>apuestas = null;
-        for (Participante p : participantes){
-            if(p.isGanador()){
+    //MÉTODO QUE DEVUELVE LAS APUESTAS GANADORAS EN LA ACTUAL CARRERA
+    public ArrayList<Apuesta> getApuestasGanadoras() {
+        ArrayList<Apuesta> apuestas = null;
+        for (Participante p : participantes) {
+            if (p.isGanador()) {
                 apuestas = p.getApuestas();
             }
         }
         return apuestas;
     }
-    
-    public boolean existeMismoNumeroDeParticipante(int numero){
+
+    //VALIDA LA UNICIDAD DE NÚMERO DE PARTICIPANTE EN LA CARRERA
+    public boolean existeMismoNumeroDeParticipante(int numero) {
         boolean existe = false;
         int i = 0;
-        while(i < participantes.size() && !existe){
+        while (i < participantes.size() && !existe) {
             existe = participantes.get(i).getNumero() == numero;
             i++;
         }
         return existe;
     }
-    
-    public void validarParticipante(Participante participante) throws ApuestasException{
-        if (!participante.numeroValido() || existeMismoNumeroDeParticipante(participante.getNumero())){
+
+    //VALIDACIONES NECESARIAS DE PARTICIPANTES PARTICIPANTE DE UNA CARRERA
+    public void validarParticipante(Participante participante) throws ApuestasException {
+        if (!participante.numeroValido() || existeMismoNumeroDeParticipante(participante.getNumero())) {
             throw new ApuestasException("Numero de caballo inválido");
         }
-        if (!participante.dividendoValido()){
+        if (!participante.dividendoValido()) {
             throw new ApuestasException("El dividendo debe ser mayor que 1");
         }
     }
+
+    //VALIDA LA CANTIDAD MÍNIMA DE DOS PARTICIPANTES EN UNA CARRERA
+    public void validarParticipantes() throws ApuestasException {
+        if (participantes.size() < 2) {
+            throw new ApuestasException("Debe seleccionar al menos 2 caballos participantes");
+        }
+    }
+
 }

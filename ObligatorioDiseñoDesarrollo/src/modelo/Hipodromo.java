@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Hipodromo {
 
+    private int oid;
     private String nombre;
     private String direccion;
     private ArrayList<Jornada> jornadas = new ArrayList<Jornada>();
@@ -15,7 +16,19 @@ public class Hipodromo {
         direccion = d;
     }
 
+    public Hipodromo() {
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
+
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
+    }  
+    
     public String getNombre() {
         return nombre;
     }
