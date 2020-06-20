@@ -104,8 +104,8 @@ public class DatosPrueba {
         ca1.abrir();
         Carrera ca2 = new Carrera("Nombre2", new Date(), 2, participantes2);
 
-        //JORNADAS 
-//        Problem: The project uses the file/folder called "jcalendar-1.4.jar", but this file/folder was not found.rnadas(jornadas);
+        //JORNADAS
+        
         logica.agregarHipodromo(h1);
         logica.agregarHipodromo(h2);
         logica.agregarHipodromo(h3);
