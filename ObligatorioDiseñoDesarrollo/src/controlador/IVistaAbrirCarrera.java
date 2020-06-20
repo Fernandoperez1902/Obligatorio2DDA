@@ -13,4 +13,8 @@ public interface IVistaAbrirCarrera {
     
     public String formatearParticipante(Participante participante);
     
+    public void cerrar();
+    
+    public void mostrarError(String mensaje);
+    
 }

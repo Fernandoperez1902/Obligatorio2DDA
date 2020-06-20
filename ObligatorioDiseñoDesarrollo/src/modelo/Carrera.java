@@ -15,10 +15,12 @@ public class Carrera extends Observable {
 
     //SE DEFINE ESTADO COMO UN ENUM
     public enum Estado {
+
         definida, abierta, cerrada, finalizada
     };
 
     public enum Eventos {
+
         abrir, cerrar, finalizar
     };
 
@@ -81,7 +83,7 @@ public class Carrera extends Observable {
 
     // </editor-fold>
     //VERIFICA SI LA CARRERA TIENE APUESTAS EFECTUADAS
-    public boolean tieneApuestas() {
+   /*public boolean tieneApuestas() {
         boolean ret = false;
         for (Participante p : participantes) {
             if (p.tieneApuestas()) {
@@ -89,17 +91,18 @@ public class Carrera extends Observable {
             }
         }
         return ret;
-    }
+    }*/
 
-    //VALIDA QUE SE TRATE DE UNA FECHA POSTERIOR A LA ACTUAL
-    public boolean validarFecha(Date f) {
-        boolean ret = false;
-        if (f.compareTo(new Date()) >= 0) {
-            ret = true;
+    public ArrayList<Participante> participantesSinApuestas(){
+        ArrayList<Participante> sinApuestas = new ArrayList();
+        for (Participante p : participantes){
+            if (!p.tieneApuestas()){
+                sinApuestas.add(p);
+            }
         }
-        return ret;
+        return sinApuestas;
     }
-
+    
     //VERIFICA SI SE TRATA DE UNA CARRERA ABIERTA
     public boolean isAbierta() {
         return this.estado.equals(Estado.abierta);
@@ -112,6 +115,11 @@ public class Carrera extends Observable {
     //VERIFICA SI SE TRATA DE UNA CARRERA FINALIZADA
     public boolean isFinalizada() {
         return this.estado.equals(Estado.finalizada);
+    }
+
+    //VERIFICA SI SE TRATA DE UNA CARRERA DEFINIDA
+    public boolean isDefinida() {
+        return this.estado.equals(Estado.definida);
     }
 
     //VERIFICA LA PARTICIPACIÓN DE UN CABALLO EN LA ACTUAL CARRERA

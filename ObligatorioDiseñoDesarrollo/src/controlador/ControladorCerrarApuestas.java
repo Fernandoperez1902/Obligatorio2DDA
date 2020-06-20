@@ -11,13 +11,20 @@ public class ControladorCerrarApuestas {
     private Carrera carreraAbierta;
     private IVistaCerrarApuestas vista;
     
-    public ControladorCerrarApuestas(Hipodromo seleccionado, IVistaCerrarApuestas vista){
-        
+    public ControladorCerrarApuestas(Hipodromo seleccionado, IVistaCerrarApuestas vista){        
         this.seleccionado = seleccionado;
-        this.carreraAbierta = seleccionado.buscarCarreraAbierta();
         this.vista = vista; 
-        this.vista.mostrarCarrera(carreraAbierta);
-             
+        cargarCarrera();    
+    }
+    
+    public void cargarCarrera(){       
+        carreraAbierta = seleccionado.buscarCarreraAbierta();
+        if (carreraAbierta != null){
+            vista.mostrarCarrera(carreraAbierta);
+        } else {
+            vista.mostrarError("No hay carreras para cerrar");
+            vista.cerrar();
+        }
     }
     
     public void cerrarApuesta(){

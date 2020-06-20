@@ -1,14 +1,13 @@
 
 package controlador;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import modelo.Administrador;
 import modelo.Apuesta;
 import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Jornada;
+import utilidades.ManejoDeFechas;
 
 
 public class ControladorMonitorDeCarrera {
@@ -20,13 +19,13 @@ public class ControladorMonitorDeCarrera {
     public ControladorMonitorDeCarrera(IVistaMonitorDeCarrera unaVista, Hipodromo hipodromo){
         this.vista = unaVista;
         this.modelo = hipodromo;
-        vista.cargarCarreras(modelo.buscarJornada(new Date()).getCarreras());
+        vista.cargarCarreras(modelo.buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora()).getCarreras());
     }
     
     public void cargarCarreras(Date fecha){
         ArrayList<Carrera>carreras = null;
         if (fecha == null){
-            fecha = new Date();
+            fecha = ManejoDeFechas.tomarFechaSistemaSinHora();
         }
         Jornada jornada = modelo.buscarJornada(fecha);
         if(jornada !=null){
@@ -36,7 +35,7 @@ public class ControladorMonitorDeCarrera {
     }
 
     public void seleccionarCarrera(int index) {
-        carreraSeleccionada = modelo.buscarJornada(new Date()).getCarreras().get(index);
+        carreraSeleccionada = modelo.buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora()).getCarreras().get(index);
         vista.mostrarDetalle(carreraSeleccionada);
         vista.mostrarParticipantes(carreraSeleccionada.getParticipantes());
         ArrayList<Apuesta>apuestas = null;

@@ -4,6 +4,7 @@ package vista;
 import controlador.ControladorAbrirCarrera;
 import controlador.IVistaAbrirCarrera;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Participante;
@@ -97,10 +98,19 @@ public class AbrirCarrera extends javax.swing.JFrame implements IVistaAbrirCarre
                 + participante.getDividendo();
     }
 
+    @Override
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+    
     private void btnAbrirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirBotonActionPerformed
         controlador.abrirCarrera();
-        this.dispose();
     }//GEN-LAST:event_btnAbrirBotonActionPerformed
+
+    @Override
+    public void cerrar() {
+        this.dispose();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

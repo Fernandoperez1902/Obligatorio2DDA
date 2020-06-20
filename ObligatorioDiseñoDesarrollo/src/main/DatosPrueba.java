@@ -11,15 +11,15 @@ import modelo.Administrador;
 import modelo.ApuestasException;
 import modelo.Caballo;
 import modelo.Carrera;
+import modelo.Cuadruple;
 import modelo.Fachada;
 import modelo.Hipodromo;
 import modelo.Jornada;
 import modelo.Jugador;
 import modelo.Participante;
-import modelo.SistemaCaballos;
-import modelo.SistemaHipodromos;
-import persistencia.BaseDatos;
-import persistencia.Persistencia;
+import modelo.Simple;
+import modelo.Triple;
+import utilidades.ManejoDeFechas;
 
 /**
  *
@@ -73,7 +73,7 @@ public class DatosPrueba {
         participantes2.add(p4);
         p4.setGanador(true);
 
-        //HIPODROMOS 
+        //HIPODROMOS
         Hipodromo h1 = new Hipodromo("Hipódromo1", "Dirección1");
         Hipodromo h2 = new Hipodromo("Hipódromo2", "Dirección2");
         Hipodromo h3 = new Hipodromo("Hipódromo3", "Dirección3");
@@ -100,6 +100,16 @@ public class DatosPrueba {
         logica.agregarJugador(j4);
         logica.agregarJugador(j5);
 
+        //MODALIDADES
+        Simple simple = new Simple();
+        Triple triple = new Triple();
+        Cuadruple cuadruple = new Cuadruple();
+
+        logica.agregarModalidad(simple);
+        logica.agregarModalidad(triple);
+        logica.agregarModalidad(cuadruple);
+
+
         //CARRERAS
         Carrera ca1 = new Carrera("Nombre1", new Date(), 1, participantes);
         ca1.abrir();
@@ -107,11 +117,11 @@ public class DatosPrueba {
 
         //JORNADAS
         try {
-            Jornada jor1 = new Jornada(new Date());
+            Jornada jor1 = new Jornada(ManejoDeFechas.tomarFechaSistemaSinHora());
             jor1.agregarCarrera(ca1);
             h1.agregarJornada(jor1);
         } catch (ApuestasException e) {
-
+            System.out.println(e.getMessage());
         }
 
         logica.agregarHipodromo(h1);

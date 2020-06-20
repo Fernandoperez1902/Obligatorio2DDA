@@ -138,7 +138,7 @@ public class Participante {
     }
 
     public boolean tieneApuestas() {
-        return apuestas.isEmpty();
+        return !apuestas.isEmpty();
     }
 
     public void agregarApuesta(Apuesta a) {
@@ -152,5 +152,8 @@ public class Participante {
         }
     }
 
+    public String getModalidad(){
+        return tipoApuesta.tipoModalidad();
+    }
 
 }

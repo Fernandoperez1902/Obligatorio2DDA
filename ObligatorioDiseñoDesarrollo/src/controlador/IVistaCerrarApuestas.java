@@ -12,6 +12,8 @@ public interface IVistaCerrarApuestas {
     public void mostrarParticipantesCarrera(ArrayList<Participante> participantes);
     
     public String formatearParticipante(Participante participante);
+    
+    public void mostrarError(String mensaje);
 
     public void cerrar();
 }

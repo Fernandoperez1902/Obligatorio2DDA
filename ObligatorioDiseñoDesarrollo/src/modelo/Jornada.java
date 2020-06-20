@@ -50,7 +50,7 @@ public class Jornada extends Observable {
     public void setCarreras(ArrayList<Carrera> carreras) {
         this.carreras = carreras;
     }
-    // </editor-fold>       
+    // </editor-fold>
 
     public enum Eventos {
 
@@ -82,24 +82,34 @@ public class Jornada extends Observable {
     }
 
     public Carrera traerProximaCarrera() {
-        return carreras.get(ultimaCerrada + 1);
-    }
-
-    public Carrera buscarCarreraAbierta() {
         Carrera carrera = null;
-        if (carreras.get(ultimaCerrada + 1).isAbierta()) {
-            carrera = carreras.get(ultimaCerrada + 1);
+        if (ultimaCerrada + 1 < carreras.size()) {
+            if (carreras.get(ultimaCerrada + 1).isDefinida()
+                    && carreras.get(ultimaCerrada).isFinalizada()) {
+                carrera = carreras.get(ultimaCerrada + 1);
+            }
         }
         return carrera;
     }
 
-    public Carrera buscarUltimaCarreraCerrada() {
-        Carrera ultCerrada = carreras.get(ultimaCerrada);
-        if (!ultCerrada.isFinalizada()) {
-            return carreras.get(ultimaCerrada);
-        } else {
-            return null;
+    public Carrera buscarCarreraAbierta() {
+        Carrera carrera = null;
+        if (ultimaCerrada + 1 < carreras.size()) {
+            if (carreras.get(ultimaCerrada + 1).isAbierta()) {
+                carrera = carreras.get(ultimaCerrada + 1);
+            }
         }
+        return carrera;
+    }
+
+    Carrera buscarUltimaCarreraCerrada() {
+        Carrera ultCerrada = null;
+        if (ultimaCerrada != -1) {
+            if (!carreras.get(ultimaCerrada).isFinalizada()) {
+                ultCerrada = carreras.get(ultimaCerrada);
+            }
+        }
+        return ultCerrada;
     }
 
     public boolean existeNombreCarrera(String nombre) {

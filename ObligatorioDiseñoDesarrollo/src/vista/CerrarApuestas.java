@@ -4,6 +4,7 @@ package vista;
 import controlador.ControladorCerrarApuestas;
 import controlador.IVistaCerrarApuestas;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Participante;
@@ -55,7 +56,7 @@ public class CerrarApuestas extends javax.swing.JFrame implements IVistaCerrarAp
         lstParticipantes = new javax.swing.JList();
         btnCerrarApuestas = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -139,6 +140,11 @@ public class CerrarApuestas extends javax.swing.JFrame implements IVistaCerrarAp
     }//GEN-LAST:event_formWindowClosing
 
     @Override
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+    
+    @Override
     public void cerrar() {
         this.dispose();
     }
@@ -155,6 +161,4 @@ public class CerrarApuestas extends javax.swing.JFrame implements IVistaCerrarAp
     private javax.swing.JTextField txtNumeroCarrera;
     // End of variables declaration//GEN-END:variables
 
-
-   
 }
