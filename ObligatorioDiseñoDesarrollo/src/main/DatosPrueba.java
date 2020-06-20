@@ -11,15 +11,15 @@ import modelo.Administrador;
 import modelo.ApuestasException;
 import modelo.Caballo;
 import modelo.Carrera;
+import modelo.Cuadruple;
 import modelo.Fachada;
 import modelo.Hipodromo;
 import modelo.Jornada;
 import modelo.Jugador;
 import modelo.Participante;
-import modelo.SistemaCaballos;
-import modelo.SistemaHipodromos;
-import persistencia.BaseDatos;
-import persistencia.Persistencia;
+import modelo.Simple;
+import modelo.Triple;
+import utilidades.ManejoDeFechas;
 
 /**
  *
@@ -27,7 +27,7 @@ import persistencia.Persistencia;
  */
 public class DatosPrueba {
 
-    public static void cargar() throws ApuestasException {
+    public static void cargar() {
         cargarAca();
         //cargarBaseDatos();
     }
@@ -40,7 +40,7 @@ public class DatosPrueba {
 
     }
 
-    private static void cargarAca() throws ApuestasException {
+    private static void cargarAca() {
         Fachada logica = Fachada.getInstancia();
         //CABALLOS
         Caballo c1 = new Caballo("Caballo1", "Responsable1");
@@ -100,18 +100,30 @@ public class DatosPrueba {
         logica.agregarJugador(j4);
         logica.agregarJugador(j5);
 
+        //MODALIDADES
+        Simple simple = new Simple();
+        Triple triple = new Triple();
+        Cuadruple cuadruple = new Cuadruple();
+        
+        logica.agregarModalidad(simple);
+        logica.agregarModalidad(triple);
+        logica.agregarModalidad(cuadruple);
+        
+        
         //CARRERAS
         Carrera ca1 = new Carrera("Nombre1", new Date(), 1, participantes);
         ca1.abrir();
         Carrera ca2 = new Carrera("Nombre2", new Date(), 2, participantes2);
 
         //JORNADAS
-        
-        Jornada jor1 = new Jornada(new Date());
-        jor1.agregarCarrera(ca1);
-        h1.agregarJornada(jor1);
-        
-        
+        try {
+            Jornada jor1 = new Jornada(ManejoDeFechas.tomarFechaSistemaSinHora());
+            jor1.agregarCarrera(ca1);
+            h1.agregarJornada(jor1);
+        } catch (ApuestasException e) {
+            System.out.println(e.getMessage());
+        }
+
         logica.agregarHipodromo(h1);
         logica.agregarHipodromo(h2);
         logica.agregarHipodromo(h3);

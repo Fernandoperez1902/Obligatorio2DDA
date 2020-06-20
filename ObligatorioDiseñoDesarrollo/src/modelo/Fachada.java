@@ -60,6 +60,14 @@ public class Fachada extends Observable{
         return sa.agregarApuesta(a);
     }
 
+    public void agregarModalidad(ModalidadApuesta modalidad){
+        sa.agregarModalidad(modalidad);
+    }
+    
+    public ArrayList<ModalidadApuesta> getModalidades(){
+        return sa.getModalidadades();
+    }
+    
     public ArrayList<Caballo> caballosDisponiblesEnFecha(Date fecha) {
         return sh.caballosDisponiblesEnFecha(fecha);
     }

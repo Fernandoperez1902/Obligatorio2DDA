@@ -16,4 +16,9 @@ public class Triple extends ModalidadApuesta {
         }
         return ret;
     }
+
+    @Override
+    public String tipoModalidad() {
+        return "Triple";
+    }
 }

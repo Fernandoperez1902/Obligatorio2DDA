@@ -15,6 +15,10 @@ public interface IVistaMonitorDeCarrera {
 
     public void mostrarParticipantes(ArrayList<Participante> participantes);
 
+    public String formatearParticipante(Participante participante);
+    
+    public String formatearApuesta(Apuesta apuesta);
+    
     public void mostrarDetalleApuestasGanadoras(ArrayList<Apuesta> apuestas);
     
 }

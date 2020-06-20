@@ -3,6 +3,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
+import utilidades.ManejoDeFechas;
 
 public class Hipodromo {
 
@@ -116,17 +117,17 @@ public class Hipodromo {
     }
 
     public Carrera buscarProximaCarreraDelDia(){
-        Jornada jornada = buscarJornada(new Date());
+        Jornada jornada = buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
         return jornada.traerProximaCarrera();
     }
     
     public Carrera buscarCarreraAbierta(){
-        Jornada jornada = buscarJornada(new Date());
+        Jornada jornada = buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
         return jornada.buscarCarreraAbierta();
     }
     
     public Carrera buscarUltimaCarreraCerrada(){
-        Jornada jornada = buscarJornada(new Date());
+        Jornada jornada = buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
         return jornada.buscarUltimaCarreraCerrada();
     }
     

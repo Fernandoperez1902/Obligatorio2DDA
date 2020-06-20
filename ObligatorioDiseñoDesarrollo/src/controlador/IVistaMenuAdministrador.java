@@ -19,4 +19,6 @@ public interface IVistaMenuAdministrador {
     public void llamarFinalizarCarrera(Hipodromo hip);
       
     public void llamarMonitorearCarrera(Hipodromo hip);
+    
+    public void llamarCambiarModadlidad(Hipodromo hip);
 }

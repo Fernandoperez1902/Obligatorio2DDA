@@ -17,4 +17,9 @@ public class Cuadruple extends ModalidadApuesta {
         return ret;
     }
 
+    @Override
+    public String tipoModalidad() {
+        return "Cuadruple";
+    }
+
 }

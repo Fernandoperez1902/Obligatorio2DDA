@@ -4,7 +4,6 @@ import controlador.ControladorMonitorDeCarrera;
 import controlador.IVistaMonitorDeCarrera;
 import java.util.ArrayList;
 import java.util.Date;
-import modelo.Administrador;
 import modelo.Apuesta;
 import modelo.Carrera;
 import modelo.Hipodromo;
@@ -149,31 +148,14 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
     }
 
     //Formatos para las listas propias de esta vista.
-    private String formatearCarrera(Carrera carrera) {
+    public String formatearCarrera(Carrera carrera) {
         return "n° " + carrera.getNumeroCarrera() + " - " + carrera.getNombre() + " - " + carrera.getEstado();
     }
 
-    private String formatearApuesta(Apuesta apuesta) {
+    public String formatearApuesta(Apuesta apuesta) {
         return apuesta.getJugador().getNombreCompleto();
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCargar;
-    private com.toedter.calendar.JDateChooser dateChooser;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblCinco;
-    private javax.swing.JLabel lblCuatro;
-    private javax.swing.JLabel lblDos;
-    private javax.swing.JLabel lblTres;
-    private javax.swing.JLabel lblUno;
-    private javax.swing.JList lstApuestas;
-    private javax.swing.JList lstCarreras;
-    private javax.swing.JList lstParticipantes;
-    // End of variables declaration//GEN-END:variables
-
+    
     @Override
     public void mostrarDetalle(Carrera carreraSeleccionada) {
         lblUno.setText("N° " + carreraSeleccionada.getNumeroCarrera() + " - " + carreraSeleccionada.getNombre());
@@ -196,7 +178,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
         lstParticipantes.setListData(lista.toArray());
     }
 
-    private String formatearParticipante(Participante participante) {
+    public String formatearParticipante(Participante participante) {
         String ganador = "";
         if (participante.isGanador()) {
             ganador = " * GANADOR";
@@ -219,4 +201,23 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
         }
         lstApuestas.setListData(lista.toArray());
     }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCargar;
+    private com.toedter.calendar.JDateChooser dateChooser;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblCinco;
+    private javax.swing.JLabel lblCuatro;
+    private javax.swing.JLabel lblDos;
+    private javax.swing.JLabel lblTres;
+    private javax.swing.JLabel lblUno;
+    private javax.swing.JList lstApuestas;
+    private javax.swing.JList lstCarreras;
+    private javax.swing.JList lstParticipantes;
+    // End of variables declaration//GEN-END:variables
+
+    
 }

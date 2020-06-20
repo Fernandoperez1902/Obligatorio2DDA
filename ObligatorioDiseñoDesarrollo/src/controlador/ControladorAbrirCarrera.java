@@ -1,10 +1,8 @@
 
 package controlador;
 
-import java.util.Date;
 import modelo.Carrera;
 import modelo.Hipodromo;
-import modelo.Jornada;
 
 public class ControladorAbrirCarrera {
     
@@ -13,17 +11,24 @@ public class ControladorAbrirCarrera {
     private IVistaAbrirCarrera vista;
     
     public ControladorAbrirCarrera(Hipodromo seleccionado, IVistaAbrirCarrera vista){
-        
         this.seleccionado = seleccionado;
         this.vista = vista;
-        this.modeloCarrera = seleccionado.buscarProximaCarreraDelDia();
-        this.vista.mostrarCarrera(modeloCarrera);
-        
+        cargarCarrera();       
     }
-    
-    public void abrirCarrera(){
-        this.modeloCarrera.abrir();
+
+    public void cargarCarrera(){      
+        modeloCarrera = seleccionado.buscarProximaCarreraDelDia();
+        if (modeloCarrera != null){
+            vista.mostrarCarrera(modeloCarrera);
+        } else {
+            vista.mostrarError("No hay carreras para abrir");
+            vista.cerrar();
+        }
     }
-    
    
+    public void abrirCarrera(){
+        modeloCarrera.abrir();
+        vista.cerrar();
+    }
+    
 }

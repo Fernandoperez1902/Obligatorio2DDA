@@ -74,7 +74,7 @@ public class Jornada extends Observable {
         return participa;
     }
 
-    public void agregarCarrera(Carrera carrera) throws ApuestasException{
+    public void agregarCarrera(Carrera carrera) throws ApuestasException {
         carrera.validarParticipantes();
         carreras.add(carrera);
         avisar(Eventos.nuevaCarrera);
@@ -82,41 +82,51 @@ public class Jornada extends Observable {
     }
 
     public Carrera traerProximaCarrera() {
-        return carreras.get(ultimaCerrada + 1);
+        Carrera carrera = null;
+        if (ultimaCerrada + 1 < carreras.size()) {
+            if (carreras.get(ultimaCerrada + 1).isDefinida()
+                    && carreras.get(ultimaCerrada).isFinalizada()) {
+                carrera = carreras.get(ultimaCerrada + 1);
+            }
+        }
+        return carrera;
     }
 
     public Carrera buscarCarreraAbierta() {
         Carrera carrera = null;
-        if (carreras.get(ultimaCerrada + 1).isAbierta()) {
-            carrera = carreras.get(ultimaCerrada + 1);
+        if (ultimaCerrada + 1 < carreras.size()) {
+            if (carreras.get(ultimaCerrada + 1).isAbierta()) {
+                carrera = carreras.get(ultimaCerrada + 1);
+            }
         }
         return carrera;
     }
 
     Carrera buscarUltimaCarreraCerrada() {
-        Carrera ultCerrada = carreras.get(ultimaCerrada);
-        if (!ultCerrada.isFinalizada()) {
-            return carreras.get(ultimaCerrada);
-        } else {
-            return null;
+        Carrera ultCerrada = null;
+        if (ultimaCerrada != -1) {
+            if (!carreras.get(ultimaCerrada).isFinalizada()) {
+                ultCerrada = carreras.get(ultimaCerrada);
+            }
         }
+        return ultCerrada;
     }
-    
-    public boolean existeNombreCarrera(String nombre){
+
+    public boolean existeNombreCarrera(String nombre) {
         boolean existe = false;
         int i = 0;
-        while (i < carreras.size() && !existe){
-            existe = carreras.get(i).getNombre().equals(nombre);           
+        while (i < carreras.size() && !existe) {
+            existe = carreras.get(i).getNombre().equals(nombre);
             i++;
         }
         return existe;
     }
-    
-    public void validarDatosCarrera(Carrera unaCarrera) throws ApuestasException{
-        if (!unaCarrera.fechaValida()){
+
+    public void validarDatosCarrera(Carrera unaCarrera) throws ApuestasException {
+        if (!unaCarrera.fechaValida()) {
             throw new ApuestasException("Fecha inválida");
         }
-        if (existeNombreCarrera(unaCarrera.getNombre())){
+        if (existeNombreCarrera(unaCarrera.getNombre())) {
             throw new ApuestasException("Nombre inválido");
         }
     }
@@ -124,4 +134,5 @@ public class Jornada extends Observable {
     public void actualizarUltimaCerrada() {
         ultimaCerrada++;
     }
+
 }

@@ -3,6 +3,7 @@ package vista;
 import controlador.ControladorFinalizarCarrera;
 import controlador.IVistaFinalizarCarrera;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Participante;
@@ -62,7 +63,7 @@ public class FinalizarCarrera extends javax.swing.JFrame implements IVistaFinali
         txtGanador = new javax.swing.JTextField();
         lblGanador = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(385, 285));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -172,6 +173,11 @@ public class FinalizarCarrera extends javax.swing.JFrame implements IVistaFinali
     }//GEN-LAST:event_lstParticipantesValueChanged
 
     @Override
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+    
+    @Override
     public void cerrar() {
         this.dispose();
     }
@@ -189,5 +195,6 @@ public class FinalizarCarrera extends javax.swing.JFrame implements IVistaFinali
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
+
 
 }

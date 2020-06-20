@@ -17,9 +17,19 @@ public class ControladorFinalizarCarrera {
     public ControladorFinalizarCarrera(Hipodromo seleccionado, IVistaFinalizarCarrera vista){
         this.seleccionado = seleccionado;
         this.vista = vista;
-        this.ultimaCerrada = seleccionado.buscarUltimaCarreraCerrada();
-        this.participantes = ultimaCerrada.getParticipantes(); 
-        vista.mostrarCarrera(ultimaCerrada);
+        this.participantes = new ArrayList(); 
+        cargarCarrera();
+    }
+    
+    public void cargarCarrera(){       
+        ultimaCerrada = seleccionado.buscarUltimaCarreraCerrada();
+        if (ultimaCerrada != null){
+            participantes = ultimaCerrada.getParticipantes();
+            vista.mostrarCarrera(ultimaCerrada);
+        } else {
+            vista.mostrarError("No hay con carreras con apuestas cerradas para asignar ganador");
+            vista.cerrar();
+        }
     }
     
     public void seleccionarGanador(int index){

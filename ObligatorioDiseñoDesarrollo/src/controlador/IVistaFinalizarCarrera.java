@@ -15,5 +15,7 @@ public interface IVistaFinalizarCarrera {
 
     public void mostrarGanador(Participante participante);
     
+    public void mostrarError(String mensaje);
+    
     public void cerrar();
 }

@@ -45,4 +45,9 @@ public class ControladorMenuAdministrador {
     public void monitorDeCarrera(){
         vista.llamarMonitorearCarrera(seleccionado);
     }
+    
+    public void cambiarModalidad() {
+        vista.llamarCambiarModadlidad(seleccionado);
+    }
+    
 }
