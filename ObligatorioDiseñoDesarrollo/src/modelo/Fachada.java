@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import observer.Observable;
 
-public class Fachada {
+public class Fachada extends Observable{
 
     private static Fachada instancia;
-
+    
     private SistemaUsuarios su = new SistemaUsuarios();
     private SistemaHipodromos sh = new SistemaHipodromos();
     private SistemaApuestas sa = new SistemaApuestas();
@@ -41,7 +41,7 @@ public class Fachada {
     }
 
     public void agregarHipodromo(Hipodromo h) {
-        sh.agregarHipodromo(h);
+        sh.agregar(h);
     }
 
     public void AgregarCaballo(Caballo c) {
@@ -71,5 +71,11 @@ public class Fachada {
 
     public void cargarUsuarios() {
         su.cargarUsuarios();
+    }
+    public void cargarCaballos() {
+        sc.cargarCaballos();
+    }
+    public void cargarHipodromos() {
+        sh.cargarHipodromos();
     }
 }

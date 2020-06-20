@@ -25,4 +25,6 @@ public interface IVistaRealizarApuestas {
     public void habilitarBotonApuesta(boolean habilitar);
 
     public void mostrarError(String message);
+
+    public void limpiarFormulario();
 }

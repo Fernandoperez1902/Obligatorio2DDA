@@ -38,7 +38,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
         lblCinco = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         lstApuestas.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N

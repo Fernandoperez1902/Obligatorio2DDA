@@ -65,7 +65,7 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         jScrollPane4 = new javax.swing.JScrollPane();
         lstHipodromo = new javax.swing.JList();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -214,14 +214,12 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         String usuario = txtUsuario.getText();
         String password = new String(txtPassword.getPassword());
         consultarSaldo(usuario, password);
-        limpiarFormulario();
     }//GEN-LAST:event_btnConsultarSaldoActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String nombre = txtUsuario.getText();
         String pass = new String(txtPassword.getPassword());
         controladorRealizarApuesta.agregarApuesta(nombre, pass, txtMonto.getText());
-        limpiarFormulario();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void lstCaballoValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCaballoValueChanged
@@ -241,15 +239,15 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     }//GEN-LAST:event_formWindowClosing
 
     
-    private void limpiarFormulario() {
+    @Override
+    public void limpiarFormulario() {
         ArrayList<String> lista = new ArrayList();
-        lstHipodromo.removeAll();
+        controladorRealizarApuesta.cargarHipodromos();
         lstCaballo.setListData(lista.toArray());
         lstCarrera.setListData(lista.toArray());
         txtMonto.setText("");
         txtUsuario.setText("");
         txtPassword.setText("");
-        controladorRealizarApuesta.cargarHipodromos();
     }
 
     @Override

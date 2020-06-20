@@ -1,8 +1,10 @@
-
 package modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
+import mapeadores.MapeadorCaballo;
+import mapeadores.MapeadorHipodromo;
+import persistencia.Persistencia;
 
 public class SistemaHipodromos {
 
@@ -12,7 +14,7 @@ public class SistemaHipodromos {
         return hipodromos;
     }
 
-    public void agregarHipodromo(Hipodromo h) {
+    public void agregar(Hipodromo h) {
         if (validarHipodromo(h.getNombre())) {
             hipodromos.add(h);
         }
@@ -52,6 +54,18 @@ public class SistemaHipodromos {
         Jornada jornada = null;
         jornada = h.buscarJornada(f);
         return jornada;
+    }
+
+    public void cargarHipodromos() {
+        MapeadorHipodromo map = new MapeadorHipodromo();
+        ArrayList<Hipodromo> lista = Persistencia.getInstancia().obtenerTodos(map);
+        for (Hipodromo h : lista) {
+            this.agregarHipodromo(h);
+        }
+    }
+
+    private void agregarHipodromo(Hipodromo h) {
+        hipodromos.add(h);
     }
 
 }

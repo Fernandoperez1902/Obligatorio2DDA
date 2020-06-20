@@ -25,14 +25,13 @@ public class ControladorRealizarApuestas implements Observador {
     public ControladorRealizarApuestas(IVistaRealizarApuestas vista) {
         this.modelo = Fachada.getInstancia();
         this.vista = vista;
-        //modelo.agregar(this);
+        modelo.agregar(this);
         cargarHipodromos();
         this.vista.habilitarBotonApuesta(false);
     }
 
     @Override
     public void actualizar(Observable origen, Object evento) {
-        cargarHipodromos();
         cargarCarreras(hipodromoSeleccionado);
         cargarParticipantes(carreraSeleccionada);
     }
@@ -47,7 +46,6 @@ public class ControladorRealizarApuestas implements Observador {
         this.hipodromoSeleccionado = h;
         Jornada deHoy = h.buscarJornada(new Date());
         if (deHoy != null) {
-
             vista.cargarCarreras(deHoy.getCarreras());
         }
     }
@@ -71,6 +69,7 @@ public class ControladorRealizarApuestas implements Observador {
         } catch (ApuestasException ex) {
             vista.mostrarError(ex.getMessage());
         }
+        vista.limpiarFormulario();
     }
 
     public void seleccionarHipodromo(int index) {
