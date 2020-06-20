@@ -74,7 +74,7 @@ public class Jornada extends Observable {
         return participa;
     }
 
-    public void agregarCarrera(Carrera carrera) throws ApuestasException{
+    public void agregarCarrera(Carrera carrera) throws ApuestasException {
         carrera.validarParticipantes();
         carreras.add(carrera);
         avisar(Eventos.nuevaCarrera);
@@ -93,7 +93,7 @@ public class Jornada extends Observable {
         return carrera;
     }
 
-    Carrera buscarUltimaCarreraCerrada() {
+    public Carrera buscarUltimaCarreraCerrada() {
         Carrera ultCerrada = carreras.get(ultimaCerrada);
         if (!ultCerrada.isFinalizada()) {
             return carreras.get(ultimaCerrada);
@@ -101,27 +101,37 @@ public class Jornada extends Observable {
             return null;
         }
     }
-    
-    public boolean existeNombreCarrera(String nombre){
+
+    public boolean existeNombreCarrera(String nombre) {
         boolean existe = false;
         int i = 0;
-        while (i < carreras.size() && !existe){
-            existe = carreras.get(i).getNombre().equals(nombre);           
+        while (i < carreras.size() && !existe) {
+            existe = carreras.get(i).getNombre().equals(nombre);
             i++;
         }
         return existe;
     }
-    
-    public void validarDatosCarrera(Carrera unaCarrera) throws ApuestasException{
-        if (!unaCarrera.fechaValida()){
+
+    public void validarDatosCarrera(Carrera unaCarrera) throws ApuestasException {
+        if (!unaCarrera.fechaValida()) {
             throw new ApuestasException("Fecha inválida");
         }
-        if (existeNombreCarrera(unaCarrera.getNombre())){
+        if (existeNombreCarrera(unaCarrera.getNombre())) {
             throw new ApuestasException("Nombre inválido");
         }
     }
 
     public void actualizarUltimaCerrada() {
         ultimaCerrada++;
+    }
+
+    public Carrera carreraActual() {
+        Carrera ret = null;
+        boolean encontre = false;
+        for (int x = getCarreras().size()-1; x >= 0 && !encontre; x--) {
+            ret = carreras.get(x);
+            encontre = (ret.isFinalizada() || ret.isAbierta() || ret.isCerrada());
+        }
+        return ret;
     }
 }

@@ -76,7 +76,6 @@ public class Hipodromo {
     }
 
     public Jornada buscarJornada(Date fecha) {
-
         Jornada jornada = null;
         int i = 0;
         while (i < jornadas.size() && jornada == null) {
@@ -132,5 +131,10 @@ public class Hipodromo {
     
     public void agregarJornada(Jornada jornada) {
         jornadas.add(jornada);
+    }
+    
+    public Carrera buscarCarreraActual(){
+        Jornada jornada = buscarJornada(new Date());
+        return jornada.carreraActual();
     }
 }

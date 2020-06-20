@@ -64,6 +64,7 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         btnConfirmar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         lstHipodromo = new javax.swing.JList();
+        lblCarreraActual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -79,11 +80,6 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         jLabel1.setBounds(30, 80, 150, 30);
 
         lstCarrera.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        lstCarrera.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstCarreraValueChanged(evt);
-            }
-        });
         jScrollPane2.setViewportView(lstCarrera);
 
         getContentPane().add(jScrollPane2);
@@ -124,11 +120,11 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
             }
         });
         getContentPane().add(txtMonto);
-        txtMonto.setBounds(330, 290, 100, 30);
+        txtMonto.setBounds(320, 300, 100, 30);
 
         txtUsuario.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(160, 370, 150, 30);
+        txtUsuario.setBounds(150, 380, 150, 30);
 
         txtPassword.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -137,30 +133,30 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
             }
         });
         getContentPane().add(txtPassword);
-        txtPassword.setBounds(160, 410, 150, 30);
+        txtPassword.setBounds(150, 420, 150, 30);
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Monto de la apuesta:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(180, 290, 140, 30);
+        jLabel5.setBounds(170, 300, 140, 30);
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("$");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(310, 290, 20, 30);
+        jLabel6.setBounds(300, 300, 20, 30);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel7.setText("Usuario");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(80, 370, 70, 30);
+        jLabel7.setBounds(70, 380, 70, 30);
 
         jLabel8.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel8.setText("Contraseña");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(80, 410, 70, 30);
+        jLabel8.setBounds(70, 420, 70, 30);
         getContentPane().add(jSeparator1);
-        jSeparator1.setBounds(50, 340, 560, 10);
+        jSeparator1.setBounds(40, 350, 560, 10);
 
         btnConsultarSaldo.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnConsultarSaldo.setText("Consultar Saldo");
@@ -170,7 +166,7 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
             }
         });
         getContentPane().add(btnConsultarSaldo);
-        btnConsultarSaldo.setBounds(380, 410, 150, 30);
+        btnConsultarSaldo.setBounds(370, 420, 150, 30);
 
         btnConfirmar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnConfirmar.setText("Confirmar Apuesta");
@@ -180,7 +176,7 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
             }
         });
         getContentPane().add(btnConfirmar);
-        btnConfirmar.setBounds(380, 370, 150, 30);
+        btnConfirmar.setBounds(370, 380, 150, 30);
 
         lstHipodromo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         lstHipodromo.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -192,15 +188,11 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
 
         getContentPane().add(jScrollPane4);
         jScrollPane4.setBounds(30, 110, 180, 160);
+        getContentPane().add(lblCarreraActual);
+        lblCarreraActual.setBounds(44, 280, 570, 20);
 
         setBounds(0, 0, 680, 505);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lstCarreraValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCarreraValueChanged
-        if (lstCarrera.getSelectedIndex() != -1) {
-            controladorRealizarApuesta.seleccionarCarrera(lstCarrera.getSelectedIndex());
-        }
-    }//GEN-LAST:event_lstCarreraValueChanged
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
         btnConfirmarActionPerformed(evt);
@@ -238,7 +230,6 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
-    
     @Override
     public void limpiarFormulario() {
         ArrayList<String> lista = new ArrayList();
@@ -264,14 +255,14 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     }
 
     @Override
-    public void cargarCarreras(ArrayList<Carrera> carreras) {
+    public void cargarCarrera(Carrera carrera) {
         ArrayList<String> lista = new ArrayList();
-        if (carreras != null) {
-            for (Carrera c : carreras) {
-                lista.add(formatearCarreras(c));
-            }
+        if (carrera != null) {
+            lista.add("Carrera n° " + carrera.getNumeroCarrera());
+            lista.add("Nombre: " + carrera.getNombre());
+            lista.add("Estado: " + carrera.getEstado());
         } else {
-            lista.add("No existen carreras hoy");
+            lista.add("No hay carreras habilitadas");
         }
         lstCarrera.setListData(lista.toArray());
     }
@@ -300,7 +291,7 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     }
 
     private String formatearCarreras(Carrera carrera) {
-        return carrera.getNombre() + " - " + carrera.getEstado();
+        return carrera.getNumeroCarrera() + " - " + carrera.getNombre() + " - " + carrera.getEstado();
     }
 
     private String formatearParticipantes(Participante participante) {
@@ -341,6 +332,7 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblCarreraActual;
     private javax.swing.JList lstCaballo;
     private javax.swing.JList lstCarrera;
     private javax.swing.JList lstHipodromo;
@@ -348,6 +340,5 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
-
 
 }

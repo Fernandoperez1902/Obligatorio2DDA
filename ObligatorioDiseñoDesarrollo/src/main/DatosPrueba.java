@@ -27,7 +27,7 @@ import persistencia.Persistencia;
  */
 public class DatosPrueba {
 
-    public static void cargar() throws ApuestasException {
+    public static void cargar() {
         cargarAca();
         //cargarBaseDatos();
     }
@@ -40,7 +40,7 @@ public class DatosPrueba {
 
     }
 
-    private static void cargarAca() throws ApuestasException {
+    private static void cargarAca() {
         Fachada logica = Fachada.getInstancia();
         //CABALLOS
         Caballo c1 = new Caballo("Caballo1", "Responsable1");
@@ -106,12 +106,14 @@ public class DatosPrueba {
         Carrera ca2 = new Carrera("Nombre2", new Date(), 2, participantes2);
 
         //JORNADAS
-        
-        Jornada jor1 = new Jornada(new Date());
-        jor1.agregarCarrera(ca1);
-        h1.agregarJornada(jor1);
-        
-        
+        try {
+            Jornada jor1 = new Jornada(new Date());
+            jor1.agregarCarrera(ca1);
+            h1.agregarJornada(jor1);
+        } catch (ApuestasException e) {
+
+        }
+
         logica.agregarHipodromo(h1);
         logica.agregarHipodromo(h2);
         logica.agregarHipodromo(h3);
