@@ -72,9 +72,10 @@ public class Apuesta {
     
     // </editor-fold> 
 
+    //Paga las ganancias correspondientes al Jugador
     public void pagarApuestaJugador(float montoGanado) {
         setMontoGanado(montoGanado);
-       jugador.actualizarSaldo(montoGanado+montoPagado); //Se acredita lo ganado y recupera lo apostado  
+       jugador.actualizarSaldo(montoGanado+montoPagado); //Se acredita lo ganado y devuelve lo apostado  
     }
 
 }

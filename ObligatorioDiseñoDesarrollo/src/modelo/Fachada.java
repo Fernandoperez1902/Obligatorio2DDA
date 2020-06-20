@@ -59,7 +59,6 @@ public class Fachada extends Observable{
     public boolean agregarApuesta(Apuesta a) throws ApuestasException {
         return sa.agregarApuesta(a);
     }
-    
 
     public ArrayList<Caballo> caballosDisponiblesEnFecha(Date fecha) {
         return sh.caballosDisponiblesEnFecha(fecha);
@@ -69,6 +68,8 @@ public class Fachada extends Observable{
         return sh.buscarJornada(h, f);
     }
 
+    
+    //MÉTODOS PARA LA CARGA DE INFORMACIÓN DESDE LA BASE DE DATOS
     public void cargarUsuarios() {
         su.cargarUsuarios();
     }
