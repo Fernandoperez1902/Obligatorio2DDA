@@ -3,7 +3,9 @@ package mapeadores;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import modelo.Hipodromo;
 import modelo.Jornada;
 import persistencia.Mapeador;
@@ -80,7 +82,7 @@ public class MapeadorHipodromo implements Mapeador {
     private void generarJornadas(ArrayList<String> sqls) {
         ArrayList<Jornada> jornadas = hipodromo.getJornadas();
         for (Jornada j : jornadas) {
-            java.sql.Timestamp fecha = new java.sql.Timestamp(j.getFecha().getTime());
+            Timestamp fecha = new Timestamp(new Date().getTime());
             sqls.add(
                     "insert into jornada values (" + fecha + "," + j.getOid() + "," + hipodromo.getOid()  + ")"
             );
