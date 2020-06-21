@@ -12,6 +12,15 @@ public class Carrera extends Observable {
     private Date fecha;
     private ArrayList<Participante> participantes = new ArrayList<Participante>();
     private Estado estado;
+    private int oid;
+
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
+    }
 
     //SE DEFINE ESTADO COMO UN ENUM
     public enum Estado {
@@ -24,6 +33,10 @@ public class Carrera extends Observable {
         abrir, cerrar, finalizar
     };
 
+    public Carrera(){
+        
+    }
+    
     public Carrera(String nom, Date fec, int num) {
         nombre = nom;
         fecha = fec;

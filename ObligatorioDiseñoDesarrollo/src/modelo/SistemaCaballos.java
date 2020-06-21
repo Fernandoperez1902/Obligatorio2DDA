@@ -13,11 +13,6 @@ public class SistemaCaballos {
         return caballos;
     }
     
-    public void AgregarCaballo(Caballo c){
-
-        caballos.add(c);
-    }
-
     void cargarCaballos() {
         MapeadorCaballo map = new MapeadorCaballo();
         ArrayList<Caballo> lista = Persistencia.getInstancia().obtenerTodos(map);
@@ -26,7 +21,7 @@ public class SistemaCaballos {
         }
     }
 
-    private void agregarCaballo(Caballo c) {
+    public void agregarCaballo(Caballo c) {
         caballos.add(c);
     }
     

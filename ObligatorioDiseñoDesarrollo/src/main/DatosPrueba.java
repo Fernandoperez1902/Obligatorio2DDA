@@ -28,8 +28,8 @@ import utilidades.ManejoDeFechas;
 public class DatosPrueba {
 
     public static void cargar() {
-        cargarAca();
-        //cargarBaseDatos();
+        //cargarAca();
+        cargarBaseDatos();
     }
 
     public static void cargarBaseDatos() {
@@ -52,12 +52,12 @@ public class DatosPrueba {
         Caballo c7 = new Caballo("Caballo7", "Responsable7");
         Caballo c8 = new Caballo("Caballo8", "Responsable8");
 
-        logica.AgregarCaballo(c1);
-        logica.AgregarCaballo(c2);
-        logica.AgregarCaballo(c3);
-        logica.AgregarCaballo(c4);
-        logica.AgregarCaballo(c5);
-        logica.AgregarCaballo(c6);
+        logica.agregarCaballo(c1);
+        logica.agregarCaballo(c2);
+        logica.agregarCaballo(c3);
+        logica.agregarCaballo(c4);
+        logica.agregarCaballo(c5);
+        logica.agregarCaballo(c6);
 
         //PARTICIPANTE
         Participante p1 = new Participante(c1, 2, 2.5);

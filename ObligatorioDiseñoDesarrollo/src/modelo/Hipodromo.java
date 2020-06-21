@@ -132,6 +132,7 @@ public class Hipodromo {
     
     public void agregarJornada(Jornada jornada) {
         jornadas.add(jornada);
+        Fachada.getInstancia().guardarHipodromo(this);
     }
     
     public Carrera buscarCarreraActual(){

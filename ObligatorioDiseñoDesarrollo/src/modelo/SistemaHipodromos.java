@@ -64,8 +64,15 @@ public class SistemaHipodromos {
         }
     }
 
+    public void guardarHipodromo(Hipodromo hipodromo){
+        MapeadorHipodromo mH = new MapeadorHipodromo(hipodromo);
+        Persistencia.getInstancia().guardar(mH);
+    }
+    
     private void agregarHipodromo(Hipodromo h) {
         hipodromos.add(h);
     }
+    
+    
 
 }

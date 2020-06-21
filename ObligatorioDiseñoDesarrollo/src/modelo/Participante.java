@@ -10,12 +10,34 @@ public class Participante {
     private boolean ganador;
     private ArrayList<Apuesta> apuestas;
     private ModalidadApuesta tipoApuesta;
+    private int oid;
+
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
+    }
 
     public enum Eventos {
         cambiaModalidadApuesta
     };
 
+    public Participante(){
+        
+    }
+    
     public Participante(Caballo c, int n, double d) {
+        caballo = c;
+        numero = n;
+        dividendo = d;
+        ganador = false;
+        tipoApuesta = new Simple();
+        apuestas = new ArrayList();
+    }
+    
+    public Participante(Caballo c, int n, double d, boolean g) {
         caballo = c;
         numero = n;
         dividendo = d;
