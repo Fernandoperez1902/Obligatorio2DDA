@@ -44,8 +44,8 @@ public class Fachada extends Observable{
         sh.agregar(h);
     }
 
-    public void AgregarCaballo(Caballo c) {
-        sc.AgregarCaballo(c);
+    public void agregarCaballo(Caballo c) {
+        sc.agregarCaballo(c);
     }
 
     public ArrayList<Hipodromo> getHipodromos() {
@@ -87,4 +87,10 @@ public class Fachada extends Observable{
     public void cargarHipodromos() {
         sh.cargarHipodromos();
     }
+    
+    //MÉTODOS PARA GUARDAR INFORMACIÓN EN LA BASE DE DATOS
+    public void guardarHipodromo(Hipodromo hipodromo){
+        sh.guardarHipodromo(hipodromo);
+    }
+    
 }

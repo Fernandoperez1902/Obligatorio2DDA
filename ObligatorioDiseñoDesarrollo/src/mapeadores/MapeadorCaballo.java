@@ -47,7 +47,7 @@ public class MapeadorCaballo implements Mapeador {
 
     @Override
     public String getSqlSeleccionar() {
-        return "SELECT c.oid, c.nombre, c.nombreResponsable FROM caballo c";
+        return "SELECT c.oid, c.nombreCaballo, c.nombreResponsable FROM caballo c";
     }
 
     @Override
@@ -62,7 +62,7 @@ public class MapeadorCaballo implements Mapeador {
 
     @Override
     public void leerCompuesto(ResultSet rs) throws SQLException {
-        caballo.setNombre(rs.getString("nombre"));
+        caballo.setNombre(rs.getString("nombreCaballo"));
         caballo.setNombreResponsable(rs.getString("nombreResponsable"));
     }
 
