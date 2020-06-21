@@ -231,7 +231,16 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         }
         lstHipodromo.setListData(stringHip.toArray());
     }
-
+    @Override
+    public void habilitarBotones(boolean b) {
+        btnAbrir.setEnabled(b);
+        btnCambiarModalidad.setEnabled(b);
+        btnCerrarApuestas.setEnabled(b);
+        btnCrearCarrera.setEnabled(b);
+        btnFinalizar.setEnabled(b);
+        btnMonitorear.setEnabled(b);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCambiarModalidad;
@@ -248,6 +257,8 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
     private javax.swing.JMenu optSalir;
     private javax.swing.JLabel txtAdminName;
     // End of variables declaration//GEN-END:variables
+
+
 
     
 }

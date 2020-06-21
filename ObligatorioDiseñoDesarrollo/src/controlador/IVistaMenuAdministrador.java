@@ -21,4 +21,6 @@ public interface IVistaMenuAdministrador {
     public void llamarMonitorearCarrera(Hipodromo hip);
     
     public void llamarCambiarModadlidad(Hipodromo hip);
+
+    public void habilitarBotones(boolean b);
 }

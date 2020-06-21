@@ -73,7 +73,7 @@ public class DatosPrueba {
         participantes2.add(p4);
         p4.setGanador(true);
 
-        //HIPODROMOS 
+        //HIPODROMOS
         Hipodromo h1 = new Hipodromo("Hipódromo1", "Dirección1");
         Hipodromo h2 = new Hipodromo("Hipódromo2", "Dirección2");
         Hipodromo h3 = new Hipodromo("Hipódromo3", "Dirección3");
@@ -104,12 +104,12 @@ public class DatosPrueba {
         Simple simple = new Simple();
         Triple triple = new Triple();
         Cuadruple cuadruple = new Cuadruple();
-        
+
         logica.agregarModalidad(simple);
         logica.agregarModalidad(triple);
         logica.agregarModalidad(cuadruple);
-        
-        
+
+
         //CARRERAS
         Carrera ca1 = new Carrera("Nombre1", new Date(), 1, participantes);
         ca1.abrir();

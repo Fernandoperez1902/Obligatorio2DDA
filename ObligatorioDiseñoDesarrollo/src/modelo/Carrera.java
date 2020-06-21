@@ -107,6 +107,10 @@ public class Carrera extends Observable {
     public boolean isAbierta() {
         return this.estado.equals(Estado.abierta);
     }
+    //VERIFICA SI SE TRATA DE UNA CARRERA ABIERTA
+    public boolean isCerrada() {
+        return this.estado.equals(Estado.cerrada);
+    }
 
     //VERIFICA SI SE TRATA DE UNA CARRERA FINALIZADA
     public boolean isFinalizada() {
@@ -189,8 +193,10 @@ public class Carrera extends Observable {
     //CALCULA MONTO TOTAL GANADO POR LOS JUGADORES EN SUS APUESTAS EN LA PRESENTE CARRERA
     public float montoTotalGanado() {
         float monto = 0;
-        for (Participante p : participantes) {
-            monto += p.montoTotalGanado();
+        if (this.estado.equals(Estado.finalizada)) {
+            for (Participante p : participantes) {
+                monto += p.montoTotalGanado();
+            }
         }
         return monto;
     }

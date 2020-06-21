@@ -50,7 +50,7 @@ public class Jornada extends Observable {
     public void setCarreras(ArrayList<Carrera> carreras) {
         this.carreras = carreras;
     }
-    // </editor-fold>       
+    // </editor-fold>
 
     public enum Eventos {
 
@@ -135,4 +135,13 @@ public class Jornada extends Observable {
         ultimaCerrada++;
     }
 
+    public Carrera carreraActual() {
+        Carrera ret = null;
+        boolean encontre = false;
+        for (int x = getCarreras().size()-1; x >= 0 && !encontre; x--) {
+            ret = carreras.get(x);
+            encontre = (ret.isFinalizada() || ret.isAbierta() || ret.isCerrada());
+        }
+        return ret;
+    }
 }

@@ -32,7 +32,7 @@ public class ControladorRealizarApuestas implements Observador {
 
     @Override
     public void actualizar(Observable origen, Object evento) {
-        cargarCarreras(hipodromoSeleccionado);
+        cargarCarreraActual(hipodromoSeleccionado);
         cargarParticipantes(carreraSeleccionada);
     }
 
@@ -42,16 +42,28 @@ public class ControladorRealizarApuestas implements Observador {
         vista.cargarHipodromos(hipodromos);
     }
 
-    public void cargarCarreras(Hipodromo h) {
+    public void cargarCarreraActual(Hipodromo h) {
         this.hipodromoSeleccionado = h;
         Jornada deHoy = h.buscarJornada(new Date());
         if (deHoy != null) {
-            vista.cargarCarreras(deHoy.getCarreras());
+            carreraSeleccionada = deHoy.carreraActual();
+            if (!carreraSeleccionada.isAbierta()) {
+                vista.habilitarBotonApuesta(false);
+            }
+        } else {
+            carreraSeleccionada = null;
+            participanteSeleccionado = null;
         }
+        vista.cargarCarrera(carreraSeleccionada);
+        cargarParticipantes(carreraSeleccionada);
     }
 
     public void cargarParticipantes(Carrera c) {
-        vista.cargarParticipantes(c.getParticipantes());
+        if(c!=null){
+            vista.cargarParticipantes(c.getParticipantes());
+        }else{
+            vista.cargarParticipantes(new ArrayList<Participante>());
+        }
     }
 
     public void agregarApuesta(String nombre, String pass, String monto) {
@@ -69,20 +81,13 @@ public class ControladorRealizarApuestas implements Observador {
         } catch (ApuestasException ex) {
             vista.mostrarError(ex.getMessage());
         }
-        vista.limpiarFormulario();
+        vista.mostrarMensajeExito();
+        limpiarFormulario();
     }
 
     public void seleccionarHipodromo(int index) {
         hipodromoSeleccionado = hipodromos.get(index);
-        cargarCarreras(hipodromoSeleccionado);
-    }
-
-    public void seleccionarCarrera(int index) {
-        carreraSeleccionada = hipodromoSeleccionado.buscarJornada(new Date()).getCarreras().get(index);
-        if (!carreraSeleccionada.isAbierta()) {
-            vista.habilitarBotonApuesta(false);
-        }
-        cargarParticipantes(carreraSeleccionada);
+        cargarCarreraActual(hipodromoSeleccionado);
     }
 
     public void seleccionarCaballo(int index) {
@@ -106,4 +111,11 @@ public class ControladorRealizarApuestas implements Observador {
         return montoF;
     }
 
+    private void limpiarFormulario() {
+        hipodromoSeleccionado = null;
+        carreraSeleccionada = null;
+        participanteSeleccionado = null;
+        vista.habilitarBotonApuesta(false);
+        vista.limpiarFormulario();
+    }
 }

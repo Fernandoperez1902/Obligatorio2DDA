@@ -18,7 +18,7 @@ public interface IVistaRealizarApuestas {
 
     public void cargarHipodromos(ArrayList<Hipodromo> hipodromos);
 
-    public void cargarCarreras(ArrayList<Carrera> carreras);
+    public void cargarCarrera(Carrera carrera);
 
     public void cargarParticipantes(ArrayList<Participante> participantes);
 
@@ -27,4 +27,6 @@ public interface IVistaRealizarApuestas {
     public void mostrarError(String message);
 
     public void limpiarFormulario();
+
+    public void mostrarMensajeExito();
 }
