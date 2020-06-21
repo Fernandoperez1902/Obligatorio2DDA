@@ -74,4 +74,14 @@ public class SistemaUsuarios {
             this.agregarAdministrador(a);
         }
     }
+
+    public Jugador buscarJugador(int oid) {
+        Usuario res = null;
+        for (Usuario j : jugadores) {
+            if (j.getOid() == oid) {
+                res = j;
+            }
+        }
+        return (Jugador)res;
+    }
 }

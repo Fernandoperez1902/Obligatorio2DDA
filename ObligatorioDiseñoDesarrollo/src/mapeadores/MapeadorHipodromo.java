@@ -44,7 +44,7 @@ public class MapeadorHipodromo implements Mapeador {
         sqls.add(
                 "delete from jornada where oid = " + hipodromo.getOid()
         );
-        generarJornadas(sqls);
+        //generarJornadas(sqls);
         return sqls;
     }
 
@@ -55,7 +55,8 @@ public class MapeadorHipodromo implements Mapeador {
 
     @Override
     public String getSqlSeleccionar() {
-        return "SELECT h.oid, h.nombre, h.direccion FROM hipodromo h";
+        return "SELECT * FROM hipodromo";
+        
     }
 
     @Override
@@ -84,7 +85,7 @@ public class MapeadorHipodromo implements Mapeador {
         for (Jornada j : jornadas) {
             Timestamp fecha = new Timestamp(new Date().getTime());
             sqls.add(
-                    "insert into jornada values (" + fecha + "," + j.getOid() + "," + hipodromo.getOid()  + ")"
+                    "insert into jornada values ("+j.getOid() + "," +"'" + fecha + "'," +  hipodromo.getOid()  + ")"
             );
         }
     }

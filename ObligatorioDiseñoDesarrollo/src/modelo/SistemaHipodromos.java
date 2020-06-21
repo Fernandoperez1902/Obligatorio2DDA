@@ -3,7 +3,9 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Date;
 import mapeadores.MapeadorCaballo;
+import mapeadores.MapeadorCarrera;
 import mapeadores.MapeadorHipodromo;
+import mapeadores.MapeadorJornada;
 import persistencia.Persistencia;
 
 public class SistemaHipodromos {
@@ -72,6 +74,18 @@ public class SistemaHipodromos {
     private void agregarHipodromo(Hipodromo h) {
         hipodromos.add(h);
     }
+
+    void guardarCarrera(Jornada jornada) {
+        MapeadorJornada mJ = new MapeadorJornada(jornada);
+        Persistencia.getInstancia().guardar(mJ);
+    }
+    
+    void guardarParticipante(Carrera carrera) {
+        MapeadorCarrera mJ = new MapeadorCarrera(carrera);
+        Persistencia.getInstancia().guardar(mJ);
+    }
+    
+    
     
     
 

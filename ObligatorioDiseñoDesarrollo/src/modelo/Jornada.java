@@ -90,6 +90,7 @@ public class Jornada extends Observable {
     public void agregarCarrera(Carrera carrera) throws ApuestasException {
         carrera.validarParticipantes();
         carreras.add(carrera);
+        Fachada.getInstancia().guardarCarrera(this);
         avisar(Eventos.nuevaCarrera);
         ultimoIdCarrera++;
     }

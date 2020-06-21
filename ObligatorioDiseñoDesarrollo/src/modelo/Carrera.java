@@ -178,6 +178,7 @@ public class Carrera extends Observable {
     //MÉTODO PARA AGREGAR UN NUEVO CABALLO PARTICIPANTE A LA CARRERA
     public void agregarParticipante(Participante p) {
         participantes.add(p);
+//        Fachada.getInstancia().guardarParticipante(this);
     }
 
     //DEVUELVE LA CANTIDAD DE PARTICIPANTES DE LA CARRERA
