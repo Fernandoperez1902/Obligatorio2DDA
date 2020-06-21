@@ -118,6 +118,8 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(30, 220, 170, 130);
+
+        dateChooser.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         getContentPane().add(dateChooser);
         dateChooser.setBounds(30, 20, 170, 30);
 
