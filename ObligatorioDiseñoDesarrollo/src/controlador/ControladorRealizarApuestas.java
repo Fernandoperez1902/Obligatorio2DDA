@@ -50,13 +50,20 @@ public class ControladorRealizarApuestas implements Observador {
             if (!carreraSeleccionada.isAbierta()) {
                 vista.habilitarBotonApuesta(false);
             }
-            vista.cargarCarrera(carreraSeleccionada);
-            cargarParticipantes(carreraSeleccionada);
+        } else {
+            carreraSeleccionada = null;
+            participanteSeleccionado = null;
         }
+        vista.cargarCarrera(carreraSeleccionada);
+        cargarParticipantes(carreraSeleccionada);
     }
 
     public void cargarParticipantes(Carrera c) {
-        vista.cargarParticipantes(c.getParticipantes());
+        if(c!=null){
+            vista.cargarParticipantes(c.getParticipantes());
+        }else{
+            vista.cargarParticipantes(new ArrayList<Participante>());
+        }
     }
 
     public void agregarApuesta(String nombre, String pass, String monto) {
@@ -74,7 +81,8 @@ public class ControladorRealizarApuestas implements Observador {
         } catch (ApuestasException ex) {
             vista.mostrarError(ex.getMessage());
         }
-        vista.limpiarFormulario();
+        vista.mostrarMensajeExito();
+        limpiarFormulario();
     }
 
     public void seleccionarHipodromo(int index) {
@@ -103,4 +111,11 @@ public class ControladorRealizarApuestas implements Observador {
         return montoF;
     }
 
+    private void limpiarFormulario() {
+        hipodromoSeleccionado = null;
+        carreraSeleccionada = null;
+        participanteSeleccionado = null;
+        vista.habilitarBotonApuesta(false);
+        vista.limpiarFormulario();
+    }
 }

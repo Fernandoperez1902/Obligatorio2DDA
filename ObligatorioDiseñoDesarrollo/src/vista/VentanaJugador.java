@@ -45,8 +45,6 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        lstCarrera = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         lstCaballo = new javax.swing.JList();
@@ -64,7 +62,8 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         btnConfirmar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         lstHipodromo = new javax.swing.JList();
-        lblCarreraActual = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lblCarreraActual = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -79,14 +78,8 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         getContentPane().add(jLabel1);
         jLabel1.setBounds(30, 80, 150, 30);
 
-        lstCarrera.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jScrollPane2.setViewportView(lstCarrera);
-
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(240, 110, 180, 160);
-
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel2.setText("CARRERA");
+        jLabel2.setText("CARRERA ACTUAL");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(240, 80, 150, 30);
 
@@ -188,8 +181,17 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
 
         getContentPane().add(jScrollPane4);
         jScrollPane4.setBounds(30, 110, 180, 160);
-        getContentPane().add(lblCarreraActual);
-        lblCarreraActual.setBounds(44, 280, 570, 20);
+
+        lblCarreraActual.setEditable(false);
+        lblCarreraActual.setColumns(12);
+        lblCarreraActual.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        lblCarreraActual.setRows(5);
+        lblCarreraActual.setBorder(null);
+        lblCarreraActual.setOpaque(false);
+        jScrollPane1.setViewportView(lblCarreraActual);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(240, 110, 180, 160);
 
         setBounds(0, 0, 680, 505);
     }// </editor-fold>//GEN-END:initComponents
@@ -235,10 +237,11 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         ArrayList<String> lista = new ArrayList();
         controladorRealizarApuesta.cargarHipodromos();
         lstCaballo.setListData(lista.toArray());
-        lstCarrera.setListData(lista.toArray());
+        lblCarreraActual.setText("");
         txtMonto.setText("");
         txtUsuario.setText("");
         txtPassword.setText("");
+        hipSeleccionado = null;
     }
 
     @Override
@@ -256,26 +259,26 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
 
     @Override
     public void cargarCarrera(Carrera carrera) {
-        ArrayList<String> lista = new ArrayList();
+        String mostrar;
         if (carrera != null) {
-            lista.add("Carrera n° " + carrera.getNumeroCarrera());
-            lista.add("Nombre: " + carrera.getNombre());
-            lista.add("Estado: " + carrera.getEstado());
+            mostrar = "Carrera n° " + carrera.getNumeroCarrera()
+                    + '\n' + "Nombre: " + carrera.getNombre() + '\n' + "Estado: "
+                    + carrera.getEstado();
         } else {
-            lista.add("No hay carreras habilitadas");
+            mostrar = "No hay carreras habilitadas";
         }
-        lstCarrera.setListData(lista.toArray());
+        lblCarreraActual.setText(mostrar);
     }
 
     @Override
     public void cargarParticipantes(ArrayList<Participante> participantes) {
         ArrayList<String> lista = new ArrayList();
-        if (participantes != null) {
+        if (!participantes.isEmpty()) {
             for (Participante p : participantes) {
                 lista.add(formatearParticipantes(p));
             }
         } else {
-            lista.add("No existen participantes");
+            lista.clear();
         }
         lstCaballo.setListData(lista.toArray());
     }
@@ -285,6 +288,7 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         btnConfirmar.setEnabled(habilitar);
     }
 
+    
     //Formatos para las listas propias de esta vista.
     private String formatearHipodromos(Hipodromo hipodromo) {
         return hipodromo.getNombre() + " - " + hipodromo.getDireccion();
@@ -295,7 +299,12 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     }
 
     private String formatearParticipantes(Participante participante) {
-        return participante.getNumero() + " - " + participante.getCaballo().getNombre() + " - " + participante.getDividendo();
+        String ganador = "";
+        if (participante.isGanador()) {
+            ganador = " - *GANADOR";
+        }
+        return participante.getNumero() + " - " + participante.getCaballo().getNombre() + " - " + participante.getDividendo()
+                + " (" + participante.getModalidad().substring(0, 1) + ")" + ganador;
     }
 
     @Override
@@ -317,6 +326,11 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
         JOptionPane.showMessageDialog(this, message);
     }
 
+    @Override
+    public void mostrarMensajeExito() {
+        JOptionPane.showMessageDialog(this, "Apuesta realizada con éxito.");
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnConsultarSaldo;
@@ -328,13 +342,12 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblCarreraActual;
+    private javax.swing.JTextArea lblCarreraActual;
     private javax.swing.JList lstCaballo;
-    private javax.swing.JList lstCarrera;
     private javax.swing.JList lstHipodromo;
     private javax.swing.JTextField txtMonto;
     private javax.swing.JPasswordField txtPassword;

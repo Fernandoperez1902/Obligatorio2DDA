@@ -19,11 +19,12 @@ public class ControladorMenuAdministrador {
         this.hipodromos = modeloFachada.getHipodromos();
         this.vista = vista;
         this.vista.mostrarHipodromos(hipodromos);
-
+        vista.habilitarBotones(false);
     }
 
     public void seleccionarHipodromo(int index) {
         seleccionado = hipodromos.get(index);
+        vista.habilitarBotones(true);
     }
 
     public void crearCarrera() {
@@ -49,5 +50,7 @@ public class ControladorMenuAdministrador {
     public void cambiarModalidad() {
         vista.llamarCambiarModadlidad(seleccionado);
     }
+    
+    
     
 }

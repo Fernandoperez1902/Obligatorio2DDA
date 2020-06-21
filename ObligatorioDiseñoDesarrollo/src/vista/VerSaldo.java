@@ -5,6 +5,7 @@ import modelo.Apuesta;
 import modelo.Carrera;
 import modelo.Jugador;
 import modelo.Participante;
+import utilidades.ManejoDeFechas;
 
 public class VerSaldo extends javax.swing.JDialog {
 
@@ -28,6 +29,7 @@ public class VerSaldo extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         lblDatoApuesta1 = new javax.swing.JLabel();
         lblDatoApuesta2 = new javax.swing.JLabel();
+        lblDatoApuesta4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -37,42 +39,38 @@ public class VerSaldo extends javax.swing.JDialog {
         });
         getContentPane().setLayout(null);
 
-        lblNombreFijo.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        lblNombreFijo.setForeground(new java.awt.Color(204, 0, 0));
+        lblNombreFijo.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
         lblNombreFijo.setText("Hola, ");
         getContentPane().add(lblNombreFijo);
         lblNombreFijo.setBounds(20, 40, 40, 30);
 
-        lblSaldoFijo.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        lblSaldoFijo.setForeground(new java.awt.Color(204, 0, 0));
+        lblSaldoFijo.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
         lblSaldoFijo.setText("Su saldo disponible al momento es: ");
         getContentPane().add(lblSaldoFijo);
         lblSaldoFijo.setBounds(20, 70, 240, 30);
 
-        lblUltimaApuestaFijo.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        lblUltimaApuestaFijo.setForeground(new java.awt.Color(204, 0, 0));
+        lblUltimaApuestaFijo.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
         lblUltimaApuestaFijo.setText("Última apuesta realizada:");
         getContentPane().add(lblUltimaApuestaFijo);
         lblUltimaApuestaFijo.setBounds(20, 100, 180, 30);
 
-        lblNombreDinamico.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
-        lblNombreDinamico.setForeground(new java.awt.Color(204, 0, 0));
+        lblNombreDinamico.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
         getContentPane().add(lblNombreDinamico);
-        lblNombreDinamico.setBounds(60, 40, 320, 30);
+        lblNombreDinamico.setBounds(60, 40, 280, 30);
 
-        lblSaldoDinamico.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
-        lblSaldoDinamico.setForeground(new java.awt.Color(204, 0, 0));
+        lblSaldoDinamico.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
         getContentPane().add(lblSaldoDinamico);
-        lblSaldoDinamico.setBounds(260, 70, 120, 30);
+        lblSaldoDinamico.setBounds(250, 70, 90, 30);
 
-        lblDatoApuesta3.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
-        lblDatoApuesta3.setForeground(new java.awt.Color(204, 0, 0));
+        lblDatoApuesta3.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
+        lblDatoApuesta3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         getContentPane().add(lblDatoApuesta3);
-        lblDatoApuesta3.setBounds(40, 170, 340, 20);
+        lblDatoApuesta3.setBounds(50, 170, 280, 20);
 
+        lblFecha.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         getContentPane().add(lblFecha);
-        lblFecha.setBounds(210, 20, 170, 20);
+        lblFecha.setBounds(150, 20, 170, 20);
 
         jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton1.setText("Cerrar");
@@ -82,19 +80,24 @@ public class VerSaldo extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(150, 200, 100, 30);
+        jButton1.setBounds(130, 220, 100, 30);
 
-        lblDatoApuesta1.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
-        lblDatoApuesta1.setForeground(new java.awt.Color(204, 0, 0));
+        lblDatoApuesta1.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
+        lblDatoApuesta1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         getContentPane().add(lblDatoApuesta1);
-        lblDatoApuesta1.setBounds(40, 130, 340, 20);
+        lblDatoApuesta1.setBounds(50, 130, 280, 20);
 
-        lblDatoApuesta2.setFont(new java.awt.Font("Calibri", 3, 16)); // NOI18N
-        lblDatoApuesta2.setForeground(new java.awt.Color(204, 0, 0));
+        lblDatoApuesta2.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
+        lblDatoApuesta2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         getContentPane().add(lblDatoApuesta2);
-        lblDatoApuesta2.setBounds(40, 150, 340, 20);
+        lblDatoApuesta2.setBounds(50, 150, 280, 20);
 
-        setBounds(0, 0, 414, 287);
+        lblDatoApuesta4.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
+        lblDatoApuesta4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        getContentPane().add(lblDatoApuesta4);
+        lblDatoApuesta4.setBounds(50, 190, 280, 20);
+
+        setBounds(0, 0, 365, 309);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -111,6 +114,7 @@ public class VerSaldo extends javax.swing.JDialog {
     private javax.swing.JLabel lblDatoApuesta1;
     private javax.swing.JLabel lblDatoApuesta2;
     private javax.swing.JLabel lblDatoApuesta3;
+    private javax.swing.JLabel lblDatoApuesta4;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblNombreDinamico;
     private javax.swing.JLabel lblNombreFijo;
@@ -122,19 +126,19 @@ public class VerSaldo extends javax.swing.JDialog {
     private void mostrarDatos(Jugador j) {
         Apuesta a = j.getUltimaApuesta();
         this.setTitle("Consulta de saldo - " + j.getNombreCompleto());
-        lblFecha.setText(new Date() + "");
+        lblFecha.setText(ManejoDeFechas.formatearFecha(new Date(), "dd/MM/yyyy"));
         lblNombreDinamico.setText(j.getNombreCompleto());
         lblSaldoDinamico.setText("$ " + j.getSaldo());
         if (a != null) {
             Carrera c = a.getCarrera();
             Participante p = a.getParticipante();
-            lblDatoApuesta1.setText(c.getFecha() + " - Carrera n° " + c.getNumeroCarrera());
-            lblDatoApuesta2.setText("Caballo n° " + p.getNumero() + " - dividendo" + p.getDividendo());
-            lblDatoApuesta3.setText("Apostó: " + a.getMontoApostado());
+            lblDatoApuesta1.setText(ManejoDeFechas.formatearFecha(c.getFecha(),"dd/MM/yyyy") + " - Carrera n° " + c.getNumeroCarrera());
+            lblDatoApuesta2.setText("Caballo n° " + p.getNumero() +" - "+ p.getNombreCaballo() + " - dividendo " + p.getDividendo());
+            lblDatoApuesta3.setText("Apostó: $ " + a.getMontoApostado());
             if (!c.isFinalizada()) {
-                lblDatoApuesta3.setText("Aún no hay un ganador");
+                lblDatoApuesta4.setText("Carrera pendiente");
             } else {
-                lblDatoApuesta3.setText("Ganado: " + a.getMontoGanado());
+                lblDatoApuesta4.setText("Ganado: $ " + a.getMontoGanado());
             }
         } else {
             lblDatoApuesta1.setText("Sin apuestas");

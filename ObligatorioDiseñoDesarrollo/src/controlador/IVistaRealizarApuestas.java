@@ -27,4 +27,6 @@ public interface IVistaRealizarApuestas {
     public void mostrarError(String message);
 
     public void limpiarFormulario();
+
+    public void mostrarMensajeExito();
 }
