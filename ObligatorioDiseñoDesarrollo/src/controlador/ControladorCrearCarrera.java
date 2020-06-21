@@ -23,21 +23,21 @@ public class ControladorCrearCarrera {
 
     public void CrearCarrera(Date fecha, String nombre) {
         boolean esNuevaJornada = false;
-            Jornada jornada = modeloFachada.buscarJornada(seleccionado, fecha);
-            Carrera carrera;
-            if (jornada != null) {
-                carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1);
-            } else {
-                jornada = new Jornada(fecha);
-                carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1);
-                esNuevaJornada = true;
-            }
-            try {
-                jornada.validarDatosCarrera(carrera);
-                vista.mostrarProximaVista(jornada, seleccionado, carrera, esNuevaJornada);
+        Jornada jornada = modeloFachada.buscarJornada(seleccionado, fecha);
+        Carrera carrera;
+        if (jornada != null) {
+            carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1);
+        } else {
+            jornada = new Jornada(fecha);
+            carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1);
+            esNuevaJornada = true;
+        }
+        try {
+            jornada.validarDatosCarrera(carrera);
+            vista.mostrarProximaVista(jornada, seleccionado, carrera, esNuevaJornada);
 
-            } catch (ApuestasException e) {
-                vista.mostrarError(e.getMessage());
-            }
+        } catch (ApuestasException e) {
+            vista.mostrarError(e.getMessage());
+        }
     }
 }
