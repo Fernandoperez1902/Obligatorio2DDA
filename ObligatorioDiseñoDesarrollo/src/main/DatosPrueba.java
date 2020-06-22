@@ -28,7 +28,7 @@ import utilidades.ManejoDeFechas;
 public class DatosPrueba {
 
     public static void cargar() {
-        //cargarAca();
+        cargarAca();
         cargarBaseDatos();
     }
 
@@ -75,30 +75,30 @@ public class DatosPrueba {
 
         //HIPODROMOS
         Hipodromo h1 = new Hipodromo("Hipódromo1", "Dirección1");
-        Hipodromo h2 = new Hipodromo("Hipódromo2", "Dirección2");
-        Hipodromo h3 = new Hipodromo("Hipódromo3", "Dirección3");
-        Hipodromo h4 = new Hipodromo("Hipódromo4", "Dirección4");
-        Hipodromo h5 = new Hipodromo("Hipódromo1", "Dirección2");
+//        Hipodromo h2 = new Hipodromo("Hipódromo2", "Dirección2");
+//        Hipodromo h3 = new Hipodromo("Hipódromo3", "Dirección3");
+//        Hipodromo h4 = new Hipodromo("Hipódromo4", "Dirección4");
+//        Hipodromo h5 = new Hipodromo("Hipódromo1", "Dirección2");
 
         //ADMINISTRADORES
-        Administrador a1 = new Administrador("A1", "A1", "Administrador1");
-        Administrador a2 = new Administrador("A2", "A2", "Administrador2");
-        Administrador a3 = new Administrador("A3", "A3", "Administrador3");
-
-        logica.agregarAdministrador(a1);
-
-        //JUGADORES
-        Jugador j1 = new Jugador("j1", "j1", "Jugador1", 100);
-        Jugador j2 = new Jugador("j2", "j2", "Jugador2", 500);
-        Jugador j3 = new Jugador("j3", "j3", "Jugador3", 1000);
-        Jugador j4 = new Jugador("j4", "j4", "Jugador4", 250);
-        Jugador j5 = new Jugador("j5", "j5", "Jugador5", 750);
-
-        logica.agregarJugador(j1);
-        logica.agregarJugador(j2);
-        logica.agregarJugador(j3);
-        logica.agregarJugador(j4);
-        logica.agregarJugador(j5);
+//        Administrador a1 = new Administrador("A1", "A1", "Administrador1");
+//        Administrador a2 = new Administrador("A2", "A2", "Administrador2");
+//        Administrador a3 = new Administrador("A3", "A3", "Administrador3");
+//
+//        logica.agregarAdministrador(a1);
+//
+//        //JUGADORES
+//        Jugador j1 = new Jugador("j1", "j1", "Jugador1", 100);
+//        Jugador j2 = new Jugador("j2", "j2", "Jugador2", 500);
+//        Jugador j3 = new Jugador("j3", "j3", "Jugador3", 1000);
+//        Jugador j4 = new Jugador("j4", "j4", "Jugador4", 250);
+//        Jugador j5 = new Jugador("j5", "j5", "Jugador5", 750);
+//
+//        logica.agregarJugador(j1);
+//        logica.agregarJugador(j2);
+//        logica.agregarJugador(j3);
+//        logica.agregarJugador(j4);
+//        logica.agregarJugador(j5);
 
         //MODALIDADES
         Simple simple = new Simple();
@@ -119,15 +119,15 @@ public class DatosPrueba {
         try {
             Jornada jor1 = new Jornada(ManejoDeFechas.tomarFechaSistemaSinHora());
             jor1.agregarCarrera(ca1);
-            h1.agregarJornada(jor1);
+            h1.agregarJornadaAEliminar(jor1);
         } catch (ApuestasException e) {
             System.out.println(e.getMessage());
         }
 
         logica.agregarHipodromo(h1);
-        logica.agregarHipodromo(h2);
-        logica.agregarHipodromo(h3);
-        logica.agregarHipodromo(h4);
+//        logica.agregarHipodromo(h2);
+//        logica.agregarHipodromo(h3);
+//        logica.agregarHipodromo(h4);
 
     }
 }

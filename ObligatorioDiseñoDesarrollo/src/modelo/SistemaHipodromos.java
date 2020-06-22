@@ -71,6 +71,8 @@ public class SistemaHipodromos {
         Persistencia.getInstancia().guardar(mH);
     }
     
+    
+    //ESTE METODO ESTA DOBLE
     private void agregarHipodromo(Hipodromo h) {
         hipodromos.add(h);
     }

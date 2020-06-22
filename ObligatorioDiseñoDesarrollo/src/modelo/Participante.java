@@ -164,6 +164,7 @@ public class Participante {
     }
 
     public void agregarApuesta(Apuesta a) {
+        Fachada.getInstancia().guardarApuesta(a);
         apuestas.add(a);
     }
 

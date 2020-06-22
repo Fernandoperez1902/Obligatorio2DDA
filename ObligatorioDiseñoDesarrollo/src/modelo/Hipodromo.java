@@ -139,4 +139,12 @@ public class Hipodromo {
         Jornada jornada = buscarJornada(new Date());
         return jornada.carreraActual();
     }
+    
+    
+    
+    
+    //ELIMINAR METODO
+    public void agregarJornadaAEliminar(Jornada jornada) {
+        jornadas.add(jornada);
+    }
 }
