@@ -40,7 +40,7 @@ public class MapeadorHipodromo implements Mapeador {
     public ArrayList<String> getSqlActualizar() {
         ArrayList<String> sqls = new ArrayList();
         sqls.add(
-                "delete from jornada where oid = " + hipodromo.getOid()
+                "delete from jornada where oidHipodromo = " + hipodromo.getOid()
         );
         generarJornadas(sqls);
         return sqls;
@@ -70,6 +70,8 @@ public class MapeadorHipodromo implements Mapeador {
     public void leerCompuesto(ResultSet rs) throws SQLException {
         hipodromo.setNombre(rs.getString("nombre"));
         hipodromo.setDireccion(rs.getString("direccion"));
+        MapeadorJornada mJ = new MapeadorJornada();
+        hipodromo.setJornadas();
     }
 
     @Override
@@ -82,7 +84,7 @@ public class MapeadorHipodromo implements Mapeador {
         for (Jornada j : jornadas) {
             java.sql.Timestamp fecha = new java.sql.Timestamp(j.getFecha().getTime());
             sqls.add(
-                    "insert into jornada values (" + fecha + "," + j.getOid() + "," + hipodromo.getOid()  + ")"
+                    "insert into jornada values (" + "'" + fecha + "'," + j.getOid() + "," + hipodromo.getOid()  + ")"
             );
         }
     }

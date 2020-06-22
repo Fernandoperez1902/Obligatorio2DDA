@@ -4,6 +4,7 @@ package mapeadores;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import modelo.Carrera;
 import modelo.Jornada;
 import persistencia.Mapeador;
 
@@ -36,7 +37,12 @@ public class MapeadorJornada implements Mapeador{
 
     @Override
     public ArrayList<String> getSqlActualizar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> sqls = new ArrayList();
+        sqls.add(
+                "delete from carreras where oidJornada = " + jornada.getOid()
+        );
+        generarCarreras(sqls);
+        return sqls;
     }
 
     @Override
@@ -46,27 +52,42 @@ public class MapeadorJornada implements Mapeador{
 
     @Override
     public String getSqlSeleccionar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "SELECT * FROM jornada j,carrera c WHERE j.oid=c.oidjornada"; 
     }
 
     @Override
     public void crearNuevo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jornada = new Jornada();
     }
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jornada;
     }
 
     @Override
     public void leerCompuesto(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jornada.setFecha(rs.getDate("fechaCarrera"));
     }
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jornada.getCarreras().add(new Carrera(
+                rs.getString("nombre"),
+                rs.getDate("fechaCarrera"),
+                rs.getInt("numero"))
+        );
+    }
+
+    private void generarCarreras(ArrayList<String> sqls) {
+        ArrayList<Carrera> carreras = jornada.getCarreras();
+        for (Carrera c : carreras) {
+            java.sql.Timestamp fecha = new java.sql.Timestamp(c.getFecha().getTime());
+            sqls.add(
+                    "insert into jornada values (" + c.getNumeroCarrera() + "," + c.getOid() + "," + jornada.getOid() +
+                            "'" + fecha + "'," + "," + c.getEstado() + c.getNombre() + ")"
+            );
+        }
     }
     
 }
