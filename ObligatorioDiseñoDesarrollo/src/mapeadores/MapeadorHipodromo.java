@@ -1,4 +1,3 @@
-
 package mapeadores;
 
 import java.sql.ResultSet;
@@ -10,19 +9,18 @@ import modelo.Hipodromo;
 import modelo.Jornada;
 import persistencia.Mapeador;
 
-
 public class MapeadorHipodromo implements Mapeador {
-    
+
     private Hipodromo hipodromo;
-    
-    public MapeadorHipodromo(){
-        
+
+    public MapeadorHipodromo() {
+
     }
-    
-    public MapeadorHipodromo(Hipodromo obj){
+
+    public MapeadorHipodromo(Hipodromo obj) {
         this.hipodromo = obj;
     }
-   
+
     @Override
     public int getOid() {
         return hipodromo.getOid();
@@ -35,7 +33,11 @@ public class MapeadorHipodromo implements Mapeador {
 
     @Override
     public ArrayList<String> getSqlInsertar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> sqls = new ArrayList();
+        sqls.add(
+                "insert into hipodromo values(" + hipodromo.getOid() + ",'" + hipodromo.getNombre() + "','" + hipodromo.getDireccion()+ "')"
+        );
+        return sqls;
     }
 
     @Override
@@ -56,7 +58,7 @@ public class MapeadorHipodromo implements Mapeador {
     @Override
     public String getSqlSeleccionar() {
         return "SELECT * FROM hipodromo";
-        
+
     }
 
     @Override
@@ -73,11 +75,12 @@ public class MapeadorHipodromo implements Mapeador {
     public void leerCompuesto(ResultSet rs) throws SQLException {
         hipodromo.setNombre(rs.getString("nombre"));
         hipodromo.setDireccion(rs.getString("direccion"));
+        //hipodromo.setOid(rs.getInt("oid"));
     }
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
-        
+
     }
 
     private void generarJornadas(ArrayList<String> sqls) {
@@ -85,9 +88,9 @@ public class MapeadorHipodromo implements Mapeador {
         for (Jornada j : jornadas) {
             Timestamp fecha = new Timestamp(new Date().getTime());
             sqls.add(
-                    "insert into jornada values ("+j.getOid() + "," +"'" + fecha + "'," +  hipodromo.getOid()  + ")"
+                    "insert into jornada values (" + j.getOid() + "," + "'" + fecha + "'," + hipodromo.getOid() + ")"
             );
         }
     }
-    
+
 }

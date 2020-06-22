@@ -12,11 +12,13 @@ public class Jornada extends Observable {
     private int ultimaCerrada;
     private int oid;
     private ArrayList<Carrera> carreras = new ArrayList();
+    private Hipodromo hipodromo;
 
-    public Jornada(Date f) {
+    public Jornada(Date f, Hipodromo h) {
         this.fecha = f;
         this.ultimoIdCarrera = 0;
         this.ultimaCerrada = -1;
+        this.hipodromo = h;
     }
 
     public Jornada() {
@@ -24,6 +26,15 @@ public class Jornada extends Observable {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
+
+    public Hipodromo getHipodromo() {
+        return hipodromo;
+    }
+
+    public void setHipodromo(Hipodromo hipodromo) {
+        this.hipodromo = hipodromo;
+    }
+    
     public int getOid() {
         return oid;
     }

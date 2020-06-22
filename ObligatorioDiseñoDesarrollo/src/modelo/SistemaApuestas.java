@@ -34,8 +34,18 @@ public class SistemaApuestas {
         }
     }
 
-    void guardarApuesta(Apuesta a) {
+    public void guardarApuesta(Apuesta a) {
         MapeadorApuesta mA = new MapeadorApuesta(a);
         Persistencia.getInstancia().guardar(mA);
+    }
+
+    public Apuesta buscarApuesta(int oid) {
+        Apuesta res = null;
+        for (Apuesta a : apuestas) {
+            if (a.getOid() == oid) {
+                res = a;
+            }
+        }
+        return res;
     }
 }

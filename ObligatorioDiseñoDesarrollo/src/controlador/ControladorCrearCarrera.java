@@ -28,7 +28,7 @@ public class ControladorCrearCarrera {
         if (jornada != null) {
             carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1);
         } else {
-            jornada = new Jornada(fecha);
+            jornada = new Jornada(fecha, seleccionado);
             carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1);
             esNuevaJornada = true;
         }

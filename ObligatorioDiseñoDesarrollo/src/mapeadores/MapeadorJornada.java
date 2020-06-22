@@ -38,7 +38,7 @@ public class MapeadorJornada implements Mapeador {
         ArrayList<String> sqls = new ArrayList();
         Timestamp fecha = new Timestamp(jornada.getFecha().getTime());
         sqls.add(
-                "insert into jornada values(" + jornada.getOid() + ",'" + fecha + "'," + jornada.getOid() + ")"
+                "insert into jornada values(" + jornada.getOid() + ",'" + fecha + "'," + jornada.getHipodromo().getOid() + ")"
         );
         generarCarreras(sqls);
         return sqls;

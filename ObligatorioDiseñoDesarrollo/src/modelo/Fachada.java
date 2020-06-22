@@ -106,6 +106,9 @@ public class Fachada extends Observable {
         sa.guardarApuesta(a);
     }
     
+    public void guardarJugador(Jugador jugador) {
+        su.guardarJugador(jugador);
+    }
     
     public Caballo buscarCaballo(int oid) {
         return sc.buscarCaballo(oid); 
@@ -114,9 +117,16 @@ public class Fachada extends Observable {
     public Jugador buscarJugador(int oid) {
         return su.buscarJugador(oid);
     }
+    
+    public Apuesta buscarApuesta(int oid) {
+        return sa.buscarApuesta(oid);
+    }
 
     public Participante buscarParticipante(int oid) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
+    
 
 }

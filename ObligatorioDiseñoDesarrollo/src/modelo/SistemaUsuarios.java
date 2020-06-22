@@ -75,6 +75,11 @@ public class SistemaUsuarios {
         }
     }
 
+    public void guardarJugador(Jugador jugador) {
+        MapeadorJugador maa = new MapeadorJugador(jugador);
+        Persistencia.getInstancia().guardar(maa);
+    }
+
     public Jugador buscarJugador(int oid) {
         Usuario res = null;
         for (Usuario j : jugadores) {
@@ -82,6 +87,6 @@ public class SistemaUsuarios {
                 res = j;
             }
         }
-        return (Jugador)res;
+        return (Jugador) res;
     }
 }

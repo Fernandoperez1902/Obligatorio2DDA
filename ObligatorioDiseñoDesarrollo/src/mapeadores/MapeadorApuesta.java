@@ -42,6 +42,7 @@ public class MapeadorApuesta implements Mapeador {
                 + apuesta.getMontoApostado() + "," + apuesta.getMontoPagado() + ","
                 + apuesta.getMontoGanado() + ")"
         );
+        cargarApuestaJugador(sqls);
         return sqls;
     }
 
@@ -81,11 +82,17 @@ public class MapeadorApuesta implements Mapeador {
         apuesta.setMontoApostado(rs.getFloat("montoApostado"));
         apuesta.setMontoPagado(rs.getFloat("montoPagado"));
         apuesta.setMontoGanado(rs.getFloat("montoGanado"));
+        apuesta.setOid(rs.getInt("oid"));
     }
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
 
+    }
+
+    private void cargarApuestaJugador(ArrayList<String> sqls) {
+        sqls.add("UPDATE jugador SET oidApuesta=" + apuesta.getOid() +
+                " WHERE oidJugador=" + apuesta.getJugador().getOid());
     }
 
 }

@@ -74,7 +74,7 @@ public class DatosPrueba {
         p4.setGanador(true);
 
         //HIPODROMOS
-        Hipodromo h1 = new Hipodromo("Hipódromo1", "Dirección1");
+//        Hipodromo h1 = new Hipodromo("Hipódromo1", "Dirección1");
 //        Hipodromo h2 = new Hipodromo("Hipódromo2", "Dirección2");
 //        Hipodromo h3 = new Hipodromo("Hipódromo3", "Dirección3");
 //        Hipodromo h4 = new Hipodromo("Hipódromo4", "Dirección4");
@@ -111,20 +111,20 @@ public class DatosPrueba {
 
 
         //CARRERAS
-        Carrera ca1 = new Carrera("Nombre1", new Date(), 1, participantes);
-        ca1.abrir();
-        Carrera ca2 = new Carrera("Nombre2", new Date(), 2, participantes2);
-
-        //JORNADAS
-        try {
-            Jornada jor1 = new Jornada(ManejoDeFechas.tomarFechaSistemaSinHora());
-            jor1.agregarCarrera(ca1);
-            h1.agregarJornadaAEliminar(jor1);
-        } catch (ApuestasException e) {
-            System.out.println(e.getMessage());
-        }
-
-        logica.agregarHipodromo(h1);
+//        Carrera ca1 = new Carrera("Nombre1", new Date(), 1, participantes);
+//        ca1.abrir();
+//        Carrera ca2 = new Carrera("Nombre2", new Date(), 2, participantes2);
+//
+//        JORNADAS
+//        try {
+//            Jornada jor1 = new Jornada(ManejoDeFechas.tomarFechaSistemaSinHora(),h1);
+//            jor1.agregarCarrera(ca1);
+//            h1.agregarJornadaAEliminar(jor1);
+//        } catch (ApuestasException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        logica.agregarHipodromo(h1);
 //        logica.agregarHipodromo(h2);
 //        logica.agregarHipodromo(h3);
 //        logica.agregarHipodromo(h4);
