@@ -107,19 +107,30 @@ CREATE TABLE `jornada` (
 
 /*Data for the table `jornada` */
 
+insert  into `jornada`(`oid`,`fechaJornada`,`oidHipodromo`) values 
+(41,'2020-06-21 00:00:00',41),
+(43,'2020-06-21 00:00:00',43),
+(46,'2020-06-21 00:00:00',46),
+(49,'2020-06-21 00:00:00',49),
+(52,'2020-06-21 00:00:00',52),
+(55,'2020-06-21 00:00:00',55),
+(57,'2020-06-21 00:00:00',57),
+(60,'2020-06-21 00:00:00',60);
+
 /*Table structure for table `jugador` */
 
 DROP TABLE IF EXISTS `jugador`;
 
 CREATE TABLE `jugador` (
   `oidJugador` int(11) NOT NULL,
-  `saldo` float DEFAULT NULL
+  `saldo` float DEFAULT NULL,
+  `oidApuesta` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `jugador` */
 
-insert  into `jugador`(`oidJugador`,`saldo`) values 
-(2,150);
+insert  into `jugador`(`oidJugador`,`saldo`,`oidApuesta`) values 
+(2,150,NULL);
 
 /*Table structure for table `oid` */
 
@@ -132,7 +143,7 @@ CREATE TABLE `oid` (
 /*Data for the table `oid` */
 
 insert  into `oid`(`ultimo`) values 
-(40);
+(62);
 
 /*Table structure for table `participante` */
 

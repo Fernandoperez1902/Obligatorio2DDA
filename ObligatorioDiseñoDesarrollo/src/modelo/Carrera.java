@@ -14,14 +14,6 @@ public class Carrera extends Observable {
     private Estado estado;
     private int oid;
 
-    public int getOid() {
-        return oid;
-    }
-
-    public void setOid(int oid) {
-        this.oid = oid;
-    }
-
     //SE DEFINE ESTADO COMO UN ENUM
     public enum Estado {
 
@@ -33,10 +25,10 @@ public class Carrera extends Observable {
         abrir, cerrar, finalizar
     };
 
-    public Carrera(){
-        
+    public Carrera() {
+
     }
-    
+
     public Carrera(String nom, Date fec, int num) {
         nombre = nom;
         fecha = fec;
@@ -54,6 +46,14 @@ public class Carrera extends Observable {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
+    }
+
     public int getNumeroCarrera() {
         return numeroCarrera;
     }
@@ -95,31 +95,22 @@ public class Carrera extends Observable {
     }
 
     // </editor-fold>
-    //VERIFICA SI LA CARRERA TIENE APUESTAS EFECTUADAS
-   /*public boolean tieneApuestas() {
-        boolean ret = false;
-        for (Participante p : participantes) {
-            if (p.tieneApuestas()) {
-                ret = true;
-            }
-        }
-        return ret;
-    }*/
-
-    public ArrayList<Participante> participantesSinApuestas(){
+    
+    public ArrayList<Participante> participantesSinApuestas() {
         ArrayList<Participante> sinApuestas = new ArrayList();
-        for (Participante p : participantes){
-            if (!p.tieneApuestas()){
+        for (Participante p : participantes) {
+            if (!p.tieneApuestas()) {
                 sinApuestas.add(p);
             }
         }
         return sinApuestas;
     }
-    
+
     //VERIFICA SI SE TRATA DE UNA CARRERA ABIERTA
     public boolean isAbierta() {
         return this.estado.equals(Estado.abierta);
     }
+
     //VERIFICA SI SE TRATA DE UNA CARRERA ABIERTA
     public boolean isCerrada() {
         return this.estado.equals(Estado.cerrada);

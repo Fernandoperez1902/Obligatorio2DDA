@@ -26,6 +26,14 @@ public class SistemaApuestas {
         modalidades.add(modalidad);
     }
 
+    public void cargarApuesta() {
+        MapeadorApuesta mtc = new MapeadorApuesta();
+        ArrayList<Apuesta> lista = Persistencia.getInstancia().obtenerTodos(mtc);
+        for (Apuesta a : lista) {
+            this.agregarApuesta(a);
+        }
+    }
+
     void guardarApuesta(Apuesta a) {
         MapeadorApuesta mA = new MapeadorApuesta(a);
         Persistencia.getInstancia().guardar(mA);

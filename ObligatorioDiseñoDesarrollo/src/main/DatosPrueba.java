@@ -60,10 +60,10 @@ public class DatosPrueba {
         logica.agregarCaballo(c6);
 
         //PARTICIPANTE
-        Participante p1 = new Participante(c1, 2, 2.5);
-        Participante p2 = new Participante(c2, 4, 1.5);
-        Participante p3 = new Participante(c3, 76, 1.3);
-        Participante p4 = new Participante(c4, 67, 1.85);
+        Participante p1 = new Participante(c1, 2, 2.5, false);
+        Participante p2 = new Participante(c2, 4, 1.5, false);
+        Participante p3 = new Participante(c3, 76, 1.3, false);
+        Participante p4 = new Participante(c4, 67, 1.85, false);
 
         ArrayList<Participante> participantes = new ArrayList<Participante>();
         ArrayList<Participante> participantes2 = new ArrayList<Participante>();

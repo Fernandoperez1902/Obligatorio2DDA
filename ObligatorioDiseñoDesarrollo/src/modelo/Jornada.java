@@ -11,7 +11,19 @@ public class Jornada extends Observable {
     private int ultimoIdCarrera;
     private int ultimaCerrada;
     private int oid;
+    private ArrayList<Carrera> carreras = new ArrayList();
 
+    public Jornada(Date f) {
+        this.fecha = f;
+        this.ultimoIdCarrera = 0;
+        this.ultimaCerrada = -1;
+    }
+
+    public Jornada() {
+
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
     public int getOid() {
         return oid;
     }
@@ -19,19 +31,7 @@ public class Jornada extends Observable {
     public void setOid(int oid) {
         this.oid = oid;
     }
-    private ArrayList<Carrera> carreras = new ArrayList();
 
-    public Jornada(){
-        
-    } 
-    
-    public Jornada(Date f) {
-        this.fecha = f;
-        this.ultimoIdCarrera = 0;
-        this.ultimaCerrada = -1;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
     public Date getFecha() {
         return fecha;
     }
@@ -65,8 +65,8 @@ public class Jornada extends Observable {
     }
     // </editor-fold>
 
+    
     public enum Eventos {
-
         nuevaCarrera
     };
 
@@ -152,7 +152,7 @@ public class Jornada extends Observable {
     public Carrera carreraActual() {
         Carrera ret = null;
         boolean encontre = false;
-        for (int x = getCarreras().size()-1; x >= 0 && !encontre; x--) {
+        for (int x = getCarreras().size() - 1; x >= 0 && !encontre; x--) {
             ret = carreras.get(x);
             encontre = (ret.isFinalizada() || ret.isAbierta() || ret.isCerrada());
         }
