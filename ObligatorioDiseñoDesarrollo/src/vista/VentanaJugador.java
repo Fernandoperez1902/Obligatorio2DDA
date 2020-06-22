@@ -354,4 +354,9 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    public void actualizarLista() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

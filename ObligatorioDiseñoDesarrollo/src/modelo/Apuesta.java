@@ -8,6 +8,7 @@ public class Apuesta {
     private float montoApostado;
     private float montoPagado;
     private float montoGanado;
+    private int oid;
 
     public Apuesta(Jugador jugador, Participante participante, float montoApostado, Carrera carrera) {
         this.jugador = jugador;
@@ -18,7 +19,20 @@ public class Apuesta {
         this.montoGanado = 0;
     }
     
+    public Apuesta(){
+        
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
+
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
+    }
+    
     public float getMontoApostado() {
         return montoApostado;
     }

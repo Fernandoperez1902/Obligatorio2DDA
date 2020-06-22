@@ -1,17 +1,20 @@
-
 package mapeadores;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import modelo.Carrera;
+import modelo.Fachada;
+import modelo.Hipodromo;
 import modelo.Jornada;
 import persistencia.Mapeador;
 
-public class MapeadorJornada implements Mapeador{
+public class MapeadorJornada implements Mapeador {
 
     private Jornada jornada;
-    
+
     @Override
     public int getOid() {
         return jornada.getOid();
@@ -22,24 +25,30 @@ public class MapeadorJornada implements Mapeador{
         jornada.setOid(oid);
     }
 
-    public MapeadorJornada(){
-        
+    public MapeadorJornada() {
+
     }
-    
-    public MapeadorJornada(Jornada jornada){
+
+    public MapeadorJornada(Jornada jornada) {
         this.jornada = jornada;
     }
-    
+
     @Override
     public ArrayList<String> getSqlInsertar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<String> sqls = new ArrayList();
+        Timestamp fecha = new Timestamp(jornada.getFecha().getTime());
+        sqls.add(
+                "insert into jornada values(" + jornada.getOid() + ",'" + fecha + "'," + jornada.getHipodromo().getOid() + ")"
+        );
+        generarCarreras(sqls);
+        return sqls;
     }
 
     @Override
     public ArrayList<String> getSqlActualizar() {
         ArrayList<String> sqls = new ArrayList();
         sqls.add(
-                "delete from carreras where oidJornada = " + jornada.getOid()
+                "delete from carrera where oidJornada = " + jornada.getOid()
         );
         generarCarreras(sqls);
         return sqls;
@@ -52,7 +61,11 @@ public class MapeadorJornada implements Mapeador{
 
     @Override
     public String getSqlSeleccionar() {
-        return "SELECT * FROM jornada j,carrera c WHERE j.oid=c.oidjornada"; 
+        return "SELECT *"
+                + "FROM jornada j, carrera ca, participante p, caballo c "
+                + "WHERE ca.oidJornada = j.oid AND"
+                + "ca.oid = p.oidCarrera AND"
+                + "p.oidCaballo = c.oid";
     }
 
     @Override
@@ -67,27 +80,18 @@ public class MapeadorJornada implements Mapeador{
 
     @Override
     public void leerCompuesto(ResultSet rs) throws SQLException {
-        jornada.setFecha(rs.getDate("fechaCarrera"));
+
     }
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
-        jornada.getCarreras().add(new Carrera(
-                rs.getString("nombre"),
-                rs.getDate("fechaCarrera"),
-                rs.getInt("numero"))
-        );
+
     }
 
     private void generarCarreras(ArrayList<String> sqls) {
         ArrayList<Carrera> carreras = jornada.getCarreras();
         for (Carrera c : carreras) {
-            java.sql.Timestamp fecha = new java.sql.Timestamp(c.getFecha().getTime());
-            sqls.add(
-                    "insert into jornada values (" + c.getNumeroCarrera() + "," + c.getOid() + "," + jornada.getOid() +
-                            "'" + fecha + "'," + "," + c.getEstado() + c.getNombre() + ")"
-            );
+            Fachada.getInstancia().guardarParticipante(c);
         }
     }
-    
 }

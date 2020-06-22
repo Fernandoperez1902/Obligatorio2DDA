@@ -29,4 +29,6 @@ public interface IVistaRealizarApuestas {
     public void limpiarFormulario();
 
     public void mostrarMensajeExito();
+
+    public void actualizarLista();
 }

@@ -35,14 +35,14 @@ public class ControladorAgregarCaballosCarrera {
         this.vista.mostrarDatos(modeloCarrera);
         this.vista.mostrarCaballosDisponibles(this.disponibles);
         this.vista.mostrarParticipantes(participantes);
-
     }
 
     public void agregarParticipante(int numero, double dividendo) {
         try {
-            Participante participante = new Participante(caballoSeleccionado, numero, dividendo);
+            Participante participante = new Participante(caballoSeleccionado, numero, dividendo, false);
             modeloCarrera.validarParticipante(participante);
-            participantes.add(participante);
+            modeloCarrera.agregarParticipante(participante);
+            //participantes.add(participante);
             disponibles.remove(caballoSeleccionado);
             caballoSeleccionado = null;
             vista.mostrarParticipantes(participantes);

@@ -1,4 +1,3 @@
-
 package modelo;
 
 import java.util.ArrayList;
@@ -21,15 +20,14 @@ public class Hipodromo {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
-
     public int getOid() {
         return oid;
     }
 
     public void setOid(int oid) {
         this.oid = oid;
-    }  
-    
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -76,6 +74,7 @@ public class Hipodromo {
         return jornada;
     }
 
+    //DUPLICADO
     public Jornada buscarJornada(Date fecha) {
         Jornada jornada = null;
         int i = 0;
@@ -89,7 +88,6 @@ public class Hipodromo {
     }
 
     public boolean existeJornada(Date fecha) {
-
         boolean existe = false;
         if (buscarJornada(fecha) != null) {
             existe = true;
@@ -99,7 +97,6 @@ public class Hipodromo {
     }
 
     public boolean participaCaballo(Date fecha, Caballo cab) {
-
         boolean participa = false;
         int i = 0;
         while (i < jornadas.size() && !participa) {
@@ -110,33 +107,36 @@ public class Hipodromo {
             }
             i++;
         }
-
         return participa;
-
     }
 
-    public Carrera buscarProximaCarreraDelDia(){
+    public Carrera buscarProximaCarreraDelDia() {
         Jornada jornada = buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
         return jornada.traerProximaCarrera();
     }
-    
-    public Carrera buscarCarreraAbierta(){
+
+    public Carrera buscarCarreraAbierta() {
         Jornada jornada = buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
         return jornada.buscarCarreraAbierta();
     }
-    
-    public Carrera buscarUltimaCarreraCerrada(){
+
+    public Carrera buscarUltimaCarreraCerrada() {
         Jornada jornada = buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
         return jornada.buscarUltimaCarreraCerrada();
     }
-    
+
     public void agregarJornada(Jornada jornada) {
         jornadas.add(jornada);
         Fachada.getInstancia().guardarHipodromo(this);
     }
-    
-    public Carrera buscarCarreraActual(){
+
+    public Carrera buscarCarreraActual() {
         Jornada jornada = buscarJornada(new Date());
         return jornada.carreraActual();
+    }
+
+    //ELIMINAR METODO
+    public void agregarJornadaAEliminar(Jornada jornada) {
+        jornadas.add(jornada);
     }
 }

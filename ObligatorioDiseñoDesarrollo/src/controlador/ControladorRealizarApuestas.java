@@ -34,6 +34,7 @@ public class ControladorRealizarApuestas implements Observador {
     public void actualizar(Observable origen, Object evento) {
         cargarCarreraActual(hipodromoSeleccionado);
         cargarParticipantes(carreraSeleccionada);
+        vista.actualizarLista();
     }
 
     public void cargarHipodromos() {

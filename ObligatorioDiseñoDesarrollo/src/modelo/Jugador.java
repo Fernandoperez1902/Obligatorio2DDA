@@ -55,16 +55,19 @@ public class Jugador extends Usuario {
         return ret;
     }
 
+    
     //Actualiza el saldo en función de lo perdido o ganado en una apuesta.
     //(recibe tanto valores positivos como negativos)
     public void actualizarSaldo(float monto) {
         setSaldo(saldo + monto);
     }
 
+    //Resta del saldo lo correspondiente a su apuesta
     private void restarSaldo(float monto) {
         actualizarSaldo(monto*-1);
     }
     
+    //Suma a su saldo lo correspondiente a una apuesta ganadora
     private void sumarSaldo(float monto) {
         actualizarSaldo(monto);
     }

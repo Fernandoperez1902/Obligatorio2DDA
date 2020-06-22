@@ -34,12 +34,10 @@ public class MapeadorCarrera implements Mapeador {
     @Override
     public ArrayList<String> getSqlInsertar() {
         ArrayList<String> sqls = new ArrayList();
-        java.sql.Timestamp fecha = new java.sql.Timestamp(carrera.getFecha().getTime());
         sqls.add(
-                "insert into carrera values(" + carrera.getNumeroCarrera() + "," + carrera.getOid()
-                + "," + fecha + "," + carrera.getEstado() + "," + carrera.getNombre() + ")"
+                "insert into carrera values(" +carrera.getOid()+ "," + carrera.getNumeroCarrera() + ","+carrera.getOid()
+                +",'" + carrera.getEstado().toString() + "','" + carrera.getNombre() + "')"
         );
-
         generarParticipantes(sqls);
         return sqls;
     }
@@ -48,14 +46,10 @@ public class MapeadorCarrera implements Mapeador {
     public ArrayList<String> getSqlActualizar() {
         ArrayList<String> sqls = new ArrayList();
         sqls.add(
-                "delete from carrera where oid = " + carrera.getOid()
-        );
-        java.sql.Timestamp fecha = new java.sql.Timestamp(carrera.getFecha().getTime());
-        sqls.add(
-                "insert into carrera values(" + carrera.getNumeroCarrera() + "," + carrera.getOid()
-                + "," + fecha + "," + carrera.getEstado() + "," + carrera.getNombre() + ")"
+                "delete from participante where oidCarrera = " + carrera.getOid()
         );
         return sqls;
+        
     }
 
     @Override
@@ -65,9 +59,8 @@ public class MapeadorCarrera implements Mapeador {
 
     @Override
     public String getSqlSeleccionar() {
-        return "SELECT * FROM carrera c,participante p, caballo ca, apuesta a"
-                + "WHERE c.oid = p.oidCarrera AND p.oidCaballo = ca.oid AND"
-                + "a.oidParticipante = p.oid";
+        return "SELECT * FROM carrera c, participante p, caballo ca "
+                + "WHERE c.oid = p.oidCarrera AND p.oidCaballo = ca.oid";
     }
 
     @Override
@@ -92,9 +85,6 @@ public class MapeadorCarrera implements Mapeador {
             case "cerrada":
                 estado = Carrera.Estado.cerrada;
                 break;
-            case "definida":
-                estado = Carrera.Estado.definida;
-                break;
             case "finalizada":
                 estado = Carrera.Estado.finalizada;
                 break;
@@ -117,9 +107,8 @@ public class MapeadorCarrera implements Mapeador {
         ArrayList<Participante> participantes = carrera.getParticipantes();
         for (Participante p : participantes) {
             sqls.add(
-                    "insert into participante values(" + carrera.getOid() + ",'"
-                    + p.getNumero() + "'," + p.getDividendo() + "'," + p.isGanador() + ",'"
-                    + p.getOid() + "','" + p.getCaballo().getOid() + "')"
+                    "insert into participante values(" + p.getOid()+","+ carrera.getOid() + ","+ p.getCaballo().getOid()
+                    + "," + p.getNumero() + "," + p.getDividendo() + "," + p.isGanador() +")"
             );
         }
     }

@@ -12,31 +12,14 @@ public class Participante {
     private ModalidadApuesta tipoApuesta;
     private int oid;
 
-    public int getOid() {
-        return oid;
-    }
-
-    public void setOid(int oid) {
-        this.oid = oid;
-    }
-
     public enum Eventos {
         cambiaModalidadApuesta
     };
 
-    public Participante(){
-        
+    public Participante() {
+
     }
-    
-    public Participante(Caballo c, int n, double d) {
-        caballo = c;
-        numero = n;
-        dividendo = d;
-        ganador = false;
-        tipoApuesta = new Simple();
-        apuestas = new ArrayList();
-    }
-    
+
     public Participante(Caballo c, int n, double d, boolean g) {
         caballo = c;
         numero = n;
@@ -47,6 +30,14 @@ public class Participante {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
+    }
+
     public Caballo getCaballo() {
         return caballo;
     }
@@ -77,7 +68,7 @@ public class Participante {
 
     public void setGanador(boolean ganador) {
         this.ganador = ganador;
-        if (ganador){
+        if (ganador) {
             pagarApuestas();
         }
     }
@@ -100,7 +91,6 @@ public class Participante {
     }
 
     // </editor-fold>
-
     @Override
     public String toString() {
         String ganador = "";
@@ -109,23 +99,27 @@ public class Participante {
         }
         return numero + " - " + caballo.getNombre() + " - " + dividendo + ganador;
     }
-
+    
+    //verifica la participación de un caballo
     public boolean caballoParticipa(Caballo cab) {
         return caballo.equals(cab);
     }
 
-    public boolean numeroValido(){
+    //Valida número de Caballo
+    public boolean numeroValido() {
         return (numero <= 99999 && numero >= 1);
     }
-
-    public boolean dividendoValido(){
-        return (dividendo > (double)1);
+    //Valida dividendo de paga de un caballo
+    public boolean dividendoValido() {
+        return (dividendo > (double) 1);
     }
 
+    //Devuelve nombre del caballo asignado a este participante
     public String getNombreCaballo() {
         return caballo.getNombre();
     }
 
+    //Calcula lo descontado a un Jugador con una apuesta efectuada
     public float montoPagadoSegunModalidad(float montoF) {
         return this.tipoApuesta.calcularMontoPagadoSegunModalidad(montoF);
     }
@@ -135,6 +129,7 @@ public class Participante {
         return this.tipoApuesta.calcularMontoGananciaSegunModalidad(montoF, dividendo, montoTotalPagado());
     }
 
+    //Monto total pagado por los jugadores en esta carrera para este participante
     public float montoTotalPagado() {
         float monto = 0;
         for (Apuesta a : apuestas) {
@@ -143,6 +138,7 @@ public class Participante {
         return monto;
     }
 
+    //Monto total apostado sin evaluar la modalidad de apuesta del participante
     public float montoTotalApostado() {
         float monto = 0;
         for (Apuesta a : apuestas) {
@@ -150,31 +146,37 @@ public class Participante {
         }
         return monto;
     }
-
-    public float montoTotalGanado(){
+    
+    //Monto total ganado por los jugadores en esta carrera
+    public float montoTotalGanado() {
         float monto = 0;
-        for (Apuesta a : apuestas){
+        for (Apuesta a : apuestas) {
             monto += a.getMontoGanado();
         }
         return monto;
     }
 
+    //Verifica si el participante tiene apuestas efectuadas
     public boolean tieneApuestas() {
         return !apuestas.isEmpty();
     }
 
+    //Agrega apuestas al participante
     public void agregarApuesta(Apuesta a) {
+        Fachada.getInstancia().guardarApuesta(a);
         apuestas.add(a);
     }
 
-    public void pagarApuestas(){
-        for (Apuesta a : apuestas){
-            float loGanado =  montoGanadoSegunModalidad(a.getMontoApostado());
+    //Método para pagar apuestas ganadoras
+    public void pagarApuestas() {
+        for (Apuesta a : apuestas) {
+            float loGanado = montoGanadoSegunModalidad(a.getMontoApostado());
             a.pagarApuestaJugador(loGanado);
         }
     }
-
-    public String getModalidad(){
+    
+    
+    public String getModalidad() {
         return tipoApuesta.tipoModalidad();
     }
 
