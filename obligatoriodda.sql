@@ -78,6 +78,9 @@ CREATE TABLE `carrera` (
 
 /*Data for the table `carrera` */
 
+insert  into `carrera`(`oid`,`numeroCarrera`,`oidJornada`,`estado`,`nombreCarrera`) values 
+(154,1,154,'definida','hnm');
+
 /*Table structure for table `hipodromo` */
 
 DROP TABLE IF EXISTS `hipodromo`;
@@ -108,14 +111,7 @@ CREATE TABLE `jornada` (
 /*Data for the table `jornada` */
 
 insert  into `jornada`(`oid`,`fechaJornada`,`oidHipodromo`) values 
-(41,'2020-06-21 00:00:00',41),
-(43,'2020-06-21 00:00:00',43),
-(46,'2020-06-21 00:00:00',46),
-(49,'2020-06-21 00:00:00',49),
-(52,'2020-06-21 00:00:00',52),
-(55,'2020-06-21 00:00:00',55),
-(57,'2020-06-21 00:00:00',57),
-(60,'2020-06-21 00:00:00',60);
+(153,'2020-06-22 00:00:00',10);
 
 /*Table structure for table `jugador` */
 
@@ -130,7 +126,7 @@ CREATE TABLE `jugador` (
 /*Data for the table `jugador` */
 
 insert  into `jugador`(`oidJugador`,`saldo`,`oidApuesta`) values 
-(2,150,NULL);
+(2,1000,NULL);
 
 /*Table structure for table `oid` */
 
@@ -143,7 +139,7 @@ CREATE TABLE `oid` (
 /*Data for the table `oid` */
 
 insert  into `oid`(`ultimo`) values 
-(62);
+(154);
 
 /*Table structure for table `participante` */
 
@@ -159,6 +155,10 @@ CREATE TABLE `participante` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `participante` */
+
+insert  into `participante`(`oid`,`oidCarrera`,`oidCaballo`,`numeroParticipante`,`dividendo`,`ganador`) values 
+(0,154,0,2,12,0),
+(0,154,3,24,12,0);
 
 /*Table structure for table `usuario` */
 
