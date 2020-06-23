@@ -8,6 +8,7 @@ import modelo.Carrera;
 import modelo.Fachada;
 import modelo.Participante;
 import persistencia.Mapeador;
+import persistencia.Persistencia;
 
 public class MapeadorCarrera implements Mapeador {
 
@@ -59,8 +60,7 @@ public class MapeadorCarrera implements Mapeador {
 
     @Override
     public String getSqlSeleccionar() {
-        return "SELECT * FROM carrera c, participante p, caballo ca "
-                + "WHERE c.oid = p.oidCarrera AND p.oidCaballo = ca.oid";
+        return "SELECT * FROM carrera";
     }
 
     @Override
@@ -92,17 +92,24 @@ public class MapeadorCarrera implements Mapeador {
                 estado = Carrera.Estado.definida;
         }
         carrera.setEstado(estado);
-        carrera.setFecha(rs.getTimestamp("fechaCarrera"));
-        carrera.setOid(rs.getInt("oid"));
+        String filtro = "oidCarrera = "+ carrera.getOid();
+        MapeadorParticipante mpp = new MapeadorParticipante();
+        carrera.setParticipantes(Persistencia.getInstancia().buscar(mpp,filtro));
     }
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
-        carrera.getParticipantes().add(new Participante(new Caballo(rs.getString("nombreCaballo"), rs.getString("nombreResponsable")),
-                rs.getInt("numeroParticipante"), rs.getDouble("dividendo"), rs.getBoolean("ganador"))
-        );
+//        carrera.getParticipantes().add(
+//                new Participante(
+//                        new Caballo(rs.getString("nombreCaballo"),rs.getString("nombreResponsable")),
+//                        rs.getInt("numeroParticipante"), 
+//                        rs.getDouble("dividendo"), 
+//                        rs.getBoolean("ganador"))
+//        );
     }
 
+    
+    
     public void generarParticipantes(ArrayList<String> sqls) {
         ArrayList<Participante> participantes = carrera.getParticipantes();
         for (Participante p : participantes) {

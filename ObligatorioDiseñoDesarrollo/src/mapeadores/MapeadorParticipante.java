@@ -48,7 +48,7 @@ public class MapeadorParticipante implements Mapeador {
 
     @Override
     public String getSqlSeleccionar() {
-        return "SELECT * FROM participante p, caballo c WHERE c.id = p.idCaballo";
+        return "SELECT * FROM participante";
     }
 
     @Override
@@ -63,18 +63,16 @@ public class MapeadorParticipante implements Mapeador {
 
     @Override
     public void leerCompuesto(ResultSet rs) throws SQLException {
-        participante.setOid(rs.getInt("oid"));
         participante.setNumero(rs.getInt("numeroParticipante"));
         participante.setGanador(rs.getBoolean("ganador"));
         participante.setDividendo(rs.getDouble("dividendo"));
         Caballo c = Fachada.getInstancia().buscarCaballo(rs.getInt("oidCaballo"));
         participante.setCaballo(c);
-        
     }
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
-
+        
     }
 
 }

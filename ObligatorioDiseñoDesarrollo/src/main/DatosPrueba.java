@@ -42,36 +42,36 @@ public class DatosPrueba {
 
     private static void cargarAca() {
         Fachada logica = Fachada.getInstancia();
-        //CABALLOS
-        Caballo c1 = new Caballo("Caballo1", "Responsable1");
-        Caballo c2 = new Caballo("Caballo2", "Responsable2");
-        Caballo c3 = new Caballo("Caballo3", "Responsable3");
-        Caballo c4 = new Caballo("Caballo4", "Responsable4");
-        Caballo c5 = new Caballo("Caballo5", "Responsable5");
-        Caballo c6 = new Caballo("Caballo6", "Responsable6");
-        Caballo c7 = new Caballo("Caballo7", "Responsable7");
-        Caballo c8 = new Caballo("Caballo8", "Responsable8");
-
-        logica.agregarCaballo(c1);
-        logica.agregarCaballo(c2);
-        logica.agregarCaballo(c3);
-        logica.agregarCaballo(c4);
-        logica.agregarCaballo(c5);
-        logica.agregarCaballo(c6);
-
-        //PARTICIPANTE
-        Participante p1 = new Participante(c1, 2, 2.5, false);
-        Participante p2 = new Participante(c2, 4, 1.5, false);
-        Participante p3 = new Participante(c3, 76, 1.3, false);
-        Participante p4 = new Participante(c4, 67, 1.85, false);
-
-        ArrayList<Participante> participantes = new ArrayList<Participante>();
-        ArrayList<Participante> participantes2 = new ArrayList<Participante>();
-        participantes.add(p1);
-        participantes.add(p2);
-        participantes2.add(p3);
-        participantes2.add(p4);
-        p4.setGanador(true);
+//        //CABALLOS
+//        Caballo c1 = new Caballo("Caballo1", "Responsable1");
+//        Caballo c2 = new Caballo("Caballo2", "Responsable2");
+//        Caballo c3 = new Caballo("Caballo3", "Responsable3");
+//        Caballo c4 = new Caballo("Caballo4", "Responsable4");
+//        Caballo c5 = new Caballo("Caballo5", "Responsable5");
+//        Caballo c6 = new Caballo("Caballo6", "Responsable6");
+//        Caballo c7 = new Caballo("Caballo7", "Responsable7");
+//        Caballo c8 = new Caballo("Caballo8", "Responsable8");
+//
+//        logica.agregarCaballo(c1);
+//        logica.agregarCaballo(c2);
+//        logica.agregarCaballo(c3);
+//        logica.agregarCaballo(c4);
+//        logica.agregarCaballo(c5);
+//        logica.agregarCaballo(c6);
+//
+//        //PARTICIPANTE
+//        Participante p1 = new Participante(c1, 2, 2.5, false);
+//        Participante p2 = new Participante(c2, 4, 1.5, false);
+//        Participante p3 = new Participante(c3, 76, 1.3, false);
+//        Participante p4 = new Participante(c4, 67, 1.85, false);
+//
+//        ArrayList<Participante> participantes = new ArrayList<Participante>();
+//        ArrayList<Participante> participantes2 = new ArrayList<Participante>();
+//        participantes.add(p1);
+//        participantes.add(p2);
+//        participantes2.add(p3);
+//        participantes2.add(p4);
+//        p4.setGanador(true);
 
         //HIPODROMOS
 //        Hipodromo h1 = new Hipodromo("Hipódromo1", "Dirección1");

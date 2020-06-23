@@ -10,6 +10,7 @@ import modelo.Fachada;
 import modelo.Hipodromo;
 import modelo.Jornada;
 import persistencia.Mapeador;
+import persistencia.Persistencia;
 
 public class MapeadorJornada implements Mapeador {
 
@@ -61,11 +62,7 @@ public class MapeadorJornada implements Mapeador {
 
     @Override
     public String getSqlSeleccionar() {
-        return "SELECT *"
-                + "FROM jornada j, carrera ca, participante p, caballo c "
-                + "WHERE ca.oidJornada = j.oid AND"
-                + "ca.oid = p.oidCarrera AND"
-                + "p.oidCaballo = c.oid";
+        return "SELECT * FROM jornada ";
     }
 
     @Override
@@ -80,11 +77,16 @@ public class MapeadorJornada implements Mapeador {
 
     @Override
     public void leerCompuesto(ResultSet rs) throws SQLException {
-
+        jornada.setFecha(rs.getDate("fechaJornada"));
+        jornada.setHipodromo(Fachada.getInstancia().buscarHipodromo(rs.getInt("oidHipodromo")));
+        String filtro = "oidJornada = "+ jornada.getOid();
+        MapeadorCarrera mpc = new MapeadorCarrera();
+        jornada.setCarreras(Persistencia.getInstancia().buscar(mpc,filtro));
     }
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
+ 
 
     }
 

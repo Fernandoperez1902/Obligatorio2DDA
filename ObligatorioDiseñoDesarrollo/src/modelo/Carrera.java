@@ -16,12 +16,10 @@ public class Carrera extends Observable {
 
     //SE DEFINE ESTADO COMO UN ENUM
     public enum Estado {
-
         definida, abierta, cerrada, finalizada
     };
 
     public enum Eventos {
-
         abrir, cerrar, finalizar
     };
 
@@ -148,21 +146,21 @@ public class Carrera extends Observable {
     public void abrir() {
         estado = Estado.abierta;
         this.avisar(Eventos.abrir);
-        Fachada.getInstancia().avisar(Eventos.abrir);
+        //Fachada.getInstancia().avisar(Eventos.abrir);
     }
 
     //MÉTODO PARA CERRAR UNA CARRERA
     public void cerrar() {
         estado = Estado.cerrada;
         this.avisar(Eventos.cerrar);
-        Fachada.getInstancia().avisar(Eventos.cerrar);
+        //Fachada.getInstancia().avisar(Eventos.cerrar);
     }
 
     //MÉTODO PARA FINALIZAR UNA CARRERA
     public void finalizar() {
         estado = Estado.finalizada;
         this.avisar(Eventos.finalizar);
-        Fachada.getInstancia().avisar(Eventos.finalizar);
+        //Fachada.getInstancia().avisar(Eventos.finalizar);
 
     }
 

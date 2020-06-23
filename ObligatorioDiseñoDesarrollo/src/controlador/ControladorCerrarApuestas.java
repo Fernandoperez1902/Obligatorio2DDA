@@ -14,7 +14,7 @@ public class ControladorCerrarApuestas {
     public ControladorCerrarApuestas(Hipodromo seleccionado, IVistaCerrarApuestas vista){        
         this.seleccionado = seleccionado;
         this.vista = vista; 
-        cargarCarrera();    
+        cargarCarrera();   
     }
     
     public void cargarCarrera(){       
@@ -23,14 +23,13 @@ public class ControladorCerrarApuestas {
             vista.mostrarCarrera(carreraAbierta);
         } else {
             vista.mostrarError("No hay carreras para cerrar");
-            vista.cerrar();
+            //vista.cerrar();
         }
     }
     
     public void cerrarApuesta(){
         carreraAbierta.cerrar();
         Jornada jornada = seleccionado.buscarJornada(carreraAbierta.getFecha());
-        jornada.actualizarUltimaCerrada();
         vista.cerrar();
     }
     

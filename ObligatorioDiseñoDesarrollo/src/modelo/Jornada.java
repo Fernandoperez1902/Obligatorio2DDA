@@ -9,7 +9,7 @@ public class Jornada extends Observable {
 
     private Date fecha;
     private int ultimoIdCarrera;
-    private int ultimaCerrada;
+    private int ultima;
     private int oid;
     private ArrayList<Carrera> carreras = new ArrayList();
     private Hipodromo hipodromo;
@@ -17,7 +17,6 @@ public class Jornada extends Observable {
     public Jornada(Date f, Hipodromo h) {
         this.fecha = f;
         this.ultimoIdCarrera = 0;
-        this.ultimaCerrada = -1;
         this.hipodromo = h;
     }
 
@@ -60,11 +59,11 @@ public class Jornada extends Observable {
     }
 
     public int getUltimaCerrada() {
-        return ultimaCerrada;
+        return ultima;
     }
 
     public void setUltimaCerrada(int ultimaCerrada) {
-        this.ultimaCerrada = ultimaCerrada;
+        this.ultima = ultimaCerrada;
     }
 
     public ArrayList<Carrera> getCarreras() {
@@ -107,34 +106,30 @@ public class Jornada extends Observable {
     }
 
     public Carrera traerProximaCarrera() {
-        Carrera carrera = null;
-        if (ultimaCerrada + 1 < carreras.size()) {
-            if (carreras.get(ultimaCerrada + 1).isDefinida()
-                    && carreras.get(ultimaCerrada).isFinalizada()) {
-                carrera = carreras.get(ultimaCerrada + 1);
-            }
+        Carrera ret = null;
+        Carrera actual = carreras.get(carreraActualPosicion());
+        if(actual.isDefinida()){
+            ret = actual;
         }
-        return carrera;
+        return ret;
     }
 
     public Carrera buscarCarreraAbierta() {
-        Carrera carrera = null;
-        if (ultimaCerrada + 1 < carreras.size()) {
-            if (carreras.get(ultimaCerrada + 1).isAbierta()) {
-                carrera = carreras.get(ultimaCerrada + 1);
-            }
+        Carrera ret = null;
+        Carrera actual = carreras.get(carreraActualPosicion());
+        if(actual.isAbierta()){
+            ret = actual;
         }
-        return carrera;
+        return ret;
     }
 
     Carrera buscarUltimaCarreraCerrada() {
-        Carrera ultCerrada = null;
-        if (ultimaCerrada != -1) {
-            if (!carreras.get(ultimaCerrada).isFinalizada()) {
-                ultCerrada = carreras.get(ultimaCerrada);
-            }
+        Carrera ret = null;
+        Carrera actual = carreras.get(carreraActualPosicion());
+        if(actual.isCerrada()){
+            ret = actual;
         }
-        return ultCerrada;
+        return ret;
     }
 
     public boolean existeNombreCarrera(String nombre) {
@@ -156,16 +151,24 @@ public class Jornada extends Observable {
         }
     }
 
-    public void actualizarUltimaCerrada() {
-        ultimaCerrada++;
-    }
-
     public Carrera carreraActual() {
         Carrera ret = null;
         boolean encontre = false;
         for (int x = getCarreras().size() - 1; x >= 0 && !encontre; x--) {
             ret = carreras.get(x);
             encontre = (ret.isFinalizada() || ret.isAbierta() || ret.isCerrada());
+        }
+        return ret;
+    }
+    
+    public int carreraActualPosicion() {
+        Carrera c = null;
+        int ret = 0;
+        boolean encontre = false;
+        for (int x = getCarreras().size() - 1; x >= ret && !encontre; x--) {
+            c = carreras.get(x);
+            ret = x;
+            encontre = (c.isFinalizada() || c.isAbierta() || c.isCerrada());
         }
         return ret;
     }

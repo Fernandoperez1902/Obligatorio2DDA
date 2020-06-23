@@ -122,7 +122,15 @@ public class Fachada extends Observable {
         return sa.buscarApuesta(oid);
     }
 
+    public Hipodromo buscarHipodromo(int oid) {
+        return sh.buscarHipodromo(oid);
+    }
+    
     public Participante buscarParticipante(int oid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ArrayList<Jornada> cargarJornadas(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
