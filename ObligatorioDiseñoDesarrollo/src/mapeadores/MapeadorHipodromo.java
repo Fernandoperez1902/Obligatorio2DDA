@@ -52,7 +52,6 @@ public class MapeadorHipodromo implements Mapeador {
         sqls.add(
                 "delete from jornada where oid = " + hipodromo.getOid()
         );
-        //generarJornadas(sqls);
         return sqls;
     }
 
@@ -64,7 +63,6 @@ public class MapeadorHipodromo implements Mapeador {
     @Override
     public String getSqlSeleccionar() {
         return "SELECT * FROM hipodromo";
-
     }
 
     @Override
@@ -88,29 +86,7 @@ public class MapeadorHipodromo implements Mapeador {
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
-//        Jornada j= new Jornada ();
-//        j.setFecha(rs.getDate("fechaJornada"));
-//        Carrera c = new Carrera();
-//        c.setNombre(rs.getString("nombreCarrera"));
-//        c.setNumeroCarrera(rs.getInt("numeroCarrera"));
-//        Carrera.Estado estado;
-//        switch (rs.getString("estado")) {
-//            case "abierta":
-//                estado = Carrera.Estado.abierta;
-//                break;
-//            case "cerrada":
-//                estado = Carrera.Estado.cerrada;
-//                break;
-//            case "finalizada":
-//                estado = Carrera.Estado.finalizada;
-//                break;
-//            default:
-//                estado = Carrera.Estado.definida;
-//        }
-//        c.setEstado(estado);
-//        j.getCarreras().add(c);
-//        hipodromo.getJornadas().add(j);
-//        hipodromo.setJornadas(hipodromo.getJornadas());
+
          
     }
 

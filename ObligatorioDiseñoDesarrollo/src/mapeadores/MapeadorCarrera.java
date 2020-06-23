@@ -92,9 +92,9 @@ public class MapeadorCarrera implements Mapeador {
                 estado = Carrera.Estado.definida;
         }
         carrera.setEstado(estado);
-        String filtro = "oidCarrera = "+ carrera.getOid();
-        MapeadorParticipante mpp = new MapeadorParticipante();
-        carrera.setParticipantes(Persistencia.getInstancia().buscar(mpp,filtro));
+//        String filtro = "oidCarrera = "+ carrera.getOid();
+//        MapeadorParticipante mpp = new MapeadorParticipante();
+//        carrera.setParticipantes(Persistencia.getInstancia().buscar(mpp,filtro));
     }
 
     @Override

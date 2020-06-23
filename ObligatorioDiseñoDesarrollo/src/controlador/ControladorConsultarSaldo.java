@@ -20,9 +20,6 @@ public class ControladorConsultarSaldo {
             vista.mostrarVistaSaldo(j);
         } catch (ApuestasException ex) {
             vista.mostrarError(ex.getMessage());
-
         }
-        
     }
-
 }

@@ -103,7 +103,6 @@ public class Persistencia {
                     map.leerCompuesto(rs);
                 }
                 map.leerComponente(rs);
-                
             }
             return lista;
         } catch (SQLException ex) {

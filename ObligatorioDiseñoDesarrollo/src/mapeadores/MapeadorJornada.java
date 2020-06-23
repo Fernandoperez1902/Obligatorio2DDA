@@ -78,10 +78,10 @@ public class MapeadorJornada implements Mapeador {
     @Override
     public void leerCompuesto(ResultSet rs) throws SQLException {
         jornada.setFecha(rs.getDate("fechaJornada"));
-        jornada.setHipodromo(Fachada.getInstancia().buscarHipodromo(rs.getInt("oidHipodromo")));
-        String filtro = "oidJornada = "+ jornada.getOid();
-        MapeadorCarrera mpc = new MapeadorCarrera();
-        jornada.setCarreras(Persistencia.getInstancia().buscar(mpc,filtro));
+        //jornada.setHipodromo(Fachada.getInstancia().buscarHipodromo(rs.getInt("oidHipodromo")));
+//        String filtro = "oidJornada = "+ jornada.getOid();
+//        MapeadorCarrera mpc = new MapeadorCarrera();
+//        jornada.setCarreras(Persistencia.getInstancia().buscar(mpc,filtro));
     }
 
     @Override
