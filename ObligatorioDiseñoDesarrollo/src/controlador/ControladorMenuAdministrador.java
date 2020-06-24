@@ -32,7 +32,7 @@ public class ControladorMenuAdministrador {
     }
 
     public void abrirCarrera() {
-        if (!seleccionado.getJornadas().isEmpty() && seleccionado.buscarCarreraActual().isDefinida()) {
+        if (!seleccionado.getJornadas().isEmpty() && seleccionado.buscarProximaCarreraDelDia() !=null) {
             vista.llamarAbrirCarrera(seleccionado);
         } else {
             vista.mostrarError("No existen carreras para abrir");

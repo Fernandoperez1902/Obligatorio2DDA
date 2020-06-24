@@ -26,14 +26,17 @@ public class ControladorMonitorDeCarrera implements Observador {
     }
 
     public void cargarCarreras(Date fecha) {
+        ArrayList<Carrera> lista = null;
         if (fecha == null) {
             fecha = ManejoDeFechas.tomarFechaSistemaSinHora();
         }
         Jornada jornada = modelo.buscarJornada(fecha);
         if (jornada != null) {
             carreras = jornada.getCarreras();
+            lista = carreras;
         }
-        vista.cargarCarreras(carreras);
+        vista.cargarCarreras(lista);  
+        vista.limpiarListas();
     }
 
     public void seleccionarCarrera(int index) {
@@ -53,6 +56,9 @@ public class ControladorMonitorDeCarrera implements Observador {
         return ret;
     }
 
+    public void limpiarListas(){
+        vista.limpiarListas();
+    }
     
     @Override
     public void actualizar(Observable origen, Object evento) {

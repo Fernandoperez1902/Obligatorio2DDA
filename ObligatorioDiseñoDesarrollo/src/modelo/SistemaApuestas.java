@@ -19,7 +19,11 @@ public class SistemaApuestas {
     }
 
     public boolean agregarApuesta(Apuesta a) {
-        return apuestas.add(a);
+        boolean ret = false;
+        if (apuestas.add(a)) {
+            Fachada.getInstancia().avisar(Fachada.Eventos.seRealizoApuesta);
+        }
+        return ret;
     }
 
     public void agregarModalidad(ModalidadApuesta modalidad) {

@@ -25,22 +25,17 @@ public class ControladorRealizarApuestas implements Observador {
     public ControladorRealizarApuestas(IVistaRealizarApuestas vista) {
         this.modelo = Fachada.getInstancia();
         this.vista = vista;
-        modelo.agregar(this);
-        cargarHipodromos();
+        this.hipodromos = modelo.getHipodromos();
+        this.vista.cargarHipodromos(hipodromos);
         this.vista.habilitarBotonApuesta(false);
     }
 
     @Override
     public void actualizar(Observable origen, Object evento) {
-        cargarCarreraActual(hipodromoSeleccionado);
-        cargarParticipantes(carreraSeleccionada);
-        vista.actualizarLista();
-    }
-
-    public void cargarHipodromos() {
-        hipodromoSeleccionado = null;
-        hipodromos = modelo.getHipodromos();
-        vista.cargarHipodromos(hipodromos);
+        if (evento.equals(Carrera.Eventos.abrir) || evento.equals(Carrera.Eventos.cerrar) || evento.equals(Carrera.Eventos.finalizar)) {
+            vista.cargarCarrera(carreraSeleccionada);
+            vista.cargarParticipantes(carreraSeleccionada.getParticipantes());
+        }
     }
 
     public void cargarCarreraActual(Hipodromo h) {
@@ -48,6 +43,7 @@ public class ControladorRealizarApuestas implements Observador {
         Jornada deHoy = h.buscarJornada(new Date());
         if (deHoy != null) {
             carreraSeleccionada = deHoy.carreraActual();
+            carreraSeleccionada.agregar(this);
             if (!carreraSeleccionada.isAbierta()) {
                 vista.habilitarBotonApuesta(false);
             }
@@ -60,9 +56,9 @@ public class ControladorRealizarApuestas implements Observador {
     }
 
     public void cargarParticipantes(Carrera c) {
-        if(c!=null){
+        if (c != null) {
             vista.cargarParticipantes(c.getParticipantes());
-        }else{
+        } else {
             vista.cargarParticipantes(new ArrayList<Participante>());
         }
     }

@@ -1,4 +1,3 @@
-
 package controlador;
 
 import java.util.ArrayList;
@@ -7,23 +6,23 @@ import modelo.Hipodromo;
 import modelo.Participante;
 
 public class ControladorFinalizarCarrera {
-    
+
     private Hipodromo seleccionado;
     private IVistaFinalizarCarrera vista;
     private Carrera ultimaCerrada;
     private ArrayList<Participante> participantes;
     private Participante ganadorSeleccionado;
-    
-    public ControladorFinalizarCarrera(Hipodromo seleccionado, IVistaFinalizarCarrera vista){
+
+    public ControladorFinalizarCarrera(Hipodromo seleccionado, IVistaFinalizarCarrera vista) {
         this.seleccionado = seleccionado;
         this.vista = vista;
-        this.participantes = new ArrayList(); 
+        this.participantes = new ArrayList();
         cargarCarrera();
     }
-    
-    public void cargarCarrera(){       
+
+    public void cargarCarrera() {
         ultimaCerrada = seleccionado.buscarUltimaCarreraCerrada();
-        if (ultimaCerrada != null){
+        if (ultimaCerrada != null) {
             participantes = ultimaCerrada.getParticipantes();
             vista.mostrarCarrera(ultimaCerrada);
         } else {
@@ -31,15 +30,20 @@ public class ControladorFinalizarCarrera {
             vista.cerrar();
         }
     }
-    
-    public void seleccionarGanador(int index){
+
+    public void seleccionarGanador(int index) {
         ganadorSeleccionado = participantes.get(index);
         vista.mostrarGanador(ganadorSeleccionado);
     }
-    
-    public void FinalizarCarrera(){
-        ganadorSeleccionado.setGanador(true);
-        ultimaCerrada.finalizar();
-        vista.cerrar();
+
+    public void FinalizarCarrera() {
+        if (ganadorSeleccionado != null) {
+
+            ganadorSeleccionado.setGanador(true);
+            ultimaCerrada.finalizar();
+            vista.cerrar();
+        }else{
+            vista.mostrarError("Debe seleccionar un ganador");
+        }
     }
 }

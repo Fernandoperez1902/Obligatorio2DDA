@@ -13,6 +13,9 @@ public class Fachada extends Observable {
     private SistemaApuestas sa = new SistemaApuestas();
     private SistemaCaballos sc = new SistemaCaballos();
 
+     public enum Eventos {seRealizoApuesta};
+    
+    
     public static Fachada getInstancia() {
         if (instancia == null) {
             instancia = new Fachada();
