@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Participante;
+import observer.Observable;
+import observer.Observador;
 
-public class ControladorCambiarModalidadApuesta {
+public class ControladorCambiarModalidadApuesta implements Observador{
     
     private Hipodromo hipodromoSeleccionado;
     private IVistaCambiarModalidadApuesta vista;
@@ -25,6 +27,7 @@ public class ControladorCambiarModalidadApuesta {
         abierta = hipodromoSeleccionado.buscarCarreraAbierta();
         if (abierta != null){
             vista.mostrarCarrera(abierta);
+            abierta.agregar(this);
             participantesSinApuesta = abierta.participantesSinApuestas();
             vista.mostrarParticipantesSinApuestas(participantesSinApuesta);
         } else {
@@ -38,5 +41,12 @@ public class ControladorCambiarModalidadApuesta {
     
     public void modificarParticipante(){
         vista.mostrarProximaVista(participanteSeleccionado);
+    }
+
+    @Override
+    public void actualizar(Observable origen, Object evento) {
+        if (evento.equals(Participante.Eventos.cambiaModalidadApuesta)){
+            vista.mostrarParticipantesSinApuestas(participantesSinApuesta);
+        }
     }
 }

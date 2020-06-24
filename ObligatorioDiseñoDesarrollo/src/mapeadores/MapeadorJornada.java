@@ -86,7 +86,7 @@ public class MapeadorJornada implements Mapeador {
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
- 
+
 
     }
 

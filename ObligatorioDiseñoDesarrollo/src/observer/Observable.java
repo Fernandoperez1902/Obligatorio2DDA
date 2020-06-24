@@ -7,10 +7,6 @@ package observer;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Fernando
- */
 public abstract class Observable {
 
     private ArrayList<Observador> observadores = new ArrayList();
