@@ -15,16 +15,17 @@ public class ControladorMonitorDeCarrera implements Observador {
     private IVistaMonitorDeCarrera vista;
     private Hipodromo modelo;
     private Carrera carreraSeleccionada;
+    private ArrayList<Carrera> carreras;
 
     public ControladorMonitorDeCarrera(IVistaMonitorDeCarrera unaVista, Hipodromo hipodromo) {
         this.vista = unaVista;
         this.modelo = hipodromo;
-        vista.cargarCarreras(modelo.buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora()).getCarreras());
+        carreras = modelo.buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora()).getCarreras();
+        vista.cargarCarreras(carreras);
         modelo.buscarCarreraActual().agregar(this);
     }
 
     public void cargarCarreras(Date fecha) {
-        ArrayList<Carrera> carreras = null;
         if (fecha == null) {
             fecha = ManejoDeFechas.tomarFechaSistemaSinHora();
         }
@@ -56,7 +57,7 @@ public class ControladorMonitorDeCarrera implements Observador {
     @Override
     public void actualizar(Observable origen, Object evento) {
         if (evento.equals(Carrera.Eventos.abrir) || evento.equals(Carrera.Eventos.cerrar) || evento.equals(Carrera.Eventos.finalizar)) {
-            //vista.cargarCarreras(carreras);
+            vista.cargarCarreras(carreras);
             vista.mostrarDetalle(carreraSeleccionada);
             vista.mostrarParticipantes(carreraSeleccionada.getParticipantes());
             vista.mostrarDetalleApuestasGanadoras(apuestasGanadoras());

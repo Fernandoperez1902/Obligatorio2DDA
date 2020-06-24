@@ -132,8 +132,11 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void lstCarrerasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCarrerasValueChanged
-        int index = lstCarreras.getSelectedIndex();
-        controlador.seleccionarCarrera(index);
+        if (lstCarreras.getSelectedIndex() != -1) {
+            int index = lstCarreras.getSelectedIndex();
+            controlador.seleccionarCarrera(index);
+        }
+        
     }//GEN-LAST:event_lstCarrerasValueChanged
 
     @Override
