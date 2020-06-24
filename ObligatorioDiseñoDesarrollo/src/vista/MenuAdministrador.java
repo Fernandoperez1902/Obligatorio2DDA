@@ -3,6 +3,7 @@ package vista;
 import controlador.ControladorMenuAdministrador;
 import controlador.IVistaMenuAdministrador;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Administrador;
 import modelo.Hipodromo;
 
@@ -211,12 +212,11 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
     public void llamarMonitorearCarrera(Hipodromo hip) {
         new MonitorDeCarreras(hip).setVisible(true);
     }
-    
+
     @Override
     public void llamarCambiarModadlidad(Hipodromo hip) {
         new CambiarModalidadApuesta(hip).setVisible(true);
     }
-
 
     @Override
     public String formatear(Hipodromo hip) {
@@ -231,6 +231,7 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         }
         lstHipodromo.setListData(stringHip.toArray());
     }
+
     @Override
     public void habilitarBotones(boolean b) {
         btnAbrir.setEnabled(b);
@@ -240,7 +241,12 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         btnFinalizar.setEnabled(b);
         btnMonitorear.setEnabled(b);
     }
-    
+
+    @Override
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCambiarModalidad;
@@ -258,7 +264,4 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
     private javax.swing.JLabel txtAdminName;
     // End of variables declaration//GEN-END:variables
 
-
-
-    
 }

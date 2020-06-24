@@ -23,4 +23,6 @@ public interface IVistaMenuAdministrador {
     public void llamarCambiarModadlidad(Hipodromo hip);
 
     public void habilitarBotones(boolean b);
+    
+    public void mostrarError(String mensaje);
 }

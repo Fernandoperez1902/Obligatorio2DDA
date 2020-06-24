@@ -66,12 +66,11 @@ public class SistemaHipodromos {
         }
     }
 
-    public void guardarHipodromo(Hipodromo hipodromo){
+    public void guardarHipodromo(Hipodromo hipodromo) {
         MapeadorHipodromo mH = new MapeadorHipodromo(hipodromo);
         Persistencia.getInstancia().guardar(mH);
     }
-    
-    
+
     //ESTE METODO ESTA DOBLE
     private void agregarHipodromo(Hipodromo h) {
         hipodromos.add(h);
@@ -81,14 +80,20 @@ public class SistemaHipodromos {
         MapeadorJornada mJ = new MapeadorJornada(jornada);
         Persistencia.getInstancia().guardar(mJ);
     }
-    
+
     void guardarParticipante(Carrera carrera) {
         MapeadorCarrera mJ = new MapeadorCarrera(carrera);
         Persistencia.getInstancia().guardar(mJ);
     }
-    
-    
-    
-    
+
+    Hipodromo buscarHipodromo(int oid) {
+        Hipodromo res = null;
+        for (Hipodromo h : hipodromos) {
+            if (h.getOid() == oid) {
+                res = h;
+            }
+        }
+        return res;
+    }
 
 }

@@ -111,18 +111,30 @@ public class Hipodromo {
     }
 
     public Carrera buscarProximaCarreraDelDia() {
+        Carrera ret = null;
         Jornada jornada = buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
-        return jornada.traerProximaCarrera();
+        if(jornada != null){
+            ret = jornada.traerProximaCarrera();
+        }
+        return ret;
     }
 
     public Carrera buscarCarreraAbierta() {
+        Carrera ret = null;
         Jornada jornada = buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
-        return jornada.buscarCarreraAbierta();
+        if(jornada != null){
+            ret = jornada.buscarCarreraAbierta();
+        }
+        return ret;
     }
 
     public Carrera buscarUltimaCarreraCerrada() {
+        Carrera ret = null;
         Jornada jornada = buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
-        return jornada.buscarUltimaCarreraCerrada();
+        if(jornada != null){
+            ret = jornada.buscarUltimaCarreraCerrada();
+        }
+        return ret;
     }
 
     public void agregarJornada(Jornada jornada) {

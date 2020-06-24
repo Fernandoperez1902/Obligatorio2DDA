@@ -47,7 +47,7 @@ public class MapeadorCaballo implements Mapeador {
 
     @Override
     public String getSqlSeleccionar() {
-        return "SELECT c.oid, c.nombreCaballo, c.nombreResponsable FROM caballo c";
+        return "SELECT * FROM caballo c";
     }
 
     @Override
