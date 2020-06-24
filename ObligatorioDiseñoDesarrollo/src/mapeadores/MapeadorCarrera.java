@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Caballo;
 import modelo.Carrera;
-import modelo.Fachada;
 import modelo.Participante;
 import persistencia.Mapeador;
 
