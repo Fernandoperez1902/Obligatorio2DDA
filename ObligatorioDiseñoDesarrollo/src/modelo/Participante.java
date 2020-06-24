@@ -8,6 +8,7 @@ public class Participante {
     private Double dividendo;
     private int numero;
     private boolean ganador;
+    private Carrera carrera;
     private ArrayList<Apuesta> apuestas;
     private ModalidadApuesta tipoApuesta;
     private int oid;
@@ -20,11 +21,12 @@ public class Participante {
 
     }
 
-    public Participante(Caballo c, int n, double d, boolean g) {
+    public Participante(Caballo c, int n, double d, boolean g, Carrera car) {
         caballo = c;
         numero = n;
         dividendo = d;
         ganador = false;
+        carrera = car;
         tipoApuesta = new Simple();
         apuestas = new ArrayList();
     }
@@ -77,8 +79,11 @@ public class Participante {
         return tipoApuesta;
     }
 
+    
+    
     public void setTipoApuesta(ModalidadApuesta tipoApuesta) {
         this.tipoApuesta = tipoApuesta;
+        carrera.avisar(Eventos.cambiaModalidadApuesta);
         //aquí debería avisar el cambio de modalidad de apuesta asignado al participante.
     }
 
@@ -174,7 +179,6 @@ public class Participante {
             a.pagarApuestaJugador(loGanado);
         }
     }
-    
     
     public String getModalidad() {
         return tipoApuesta.tipoModalidad();

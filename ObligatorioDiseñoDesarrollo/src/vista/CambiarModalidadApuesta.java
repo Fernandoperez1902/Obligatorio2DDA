@@ -1,4 +1,3 @@
-
 package vista;
 
 import controlador.ControladorCambiarModalidadApuesta;
@@ -7,11 +6,13 @@ import java.util.ArrayList;
 import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Participante;
+import observer.Observable;
+import observer.Observador;
 
-public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVistaCambiarModalidadApuesta{
+public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVistaCambiarModalidadApuesta {
 
     ControladorCambiarModalidadApuesta controlador;
-    
+
     public CambiarModalidadApuesta(Hipodromo seleccionado) {
         initComponents();
         controlador = new ControladorCambiarModalidadApuesta(seleccionado, this);
@@ -27,7 +28,7 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
     @Override
     public void mostrarParticipantesSinApuestas(ArrayList<Participante> participantes) {
         ArrayList<String> participantesString = new ArrayList();
-        for (Participante p : participantes){
+        for (Participante p : participantes) {
             participantesString.add(formatearParticipante(p));
         }
         lstParticipantesSinApuestas.setListData(participantesString.toArray());
@@ -35,7 +36,7 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
 
     @Override
     public String formatearParticipante(Participante participante) {
-        return "Nº" + participante.getNumero() + " - " + participante.getNombreCaballo() 
+        return "Nº" + participante.getNumero() + " - " + participante.getNombreCaballo()
                 + " - paga: $" + participante.getDividendo() + " Modalidad Apuesta: "
                 + participante.getModalidad();
     }
@@ -44,7 +45,7 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
     public void mostrarProximaVista(Participante seleccionado) {
         new ModificarModalidadParticipante(this, true, seleccionado).setVisible(true);
     }
-    
+
     @Override
     public void mostrarError(String mensaje) {
     }
@@ -52,8 +53,8 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
     @Override
     public void cerrar() {
         this.dispose();
-    }  
-    
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -162,7 +163,9 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void lstParticipantesSinApuestasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstParticipantesSinApuestasValueChanged
-        controlador.seleccionarParticipante(lstParticipantesSinApuestas.getSelectedIndex());
+        if (lstParticipantesSinApuestas.getSelectedIndex() != -1) {
+            controlador.seleccionarParticipante(lstParticipantesSinApuestas.getSelectedIndex());
+        }
     }//GEN-LAST:event_lstParticipantesSinApuestasValueChanged
 
 
@@ -179,4 +182,5 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
     private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 
+    
 }

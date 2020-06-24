@@ -39,7 +39,7 @@ public class ControladorAgregarCaballosCarrera {
 
     public void agregarParticipante(int numero, double dividendo) {
         try {
-            Participante participante = new Participante(caballoSeleccionado, numero, dividendo, false);
+            Participante participante = new Participante(caballoSeleccionado, numero, dividendo, false, modeloCarrera);
             modeloCarrera.validarParticipante(participante);
             modeloCarrera.agregarParticipante(participante);
             //participantes.add(participante);
