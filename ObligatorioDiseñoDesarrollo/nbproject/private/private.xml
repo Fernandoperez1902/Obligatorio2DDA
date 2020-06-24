@@ -3,20 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/mapeadores/MapeadorParticipante.java</file>
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/mapeadores/MapeadorHipodromo.java</file>
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/mapeadores/MapeadorJornada.java</file>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/persistencia/Persistencia.java</file>
-=======
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/vista/MenuAdministrador.java</file>
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/main/DatosPrueba.java</file>
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/controlador/ControladorMenuAdministrador.java</file>
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/vista/LoginAdministrador.java</file>
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/mapeadores/MapeadorCaballo.java</file>
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/controlador/ControladorConsultarSaldo.java</file>
-            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/controlador/ControladorAbrirCarrera.java</file>
->>>>>>> Stashed changes
+            <file>file:/C:/Users/marri/Desktop/ObligatorioDDA/Obligatorio2DDA/ObligatorioDiseñoDesarrollo/src/vista/MonitorDeCarreras.java</file>
         </group>
     </open-files>
 </project-private>
