@@ -235,7 +235,7 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     @Override
     public void limpiarFormulario() {
         ArrayList<String> lista = new ArrayList();
-        controladorRealizarApuesta.cargarHipodromos();
+        //controladorRealizarApuesta.cargarHipodromos();
         lstCaballo.setListData(lista.toArray());
         lblCarreraActual.setText("");
         txtMonto.setText("");
@@ -354,9 +354,5 @@ public class VentanaJugador extends javax.swing.JFrame implements IVistaRealizar
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void actualizarLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

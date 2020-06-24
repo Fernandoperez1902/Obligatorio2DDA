@@ -25,7 +25,6 @@ public class Jornada extends Observable {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Aquí están los Getters y Setters">
-
     public Hipodromo getHipodromo() {
         return hipodromo;
     }
@@ -33,7 +32,7 @@ public class Jornada extends Observable {
     public void setHipodromo(Hipodromo hipodromo) {
         this.hipodromo = hipodromo;
     }
-    
+
     public int getOid() {
         return oid;
     }
@@ -75,7 +74,6 @@ public class Jornada extends Observable {
     }
     // </editor-fold>
 
-    
     public enum Eventos {
         nuevaCarrera
     };
@@ -108,8 +106,11 @@ public class Jornada extends Observable {
     public Carrera traerProximaCarrera() {
         Carrera ret = null;
         Carrera actual = carreras.get(carreraActualPosicion());
-        if(actual.isDefinida()){
+        if (actual.isDefinida()) {
             ret = actual;
+        }
+        if (actual.isFinalizada() && carreraActualPosicion() < carreras.size()-1) {
+            ret = carreras.get(carreraActualPosicion() + 1);
         }
         return ret;
     }
@@ -117,7 +118,7 @@ public class Jornada extends Observable {
     public Carrera buscarCarreraAbierta() {
         Carrera ret = null;
         Carrera actual = carreras.get(carreraActualPosicion());
-        if(actual.isAbierta()){
+        if (actual.isAbierta()) {
             ret = actual;
         }
         return ret;
@@ -126,7 +127,7 @@ public class Jornada extends Observable {
     Carrera buscarUltimaCarreraCerrada() {
         Carrera ret = null;
         Carrera actual = carreras.get(carreraActualPosicion());
-        if(actual.isCerrada()){
+        if (actual.isCerrada()) {
             ret = actual;
         }
         return ret;
@@ -160,12 +161,12 @@ public class Jornada extends Observable {
         }
         return ret;
     }
-    
+
     public int carreraActualPosicion() {
         Carrera c = null;
         int ret = 0;
         boolean encontre = false;
-        for (int x = getCarreras().size() - 1; x >= ret && !encontre; x--) {
+        for (int x = getCarreras().size() - 1; x >= 0 && !encontre; x--) {
             c = carreras.get(x);
             ret = x;
             encontre = (c.isFinalizada() || c.isAbierta() || c.isCerrada());

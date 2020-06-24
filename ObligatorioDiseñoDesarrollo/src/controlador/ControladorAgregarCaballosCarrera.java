@@ -42,7 +42,6 @@ public class ControladorAgregarCaballosCarrera {
             Participante participante = new Participante(caballoSeleccionado, numero, dividendo, false, modeloCarrera);
             modeloCarrera.validarParticipante(participante);
             modeloCarrera.agregarParticipante(participante);
-            //participantes.add(participante);
             disponibles.remove(caballoSeleccionado);
             caballoSeleccionado = null;
             vista.mostrarParticipantes(participantes);

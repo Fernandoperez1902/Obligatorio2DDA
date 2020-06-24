@@ -30,5 +30,4 @@ public interface IVistaRealizarApuestas {
 
     public void mostrarMensajeExito();
 
-    public void actualizarLista();
 }

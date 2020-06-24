@@ -20,5 +20,7 @@ public interface IVistaMonitorDeCarrera {
     public String formatearApuesta(Apuesta apuesta);
     
     public void mostrarDetalleApuestasGanadoras(ArrayList<Apuesta> apuestas);
+
+    public void limpiarListas();
     
 }

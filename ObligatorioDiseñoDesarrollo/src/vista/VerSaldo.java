@@ -1,5 +1,7 @@
 package vista;
 
+import controlador.ControladorMostrarSaldo;
+import controlador.IVistaMostrarSaldo;
 import java.util.Date;
 import modelo.Apuesta;
 import modelo.Carrera;
@@ -7,12 +9,14 @@ import modelo.Jugador;
 import modelo.Participante;
 import utilidades.ManejoDeFechas;
 
-public class VerSaldo extends javax.swing.JDialog {
+public class VerSaldo extends javax.swing.JDialog implements IVistaMostrarSaldo {
+
+    private ControladorMostrarSaldo controlador;
 
     public VerSaldo(java.awt.Frame parent, boolean modal, Jugador j) {
         super(parent, modal);
         initComponents();
-        mostrarDatos(j);
+        controlador = new ControladorMostrarSaldo(this, j);
     }
 
     @SuppressWarnings("unchecked")
@@ -108,6 +112,29 @@ public class VerSaldo extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
+    @Override
+    public void mostrarDatos(Jugador j) {
+        Apuesta a = j.getUltimaApuesta();
+        this.setTitle("Consulta de saldo - " + j.getNombreCompleto());
+        lblFecha.setText(ManejoDeFechas.formatearFecha(new Date(), "dd/MM/yyyy"));
+        lblNombreDinamico.setText(j.getNombreCompleto());
+        lblSaldoDinamico.setText("$ " + j.getSaldo());
+        if (a != null) {
+            Carrera c = a.getCarrera();
+            Participante p = a.getParticipante();
+            lblDatoApuesta1.setText(ManejoDeFechas.formatearFecha(c.getFecha(), "dd/MM/yyyy") + " - Carrera n° " + c.getNumeroCarrera());
+            lblDatoApuesta2.setText("Caballo n° " + p.getNumero() + " - " + p.getNombreCaballo() + " - dividendo " + p.getDividendo());
+            lblDatoApuesta3.setText("Apostó: $ " + a.getMontoApostado());
+            if (!c.isFinalizada()) {
+                lblDatoApuesta4.setText("Carrera pendiente");
+            } else {
+                lblDatoApuesta4.setText("Ganado: $ " + a.getMontoGanado());
+            }
+        } else {
+            lblDatoApuesta1.setText("Sin apuestas");
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -123,25 +150,4 @@ public class VerSaldo extends javax.swing.JDialog {
     private javax.swing.JLabel lblUltimaApuestaFijo;
     // End of variables declaration//GEN-END:variables
 
-    private void mostrarDatos(Jugador j) {
-        Apuesta a = j.getUltimaApuesta();
-        this.setTitle("Consulta de saldo - " + j.getNombreCompleto());
-        lblFecha.setText(ManejoDeFechas.formatearFecha(new Date(), "dd/MM/yyyy"));
-        lblNombreDinamico.setText(j.getNombreCompleto());
-        lblSaldoDinamico.setText("$ " + j.getSaldo());
-        if (a != null) {
-            Carrera c = a.getCarrera();
-            Participante p = a.getParticipante();
-            lblDatoApuesta1.setText(ManejoDeFechas.formatearFecha(c.getFecha(),"dd/MM/yyyy") + " - Carrera n° " + c.getNumeroCarrera());
-            lblDatoApuesta2.setText("Caballo n° " + p.getNumero() +" - "+ p.getNombreCaballo() + " - dividendo " + p.getDividendo());
-            lblDatoApuesta3.setText("Apostó: $ " + a.getMontoApostado());
-            if (!c.isFinalizada()) {
-                lblDatoApuesta4.setText("Carrera pendiente");
-            } else {
-                lblDatoApuesta4.setText("Ganado: $ " + a.getMontoGanado());
-            }
-        } else {
-            lblDatoApuesta1.setText("Sin apuestas");
-        }
-    }
 }

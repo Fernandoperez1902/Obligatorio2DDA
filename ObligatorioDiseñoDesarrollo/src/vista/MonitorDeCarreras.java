@@ -136,7 +136,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
             int index = lstCarreras.getSelectedIndex();
             controlador.seleccionarCarrera(index);
         }
-        
+
     }//GEN-LAST:event_lstCarrerasValueChanged
 
     @Override
@@ -150,6 +150,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
             lista.add("No hay carreras ingresadas");
         }
         lstCarreras.setListData(lista.toArray());
+        
     }
 
     //Formatos para las listas propias de esta vista.
@@ -163,11 +164,19 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
 
     @Override
     public void mostrarDetalle(Carrera carreraSeleccionada) {
-        lblUno.setText("N° " + carreraSeleccionada.getNumeroCarrera() + " - " + carreraSeleccionada.getNombre());
-        lblDos.setText("Estado: " + carreraSeleccionada.getEstado());
-        lblTres.setText("Participantes: " + carreraSeleccionada.cantidadParticipantes());
-        lblCuatro.setText("Monto Apostado: $ " + carreraSeleccionada.montoTotalPagado());
-        lblCinco.setText("Monto Pagado: $ " + carreraSeleccionada.montoTotalGanado());
+        if (carreraSeleccionada != null){
+            lblUno.setText("N° " + carreraSeleccionada.getNumeroCarrera() + " - " + carreraSeleccionada.getNombre());
+            lblDos.setText("Estado: " + carreraSeleccionada.getEstado());
+            lblTres.setText("Participantes: " + carreraSeleccionada.cantidadParticipantes());
+            lblCuatro.setText("Monto Apostado: $ " + carreraSeleccionada.montoTotalPagado());
+            lblCinco.setText("Monto Pagado: $ " + carreraSeleccionada.montoTotalGanado());
+        }else{
+            lblUno.setText("");
+            lblDos.setText("");
+            lblTres.setText("");
+            lblCuatro.setText("");
+            lblCinco.setText("");
+        }
     }
 
     @Override
@@ -205,6 +214,13 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
             lista.add("Carrera no finalizada");
         }
         lstApuestas.setListData(lista.toArray());
+    }
+
+    @Override
+    public void limpiarListas() {
+        mostrarDetalleApuestasGanadoras(null);
+        mostrarDetalle(null);
+        mostrarParticipantes(null);
     }
 
 
