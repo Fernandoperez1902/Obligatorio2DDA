@@ -23,7 +23,7 @@ public class ControladorCerrarApuestas {
             vista.mostrarCarrera(carreraAbierta);
         } else {
             vista.mostrarError("No hay carreras para cerrar");
-            //vista.cerrar();
+            vista.cerrar();
         }
     }
     

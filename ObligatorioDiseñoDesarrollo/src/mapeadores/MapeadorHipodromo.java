@@ -79,7 +79,7 @@ public class MapeadorHipodromo implements Mapeador {
     public void leerCompuesto(ResultSet rs) throws SQLException {
         hipodromo.setNombre(rs.getString("nombre"));
         hipodromo.setDireccion(rs.getString("direccion"));
-//        String filtro = "oidHipodromo = " + rs.getString("oid");
+        //String filtro = "oidHipodromo = " + rs.getString("oid");
 //        MapeadorJornada mpj = new MapeadorJornada();
 //        hipodromo.setJornadas(Persistencia.getInstancia().buscar(mpj, filtro));
     }

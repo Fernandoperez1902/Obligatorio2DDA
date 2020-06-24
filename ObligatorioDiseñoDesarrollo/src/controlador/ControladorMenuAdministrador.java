@@ -32,15 +32,15 @@ public class ControladorMenuAdministrador {
     }
 
     public void abrirCarrera() {
-        if (seleccionado.getJornadas().isEmpty()|| !seleccionado.buscarCarreraActual().isDefinida()) {
-            vista.mostrarError("No existen carreras para abrir");
-        } else {
+        if (!seleccionado.getJornadas().isEmpty() && seleccionado.buscarCarreraActual().isDefinida()) {
             vista.llamarAbrirCarrera(seleccionado);
+        } else {
+            vista.mostrarError("No existen carreras para abrir");
         }
     }
 
     public void cerrarApuestas() {
-        if (!seleccionado.getJornadas().isEmpty()|| !seleccionado.buscarCarreraActual().isAbierta()) {
+        if (!seleccionado.getJornadas().isEmpty()&& seleccionado.buscarCarreraActual().isAbierta()) {
             vista.llamarCerrarApuestas(seleccionado);
         } else {
             vista.mostrarError("No existen carreras para cerrar");
@@ -48,7 +48,7 @@ public class ControladorMenuAdministrador {
     }
 
     public void finalizarCarrera() {
-        if (!seleccionado.getJornadas().isEmpty()|| !seleccionado.buscarCarreraActual().isFinalizada()) {
+        if (!seleccionado.getJornadas().isEmpty()&& seleccionado.buscarCarreraActual().isFinalizada()) {
             vista.llamarFinalizarCarrera(seleccionado);
         } else {
             vista.mostrarError("No existen carreras para finalizar");
