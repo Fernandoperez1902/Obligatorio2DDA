@@ -127,7 +127,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        Date fecha = dateChooser.getDate();   
+        Date fecha = dateChooser.getDate();
         controlador.cargarCarreras(fecha);
     }//GEN-LAST:event_btnCargarActionPerformed
 
@@ -143,7 +143,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
             for (Carrera c : carreras) {
                 lista.add(formatearCarrera(c));
             }
-        }else{
+        } else {
             lista.add("No hay carreras ingresadas");
         }
         lstCarreras.setListData(lista.toArray());
@@ -157,7 +157,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
     public String formatearApuesta(Apuesta apuesta) {
         return apuesta.getJugador().getNombreCompleto();
     }
-    
+
     @Override
     public void mostrarDetalle(Carrera carreraSeleccionada) {
         lblUno.setText("N° " + carreraSeleccionada.getNumeroCarrera() + " - " + carreraSeleccionada.getNombre());
@@ -195,7 +195,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
             for (Apuesta a : apuestas) {
                 lista.add(formatearApuesta(a));
             }
-            if(apuestas.size() == 0){
+            if (apuestas.size() == 0) {
                 lista.add("Ganador sin apuestas");
             }
         } else {
@@ -203,6 +203,7 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
         }
         lstApuestas.setListData(lista.toArray());
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
@@ -221,5 +222,4 @@ public class MonitorDeCarreras extends javax.swing.JFrame implements IVistaMonit
     private javax.swing.JList lstParticipantes;
     // End of variables declaration//GEN-END:variables
 
-    
 }

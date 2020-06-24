@@ -41,6 +41,7 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
 
         txtAdminName.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
+        lstHipodromo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstHipodromo.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstHipodromoValueChanged(evt);
@@ -230,6 +231,7 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
             stringHip.add(formatear(h));
         }
         lstHipodromo.setListData(stringHip.toArray());
+        
     }
 
     @Override

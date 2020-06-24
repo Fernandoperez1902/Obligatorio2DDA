@@ -48,7 +48,7 @@ public class ControladorMenuAdministrador {
     }
 
     public void finalizarCarrera() {
-        if (!seleccionado.getJornadas().isEmpty()&& seleccionado.buscarCarreraActual().isFinalizada()) {
+        if (!seleccionado.getJornadas().isEmpty()&& seleccionado.buscarCarreraActual().isCerrada()) {
             vista.llamarFinalizarCarrera(seleccionado);
         } else {
             vista.mostrarError("No existen carreras para finalizar");

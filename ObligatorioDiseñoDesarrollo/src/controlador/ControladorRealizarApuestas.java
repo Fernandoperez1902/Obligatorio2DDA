@@ -28,6 +28,7 @@ public class ControladorRealizarApuestas implements Observador {
         modelo.agregar(this);
         cargarHipodromos();
         this.vista.habilitarBotonApuesta(false);
+        carreraSeleccionada.avisar(this);
     }
 
     @Override
