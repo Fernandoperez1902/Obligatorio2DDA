@@ -72,10 +72,10 @@ public class MapeadorApuesta implements Mapeador {
     @Override
     public void leerCompuesto(ResultSet rs) throws SQLException {
         Jugador jugador = Fachada.getInstancia().buscarJugador(rs.getInt("oidJugador"));
-        Participante participante = Fachada.getInstancia().buscarParticipante(rs.getInt("oidParticipante"));
+        //Participante participante = Fachada.getInstancia().buscarParticipante(rs.getInt("oidParticipante"));
         //Carrera carrera = Fachada.getInstancia().buscarCarrera(rs.getInt("oidCarrera"));
         apuesta.setJugador(jugador);
-        apuesta.setParticipante(participante);
+        //apuesta.setParticipante(participante);
         //apuesta.setCarrera(carrera);
         apuesta.setMontoApostado(rs.getFloat("montoApostado"));
         apuesta.setMontoPagado(rs.getFloat("montoPagado"));

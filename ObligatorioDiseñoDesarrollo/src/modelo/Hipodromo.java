@@ -64,18 +64,8 @@ public class Hipodromo extends Observable{
         return this.nombre == nombre;
     }
 
-    //Devuelve la jornada de la fecha
-    public Jornada getJornadaDelDia(Date fecha) {
-        Jornada jornada = null;
-        for (Jornada j : jornadas) {
-            if (j.esJornadaDelDia(fecha)) {
-                jornada = j;
-            }
-        }
-        return jornada;
-    }
 
-    //DUPLICADO
+    //Devuelve la jornada de la fecha
     public Jornada buscarJornada(Date fecha) {
         Jornada jornada = null;
         int i = 0;
@@ -146,10 +136,5 @@ public class Hipodromo extends Observable{
     public Carrera buscarCarreraActual() {
         Jornada jornada = buscarJornada(new Date());
         return jornada.carreraActual();
-    }
-
-    //ELIMINAR METODO
-    public void agregarJornadaAEliminar(Jornada jornada) {
-        jornadas.add(jornada);
     }
 }

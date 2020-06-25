@@ -118,7 +118,7 @@ public class Carrera extends Observable {
         return this.estado.equals(Estado.abierta);
     }
 
-    //VERIFICA SI SE TRATA DE UNA CARRERA ABIERTA
+    //VERIFICA SI SE TRATA DE UNA CARRERA CERRADA
     public boolean isCerrada() {
         return this.estado.equals(Estado.cerrada);
     }
@@ -173,7 +173,6 @@ public class Carrera extends Observable {
     //MÉTODO PARA AGREGAR UN NUEVO CABALLO PARTICIPANTE A LA CARRERA
     public void agregarParticipante(Participante p) {
         participantes.add(p);
-//        Fachada.getInstancia().guardarParticipante(this);
     }
 
     //DEVUELVE LA CANTIDAD DE PARTICIPANTES DE LA CARRERA
@@ -232,7 +231,7 @@ public class Carrera extends Observable {
         return existe;
     }
 
-    //VALIDACIONES NECESARIAS DE PARTICIPANTES PARTICIPANTE DE UNA CARRERA
+    //VALIDACIONES NECESARIAS DE PARTICIPANTES DE UNA CARRERA
     public void validarParticipante(Participante participante) throws ApuestasException {
         if (!participante.numeroValido() || existeMismoNumeroDeParticipante(participante.getNumero())) {
             throw new ApuestasException("Numero de caballo inválido");
