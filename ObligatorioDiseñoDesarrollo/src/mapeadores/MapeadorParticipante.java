@@ -38,7 +38,12 @@ public class MapeadorParticipante implements Mapeador {
 
     @Override
     public ArrayList<String> getSqlInsertar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates
+        ArrayList<String> sqls = new ArrayList();
+        sqls.add(
+                "insert into participante values(" + participante.getOid() + ","+ participante.getOid() +"," +participante.getCaballo().getOid() +","
+                 + participante.getNumero() +"," + participante.getDividendo() + ",'" + participante.isGanador() +"')"
+        );
+        return sqls;
     }
 
     @Override

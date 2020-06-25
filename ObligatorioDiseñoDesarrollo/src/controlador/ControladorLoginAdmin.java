@@ -19,7 +19,7 @@ public class ControladorLoginAdmin {
         Administrador adm = unModeloFachada.loginAdministrador(nombre, pass);
 
         if (adm == null) {
-            vista.mostrarError("Login incorrecto");
+            vista.mostrarError("Acceso denegado");
         } else {
             vista.mostrarProximaVista(adm);
             vista.cerrar();

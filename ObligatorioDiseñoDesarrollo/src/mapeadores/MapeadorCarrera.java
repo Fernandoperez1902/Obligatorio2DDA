@@ -92,8 +92,6 @@ public class MapeadorCarrera implements Mapeador {
                 estado = Carrera.Estado.definida;
         }
         carrera.setEstado(estado);
-        Jornada jornada = new Jornada();
-        jornada.setOid(rs.getInt("oidJornada"));
         //carrera.setJornada(jornada);
 //        String filtro = "oidCarrera = "+ carrera.getOid();
 //        MapeadorParticipante mpp = new MapeadorParticipante();

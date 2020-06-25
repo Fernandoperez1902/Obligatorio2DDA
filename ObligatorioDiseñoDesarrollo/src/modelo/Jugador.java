@@ -42,6 +42,9 @@ public class Jugador extends Usuario {
     //Verifica la suficiencia de saldo.
     public boolean saldoSuficiente(float montoApuesta) throws ApuestasException {
         boolean ret = true;
+        if(montoApuesta<1){
+            throw new ApuestasException("Monto inválido ");            
+        }
         try {
             montoApuesta = Float.valueOf(montoApuesta);
         } catch (Exception ex) {
@@ -51,6 +54,7 @@ public class Jugador extends Usuario {
             ret = false;
             throw new ApuestasException("Saldo insuficiente");
         }
+        
 
         return ret;
     }

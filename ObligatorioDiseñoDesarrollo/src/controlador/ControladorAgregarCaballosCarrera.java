@@ -20,6 +20,7 @@ public class ControladorAgregarCaballosCarrera {
     private ArrayList<Participante> participantes;
     private IVistaAgregarCaballosCarrera vista;
     private Caballo caballoSeleccionado;
+    private Participante participanteSeleccionado;
 
     public ControladorAgregarCaballosCarrera(Jornada modeloJornada, Carrera modeloCarrera,
             Hipodromo seleccionado, boolean esNuevaJornada, IVistaAgregarCaballosCarrera vista) {
@@ -63,10 +64,21 @@ public class ControladorAgregarCaballosCarrera {
         try {
             modeloJornada.agregarCarrera(modeloCarrera);
             vista.cerrar();
-        } catch (ApuestasException e){
+        } catch (ApuestasException e) {
             vista.mostrarError(e.getMessage());
         }
 
+    }
+
+    public void quitarParticipante() {
+        disponibles.add(participanteSeleccionado.getCaballo());
+        participantes.remove(participanteSeleccionado);
+        vista.mostrarParticipantes(participantes);
+        vista.mostrarCaballosDisponibles(disponibles);
+    }
+
+    public void seleccionarParticipante(int index) {
+        participanteSeleccionado = participantes.get(index);
     }
 
 }

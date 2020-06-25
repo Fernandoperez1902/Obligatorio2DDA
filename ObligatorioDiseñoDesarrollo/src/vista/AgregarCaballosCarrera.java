@@ -16,7 +16,7 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
     ControladorAgregarCaballosCarrera controlador;
 
     public AgregarCaballosCarrera(java.awt.Frame parent, boolean modal,
-        Jornada jornada, Hipodromo seleccionado, Carrera carrera, boolean esNuevaJornada) {
+            Jornada jornada, Hipodromo seleccionado, Carrera carrera, boolean esNuevaJornada) {
         super(parent, modal);
         initComponents();
         controlador = new ControladorAgregarCaballosCarrera(jornada, carrera, seleccionado,
@@ -77,6 +77,7 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
         btnConfirmar = new javax.swing.JButton();
         txtDividendo = new javax.swing.JTextField();
         lblDividendo = new javax.swing.JLabel();
+        btnQuitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Participantes");
@@ -92,6 +93,11 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
 
         jLabel4.setText("Caballos disponibles");
 
+        lstReservados.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstReservadosValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(lstReservados);
 
         jLabel5.setText("Reservados para carrera");
@@ -113,6 +119,13 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
         });
 
         lblDividendo.setText("Dividendo");
+
+        btnQuitar.setText("Quitar");
+        btnQuitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,12 +155,12 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
                                 .addContainerGap(31, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(31, 31, 31)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(btnAgregarCab, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,9 +169,11 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
                                 .addComponent(jLabel5))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnConfirmar)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -187,15 +202,17 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
                             .addComponent(jLabel6)
                             .addComponent(lblDividendo))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAgregarCab, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNumeroCab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDividendo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                            .addComponent(txtDividendo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnQuitar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(btnAgregarCab, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
 
         setBounds(0, 0, 450, 360);
@@ -219,6 +236,16 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
         }
     }//GEN-LAST:event_lstCaballosDisponiblesValueChanged
 
+    private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
+        controlador.quitarParticipante();
+    }//GEN-LAST:event_btnQuitarActionPerformed
+
+    private void lstReservadosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstReservadosValueChanged
+        if (lstReservados.getSelectedIndex() != -1) {
+            controlador.seleccionarParticipante(lstReservados.getSelectedIndex());
+        }
+    }//GEN-LAST:event_lstReservadosValueChanged
+
     @Override
     public void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
@@ -232,6 +259,7 @@ public class AgregarCaballosCarrera extends javax.swing.JDialog implements IVist
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCab;
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnQuitar;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
