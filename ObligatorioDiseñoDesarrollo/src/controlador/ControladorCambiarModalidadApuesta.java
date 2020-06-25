@@ -26,12 +26,13 @@ public class ControladorCambiarModalidadApuesta implements Observador{
     public void cargarCarrera(){
         abierta = hipodromoSeleccionado.buscarCarreraAbierta();
         if (abierta != null){
-            vista.mostrarCarrera(abierta);
             abierta.agregar(this);
+            vista.mostrarCarrera(abierta);
             participantesSinApuesta = abierta.participantesSinApuestas();
             vista.mostrarParticipantesSinApuestas(participantesSinApuesta);
         } else {
-            
+            vista.mostrarError("No hay carreras abiertas");
+            vista.cerrar();
         }
     }
     
@@ -45,8 +46,13 @@ public class ControladorCambiarModalidadApuesta implements Observador{
 
     @Override
     public void actualizar(Observable origen, Object evento) {
-        if (evento.equals(Participante.Eventos.cambiaModalidadApuesta)){
+        if (evento.equals(Participante.Eventos.cambiaModalidadApuesta) || 
+                evento.equals(Participante.Eventos.recibiApuesta)){
+            participantesSinApuesta = abierta.participantesSinApuestas();
             vista.mostrarParticipantesSinApuestas(participantesSinApuesta);
+        }
+        if (evento.equals(Carrera.Eventos.cerrar)){
+            cargarCarrera();
         }
     }
 }

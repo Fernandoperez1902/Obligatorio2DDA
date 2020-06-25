@@ -26,10 +26,10 @@ public class ControladorCrearCarrera {
         Jornada jornada = modeloFachada.buscarJornada(seleccionado, fecha);
         Carrera carrera;
         if (jornada != null) {
-            carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1);
+            carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1, seleccionado);
         } else {
             jornada = new Jornada(fecha, seleccionado);
-            carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1);
+            carrera = new Carrera(nombre, fecha, jornada.getUltimoIdCarrera() + 1, seleccionado);
             esNuevaJornada = true;
         }
         try {

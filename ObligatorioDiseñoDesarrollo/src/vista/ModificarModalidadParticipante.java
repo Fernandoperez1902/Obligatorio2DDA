@@ -3,6 +3,7 @@ package vista;
 import controlador.ControladorModificarModalidadParticipante;
 import controlador.IVistaModificarModalidadParticipante;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.ModalidadApuesta;
 import modelo.Participante;
 
@@ -136,6 +137,11 @@ public class ModificarModalidadParticipante extends javax.swing.JDialog implemen
     }
 
     @Override
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+    
+    @Override
     public void cerrar() {
         this.dispose();
     }
@@ -150,5 +156,6 @@ public class ModificarModalidadParticipante extends javax.swing.JDialog implemen
     private javax.swing.JLabel lblNumero;
     private javax.swing.JComboBox slcModalidades;
     // End of variables declaration//GEN-END:variables
+ 
 
 }

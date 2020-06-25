@@ -3,9 +3,8 @@ package modelo;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import observer.Observable;
 
-public class Jornada extends Observable {
+public class Jornada  {
 
     private Date fecha;
     private int ultimoIdCarrera;
@@ -98,8 +97,8 @@ public class Jornada extends Observable {
     public void agregarCarrera(Carrera carrera) throws ApuestasException {
         carrera.validarParticipantes();
         carreras.add(carrera);
+        carrera.getHipodromo().avisar(Carrera.Eventos.crear);
         Fachada.getInstancia().guardarCarrera(this);
-        avisar(Eventos.nuevaCarrera);
         ultimoIdCarrera++;
     }
 

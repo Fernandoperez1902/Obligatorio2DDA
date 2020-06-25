@@ -13,6 +13,15 @@ public class Carrera extends Observable {
     private ArrayList<Participante> participantes = new ArrayList<Participante>();
     private Estado estado;
     private int oid;
+    private Hipodromo hipodromo;
+
+    public Hipodromo getHipodromo() {
+        return hipodromo;
+    }
+
+    public void setHipodromo(Hipodromo hipodromo) {
+        this.hipodromo = hipodromo;
+    }
 
     //SE DEFINE ESTADO COMO UN ENUM
     public enum Estado {
@@ -20,17 +29,18 @@ public class Carrera extends Observable {
     };
 
     public enum Eventos {
-        abrir, cerrar, finalizar
+        abrir, cerrar, finalizar, crear
     };
 
     public Carrera() {
 
     }
 
-    public Carrera(String nom, Date fec, int num) {
+    public Carrera(String nom, Date fec, int num, Hipodromo h) {
         nombre = nom;
         fecha = fec;
         numeroCarrera = num;
+        hipodromo = h;
         estado = Estado.definida;
     }
 
@@ -145,19 +155,21 @@ public class Carrera extends Observable {
     //MÉTODO PARA ABRIR UNA CARRERA
     public void abrir() {
         estado = Estado.abierta;
-        this.avisar(Eventos.abrir);
+        hipodromo.avisar(Eventos.abrir);
     }
 
     //MÉTODO PARA CERRAR UNA CARRERA
     public void cerrar() {
         estado = Estado.cerrada;
         this.avisar(Eventos.cerrar);
+        hipodromo.avisar(Eventos.cerrar);
     }
 
     //MÉTODO PARA FINALIZAR UNA CARRERA
     public void finalizar() {
         estado = Estado.finalizada;
         this.avisar(Eventos.finalizar);
+        hipodromo.avisar(Eventos.finalizar);
     }
 
     //MÉTODO PARA AGREGAR UN NUEVO CABALLO PARTICIPANTE A LA CARRERA

@@ -14,7 +14,8 @@ public class Participante {
     private int oid;
 
     public enum Eventos {
-        cambiaModalidadApuesta
+
+        cambiaModalidadApuesta, recibiApuesta
     };
 
     public Participante() {
@@ -79,12 +80,14 @@ public class Participante {
         return tipoApuesta;
     }
 
-    
-    
-    public void setTipoApuesta(ModalidadApuesta tipoApuesta) {
-        this.tipoApuesta = tipoApuesta;
-        carrera.avisar(Eventos.cambiaModalidadApuesta);
-        //aquí debería avisar el cambio de modalidad de apuesta asignado al participante.
+    public void cambiarModalidad(ModalidadApuesta tipoApuesta) throws ApuestasException {
+        if (!tieneApuestas()) {
+            this.tipoApuesta = tipoApuesta;
+            carrera.avisar(Eventos.cambiaModalidadApuesta);
+            carrera.getHipodromo().avisar(Eventos.cambiaModalidadApuesta);
+        } else {
+            throw new ApuestasException("El participante ya recibió apuestas");
+        }
     }
 
     public ArrayList<Apuesta> getApuestas() {
@@ -104,7 +107,7 @@ public class Participante {
         }
         return numero + " - " + caballo.getNombre() + " - " + dividendo + ganador;
     }
-    
+
     //verifica la participación de un caballo
     public boolean caballoParticipa(Caballo cab) {
         return caballo.equals(cab);
@@ -114,6 +117,7 @@ public class Participante {
     public boolean numeroValido() {
         return (numero <= 99999 && numero >= 1);
     }
+
     //Valida dividendo de paga de un caballo
     public boolean dividendoValido() {
         return (dividendo > (double) 1);
@@ -151,7 +155,7 @@ public class Participante {
         }
         return monto;
     }
-    
+
     //Monto total ganado por los jugadores en esta carrera
     public float montoTotalGanado() {
         float monto = 0;
@@ -167,9 +171,17 @@ public class Participante {
     }
 
     //Agrega apuestas al participante
-    public void agregarApuesta(Apuesta a) {
-        Fachada.getInstancia().guardarApuesta(a);
-        apuestas.add(a);
+    public void agregarApuesta(Apuesta a) throws ApuestasException {
+        if (carrera.isAbierta()) {
+            Fachada.getInstancia().guardarApuesta(a);
+            apuestas.add(a);
+            if (apuestas.size() > 0) {
+                carrera.avisar(Eventos.recibiApuesta);
+                carrera.getHipodromo().avisar(Eventos.recibiApuesta);
+            }
+        } else {
+            throw new ApuestasException("Sólo se pueden realizar apuestas en carreras abiertas");
+        }
     }
 
     //Método para pagar apuestas ganadoras
@@ -179,7 +191,7 @@ public class Participante {
             a.pagarApuestaJugador(loGanado);
         }
     }
-    
+
     public String getModalidad() {
         return tipoApuesta.tipoModalidad();
     }

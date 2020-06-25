@@ -64,10 +64,10 @@ public class ControladorMenuAdministrador {
     }
 
     public void cambiarModalidad() {
-        if (!seleccionado.getJornadas().isEmpty()) {
+        if (!seleccionado.getJornadas().isEmpty()  && seleccionado.buscarCarreraActual().isAbierta()) {
             vista.llamarCambiarModadlidad(seleccionado);
         } else {
-            vista.mostrarError("No existen carreras");
+            vista.mostrarError("No existen carreras abiertas disponibles para cambio de modalidad");
         }
 
     }
