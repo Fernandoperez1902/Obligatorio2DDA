@@ -35,9 +35,14 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         menuBar = new javax.swing.JMenuBar();
         optSalir = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menu");
         setAutoRequestFocus(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         txtAdminName.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
@@ -99,6 +104,15 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         });
 
         optSalir.setText("Salir");
+        optSalir.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                optSalirMenuSelected(evt);
+            }
+        });
         menuBar.add(optSalir);
 
         setJMenuBar(menuBar);
@@ -189,6 +203,14 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
         controlador.cambiarModalidad();
     }//GEN-LAST:event_btnCambiarModalidadActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cerrar();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void optSalirMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_optSalirMenuSelected
+        cerrar();
+    }//GEN-LAST:event_optSalirMenuSelected
+
     @Override
     public void llamarCrearCarrera(Hipodromo hip) {
         new CrearCarrera(hip).setVisible(true);
@@ -248,6 +270,11 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
     public void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
+    
+    @Override
+    public void cerrar() {
+        this.dispose();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
@@ -265,5 +292,6 @@ public class MenuAdministrador extends javax.swing.JFrame implements IVistaMenuA
     private javax.swing.JMenu optSalir;
     private javax.swing.JLabel txtAdminName;
     // End of variables declaration//GEN-END:variables
+
 
 }

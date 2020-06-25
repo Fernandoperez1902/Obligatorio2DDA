@@ -25,4 +25,6 @@ public interface IVistaMenuAdministrador {
     public void habilitarBotones(boolean b);
     
     public void mostrarError(String mensaje);
+    
+    public void cerrar();
 }

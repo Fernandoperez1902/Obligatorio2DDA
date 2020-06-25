@@ -6,6 +6,7 @@ import modelo.Apuesta;
 import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Jornada;
+import modelo.Participante;
 import observer.Observable;
 import observer.Observador;
 import utilidades.ManejoDeFechas;
@@ -18,11 +19,11 @@ public class ControladorMonitorDeCarrera implements Observador {
     private ArrayList<Carrera> carreras;
 
     public ControladorMonitorDeCarrera(IVistaMonitorDeCarrera unaVista, Hipodromo hipodromo) {
-        this.vista = unaVista;
-        this.modelo = hipodromo;
+        vista = unaVista;
+        modelo = hipodromo;
         carreras = modelo.buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora()).getCarreras();
         vista.cargarCarreras(carreras);
-        modelo.buscarCarreraActual().agregar(this);
+        modelo.agregar(this);
     }
 
     public void cargarCarreras(Date fecha) {
@@ -35,7 +36,7 @@ public class ControladorMonitorDeCarrera implements Observador {
             carreras = jornada.getCarreras();
             lista = carreras;
         }
-        vista.cargarCarreras(lista);  
+        vista.cargarCarreras(lista);
         vista.limpiarListas();
     }
 
@@ -47,7 +48,6 @@ public class ControladorMonitorDeCarrera implements Observador {
         vista.mostrarDetalleApuestasGanadoras(apuestas);
     }
 
-    
     public ArrayList<Apuesta> apuestasGanadoras() {
         ArrayList<Apuesta> ret = null;
         if (carreraSeleccionada.isFinalizada()) {
@@ -56,17 +56,23 @@ public class ControladorMonitorDeCarrera implements Observador {
         return ret;
     }
 
-    public void limpiarListas(){
+    public void limpiarListas() {
         vista.limpiarListas();
     }
-    
+
     @Override
     public void actualizar(Observable origen, Object evento) {
-        if (evento.equals(Carrera.Eventos.abrir) || evento.equals(Carrera.Eventos.cerrar) || evento.equals(Carrera.Eventos.finalizar)) {
+        if (evento.equals(Carrera.Eventos.abrir) || evento.equals(Carrera.Eventos.cerrar)
+                || evento.equals(Carrera.Eventos.finalizar) || evento.equals(Carrera.Eventos.crear)) {
             vista.cargarCarreras(carreras);
             vista.mostrarDetalle(carreraSeleccionada);
-            vista.mostrarParticipantes(carreraSeleccionada.getParticipantes());
-            vista.mostrarDetalleApuestasGanadoras(apuestasGanadoras());
+            if (carreraSeleccionada != null) {
+                vista.mostrarParticipantes(carreraSeleccionada.getParticipantes());
+                vista.mostrarDetalleApuestasGanadoras(apuestasGanadoras());
+            }
+        }
+        if (evento.equals(Participante.Eventos.recibiApuesta)){
+            vista.mostrarDetalle(carreraSeleccionada);
         }
     }
 

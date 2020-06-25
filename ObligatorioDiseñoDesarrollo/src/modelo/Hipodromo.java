@@ -2,9 +2,10 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
+import observer.Observable;
 import utilidades.ManejoDeFechas;
 
-public class Hipodromo {
+public class Hipodromo extends Observable{
 
     private int oid;
     private String nombre;

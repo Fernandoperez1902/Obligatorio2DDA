@@ -3,11 +3,10 @@ package vista;
 import controlador.ControladorCambiarModalidadApuesta;
 import controlador.IVistaCambiarModalidadApuesta;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Carrera;
 import modelo.Hipodromo;
 import modelo.Participante;
-import observer.Observable;
-import observer.Observador;
 
 public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVistaCambiarModalidadApuesta {
 
@@ -43,11 +42,12 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
 
     @Override
     public void mostrarProximaVista(Participante seleccionado) {
-        new ModificarModalidadParticipante(this, true, seleccionado).setVisible(true);
+        new ModificarModalidadParticipante(this, false, seleccionado).setVisible(true);
     }
 
     @Override
     public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
     }
 
     @Override
@@ -72,6 +72,11 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cambiar Modalidad");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lstParticipantesSinApuestas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -168,6 +173,10 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
         }
     }//GEN-LAST:event_lstParticipantesSinApuestasValueChanged
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cerrar();
+    }//GEN-LAST:event_formWindowClosing
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificar;
@@ -182,5 +191,4 @@ public class CambiarModalidadApuesta extends javax.swing.JFrame implements IVist
     private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 
-    
 }

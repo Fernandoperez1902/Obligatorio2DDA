@@ -3,7 +3,6 @@ package controlador;
 
 import java.util.ArrayList;
 import modelo.Carrera;
-import modelo.ModalidadApuesta;
 import modelo.Participante;
 
 public interface IVistaCambiarModalidadApuesta {

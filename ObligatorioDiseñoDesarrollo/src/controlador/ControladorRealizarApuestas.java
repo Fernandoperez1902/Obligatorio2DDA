@@ -1,7 +1,6 @@
 package controlador;
 
 import java.util.ArrayList;
-import java.util.Date;
 import modelo.Apuesta;
 import modelo.ApuestasException;
 import modelo.Carrera;
@@ -12,12 +11,14 @@ import modelo.Jugador;
 import modelo.Participante;
 import observer.Observable;
 import observer.Observador;
+import utilidades.ManejoDeFechas;
 
 public class ControladorRealizarApuestas implements Observador {
 
     private Fachada modelo;
     private IVistaRealizarApuestas vista;
     private ArrayList<Hipodromo> hipodromos;
+    private Jornada deHoy;
     private Hipodromo hipodromoSeleccionado = null;
     private Carrera carreraSeleccionada = null;
     private Participante participanteSeleccionado = null;
@@ -32,18 +33,24 @@ public class ControladorRealizarApuestas implements Observador {
 
     @Override
     public void actualizar(Observable origen, Object evento) {
-        if (evento.equals(Carrera.Eventos.abrir) || evento.equals(Carrera.Eventos.cerrar) || evento.equals(Carrera.Eventos.finalizar)) {
-            vista.cargarCarrera(carreraSeleccionada);
-            vista.cargarParticipantes(carreraSeleccionada.getParticipantes());
+        if (hipodromoSeleccionado != null) {
+            if (evento.equals(Carrera.Eventos.abrir) || evento.equals(Carrera.Eventos.cerrar)
+                    || evento.equals(Carrera.Eventos.finalizar) || evento.equals(Carrera.Eventos.crear)) {
+                deHoy = hipodromoSeleccionado.buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
+                carreraSeleccionada = deHoy.carreraActual();
+                vista.cargarCarrera(carreraSeleccionada);
+                vista.cargarParticipantes(carreraSeleccionada.getParticipantes());
+            }
+            if (evento.equals(Participante.Eventos.cambiaModalidadApuesta)) {
+                vista.cargarParticipantes(carreraSeleccionada.getParticipantes());
+            }
         }
     }
 
-    public void cargarCarreraActual(Hipodromo h) {
-        this.hipodromoSeleccionado = h;
-        Jornada deHoy = h.buscarJornada(new Date());
+    public void cargarCarreraActual() {
+        deHoy = hipodromoSeleccionado.buscarJornada(ManejoDeFechas.tomarFechaSistemaSinHora());
         if (deHoy != null) {
             carreraSeleccionada = deHoy.carreraActual();
-            carreraSeleccionada.agregar(this);
             if (!carreraSeleccionada.isAbierta()) {
                 vista.habilitarBotonApuesta(false);
             }
@@ -73,18 +80,19 @@ public class ControladorRealizarApuestas implements Observador {
                     modelo.agregarApuesta(apuesta);
                     j.setUltimaApuesta(apuesta);
                     participanteSeleccionado.agregarApuesta(apuesta);
+                    vista.mostrarMensajeExito();
+                    limpiarFormulario();
                 }
             }
         } catch (ApuestasException ex) {
             vista.mostrarError(ex.getMessage());
         }
-        vista.mostrarMensajeExito();
-        limpiarFormulario();
     }
 
     public void seleccionarHipodromo(int index) {
         hipodromoSeleccionado = hipodromos.get(index);
-        cargarCarreraActual(hipodromoSeleccionado);
+        hipodromoSeleccionado.agregar(this);
+        cargarCarreraActual();
     }
 
     public void seleccionarCaballo(int index) {
@@ -109,6 +117,7 @@ public class ControladorRealizarApuestas implements Observador {
     }
 
     private void limpiarFormulario() {
+        vista.cargarHipodromos(hipodromos);
         hipodromoSeleccionado = null;
         carreraSeleccionada = null;
         participanteSeleccionado = null;

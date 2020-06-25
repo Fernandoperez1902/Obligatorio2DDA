@@ -1,21 +1,10 @@
 
 package main;
 
-import java.util.ArrayList;
-import java.util.Date;
-import modelo.Administrador;
-import modelo.ApuestasException;
-import modelo.Caballo;
-import modelo.Carrera;
 import modelo.Cuadruple;
 import modelo.Fachada;
-import modelo.Hipodromo;
-import modelo.Jornada;
-import modelo.Jugador;
-import modelo.Participante;
 import modelo.Simple;
 import modelo.Triple;
-import utilidades.ManejoDeFechas;
 
 
 public class DatosPrueba {

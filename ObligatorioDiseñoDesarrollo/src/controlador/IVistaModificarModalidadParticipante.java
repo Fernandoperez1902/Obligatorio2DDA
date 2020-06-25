@@ -13,5 +13,7 @@ public interface IVistaModificarModalidadParticipante {
     
     public String formatearModalidad(ModalidadApuesta modalidad);
     
+    public void mostrarError(String mensaje);
+    
     public void cerrar();
 }

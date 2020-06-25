@@ -3,7 +3,6 @@ package controlador;
 import modelo.ApuestasException;
 import modelo.Fachada;
 import modelo.Jugador;
-import observer.Observador;
 
 public class ControladorConsultarSaldo {
 
@@ -19,6 +18,7 @@ public class ControladorConsultarSaldo {
         try {
             Jugador j = modelo.loginJugador(usuario, password);
             vista.mostrarVistaSaldo(j);
+            vista.limpiarFormulario();
         } catch (ApuestasException ex) {
             vista.mostrarError(ex.getMessage());
         }
