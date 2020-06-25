@@ -27,7 +27,8 @@ CREATE TABLE `administrador` (
 /*Data for the table `administrador` */
 
 insert  into `administrador`(`oidAdministrador`) values 
-(1);
+(4),
+(5);
 
 /*Table structure for table `apuesta` */
 
@@ -59,10 +60,14 @@ CREATE TABLE `caballo` (
 /*Data for the table `caballo` */
 
 insert  into `caballo`(`oid`,`nombreCaballo`,`nombreResponsable`) values 
-(3,'Caballo X','Dueño del Caballo X'),
-(4,'Caballo Y','Dueño del Caballo Y'),
-(5,'Caballo Z','Dueño del Caballo Z'),
-(6,'Caballo U','Dueño del Caballo U');
+(10,'Caballo 1','Dueño del Caballo 1'),
+(11,'Caballo 2','Dueño del Caballo 2'),
+(12,'Caballo 3','Dueño del Caballo 3'),
+(13,'Caballo 4','Dueño del Caballo 4'),
+(14,'Caballo 5','Dueno del Caballo 5'),
+(15,'Caballo 6','Dueño del Caballo 6'),
+(16,'Caballo 7','Dueño del Caballo 7'),
+(17,'Caballo 8','Dueño del Caballo 8');
 
 /*Table structure for table `carrera` */
 
@@ -78,9 +83,6 @@ CREATE TABLE `carrera` (
 
 /*Data for the table `carrera` */
 
-insert  into `carrera`(`oid`,`numeroCarrera`,`oidJornada`,`estado`,`nombreCarrera`) values 
-(154,1,154,'definida','hnm');
-
 /*Table structure for table `hipodromo` */
 
 DROP TABLE IF EXISTS `hipodromo`;
@@ -94,9 +96,9 @@ CREATE TABLE `hipodromo` (
 /*Data for the table `hipodromo` */
 
 insert  into `hipodromo`(`oid`,`nombre`,`direccion`) values 
-(10,'Hipodromo1','Direccion de Hipodromo 1'),
-(11,'Hipodromo 2','Direccion de Hipodromo 2'),
-(12,'Hipodromo 3','Direccion de Hipodromo 3');
+(1,'Hipodromo1','Direccion de Hipodromo 1'),
+(2,'Hipodromo2','Direccion de Hipodromo 2'),
+(5,'Hipodromo3','Direccion de Hipodromo 3');
 
 /*Table structure for table `jornada` */
 
@@ -109,9 +111,6 @@ CREATE TABLE `jornada` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `jornada` */
-
-insert  into `jornada`(`oid`,`fechaJornada`,`oidHipodromo`) values 
-(153,'2020-06-22 00:00:00',10);
 
 /*Table structure for table `jugador` */
 
@@ -126,7 +125,10 @@ CREATE TABLE `jugador` (
 /*Data for the table `jugador` */
 
 insert  into `jugador`(`oidJugador`,`saldo`,`oidApuesta`) values 
-(2,1000,NULL);
+(6,1000,NULL),
+(7,500,NULL),
+(8,100,NULL),
+(9,50,NULL);
 
 /*Table structure for table `oid` */
 
@@ -139,7 +141,7 @@ CREATE TABLE `oid` (
 /*Data for the table `oid` */
 
 insert  into `oid`(`ultimo`) values 
-(154);
+(100);
 
 /*Table structure for table `participante` */
 
@@ -151,14 +153,11 @@ CREATE TABLE `participante` (
   `oidCaballo` int(11) NOT NULL,
   `numeroParticipante` int(11) NOT NULL,
   `dividendo` double NOT NULL,
-  `ganador` tinyint(1) NOT NULL
+  `ganador` tinyint(1) NOT NULL,
+  `modalidad` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `participante` */
-
-insert  into `participante`(`oid`,`oidCarrera`,`oidCaballo`,`numeroParticipante`,`dividendo`,`ganador`) values 
-(0,154,0,2,12,0),
-(0,154,3,24,12,0);
 
 /*Table structure for table `usuario` */
 
@@ -174,8 +173,12 @@ CREATE TABLE `usuario` (
 /*Data for the table `usuario` */
 
 insert  into `usuario`(`oid`,`nombreUsuario`,`password`,`nombreCompleto`) values 
-(1,'X1','X1','Administrador X'),
-(2,'J','J','Jugador X');
+(4,'X','X','Administrador X'),
+(5,'Y','Y','Administrador Y'),
+(6,'A','A','Jugador A'),
+(7,'B','B','Jugador B'),
+(8,'C','C','Jugador C'),
+(9,'D','D','Jugador D');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
