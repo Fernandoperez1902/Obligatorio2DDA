@@ -51,7 +51,6 @@ public class Caballo {
     
     //Valida la condición de unicidad en el nombre
     public boolean validarCaballo(String nombre){
-        //habría que incorporar Exceptions
         return this.nombre==nombre;
     }
 }

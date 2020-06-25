@@ -79,12 +79,9 @@ public class Participante {
         return tipoApuesta;
     }
 
-    
-    
     public void setTipoApuesta(ModalidadApuesta tipoApuesta) {
         this.tipoApuesta = tipoApuesta;
         carrera.avisar(Eventos.cambiaModalidadApuesta);
-        //aquí debería avisar el cambio de modalidad de apuesta asignado al participante.
     }
 
     public ArrayList<Apuesta> getApuestas() {
@@ -95,7 +92,19 @@ public class Participante {
         this.apuestas = apuestas;
     }
 
+    public Carrera getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(Carrera carrera) {
+        this.carrera = carrera;
+    }
+
+    public String getModalidad() {
+        return tipoApuesta.tipoModalidad();
+    }
     // </editor-fold>
+
     @Override
     public String toString() {
         String ganador = "";
@@ -104,8 +113,8 @@ public class Participante {
         }
         return numero + " - " + caballo.getNombre() + " - " + dividendo + ganador;
     }
-    
-    //verifica la participación de un caballo
+
+    //Verifica la participación de un caballo
     public boolean caballoParticipa(Caballo cab) {
         return caballo.equals(cab);
     }
@@ -114,6 +123,7 @@ public class Participante {
     public boolean numeroValido() {
         return (numero <= 99999 && numero >= 1);
     }
+
     //Valida dividendo de paga de un caballo
     public boolean dividendoValido() {
         return (dividendo > (double) 1);
@@ -151,7 +161,7 @@ public class Participante {
         }
         return monto;
     }
-    
+
     //Monto total ganado por los jugadores en esta carrera
     public float montoTotalGanado() {
         float monto = 0;
@@ -178,10 +188,6 @@ public class Participante {
             float loGanado = montoGanadoSegunModalidad(a.getMontoApostado());
             a.pagarApuestaJugador(loGanado);
         }
-    }
-    
-    public String getModalidad() {
-        return tipoApuesta.tipoModalidad();
     }
 
 }

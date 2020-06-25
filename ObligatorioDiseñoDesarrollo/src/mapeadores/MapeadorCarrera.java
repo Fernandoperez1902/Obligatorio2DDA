@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Caballo;
 import modelo.Carrera;
+import modelo.Fachada;
+import modelo.Jornada;
 import modelo.Participante;
 import persistencia.Mapeador;
 import persistencia.Persistencia;
@@ -49,7 +51,6 @@ public class MapeadorCarrera implements Mapeador {
                 "delete from participante where oidCarrera = " + carrera.getOid()
         );
         return sqls;
-        
     }
 
     @Override
@@ -91,6 +92,9 @@ public class MapeadorCarrera implements Mapeador {
                 estado = Carrera.Estado.definida;
         }
         carrera.setEstado(estado);
+        Jornada jornada = new Jornada();
+        jornada.setOid(rs.getInt("oidJornada"));
+        carrera.setJornada(jornada);
 //        String filtro = "oidCarrera = "+ carrera.getOid();
 //        MapeadorParticipante mpp = new MapeadorParticipante();
 //        carrera.setParticipantes(Persistencia.getInstancia().buscar(mpp,filtro));
@@ -98,13 +102,7 @@ public class MapeadorCarrera implements Mapeador {
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
-//        carrera.getParticipantes().add(
-//                new Participante(
-//                        new Caballo(rs.getString("nombreCaballo"),rs.getString("nombreResponsable")),
-//                        rs.getInt("numeroParticipante"), 
-//                        rs.getDouble("dividendo"), 
-//                        rs.getBoolean("ganador"))
-//        );
+        
     }
 
     

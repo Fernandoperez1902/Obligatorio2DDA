@@ -8,35 +8,33 @@ package persistencia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
  * @author alumnoFI
  */
 public class Persistencia {
-
+    
     private BaseDatos base = BaseDatos.getInstancia();
     private static Persistencia instancia = new Persistencia();
 
     public static Persistencia getInstancia() {
         return instancia;
     }
-
     private Persistencia() {
     }
-
-    public int proximoOid() {
+    
+    public int proximoOid(){
         try {
             String sql = "SELECT ultimo from oid";
             ResultSet rs = base.consultar(sql);
-            if (!rs.next()) {
+            if(!rs.next()){
                 System.out.println("NO ESTA INICIALIZADO EL OID");
                 return -1;
             }
             int ultimo = rs.getInt("ultimo");
-            sql = "UPDATE oid set ultimo =" + (++ultimo);
+            sql = "UPDATE oid set ultimo =" + (++ultimo) ;
             base.modificar(sql);
             return ultimo;
         } catch (SQLException ex) {
@@ -44,59 +42,55 @@ public class Persistencia {
             return -1;
         }
     }
-
-    public void guardar(Mapeador o) {
-        if (o.getOid() == 0) {
+    
+    public void guardar(Mapeador o){
+        if(o.getOid()==0){
             insertar(o);
-        } else {
-            actualizar(o);
-        }
+        }else actualizar(o);
     }
 
     private void insertar(Mapeador o) {
         int oid = proximoOid();
         o.setOid(oid);
         ArrayList<String> sqls = o.getSqlInsertar();
-        if (!base.transaccion(sqls)) {
-            o.setOid(0);
-            System.out.println("Error al insertar el objeto");
+        if(!base.transaccion(sqls)){
+          o.setOid(0);
+          System.out.println("Error al insertar el objeto");
         }
     }
 
     private void actualizar(Mapeador o) {
         ArrayList<String> sqls = o.getSqlActualizar();
-        if (!base.transaccion(sqls)) {
+        if(!base.transaccion(sqls)){
             System.out.println("Error al actualizar el objeto: " + o.getOid());
         }
     }
-
-    public void borrar(Mapeador o) {
+    public void borrar(Mapeador o){
         ArrayList<String> sqls = o.getSqlBorrar();
-        if (base.transaccion(sqls)) {
+        if(base.transaccion(sqls)){
             o.setOid(0);
-        } else {
+        }else{
             System.out.println("Error al borrar el objeto:" + o.getOid());
         }
     }
-
-    public ArrayList obtenerTodos(Mapeador map) {
-        return buscar(map, null);
+    public ArrayList obtenerTodos(Mapeador map){
+        return buscar(map,null);
     }
-
-    public ArrayList buscar(Mapeador map, String filtro) { //el filtro es el where   
-        String sql = map.getSqlSeleccionar();
-        if (filtro != null) {
-            sql += " where " + filtro; //SOLO ANDA PARA SIMPLES
+    
+    public ArrayList buscar(Mapeador map,String filtro){ //el filtro es el where
+        String sql = map.getSqlSeleccionar(); 
+        if(filtro!=null){
+            sql+=" where " + filtro; //SOLO ANDA PARA SIMPLES
         }
         ResultSet rs = base.consultar(sql);
         ArrayList lista = new ArrayList();
         try {
             int oidActual, oidUltimoCambio = -1;
-            while (rs.next()) {
+            while(rs.next()){
                 oidActual = rs.getInt("oid");//el campo se tiene que llamar oid 
-                if (oidActual != oidUltimoCambio) { //Debe estar seleccionado ordenado por oid
+                if(oidActual!=oidUltimoCambio){ //Debe estar seleccionado ordenado por oid
                     map.crearNuevo();
-                    map.setOid(oidActual);
+                    map.setOid(oidActual); 
                     Object obj = map.getObjeto();
                     lista.add(obj);
                     oidUltimoCambio = oidActual;
@@ -109,5 +103,9 @@ public class Persistencia {
             System.out.println("Error al buscar: " + ex.getMessage());
             return null;
         }
+        
     }
+    
+    
+    
 }

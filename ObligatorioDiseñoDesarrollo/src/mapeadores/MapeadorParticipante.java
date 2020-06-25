@@ -3,10 +3,15 @@ package mapeadores;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import modelo.Apuesta;
 import modelo.Caballo;
 import modelo.Carrera;
+import modelo.Cuadruple;
 import modelo.Fachada;
+import modelo.ModalidadApuesta;
 import modelo.Participante;
+import modelo.Simple;
+import modelo.Triple;
 import persistencia.Mapeador;
 
 public class MapeadorParticipante implements Mapeador {
@@ -68,6 +73,17 @@ public class MapeadorParticipante implements Mapeador {
         participante.setDividendo(rs.getDouble("dividendo"));
         Caballo c = Fachada.getInstancia().buscarCaballo(rs.getInt("oidCaballo"));
         participante.setCaballo(c);
+        ModalidadApuesta modalidad;
+        switch (rs.getString("modalidad")) {
+            case "triple":modalidad=new Triple();
+            break;
+            case "cuadruple" : modalidad = new Cuadruple();
+            break;
+            default:
+                modalidad = new Simple();
+        }
+        participante.setTipoApuesta(modalidad);
+        participante.setApuestas(new ArrayList<Apuesta>());
     }
 
     @Override

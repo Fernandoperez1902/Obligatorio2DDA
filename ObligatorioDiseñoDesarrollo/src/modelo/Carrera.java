@@ -13,6 +13,7 @@ public class Carrera extends Observable {
     private ArrayList<Participante> participantes = new ArrayList<Participante>();
     private Estado estado;
     private int oid;
+    private Jornada jornada;
 
     //SE DEFINE ESTADO COMO UN ENUM
     public enum Estado {
@@ -92,6 +93,15 @@ public class Carrera extends Observable {
         this.estado = estado;
     }
 
+    public Jornada getJornada() {
+        return jornada;
+    }
+
+    public void setJornada(Jornada jornada) {
+        this.jornada = jornada;
+    }
+
+    
     // </editor-fold>
     
     public ArrayList<Participante> participantesSinApuestas() {
@@ -126,7 +136,6 @@ public class Carrera extends Observable {
 
     //VERIFICA LA PARTICIPACIÓN DE UN CABALLO EN LA ACTUAL CARRERA
     public boolean participaCaballo(Caballo cab) {
-
         boolean participa = false;
         int i = 0;
         while (i < participantes.size() && !participa) {

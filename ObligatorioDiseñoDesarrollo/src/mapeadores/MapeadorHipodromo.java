@@ -62,7 +62,7 @@ public class MapeadorHipodromo implements Mapeador {
 
     @Override
     public String getSqlSeleccionar() {
-        return "SELECT * FROM hipodromo";
+        return "SELECT * FROM hipodromo h";
     }
 
     @Override
@@ -86,8 +86,7 @@ public class MapeadorHipodromo implements Mapeador {
 
     @Override
     public void leerComponente(ResultSet rs) throws SQLException {
-
-         
+    
     }
 
     private void generarJornadas(ArrayList<String> sqls) {
