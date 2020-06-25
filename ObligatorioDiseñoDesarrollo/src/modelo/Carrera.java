@@ -101,16 +101,6 @@ public class Carrera extends Observable {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
-
-    public Jornada getJornada() {
-        return jornada;
-    }
-
-    public void setJornada(Jornada jornada) {
-        this.jornada = jornada;
-    }
-
-
     // </editor-fold>
 
     public ArrayList<Participante> participantesSinApuestas() {

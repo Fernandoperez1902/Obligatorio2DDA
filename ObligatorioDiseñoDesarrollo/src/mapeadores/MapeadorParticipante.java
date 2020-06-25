@@ -82,7 +82,7 @@ public class MapeadorParticipante implements Mapeador {
             default:
                 modalidad = new Simple();
         }
-        participante.setTipoApuesta(modalidad);
+        //participante.setTipoApuesta(modalidad);
         participante.setApuestas(new ArrayList<Apuesta>());
     }
 

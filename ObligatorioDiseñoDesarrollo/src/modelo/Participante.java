@@ -204,8 +204,4 @@ public class Participante {
         }
     }
 
-    public String getModalidad() {
-        return tipoApuesta.tipoModalidad();
-    }
-
 }

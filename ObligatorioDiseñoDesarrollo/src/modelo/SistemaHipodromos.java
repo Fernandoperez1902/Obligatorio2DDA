@@ -64,7 +64,7 @@ public class SistemaHipodromos {
         MapeadorHipodromo mapH = new MapeadorHipodromo();
         ArrayList<Hipodromo> lista = Persistencia.getInstancia().obtenerTodos(mapH);
         for (Hipodromo h : lista) {
-            anexarInformacion(h);
+            //anexarInformacion(h);
             hipodromos.add(h);
         }
     }
@@ -83,7 +83,7 @@ public class SistemaHipodromos {
         return h;
     }
 
-    //CARGA DE JORNADA DESDE LA BASE DE DATOS
+    //CARGA DE JORNADAS DESDE LA BASE DE DATOS
     public ArrayList<Jornada> cargarJornadas(String filtro, Hipodromo hipodromo) {
         MapeadorJornada map = new MapeadorJornada();
         ArrayList<Jornada> jornadas = Persistencia.getInstancia().buscar(map, filtro);
@@ -93,17 +93,17 @@ public class SistemaHipodromos {
         return jornadas;
     }
 
-    //CARGA DE CARRERA DESDE LA BASE DE DATOS
+    //CARGA DE CARRERAS DESDE LA BASE DE DATOS
     public ArrayList<Carrera> cargarCarreras(String filtro, Jornada jornada) {
         MapeadorCarrera map = new MapeadorCarrera();
         ArrayList<Carrera> carreras = Persistencia.getInstancia().buscar(map, filtro);
         for (Carrera c : carreras) {
-            c.setJornada(jornada);
+            //c.setJornada(jornada);
         }
         return carreras;
     }
 
-    //CARGA DE PARTICIPANTE DESDE LA BASE DE DATOS
+    //CARGA DE PARTICIPANTES DESDE LA BASE DE DATOS
     public ArrayList<Participante> cargarParticipantes(String filtro, Carrera carrera) {
         MapeadorParticipante map = new MapeadorParticipante();
         ArrayList<Participante> participantes = Persistencia.getInstancia().buscar(map, filtro);
@@ -113,6 +113,7 @@ public class SistemaHipodromos {
         return participantes;
     }
 
+    
     //----------------------------------------------------------------------------------------------
     //GUARDA HIPODROMO EN LA BASE DE DATOS
     public void guardarHipodromo(Hipodromo hipodromo) {
