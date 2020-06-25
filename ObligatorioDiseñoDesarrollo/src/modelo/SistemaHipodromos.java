@@ -64,28 +64,30 @@ public class SistemaHipodromos {
         MapeadorHipodromo mapH = new MapeadorHipodromo();
         ArrayList<Hipodromo> lista = Persistencia.getInstancia().obtenerTodos(mapH);
         for (Hipodromo h : lista) {
-        //CARGA DE DATOS AL INTERIOR DEL HIPÓDROMO ---------------------------------------------------
-//
-//            ArrayList<Jornada>jornadas = cargarJornadas("oidHipodromo = "+ h.getOid(), h);
-//            for(Jornada j : jornadas){
-//                ArrayList<Carrera>carreras = cargarCarreras("oidJornada = " + j.getOid(), j);
-//                for (Carrera c : carreras){
-//                    c.setParticipantes(cargarParticipantes("oidCarrera = " + c.getOid(), c));
-//                }
-//                j.setCarreras(carreras);
-//            }
-//            h.setJornadas(jornadas);
-//      -----------------------------------------------------------------------------------------------
+            anexarInformacion(h);
             hipodromos.add(h);
         }
-        ArrayList<Hipodromo> hs =getHipodromos();
     }
-    
+
+    //CARGA DE DATOS AL INTERIOR DEL HIPÓDROMO ---------------------------------------------------
+    public Hipodromo anexarInformacion(Hipodromo h) {
+        ArrayList<Jornada> jornadas = cargarJornadas("oidHipodromo = " + h.getOid(), h);
+        for (Jornada j : jornadas) {
+            ArrayList<Carrera> carreras = cargarCarreras("oidJornada = " + j.getOid(), j);
+            for (Carrera c : carreras) {
+                c.setParticipantes(cargarParticipantes("oidCarrera = " + c.getOid(), c));
+            }
+            j.setCarreras(carreras);
+        }
+        h.setJornadas(jornadas);
+        return h;
+    }
+
     //CARGA DE JORNADA DESDE LA BASE DE DATOS
     public ArrayList<Jornada> cargarJornadas(String filtro, Hipodromo hipodromo) {
         MapeadorJornada map = new MapeadorJornada();
         ArrayList<Jornada> jornadas = Persistencia.getInstancia().buscar(map, filtro);
-        for(Jornada j : jornadas){
+        for (Jornada j : jornadas) {
             j.setHipodromo(hipodromo);
         }
         return jornadas;
@@ -95,22 +97,22 @@ public class SistemaHipodromos {
     public ArrayList<Carrera> cargarCarreras(String filtro, Jornada jornada) {
         MapeadorCarrera map = new MapeadorCarrera();
         ArrayList<Carrera> carreras = Persistencia.getInstancia().buscar(map, filtro);
-        for (Carrera c : carreras){
+        for (Carrera c : carreras) {
             c.setJornada(jornada);
         }
         return carreras;
     }
-    
+
     //CARGA DE PARTICIPANTE DESDE LA BASE DE DATOS
     public ArrayList<Participante> cargarParticipantes(String filtro, Carrera carrera) {
         MapeadorParticipante map = new MapeadorParticipante();
         ArrayList<Participante> participantes = Persistencia.getInstancia().buscar(map, filtro);
-        for(Participante p : participantes){
+        for (Participante p : participantes) {
             p.setCarrera(carrera);
         }
         return participantes;
     }
- 
+
     //----------------------------------------------------------------------------------------------
     //GUARDA HIPODROMO EN LA BASE DE DATOS
     public void guardarHipodromo(Hipodromo hipodromo) {
