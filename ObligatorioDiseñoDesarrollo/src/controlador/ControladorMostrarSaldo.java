@@ -3,7 +3,6 @@ package controlador;
 
 import modelo.Jugador;
 
-
 public class ControladorMostrarSaldo {
     
     private IVistaMostrarSaldo vista;

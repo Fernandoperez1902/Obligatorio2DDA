@@ -122,7 +122,7 @@ public class VerSaldo extends javax.swing.JDialog implements IVistaMostrarSaldo 
         if (a != null) {
             Carrera c = a.getCarrera();
             Participante p = a.getParticipante();
-            lblDatoApuesta1.setText(ManejoDeFechas.formatearFecha(c.getFecha(), "dd/MM/yyyy") + " - Carrera n° " + c.getNumeroCarrera());
+            lblDatoApuesta1.setText(c.getHipodromo().getNombre()+ " - " + ManejoDeFechas.formatearFecha(c.getFecha(), "dd/MM/yyyy") + " - Carrera n° " + c.getNumeroCarrera());
             lblDatoApuesta2.setText("Caballo n° " + p.getNumero() + " - " + p.getNombreCaballo() + " - dividendo " + p.getDividendo());
             lblDatoApuesta3.setText("Apostó: $ " + a.getMontoApostado());
             if (!c.isFinalizada()) {
