@@ -81,12 +81,12 @@ public class ControladorRealizarApuestas implements Observador {
                     j.setUltimaApuesta(apuesta);
                     participanteSeleccionado.agregarApuesta(apuesta);
                     vista.mostrarMensajeExito();
+                    limpiarFormulario();
                 }
             }
         } catch (ApuestasException ex) {
             vista.mostrarError(ex.getMessage());
         }
-        limpiarFormulario();
     }
 
     public void seleccionarHipodromo(int index) {
